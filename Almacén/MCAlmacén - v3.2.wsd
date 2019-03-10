@@ -1,0 +1,124 @@
+@startuml ALMACÉN
+class Técnico
+object Evento{
+    direccion
+    fechaInicio
+    fechaFin
+    checkAlmacén
+}
+note left: Si estadoEnvío = Recibido, OK en checkAlmacén
+
+object Envío{
+    direccion
+    estadoEnvío
+}
+
+object Ítem{
+    referencia
+    nombre
+    estadoItem
+    Precio
+}
+
+object ÍtemAlquilado{
+
+}
+
+enum estadoItem{
+    Disponible
+    Evento
+    Por reparar
+    En mantenimiento
+}
+
+enum estadoEnvío{
+    Por realizar 
+    En evento
+    Recibido
+}
+
+object Mantenimiento{
+    fechaInicio
+    fechaFin
+}
+
+object PersonalAlmacén{
+    nombre
+    dni
+    cargo
+    sueldo
+    telefono
+    direccion
+    estado
+}
+
+enum estadoEmpleado{
+    Libre
+    Ocupado
+}
+
+object Altavoz{
+    potencia
+    Pulgadas
+}
+
+object Micrófono{
+    Alimentación
+    TipoSujección
+}
+
+object Pantalla{
+    Tamaño
+    Resolución
+}
+
+object MesaMezcla{
+    canales
+    tipo
+}
+
+object Foco{
+    tipoLuz
+    tipoMovimiento
+    potencia
+}
+
+object Proyector{
+    resolucion
+    lumenes
+}
+
+object Cable{
+    conexion
+    metros
+}
+
+object Ordenador{
+    procesador
+    gbram  
+}
+
+object ParteEquipo{
+}
+
+ParteEquipo "1..*"--"1" Técnico : Crea <  
+Envío "1"--"1" ParteEquipo : FormaUn <
+PersonalAlmacén "1"--"0..*" Mantenimiento : Realiza >
+PersonalAlmacén "1"--"*" Envío : Realiza >
+Mantenimiento "0..*"-->"1" Ítem
+PersonalAlmacén"1..*"--"1" Ítem : Añade >
+ParteEquipo *--Ítem
+ParteEquipo "1" -- "0..*" ÍtemAlquilado : FormaParteDe <
+estadoEnvío --* Evento
+Envío"1"--"1"Evento : Llega a >
+PersonalAlmacén .. estadoEmpleado
+Ítem <|--Pantalla
+Ítem <|--Altavoz
+Ítem <|--Micrófono
+Ítem <|--Ordenador
+Ítem <|--MesaMezcla
+Ítem <|--Proyector
+Ítem <|--Cable
+Ítem <|--Foco
+
+@enduml

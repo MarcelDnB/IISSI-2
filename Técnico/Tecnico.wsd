@@ -1,0 +1,38 @@
+@startuml Tecnico
+hide methods
+object Evento{
+    Lugar
+}
+object Item{
+    nombre
+    numItems
+    precio
+    FechaLlegada
+}
+object ParteEquipo{
+    cantidad
+    FechaFinal
+}
+object ItemAlquilado{
+    nombre
+    numAlquilados
+    precio
+    FechaLlegada
+    FechaDevolucion
+}
+object PersonalTecnico{
+    nombre
+    estado
+    cargo
+}
+class Produccion{
+}
+class Almacen{
+}
+ParteEquipo"1"--"1..*"PersonalTecnico: < Crea
+Evento"1"--"1"ParteEquipo:  Necesita >
+Almacen--"0..*"Item: < Agrega al Inventario
+Produccion<|--ItemAlquilado
+ParteEquipo*--Item
+ParteEquipo*--ItemAlquilado
+@enduml
