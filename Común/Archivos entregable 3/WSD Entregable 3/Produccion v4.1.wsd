@@ -1,0 +1,64 @@
+@startuml produccion
+object Evento {
+    Lugar
+    PrecioTotal
+}
+note left: Si Evento = Terminado => Producción = OK
+
+object PersonalTécnico {
+    cargo
+    nombre
+    sueldo
+    dni
+    telefono
+}
+
+object Alojamiento {
+    dirección
+    fechaInicio
+    fechaFin
+    hotel
+    numPersonas
+}
+
+object Transporte {
+    medioUtilizado
+    numPersonas
+}
+
+object  ÍtemAlquilado {
+    tipo
+    nombre
+    Empresa
+    fechaLlegada
+    fechaDevolución
+    cantidad
+    precio
+}
+
+object PersonalTécnicoExterno {
+    cargo
+    nombre
+    sueldo
+    dni
+    telefono
+    fechaInicio
+    fechaFin
+    Empresa
+}
+
+object parteEquipo{
+}
+
+Evento "1"--"0..*" PersonalTécnicoExterno:< esAsignado
+parteEquipo "1"--"0..*" ÍtemAlquilado : > contiene
+Evento "1"--"1..*" PersonalTécnico : < esAsignado
+Evento "1" -- "1" parteEquipo : > requiere
+PersonalTécnico "1..*" -- "1"Alojamiento : > necesitan
+Evento"1"--"1" Transporte: > necesita
+PersonalTécnicoExterno "0..*" -- "0..1"Alojamiento : > necesitan
+@enduml 
+
+
+/no se puede asignar personal externo a ningun Alojamiento*/
+/si estado perparacion, al menos una persona y puedes meter mas restricciones

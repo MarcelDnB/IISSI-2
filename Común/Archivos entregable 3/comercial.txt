@@ -1,0 +1,45 @@
+ create table Evento (
+        eid number(5) primary key not null,
+        precioTotal number(10),
+        lugar varchar2(40),
+        fechaInicio date,
+        fechaFin date,
+        constraint fechas check(fechaInicio < fechaFin),
+        descripcionCliente varchar2(140),
+	estadoEvento varchar2(15) check (estadoEvento in ('realizado','porRealizar'))
+	cliente int,
+	Visita int,
+	Trabajador int not null,
+        );
+
+create table cliente(
+	OID int not null
+	Nombre Varchar (40)
+	Apellidos Varchar (40)
+	dni varchar2(9) unique,
+	Empresa Varchar (40)
+	telefono bigint
+	correo Varchar (40)
+	);
+create table visita(
+	OID int not null
+	Nombre Varchar (40)
+	Apellidos Varchar (40)
+	dni varchar2(9) unique,
+	Empresa Varchar (40)
+	telefono bigint
+	correo Varchar (40)
+	);
+create table trabajador(
+        pid number(7) primary key,
+        departamento varchar2(10) check(departamento in('Tecnico','Produccion','Almacen','Comercial','Externo')),
+        nombre varchar2(20),
+        cargo varchar2(20),
+        sueldo number(10) check (sueldo>20),
+        dni varchar2(9) unique,
+        telefono number(9),
+        eid number(5),
+        peid number(4),
+        foreign key(eid) references evento,
+        foreign key(peid) references parteEquipo
+	);

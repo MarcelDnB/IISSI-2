@@ -1,0 +1,13 @@
+create or replace TRIGGER MAXIMO_PARTEEQUIPO 
+BEFORE INSERT OR UPDATE OF EID ON PARTEEQUIPO 
+FOR EACH ROW WHEN(new.eid!=old.eid)
+BEGIN
+  IF INSERTING THEN
+  insert into PARTEEQUIPO values(:new.peid, :new.referencia,:new.eid);  
+  END IF;
+  IF UPDATING THEN
+  insert into PARTEEQUIPO values(:new.peid, :new.referencia,:new.eid);
+  END IF;
+END;
+
+---------------FALTA POR PULIR FUNCIONAMIENTO EN EL UPDATE------------------
