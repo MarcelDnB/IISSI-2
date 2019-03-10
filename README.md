@@ -10,4 +10,4 @@ Los putos amos en acción, ZeUSware
 - [ ] Comunicar la base de datos con PHP 
 - [ ] Terminar para la entrega
 
-## changelog (solo cambios grandes)
+## changelog
