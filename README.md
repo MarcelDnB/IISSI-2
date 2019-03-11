@@ -1,5 +1,5 @@
 # IISSI-2
-Los putos amos en acción, ZeUSware
+Proyecto ZeUS de IISSI2
 
 ## TODO
 
