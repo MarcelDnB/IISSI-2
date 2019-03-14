@@ -1,8 +1,8 @@
 
 	<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-	<title>Login V4</title>
+	<title>Login ZeUS</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -26,15 +26,15 @@
 						Login
 					</span>
 
-					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
-						<span class="label-input100">Username</span>
-						<input class="input100" type="text" name="login" placeholder="Type your username">
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Nombre de usuario requerido">
+						<span class="label-input100">Usuario</span>
+						<input class="input100" type="text" name="login" placeholder="Escriba su nombre de usuario">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="passwd" placeholder="Type your password">
+					<div class="wrap-input100 validate-input" data-validate="Contraseña requerida">
+						<span class="label-input100">Contraseña</span>
+						<input class="input100" type="password" name="passwd" placeholder="Escriba su contraseña">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					<br/><br/>
@@ -43,7 +43,7 @@
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn" type="submit">
-								Login
+								Iniciar sesión
 							</button>
 						</div>
 					</div>
