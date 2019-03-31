@@ -3,7 +3,7 @@ Proyecto ZeUS de IISSI2
 
 ## TODO
 
-- [ ] Mockup de los departamentos
+- [x] Mockup de los departamentos
 - [ ] Pasar de mockup a HTML y CSS en todos los departamentos
 - [ ] Crear esqueleto de PHP
 - [ ] Crear Login en PHP
