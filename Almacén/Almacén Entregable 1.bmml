@@ -1,0 +1,1509 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="3978" measuredH="4019" mockupW="3978" mockupH="4019">
+  <controls>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Arrow" x="876" y="793" w="136" h="10" measuredW="150" measuredH="100" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <leftArrow>false</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::Arrow" x="1917" y="793" w="130" h="10" measuredW="150" measuredH="100" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <leftArrow>false</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="45" controlTypeID="com.balsamiq.mockups::Arrow" x="876" y="1429" w="136" h="10" measuredW="150" measuredH="100" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <leftArrow>false</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="66" controlTypeID="com.balsamiq.mockups::Arrow" x="1911" y="1429" w="136" h="10" measuredW="150" measuredH="100" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <leftArrow>false</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="277" controlTypeID="com.balsamiq.mockups::Arrow" x="876" y="2019" w="136" h="10" measuredW="150" measuredH="100" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <leftArrow>false</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="344" controlTypeID="com.balsamiq.mockups::Arrow" x="2958" y="793" w="130" h="10" measuredW="150" measuredH="100" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <leftArrow>false</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="365" controlTypeID="com.balsamiq.mockups::Arrow" x="1911" y="2019" w="136" h="10" measuredW="150" measuredH="100" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <leftArrow>false</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="391" controlTypeID="com.balsamiq.mockups::Arrow" x="2937" y="2019" w="136" h="10" measuredW="150" measuredH="100" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <leftArrow>false</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="420" controlTypeID="com.balsamiq.mockups::Arrow" x="876" y="2601" w="136" h="10" measuredW="150" measuredH="100" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <leftArrow>false</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="446" controlTypeID="__group__" x="0" y="2949" w="907" h="459" measuredW="907" measuredH="459" zOrder="15" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="446">
+          <controlProperties>
+            <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/partesdeequipo</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="15" y="87" w="-1" h="-1" measuredW="124" measuredH="24" zOrder="1" locked="false" isInGroup="446">
+          <controlProperties>
+            <text>Partes%20de%20equipo</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Accordion" x="15" y="135" w="150" h="165" measuredW="150" measuredH="240" zOrder="2" locked="false" isInGroup="446">
+          <controlProperties>
+            <selectedIndex>4</selectedIndex>
+            <text>Env%EDos%0AInventario%0A%CDtems%20alquilados%0AMantenimiento%0APartes%20de%20equipo%0APersonal%20de%20almac%E9n</text>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="180" y="135" w="206" h="143" measuredW="175" measuredH="81" zOrder="3" locked="false" isInGroup="446">
+          <controlProperties>
+            <rowHeight>30</rowHeight>
+            <selectedIndex>0</selectedIndex>
+            <text>PEID%2C%20EID%2C%20fechaCreacion%0A1%2C1%2C%2030/03/2019%0A%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Tooltip" x="696" y="370" w="211" h="89" measuredW="212" measuredH="0" zOrder="4" locked="false" isInGroup="446">
+          <controlProperties>
+            <size>16</size>
+            <text>Vista%20de%20los%20%EDtems%20que%20componen%20el%20parte%20de%20equipo%20seleccionado.</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Label" x="539" y="126" w="-1" h="-1" measuredW="142" measuredH="26" zOrder="5" locked="false" isInGroup="446">
+          <controlProperties>
+            <size>18</size>
+            <state>up</state>
+            <text>Parte%20de%20equipo%201</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::DataGrid" x="401" y="161" w="453" h="199" measuredW="459" measuredH="201" zOrder="6" locked="false" isInGroup="446">
+          <controlProperties>
+            <rowHeight>30</rowHeight>
+            <text>Referencia%20%5E%2C%20Nombre%20%5Ev%2CestadoItem%2CprecioAlquiler%2C%20PID%0A0001%2CBehringer%20UMC204%2CDisponible%2C20.00%2C1%0A0002%2CAOC%202590G5%2CenEvento%2C7.00%2C1%0A0003%2CMartin%20Rush%20MH7%2CenEvento%2C24.00%2C1%0A0004%2CRoland%20RSS%20M5000%2CenMantenimiento%2C35.00%2C1%0A0005%2CBlue%20Dragonfly%2CporReparar%2C12.00%2C1%0A%20%0A%7B5%2C%209%2C7%2C7%2C%208%7D</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::Tooltip" x="123" y="285" w="211" h="75" measuredW="198" measuredH="0" zOrder="7" locked="false" isInGroup="446">
+          <controlProperties>
+            <size>16</size>
+            <text>Informaci%F3n%20de%20los%20partes%20de%20equipo.</text>
+            <tooltipDirection>NE</tooltipDirection>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="454" controlTypeID="com.balsamiq.mockups::Button" x="180" y="3692" w="-1" h="-1" measuredW="71" measuredH="27" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <menuIcon>false</menuIcon>
+        <state>selected</state>
+        <text>Agregar</text>
+      </controlProperties>
+    </control>
+    <control controlID="506" controlTypeID="com.balsamiq.mockups::Arrow" x="876" y="3772" w="136" h="10" measuredW="150" measuredH="100" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <leftArrow>false</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="518" controlTypeID="com.balsamiq.mockups::Arrow" x="1911" y="3772" w="136" h="10" measuredW="150" measuredH="100" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <leftArrow>false</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="521" controlTypeID="com.balsamiq.mockups::Arrow" x="2955" y="3797" w="136" h="10" measuredW="150" measuredH="100" zOrder="20" locked="false" isInGroup="-1">
+      <controlProperties>
+        <leftArrow>false</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="552" controlTypeID="com.balsamiq.mockups::Arrow" x="3585" y="3461" w="10" h="84" measuredW="150" measuredH="100" zOrder="23" locked="false" isInGroup="-1">
+      <controlProperties>
+        <direction>bottom</direction>
+        <leftArrow>false</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="563" controlTypeID="com.balsamiq.mockups::Arrow" x="2961" y="3236" w="136" h="10" measuredW="150" measuredH="100" zOrder="24" locked="false" isInGroup="-1">
+      <controlProperties>
+        <leftArrow>true</leftArrow>
+        <rightArrow>false</rightArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="574" controlTypeID="com.balsamiq.mockups::SearchBox" x="707" y="1931" w="-1" h="-1" measuredW="140" measuredH="25" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Buscar%20por%20nombre</text>
+      </controlProperties>
+    </control>
+    <control controlID="586" controlTypeID="com.balsamiq.mockups::Label" x="444" y="3680" w="-1" h="-1" measuredW="172" measuredH="26" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>18</size>
+        <state>up</state>
+        <text>Personal%20de%20almac%E9n</text>
+      </controlProperties>
+    </control>
+    <control controlID="593" controlTypeID="com.balsamiq.mockups::Image" x="1012" y="0" w="1024" h="572" measuredW="1280" measuredH="720" zOrder="32" locked="false" isInGroup="-1">
+      <controlProperties>
+        <src>./assets/zeus.png</src>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="595" controlTypeID="com.balsamiq.mockups::Label" x="1863" y="266" w="-1" h="-1" measuredW="561" measuredH="40" zOrder="33" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>32</size>
+        <text>Mockup%20del%20departamento%20de%20almac%E9n</text>
+      </controlProperties>
+    </control>
+    <control controlID="596" controlTypeID="__group__" x="0" y="1" w="866" h="459" measuredW="866" measuredH="459" zOrder="4" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="596">
+          <controlProperties>
+            <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/almacen</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::Accordion" x="15" y="127" w="150" h="256" measuredW="150" measuredH="240" zOrder="1" locked="false" isInGroup="596">
+          <controlProperties>
+            <selectedIndex>-1</selectedIndex>
+            <text>Env%EDos%0AInventario%0A%CDtems%20alquilados%0AMantenimiento%0APartes%20de%20equipo%0APersonal%20de%20almac%E9n</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="15" y="88" w="-1" h="-1" measuredW="118" measuredH="24" zOrder="2" locked="false" isInGroup="596">
+          <controlProperties>
+            <text>P%E1gina%20principal</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Image" x="180" y="85" w="605" h="340" measuredW="1280" measuredH="720" zOrder="3" locked="false" isInGroup="596">
+          <controlProperties>
+            <markup>true</markup>
+            <src>./assets/zeus.png</src>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::StickyNote" x="618" y="142" w="191" h="174" measuredW="109" measuredH="123" zOrder="4" locked="false" isInGroup="596">
+          <controlProperties>
+            <text>P%E1gina%20principal%20del%20departamento%20de%20almac%E9n.%20Se%20accede%20a%20ella%20tras%20hacer%20login%20con%20una%20cuenta%20perteneciente%20a%20este%20departamento.</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Tooltip" x="101" y="349" w="226" h="76" measuredW="220" measuredH="0" zOrder="5" locked="false" isInGroup="596">
+          <controlProperties>
+            <size>16</size>
+            <text>Men%FA%20con%20las%20distintas%20opciones%20del%20departamento.</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="597" controlTypeID="__group__" x="0" y="568" w="866" h="460" measuredW="866" measuredH="460" zOrder="5" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="460" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="597">
+          <controlProperties>
+            <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/almacen/envios</text>
+            <value>0</value>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="15" y="89" w="-1" h="-1" measuredW="63" measuredH="24" zOrder="1" locked="false" isInGroup="597">
+          <controlProperties>
+            <text>Env%EDos</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::DataGrid" x="175" y="154" w="672" h="236" measuredW="777" measuredH="207" zOrder="2" locked="false" isInGroup="597">
+          <controlProperties>
+            <borderStyle>square</borderStyle>
+            <hasHeader>true</hasHeader>
+            <rowHeight>31</rowHeight>
+            <text>ENID%20%5E%2C%20Direcci%F3n%20%5Ev%2C%20Fecha%20de%20salida%2C%20Fecha%20de%20entrada%20v%2CestadoEnvio%20v%2C%20PID%2CPEID%0A1%2C10%20Mathew%20St.%20Liverpool%20L2%206RE-UK%2C15/03/2019%2C22/03/2019%2CRealizado%2C1%2C1%0A2%2C10%20Mathew%20St.%20Liverpool%20L2%206RE-UK%2C18/03/2019%2C22/03/2019%2CRealizado%2C1%2C1%0A3%2C10%20Mathew%20St.%20Liverpool%20L2%206RE-UK%2C20/03/2019%2C22/03/2019%2CporRealizar%2C1%2C1%0A4%2C10%20Mathew%20St.%20Liverpool%20L2%206RE-UK%2C03/05/2019%2Cnull%2CporRealizar%2C1%2C1%0A5%2CAv.%20de%20los%20Pirineos%2025%20nave%205%2028703%20San%20Sebasti%E1n%2C03/05/2019%2Cnull%2CporRealizar%2C1%2C1%0A%20%0A%7B2%2C%2015%2C%206%2C7%2C5%2C%202%2C2%7D</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::SearchBox" x="696" y="122" w="150" h="-1" measuredW="150" measuredH="25" zOrder="3" locked="false" isInGroup="597">
+          <controlProperties>
+            <text>Buscar%20por%20direcci%F3n</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Tooltip" x="655" y="389" w="211" h="52" measuredW="203" measuredH="0" zOrder="4" locked="false" isInGroup="597">
+          <controlProperties>
+            <size>16</size>
+            <text>Lista%20con%20los%20env%EDos%20creados.</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Accordion" x="15" y="128" w="150" h="165" measuredW="150" measuredH="240" zOrder="5" locked="false" isInGroup="597">
+          <controlProperties>
+            <selectedIndex>0</selectedIndex>
+            <text>Env%EDos%0AInventario%0A%CDtems%20alquilados%0AMantenimiento%0APartes%20de%20equipo%0APersonal%20de%20almac%E9n</text>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::Button" x="175" y="121" w="-1" h="-1" measuredW="91" measuredH="27" zOrder="6" locked="false" isInGroup="597">
+          <controlProperties>
+            <state>up</state>
+            <text>Crear%20env%EDo</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::Tooltip" x="283" y="47" w="211" h="92" measuredW="214" measuredH="0" zOrder="7" locked="false" isInGroup="597">
+          <controlProperties>
+            <size>16</size>
+            <text>Men%FA%20con%20las%20opciones%20de%20cada%20funci%F3n%20del%20departamento%20y%20una%20barra%20de%20b%FAsqueda.</text>
+            <tooltipDirection>SW</tooltipDirection>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="598" controlTypeID="__group__" x="1027" y="569" w="866" h="459" measuredW="866" measuredH="459" zOrder="25" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="598">
+          <controlProperties>
+            <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/almacen/envios/crearenvio</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="19" y="92" w="-1" h="-1" measuredW="124" measuredH="24" zOrder="1" locked="false" isInGroup="598">
+          <controlProperties>
+            <text>Env%EDos%2CCrear%20env%EDo</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="277" y="162" w="-1" h="-1" measuredW="56" measuredH="21" zOrder="2" locked="false" isInGroup="598">
+          <controlProperties>
+            <text>Direcci%F3n</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="277" y="267" w="-1" h="-1" measuredW="25" measuredH="21" zOrder="3" locked="false" isInGroup="598">
+          <controlProperties>
+            <text>PID%3A</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="277" y="198" w="-1" h="-1" measuredW="82" measuredH="21" zOrder="4" locked="false" isInGroup="598">
+          <controlProperties>
+            <text>fechaEntrada%3A</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Label" x="277" y="232" w="-1" h="-1" measuredW="72" measuredH="21" zOrder="5" locked="false" isInGroup="598">
+          <controlProperties>
+            <text>fechaSalida%3A</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="278" y="301" w="-1" h="-1" measuredW="33" measuredH="21" zOrder="6" locked="false" isInGroup="598">
+          <controlProperties>
+            <text>PEID%3A</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::Button" x="684" y="357" w="-1" h="-1" measuredW="91" measuredH="27" zOrder="7" locked="false" isInGroup="598">
+          <controlProperties>
+            <text>Crear%20env%EDo</text>
+          </controlProperties>
+        </control>
+        <control controlID="8" controlTypeID="com.balsamiq.mockups::Button" x="691" y="315" w="-1" h="-1" measuredW="77" measuredH="27" zOrder="8" locked="false" isInGroup="598">
+          <controlProperties>
+            <text>Cancelar</text>
+          </controlProperties>
+        </control>
+        <control controlID="9" controlTypeID="com.balsamiq.mockups::TextInput" x="407" y="159" w="170" h="-1" measuredW="73" measuredH="27" zOrder="9" locked="false" isInGroup="598">
+          <controlProperties>
+            <text>direccion1</text>
+          </controlProperties>
+        </control>
+        <control controlID="10" controlTypeID="com.balsamiq.mockups::TextInput" x="407" y="264" w="170" h="-1" measuredW="20" measuredH="27" zOrder="10" locked="false" isInGroup="598">
+          <controlProperties>
+            <text>1</text>
+          </controlProperties>
+        </control>
+        <control controlID="11" controlTypeID="com.balsamiq.mockups::TextInput" x="407" y="298" w="170" h="-1" measuredW="22" measuredH="27" zOrder="11" locked="false" isInGroup="598">
+          <controlProperties>
+            <text>7</text>
+          </controlProperties>
+        </control>
+        <control controlID="12" controlTypeID="com.balsamiq.mockups::StickyNote" x="676" y="125" w="131" h="145" measuredW="109" measuredH="123" zOrder="12" locked="false" isInGroup="598">
+          <controlProperties>
+            <text>Formulario%20crear%20el%20env%EDo.%20Si%20se%20viola%20alguna%20restricci%F3n%2C%20aparece%20un%20mensaje%20de%20error.</text>
+          </controlProperties>
+        </control>
+        <control controlID="13" controlTypeID="com.balsamiq.mockups::Accordion" x="15" y="136" w="150" h="165" measuredW="150" measuredH="240" zOrder="13" locked="false" isInGroup="598">
+          <controlProperties>
+            <selectedIndex>0</selectedIndex>
+            <text>Env%EDos%0AInventario%0A%CDtems%20alquilados%0AMantenimiento%0APartes%20de%20equipo%0APersonal%20de%20almac%E9n</text>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="14" controlTypeID="com.balsamiq.mockups::Label" x="399" y="360" w="-1" h="-1" measuredW="187" measuredH="21" zOrder="14" locked="false" isInGroup="598">
+          <controlProperties>
+            <bold>true</bold>
+            <color>13576743</color>
+            <text>Posici%F3n%20del%20mensaje%20de%20error</text>
+          </controlProperties>
+        </control>
+        <control controlID="15" controlTypeID="com.balsamiq.mockups::DateChooser" x="407" y="196" w="170" h="-1" measuredW="147" measuredH="25" zOrder="15" locked="false" isInGroup="598">
+          <controlProperties>
+            <state>up</state>
+            <text>%20%20%20%20%20%20%2002/06/2019</text>
+          </controlProperties>
+        </control>
+        <control controlID="16" controlTypeID="com.balsamiq.mockups::DateChooser" x="407" y="230" w="170" h="-1" measuredW="146" measuredH="25" zOrder="16" locked="false" isInGroup="598">
+          <controlProperties>
+            <state>up</state>
+            <text>%20%20%20%20%20%20%2008/06/2019</text>
+          </controlProperties>
+        </control>
+        <control controlID="17" controlTypeID="com.balsamiq.mockups::Label" x="437" y="112" w="-1" h="-1" measuredW="96" measuredH="26" zOrder="17" locked="false" isInGroup="598">
+          <controlProperties>
+            <size>18</size>
+            <text>Crear%20env%EDo</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="599" controlTypeID="__group__" x="2062" y="569" w="866" h="459" measuredW="866" measuredH="459" zOrder="10" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="__group__" x="0" y="0" w="866" h="459" measuredW="866" measuredH="459" zOrder="0" locked="false" isInGroup="599">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/almacen/envios/crearenvio</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="19" y="92" w="-1" h="-1" measuredW="124" measuredH="24" zOrder="1" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>Env%EDos%2CCrear%20env%EDo</text>
+              </controlProperties>
+            </control>
+            <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="277" y="162" w="-1" h="-1" measuredW="56" measuredH="21" zOrder="2" locked="false" isInGroup="0">
+              <controlProperties>
+                <state>disabled</state>
+                <text>Direcci%F3n</text>
+              </controlProperties>
+            </control>
+            <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="277" y="267" w="-1" h="-1" measuredW="25" measuredH="21" zOrder="3" locked="false" isInGroup="0">
+              <controlProperties>
+                <state>disabled</state>
+                <text>PID%3A</text>
+              </controlProperties>
+            </control>
+            <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="277" y="198" w="-1" h="-1" measuredW="82" measuredH="21" zOrder="4" locked="false" isInGroup="0">
+              <controlProperties>
+                <state>disabled</state>
+                <text>fechaEntrada%3A</text>
+              </controlProperties>
+            </control>
+            <control controlID="5" controlTypeID="com.balsamiq.mockups::Label" x="277" y="232" w="-1" h="-1" measuredW="72" measuredH="21" zOrder="5" locked="false" isInGroup="0">
+              <controlProperties>
+                <state>disabled</state>
+                <text>fechaSalida%3A</text>
+              </controlProperties>
+            </control>
+            <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="278" y="301" w="-1" h="-1" measuredW="33" measuredH="21" zOrder="6" locked="false" isInGroup="0">
+              <controlProperties>
+                <state>disabled</state>
+                <text>PEID%3A</text>
+              </controlProperties>
+            </control>
+            <control controlID="7" controlTypeID="com.balsamiq.mockups::TextInput" x="407" y="159" w="170" h="-1" measuredW="79" measuredH="26" zOrder="7" locked="false" isInGroup="0">
+              <controlProperties>
+                <state>disabled</state>
+                <text/>
+              </controlProperties>
+            </control>
+            <control controlID="8" controlTypeID="com.balsamiq.mockups::TextInput" x="407" y="264" w="170" h="-1" measuredW="79" measuredH="26" zOrder="8" locked="false" isInGroup="0">
+              <controlProperties>
+                <state>disabled</state>
+                <text/>
+              </controlProperties>
+            </control>
+            <control controlID="9" controlTypeID="com.balsamiq.mockups::TextInput" x="407" y="298" w="170" h="-1" measuredW="79" measuredH="26" zOrder="9" locked="false" isInGroup="0">
+              <controlProperties>
+                <state>disabled</state>
+                <text/>
+              </controlProperties>
+            </control>
+            <control controlID="10" controlTypeID="com.balsamiq.mockups::Accordion" x="15" y="136" w="150" h="165" measuredW="150" measuredH="240" zOrder="10" locked="false" isInGroup="0">
+              <controlProperties>
+                <selectedIndex>0</selectedIndex>
+                <text>Env%EDos%0AInventario%0A%CDtems%20alquilados%0AMantenimiento%0APartes%20de%20equipo%0APersonal%20de%20almac%E9n</text>
+                <verticalScrollbar>false</verticalScrollbar>
+              </controlProperties>
+            </control>
+            <control controlID="11" controlTypeID="com.balsamiq.mockups::DateChooser" x="407" y="196" w="170" h="-1" measuredW="152" measuredH="25" zOrder="11" locked="false" isInGroup="0">
+              <controlProperties>
+                <state>disabled</state>
+                <text>%20%20%20%20%20%20%20%20%20%20/%20%20%20%20%20%20%20%20%20%20/%20%20%20%20</text>
+              </controlProperties>
+            </control>
+            <control controlID="12" controlTypeID="com.balsamiq.mockups::DateChooser" x="407" y="230" w="170" h="-1" measuredW="152" measuredH="25" zOrder="12" locked="false" isInGroup="0">
+              <controlProperties>
+                <state>disabled</state>
+                <text>%20%20%20%20%20%20%20%20%20%20/%20%20%20%20%20%20%20%20%20%20/%20%20%20%20</text>
+              </controlProperties>
+            </control>
+            <control controlID="13" controlTypeID="com.balsamiq.mockups::Alert" x="302" y="144" w="366" h="149" measuredW="200" measuredH="195" zOrder="13" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>Confirmaci%F3n%0A%BFQuiere%20crear%20el%20env%EDo%20con%20los%20siguientes%20datos%3F%3A%20Direcci%F3n%3A%20direccion1%2C%20fechaEntrada08/06/2019%2C%20fechaSalida%3A%2002/06/2019%2C%20PID%3A%201%2C%20PEID%3A%207%0ANo%2C%20S%ED</text>
+              </controlProperties>
+            </control>
+            <control controlID="14" controlTypeID="com.balsamiq.mockups::Tooltip" x="610" y="301" w="211" h="117" measuredW="220" measuredH="0" zOrder="14" locked="false" isInGroup="0">
+              <controlProperties>
+                <size>16</size>
+                <text>Mensaje%20de%20confirmaci%F3n%3A%20Si%20se%20elige%20%22S%ED%22%2C%20se%20crea%20el%20env%EDo.%20Si%20no%2C%20se%20vuelve%20al%20formulario%20anterior.</text>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="600" controlTypeID="__group__" x="3112" y="569" w="866" h="459" measuredW="866" measuredH="459" zOrder="6" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="600">
+          <controlProperties>
+            <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/almacen/envios</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="8" y="89" w="-1" h="-1" measuredW="63" measuredH="24" zOrder="1" locked="false" isInGroup="600">
+          <controlProperties>
+            <text>Env%EDos</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Accordion" x="18" y="128" w="150" h="165" measuredW="150" measuredH="240" zOrder="2" locked="false" isInGroup="600">
+          <controlProperties>
+            <selectedIndex>0</selectedIndex>
+            <text>Env%EDos%0AInventario%0A%CDtems%20alquilados%0AMantenimiento%0APartes%20de%20equipo%0APersonal%20de%20almac%E9n</text>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="180" y="161" w="672" h="229" measuredW="777" measuredH="207" zOrder="3" locked="false" isInGroup="600">
+          <controlProperties>
+            <borderStyle>square</borderStyle>
+            <hasHeader>true</hasHeader>
+            <rowHeight>31</rowHeight>
+            <selectedIndex>0</selectedIndex>
+            <text>ENID%20%5E%2C%20Direcci%F3n%20%5Ev%2C%20Fecha%20de%20salida%2C%20Fecha%20de%20entrada%20v%2CestadoEnvio%20v%2C%20PID%2CPEID%0A1%2C10%20Mathew%20St.%20Liverpool%20L2%206RE-UK%2C15/03/2019%2C22/03/2019%2CRealizado%2C1%2C1%0A2%2C10%20Mathew%20St.%20Liverpool%20L2%206RE-UK%2C18/03/2019%2C22/03/2019%2CRealizado%2C1%2C1%0A3%2C10%20Mathew%20St.%20Liverpool%20L2%206RE-UK%2C20/03/2019%2C22/03/2019%2CporRealizar%2C1%2C1%0A4%2C10%20Mathew%20St.%20Liverpool%20L2%206RE-UK%2C22/03/2019%2C28/03/2019%2CporRealizar%2C1%2C1%0A5%2CAv.%20de%20los%20Pirineos%2025%20nave%205%2028703%20San%20Sebasti%E1n%2C03/05/2019%2Cnull%2CporRealizar%2C1%2C1%0A%20%0A%7B3%2C%2014%2C%206%2C7%2C5%2C%202%2C2%7D</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Button" x="180" y="128" w="-1" h="-1" measuredW="104" measuredH="27" zOrder="4" locked="false" isInGroup="600">
+          <controlProperties>
+            <text>Eliminar%20env%EDo</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::SearchBox" x="702" y="129" w="-1" h="-1" measuredW="150" measuredH="25" zOrder="5" locked="false" isInGroup="600">
+          <controlProperties>
+            <text>Buscar%20por%20direcci%F3n</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::Tooltip" x="273" y="357" w="211" h="69" measuredW="219" measuredH="0" zOrder="6" locked="false" isInGroup="600">
+          <controlProperties>
+            <size>16</size>
+            <text>Se%20pueden%20modificar%20los%20campos%20de%20cada%20env%EDo%20al%20modificarlo.</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::Tooltip" x="299" y="75" w="211" h="69" measuredW="221" measuredH="0" zOrder="7" locked="false" isInGroup="600">
+          <controlProperties>
+            <size>16</size>
+            <text>Para%20eliminar%20un%20env%EDo%2C%20seleccionarlo%20en%20la%20tabla%20y%20pulsar%20%22Eliminar%20env%EDo%22.</text>
+            <tooltipDirection>SW</tooltipDirection>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="604" controlTypeID="__group__" x="1027" y="1795" w="866" h="459" measuredW="866" measuredH="459" zOrder="26" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="604">
+          <controlProperties>
+            <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/itemsalquilados/creardevolucion</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="15" y="87" w="-1" h="-1" measuredW="120" measuredH="24" zOrder="1" locked="false" isInGroup="604">
+          <controlProperties>
+            <text>%EDtems%20alquilados</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Accordion" x="15" y="135" w="150" h="165" measuredW="150" measuredH="240" zOrder="2" locked="false" isInGroup="604">
+          <controlProperties>
+            <selectedIndex>2</selectedIndex>
+            <text>Env%EDos%0AInventario%0A%CDtems%20alquilados%0AMantenimiento%0APartes%20de%20equipo%0APersonal%20de%20almac%E9n</text>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="180" y="166" w="670" h="229" measuredW="596" measuredH="81" zOrder="3" locked="false" isInGroup="604">
+          <controlProperties>
+            <alternateRowColor>15594478</alternateRowColor>
+            <borderStyle>square</borderStyle>
+            <color>16777215</color>
+            <hasHeader>true</hasHeader>
+            <rowHeight>30</rowHeight>
+            <text>Nombre%20%5E%2CTipo%2C%20Empresa%20%5Ev%2CfechaLlegada%2CfechaDevolucion%2CCantidad%2CPrecio%2CPID%2CPEID%0ABOSE%20S1%2CAltavoz%2CSiemens%2C12/03/2019%2C03/05/2019%2C2%2C25.00%2C1%2C3%0A%20%0A%7B9%2C%206%2C6%2C6%2C7%7D</text>
+            <vLines>true</vLines>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Tooltip" x="598" y="300" w="211" h="116" measuredW="220" measuredH="0" zOrder="4" locked="false" isInGroup="604">
+          <controlProperties>
+            <size>16</size>
+            <text>Mensaje%20de%20confirmaci%F3n%20de%20la%20devoluci%F3n.%20Si%20no%20se%20confirma%2C%20se%20vuelve%20a%20la%20lista%20de%20%EDtems%20alquilados.</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="180" y="135" w="-1" h="-1" measuredW="74" measuredH="27" zOrder="5" locked="false" isInGroup="604">
+          <controlProperties>
+            <menuIcon>false</menuIcon>
+            <state>disabled</state>
+            <text>Devolver</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::Alert" x="314" y="135" w="366" h="149" measuredW="200" measuredH="133" zOrder="6" locked="false" isInGroup="604">
+          <controlProperties>
+            <text>Confirmaci%F3n%0A%BFQuiere%20devolver%20el%20%EDtem%20BOSE%20S1%3F%0ANo%2C%20S%ED</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::SearchBox" x="710" y="136" w="-1" h="-1" measuredW="140" measuredH="25" zOrder="7" locked="false" isInGroup="604">
+          <controlProperties>
+            <text>Buscar%20por%20nombre</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="605" controlTypeID="__group__" x="2062" y="1795" w="866" h="459" measuredW="866" measuredH="459" zOrder="27" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::Button" x="180" y="339" w="-1" h="-1" measuredW="81" measuredH="27" zOrder="0" locked="false" isInGroup="605">
+          <controlProperties>
+            <menuIcon>false</menuIcon>
+            <state>selected</state>
+            <text>Confirmar</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="1" locked="false" isInGroup="605">
+          <controlProperties>
+            <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/itemsalquilados/devoluciones</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="15" y="87" w="-1" h="-1" measuredW="176" measuredH="24" zOrder="2" locked="false" isInGroup="605">
+          <controlProperties>
+            <text>%EDtems%20alquilados%2C%20Devoluci%F3n</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Accordion" x="15" y="135" w="150" h="200" measuredW="150" measuredH="267" zOrder="3" locked="false" isInGroup="605">
+          <controlProperties>
+            <selectedIndex>3</selectedIndex>
+            <text>Env%EDos%0AInventario%0A%CDtems%20alquilados%0A-%20-Devoluciones%0AMantenimiento%0APartes%20de%20equipo%0APersonal%20de%20almac%E9n</text>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Tooltip" x="595" y="350" w="211" h="94" measuredW="219" measuredH="0" zOrder="4" locked="false" isInGroup="605">
+          <controlProperties>
+            <size>16</size>
+            <text>Se%20pueden%20modificar%20los%20campos%20permitidos%20seleccionando%20la%20devoluci%F3n%20en%20la%20tabla.%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Label" x="419" y="148" w="-1" h="-1" measuredW="178" measuredH="26" zOrder="5" locked="false" isInGroup="605">
+          <controlProperties>
+            <size>18</size>
+            <state>up</state>
+            <text>Lista%20de%20devoluciones</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::DataGrid" x="180" y="183" w="656" h="156" measuredW="446" measuredH="43" zOrder="6" locked="false" isInGroup="605">
+          <controlProperties>
+            <rowHeight>22</rowHeight>
+            <selectedIndex>0</selectedIndex>
+            <text>DID%20%5E%2C%20Nombre%2C%20Empresa%20%5Ev%2C%20Fecha%20de%20salida%2C%20estadoDevolucion%2C%20PID%0A1%2CBOSE%20S1%2CSiemens%2C%2020/03/2019%2CporHacer%2C1</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::Button" x="180" y="148" w="143" h="27" measuredW="143" measuredH="27" zOrder="7" locked="false" isInGroup="605">
+          <controlProperties>
+            <menuIcon>false</menuIcon>
+            <state>selected</state>
+            <text>Cancelar%20devoluci%F3n</text>
+          </controlProperties>
+        </control>
+        <control controlID="8" controlTypeID="com.balsamiq.mockups::SearchBox" x="696" y="149" w="-1" h="-1" measuredW="140" measuredH="25" zOrder="8" locked="false" isInGroup="605">
+          <controlProperties>
+            <text>Buscar%20por%20nombre</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="606" controlTypeID="__group__" x="3082" y="1795" w="866" h="459" measuredW="866" measuredH="459" zOrder="28" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::Button" x="180" y="339" w="-1" h="-1" measuredW="81" measuredH="27" zOrder="0" locked="false" isInGroup="606">
+          <controlProperties>
+            <menuIcon>false</menuIcon>
+            <state>selected</state>
+            <text>Confirmar</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="1" locked="false" isInGroup="606">
+          <controlProperties>
+            <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/itemsalquilados/devoluciones</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="15" y="87" w="-1" h="-1" measuredW="176" measuredH="24" zOrder="2" locked="false" isInGroup="606">
+          <controlProperties>
+            <text>%EDtems%20alquilados%2C%20Devoluci%F3n</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Accordion" x="15" y="135" w="150" h="200" measuredW="150" measuredH="267" zOrder="3" locked="false" isInGroup="606">
+          <controlProperties>
+            <selectedIndex>3</selectedIndex>
+            <text>Env%EDos%0AInventario%0A%CDtems%20alquilados%0A-%20-Devoluciones%0AMantenimiento%0APartes%20de%20equipo%0APersonal%20de%20almac%E9n</text>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="419" y="148" w="-1" h="-1" measuredW="178" measuredH="26" zOrder="4" locked="false" isInGroup="606">
+          <controlProperties>
+            <size>18</size>
+            <state>up</state>
+            <text>Lista%20de%20devoluciones</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::DataGrid" x="180" y="183" w="656" h="156" measuredW="446" measuredH="43" zOrder="5" locked="false" isInGroup="606">
+          <controlProperties>
+            <rowHeight>22</rowHeight>
+            <selectedIndex>0</selectedIndex>
+            <text>DID%20%5E%2C%20Nombre%2C%20Empresa%20%5Ev%2C%20Fecha%20de%20salida%2C%20estadoDevolucion%2C%20PID%0A1%2CBOSE%20S1%2CSiemens%2C%2020/03/2019%2CporHacer%2C1</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::Button" x="180" y="148" w="143" h="27" measuredW="143" measuredH="27" zOrder="6" locked="false" isInGroup="606">
+          <controlProperties>
+            <menuIcon>false</menuIcon>
+            <state>disabled</state>
+            <text>Cancelar%20devoluci%F3n</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::Alert" x="308" y="126" w="366" h="149" measuredW="200" measuredH="133" zOrder="7" locked="false" isInGroup="606">
+          <controlProperties>
+            <text>Confirmaci%F3n%0A%BFQuiere%20cancelar%20la%20devoluci%F3n%20del%20%EDtem%20BOSE%20S1%3F%0ANo%2C%20S%ED</text>
+          </controlProperties>
+        </control>
+        <control controlID="8" controlTypeID="com.balsamiq.mockups::Tooltip" x="586" y="300" w="211" h="94" measuredW="221" measuredH="0" zOrder="8" locked="false" isInGroup="606">
+          <controlProperties>
+            <size>16</size>
+            <text>Mensaje%20de%20confirmaci%F3n%20para%20cancelar%20una%20devoluci%F3n.</text>
+          </controlProperties>
+        </control>
+        <control controlID="9" controlTypeID="com.balsamiq.mockups::SearchBox" x="696" y="149" w="-1" h="-1" measuredW="140" measuredH="25" zOrder="9" locked="false" isInGroup="606">
+          <controlProperties>
+            <text>Buscar%20por%20nombre</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="609" controlTypeID="__group__" x="0" y="3560" w="866" h="459" measuredW="866" measuredH="459" zOrder="29" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="609">
+          <controlProperties>
+            <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/personalalmacen</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="15" y="87" w="-1" h="-1" measuredW="149" measuredH="24" zOrder="1" locked="false" isInGroup="609">
+          <controlProperties>
+            <text>Personal%20de%20almac%E9n</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Accordion" x="15" y="135" w="150" h="165" measuredW="150" measuredH="240" zOrder="2" locked="false" isInGroup="609">
+          <controlProperties>
+            <selectedIndex>5</selectedIndex>
+            <text>Env%EDos%0AInventario%0A%CDtems%20alquilados%0AMantenimiento%0APartes%20de%20equipo%0APersonal%20de%20almac%E9n</text>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Tooltip" x="625" y="66" w="211" h="66" measuredW="207" measuredH="0" zOrder="3" locked="false" isInGroup="609">
+          <controlProperties>
+            <size>16</size>
+            <text>Lista%20del%20personal%20de%20almac%E9n.</text>
+            <tooltipDirection>SW</tooltipDirection>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::DataGrid" x="179" y="161" w="672" h="199" measuredW="574" measuredH="141" zOrder="4" locked="false" isInGroup="609">
+          <controlProperties>
+            <rowHeight>30</rowHeight>
+            <text>PID%2C%20Nombre%20%5Ev%2CCargo%2CSueldo%2C%20DNI%2C%20Tel%E9fono%2C%20Estado%0A1%2CNombre%20gen%E9rico%201%2CJefe%20de%20almac%E9n%2C2000.00%2C12345678A%2C%20600000000%2C%20Ocupado%0A2%2CNombre%20gen%E9rico%202%2CMozo%20de%20almac%E9n%2C1000.00%2C12345678B%2C700000000%2C%20Libre%0A3%2CNombre%20gen%E9rico%203%2CTransportista%2C1200.00%2C12345678C%2C700000001%2C%20Ocupado%0A%20%0A%7B2%2C%209%2C10%2C5%2C%208%2C%209%2C%207%7D</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="180" y="132" w="71" h="27" measuredW="71" measuredH="27" zOrder="5" locked="false" isInGroup="609">
+          <controlProperties>
+            <menuIcon>false</menuIcon>
+            <state>selected</state>
+            <text>Agregar</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::SearchBox" x="707" y="133" w="-1" h="-1" measuredW="140" measuredH="25" zOrder="6" locked="false" isInGroup="609">
+          <controlProperties>
+            <text>Buscar%20por%20nombre</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="610" controlTypeID="__group__" x="1030" y="3560" w="866" h="459" measuredW="866" measuredH="459" zOrder="17" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="__group__" x="0" y="0" w="866" h="459" measuredW="866" measuredH="459" zOrder="0" locked="false" isInGroup="610">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/personalalmacen/agregar</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="15" y="87" w="-1" h="-1" measuredW="190" measuredH="24" zOrder="1" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>Personal%20de%20almac%E9n%2CAgregar</text>
+              </controlProperties>
+            </control>
+            <control controlID="2" controlTypeID="com.balsamiq.mockups::Accordion" x="15" y="135" w="150" h="165" measuredW="150" measuredH="240" zOrder="2" locked="false" isInGroup="0">
+              <controlProperties>
+                <selectedIndex>5</selectedIndex>
+                <text>Env%EDos%0AInventario%0A%CDtems%20alquilados%0AMantenimiento%0APartes%20de%20equipo%0APersonal%20de%20almac%E9n</text>
+                <verticalScrollbar>false</verticalScrollbar>
+              </controlProperties>
+            </control>
+            <control controlID="3" controlTypeID="com.balsamiq.mockups::Tooltip" x="242" y="378" w="211" h="72" measuredW="219" measuredH="0" zOrder="3" locked="false" isInGroup="0">
+              <controlProperties>
+                <size>16</size>
+                <text>Mensaje%20de%20error%20si%20alg%FAn%20campo%20est%E1%20vac%EDo%2C%20por%20ejemplo.</text>
+                <tooltipDirection>NE</tooltipDirection>
+              </controlProperties>
+            </control>
+            <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="343" y="111" w="-1" h="-1" measuredW="244" measuredH="26" zOrder="4" locked="false" isInGroup="0">
+              <controlProperties>
+                <size>18</size>
+                <state>up</state>
+                <text>Agregar%20personal%20de%20almac%E9n</text>
+              </controlProperties>
+            </control>
+            <control controlID="5" controlTypeID="com.balsamiq.mockups::Label" x="281" y="162" w="-1" h="-1" measuredW="49" measuredH="21" zOrder="5" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>Nombre%3A</text>
+              </controlProperties>
+            </control>
+            <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="281" y="267" w="-1" h="-1" measuredW="25" measuredH="21" zOrder="6" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>DNI%3A</text>
+              </controlProperties>
+            </control>
+            <control controlID="7" controlTypeID="com.balsamiq.mockups::Label" x="281" y="198" w="-1" h="-1" measuredW="39" measuredH="21" zOrder="7" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>Cargo%3A</text>
+              </controlProperties>
+            </control>
+            <control controlID="8" controlTypeID="com.balsamiq.mockups::Label" x="281" y="232" w="-1" h="-1" measuredW="43" measuredH="21" zOrder="8" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>Sueldo%3A</text>
+              </controlProperties>
+            </control>
+            <control controlID="9" controlTypeID="com.balsamiq.mockups::Label" x="282" y="301" w="-1" h="-1" measuredW="54" measuredH="21" zOrder="9" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>Tel%E9fono%3A</text>
+              </controlProperties>
+            </control>
+            <control controlID="10" controlTypeID="com.balsamiq.mockups::Button" x="667" y="357" w="-1" h="-1" measuredW="132" measuredH="27" zOrder="10" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>Agregar%20empleado</text>
+              </controlProperties>
+            </control>
+            <control controlID="11" controlTypeID="com.balsamiq.mockups::Button" x="695" y="315" w="-1" h="-1" measuredW="77" measuredH="27" zOrder="11" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>Cancelar</text>
+              </controlProperties>
+            </control>
+            <control controlID="12" controlTypeID="com.balsamiq.mockups::TextInput" x="411" y="159" w="170" h="-1" measuredW="123" measuredH="27" zOrder="12" locked="false" isInGroup="0">
+              <controlProperties>
+                <state>up</state>
+                <text>Inserte%20un%20nombre</text>
+              </controlProperties>
+            </control>
+            <control controlID="13" controlTypeID="com.balsamiq.mockups::TextInput" x="411" y="264" w="170" h="-1" measuredW="140" measuredH="27" zOrder="13" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>Inserte%20un%20DNI%20v%E1lido</text>
+              </controlProperties>
+            </control>
+            <control controlID="14" controlTypeID="com.balsamiq.mockups::TextInput" x="411" y="298" w="170" h="-1" measuredW="127" measuredH="27" zOrder="14" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>Inserte%20un%20tel%E9fono</text>
+              </controlProperties>
+            </control>
+            <control controlID="15" controlTypeID="com.balsamiq.mockups::Label" x="403" y="360" w="-1" h="-1" measuredW="187" measuredH="21" zOrder="15" locked="false" isInGroup="0">
+              <controlProperties>
+                <bold>true</bold>
+                <color>13576743</color>
+                <text>Posici%F3n%20del%20mensaje%20de%20error</text>
+              </controlProperties>
+            </control>
+            <control controlID="16" controlTypeID="com.balsamiq.mockups::TextInput" x="411" y="195" w="170" h="-1" measuredW="113" measuredH="27" zOrder="16" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>Inserte%20un%20cargo</text>
+              </controlProperties>
+            </control>
+            <control controlID="17" controlTypeID="com.balsamiq.mockups::TextInput" x="411" y="229" w="170" h="-1" measuredW="118" measuredH="27" zOrder="17" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>Inserte%20un%20sueldo</text>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="611" controlTypeID="__group__" x="2056" y="3560" w="866" h="459" measuredW="866" measuredH="459" zOrder="30" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="__group__" x="0" y="0" w="866" h="459" measuredW="866" measuredH="459" zOrder="0" locked="false" isInGroup="611">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/personalalmacen</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="15" y="87" w="-1" h="-1" measuredW="149" measuredH="24" zOrder="1" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>Personal%20de%20almac%E9n</text>
+              </controlProperties>
+            </control>
+            <control controlID="2" controlTypeID="com.balsamiq.mockups::Accordion" x="15" y="135" w="150" h="165" measuredW="150" measuredH="240" zOrder="2" locked="false" isInGroup="0">
+              <controlProperties>
+                <selectedIndex>5</selectedIndex>
+                <text>Env%EDos%0AInventario%0A%CDtems%20alquilados%0AMantenimiento%0APartes%20de%20equipo%0APersonal%20de%20almac%E9n</text>
+                <verticalScrollbar>false</verticalScrollbar>
+              </controlProperties>
+            </control>
+            <control controlID="3" controlTypeID="com.balsamiq.mockups::Tooltip" x="259" y="48" w="211" h="72" measuredW="214" measuredH="0" zOrder="3" locked="false" isInGroup="0">
+              <controlProperties>
+                <size>16</size>
+                <text>Salen%20nuevas%20opciones%20al%20seleccionar%20un%20empleado.</text>
+                <tooltipDirection>SW</tooltipDirection>
+              </controlProperties>
+            </control>
+            <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="444" y="120" w="-1" h="-1" measuredW="172" measuredH="26" zOrder="4" locked="false" isInGroup="0">
+              <controlProperties>
+                <size>18</size>
+                <state>up</state>
+                <text>Personal%20de%20almac%E9n</text>
+              </controlProperties>
+            </control>
+            <control controlID="5" controlTypeID="com.balsamiq.mockups::DataGrid" x="179" y="161" w="672" h="199" measuredW="574" measuredH="141" zOrder="5" locked="false" isInGroup="0">
+              <controlProperties>
+                <rowHeight>30</rowHeight>
+                <selectedIndex>1</selectedIndex>
+                <text>PID%2C%20Nombre%20%5Ev%2CCargo%2CSueldo%2C%20DNI%2C%20Tel%E9fono%2C%20Estado%0A1%2CNombre%20gen%E9rico%201%2CJefe%20de%20almac%E9n%2C2000.00%2C12345678A%2C%20600000000%2C%20Ocupado%0A2%2CNombre%20gen%E9rico%202%2CMozo%20de%20almac%E9n%2C1000.00%2C12345678B%2C700000000%2C%20Libre%0A3%2CNombre%20gen%E9rico%203%2CTransportista%2C1200.00%2C12345678C%2C700000001%2C%20Ocupado%0A%20%0A%7B2%2C%209%2C10%2C5%2C%208%2C%209%2C%207%7D</text>
+              </controlProperties>
+            </control>
+            <control controlID="6" controlTypeID="com.balsamiq.mockups::Button" x="180" y="132" w="79" h="27" measuredW="77" measuredH="27" zOrder="6" locked="false" isInGroup="0">
+              <controlProperties>
+                <menuIcon>false</menuIcon>
+                <state>selected</state>
+                <text>Modificar</text>
+              </controlProperties>
+            </control>
+            <control controlID="7" controlTypeID="com.balsamiq.mockups::Button" x="266" y="132" w="71" h="27" measuredW="70" measuredH="27" zOrder="7" locked="false" isInGroup="0">
+              <controlProperties>
+                <menuIcon>false</menuIcon>
+                <state>up</state>
+                <text>Eliminar</text>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::SearchBox" x="702" y="133" w="-1" h="-1" measuredW="140" measuredH="25" zOrder="1" locked="false" isInGroup="611">
+          <controlProperties>
+            <text>Buscar%20por%20nombre</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="612" controlTypeID="__group__" x="3112" y="3560" w="866" h="459" measuredW="866" measuredH="459" zOrder="21" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="612">
+          <controlProperties>
+            <borderStyle>square</borderStyle>
+            <color>16777215</color>
+            <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/personalalmacen/modificar</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="15" y="87" w="-1" h="-1" measuredW="257" measuredH="24" zOrder="1" locked="false" isInGroup="612">
+          <controlProperties>
+            <text>Personal%20de%20almac%E9n%2CModificar%20empleado</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Accordion" x="15" y="135" w="150" h="165" measuredW="150" measuredH="240" zOrder="2" locked="false" isInGroup="612">
+          <controlProperties>
+            <selectedIndex>5</selectedIndex>
+            <text>Env%EDos%0AInventario%0A%CDtems%20alquilados%0AMantenimiento%0APartes%20de%20equipo%0APersonal%20de%20almac%E9n</text>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="260" y="111" w="-1" h="-1" measuredW="437" measuredH="26" zOrder="3" locked="false" isInGroup="612">
+          <controlProperties>
+            <size>18</size>
+            <state>up</state>
+            <text>Modificar%20la%20ficha%20personal%20de%20NOMBRE%20GEN%C9RICO%202</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="281" y="162" w="-1" h="-1" measuredW="51" measuredH="21" zOrder="4" locked="false" isInGroup="612">
+          <controlProperties>
+            <text>Tel%E9fono</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Label" x="281" y="198" w="-1" h="-1" measuredW="39" measuredH="21" zOrder="5" locked="false" isInGroup="612">
+          <controlProperties>
+            <text>Cargo%3A</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="281" y="232" w="-1" h="-1" measuredW="43" measuredH="21" zOrder="6" locked="false" isInGroup="612">
+          <controlProperties>
+            <text>Sueldo%3A</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::Button" x="581" y="330" w="-1" h="-1" measuredW="138" measuredH="27" zOrder="7" locked="false" isInGroup="612">
+          <controlProperties>
+            <text>Modificar%20empleado</text>
+          </controlProperties>
+        </control>
+        <control controlID="8" controlTypeID="com.balsamiq.mockups::Button" x="332" y="330" w="-1" h="-1" measuredW="77" measuredH="27" zOrder="8" locked="false" isInGroup="612">
+          <controlProperties>
+            <text>Cancelar</text>
+          </controlProperties>
+        </control>
+        <control controlID="9" controlTypeID="com.balsamiq.mockups::TextInput" x="411" y="159" w="170" h="-1" measuredW="161" measuredH="27" zOrder="9" locked="false" isInGroup="612">
+          <controlProperties>
+            <state>up</state>
+            <text>Inserte%20el%20nuevo%20tel%E9fono</text>
+          </controlProperties>
+        </control>
+        <control controlID="10" controlTypeID="com.balsamiq.mockups::Label" x="403" y="279" w="-1" h="-1" measuredW="187" measuredH="21" zOrder="10" locked="false" isInGroup="612">
+          <controlProperties>
+            <bold>true</bold>
+            <color>13576743</color>
+            <text>Posici%F3n%20del%20mensaje%20de%20error</text>
+          </controlProperties>
+        </control>
+        <control controlID="11" controlTypeID="com.balsamiq.mockups::TextInput" x="411" y="195" w="170" h="-1" measuredW="147" measuredH="27" zOrder="11" locked="false" isInGroup="612">
+          <controlProperties>
+            <text>Inserte%20el%20nuevo%20cargo</text>
+          </controlProperties>
+        </control>
+        <control controlID="12" controlTypeID="com.balsamiq.mockups::TextInput" x="411" y="229" w="170" h="-1" measuredW="152" measuredH="27" zOrder="12" locked="false" isInGroup="612">
+          <controlProperties>
+            <text>Inserte%20el%20nuevo%20sueldo</text>
+          </controlProperties>
+        </control>
+        <control controlID="13" controlTypeID="com.balsamiq.mockups::StickyNote" x="689" y="156" w="109" h="158" measuredW="109" measuredH="123" zOrder="13" locked="false" isInGroup="612">
+          <controlProperties>
+            <text>Esta%20funci%F3n%2C%20adem%E1s%20de%20otras%2C%20solo%20estar%E1n%20disponibles%20para%20el%20jefe%20de%20almac%E9n.</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="613" controlTypeID="__group__" x="3112" y="2981" w="866" h="459" measuredW="866" measuredH="459" zOrder="22" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="613">
+          <controlProperties>
+            <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/personalalmacen/modificar</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="15" y="87" w="-1" h="-1" measuredW="257" measuredH="24" zOrder="1" locked="false" isInGroup="613">
+          <controlProperties>
+            <text>Personal%20de%20almac%E9n%2CModificar%20empleado</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Accordion" x="15" y="135" w="150" h="165" measuredW="150" measuredH="240" zOrder="2" locked="false" isInGroup="613">
+          <controlProperties>
+            <selectedIndex>5</selectedIndex>
+            <text>Env%EDos%0AInventario%0A%CDtems%20alquilados%0AMantenimiento%0APartes%20de%20equipo%0APersonal%20de%20almac%E9n</text>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="260" y="111" w="-1" h="-1" measuredW="437" measuredH="26" zOrder="3" locked="false" isInGroup="613">
+          <controlProperties>
+            <size>18</size>
+            <state>disabled</state>
+            <text>Modificar%20la%20ficha%20personal%20de%20NOMBRE%20GEN%C9RICO%202</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="281" y="162" w="-1" h="-1" measuredW="51" measuredH="21" zOrder="4" locked="false" isInGroup="613">
+          <controlProperties>
+            <state>disabled</state>
+            <text>Tel%E9fono</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Label" x="281" y="198" w="-1" h="-1" measuredW="39" measuredH="21" zOrder="5" locked="false" isInGroup="613">
+          <controlProperties>
+            <state>disabled</state>
+            <text>Cargo%3A</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="281" y="232" w="-1" h="-1" measuredW="43" measuredH="21" zOrder="6" locked="false" isInGroup="613">
+          <controlProperties>
+            <state>disabled</state>
+            <text>Sueldo%3A</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::Button" x="581" y="330" w="-1" h="-1" measuredW="138" measuredH="27" zOrder="7" locked="false" isInGroup="613">
+          <controlProperties>
+            <state>disabled</state>
+            <text>Modificar%20empleado</text>
+          </controlProperties>
+        </control>
+        <control controlID="8" controlTypeID="com.balsamiq.mockups::Button" x="332" y="330" w="-1" h="-1" measuredW="77" measuredH="27" zOrder="8" locked="false" isInGroup="613">
+          <controlProperties>
+            <state>disabled</state>
+            <text>Cancelar</text>
+          </controlProperties>
+        </control>
+        <control controlID="9" controlTypeID="com.balsamiq.mockups::TextInput" x="411" y="159" w="170" h="-1" measuredW="161" measuredH="27" zOrder="9" locked="false" isInGroup="613">
+          <controlProperties>
+            <state>disabled</state>
+            <text>Inserte%20el%20nuevo%20tel%E9fono</text>
+          </controlProperties>
+        </control>
+        <control controlID="10" controlTypeID="com.balsamiq.mockups::Label" x="403" y="279" w="-1" h="-1" measuredW="187" measuredH="21" zOrder="10" locked="false" isInGroup="613">
+          <controlProperties>
+            <bold>true</bold>
+            <color>13576743</color>
+            <text>Posici%F3n%20del%20mensaje%20de%20error</text>
+          </controlProperties>
+        </control>
+        <control controlID="11" controlTypeID="com.balsamiq.mockups::TextInput" x="411" y="195" w="170" h="-1" measuredW="147" measuredH="27" zOrder="11" locked="false" isInGroup="613">
+          <controlProperties>
+            <text>Inserte%20el%20nuevo%20cargo</text>
+          </controlProperties>
+        </control>
+        <control controlID="12" controlTypeID="com.balsamiq.mockups::TextInput" x="411" y="229" w="170" h="-1" measuredW="152" measuredH="27" zOrder="12" locked="false" isInGroup="613">
+          <controlProperties>
+            <text>Inserte%20el%20nuevo%20sueldo</text>
+          </controlProperties>
+        </control>
+        <control controlID="13" controlTypeID="com.balsamiq.mockups::Alert" x="320" y="168" w="366" h="149" measuredW="200" measuredH="164" zOrder="13" locked="false" isInGroup="613">
+          <controlProperties>
+            <text>Confirmaci%F3n%0A%BFDesea%20actualizar%20la%20informaci%F3n%20sobre%20el%20empleado%20NOMBRE%20GEN%C9RICO%202%3F%0ANo%2C%20S%ED</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="614" controlTypeID="__group__" x="2062" y="2981" w="866" h="459" measuredW="866" measuredH="459" zOrder="31" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="614">
+          <controlProperties>
+            <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/personalalmacen</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="15" y="87" w="-1" h="-1" measuredW="149" measuredH="24" zOrder="1" locked="false" isInGroup="614">
+          <controlProperties>
+            <text>Personal%20de%20almac%E9n</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Accordion" x="15" y="135" w="150" h="165" measuredW="150" measuredH="240" zOrder="2" locked="false" isInGroup="614">
+          <controlProperties>
+            <selectedIndex>5</selectedIndex>
+            <text>Env%EDos%0AInventario%0A%CDtems%20alquilados%0AMantenimiento%0APartes%20de%20equipo%0APersonal%20de%20almac%E9n</text>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="444" y="120" w="-1" h="-1" measuredW="172" measuredH="26" zOrder="3" locked="false" isInGroup="614">
+          <controlProperties>
+            <size>18</size>
+            <state>up</state>
+            <text>Personal%20de%20almac%E9n</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::DataGrid" x="179" y="161" w="672" h="199" measuredW="574" measuredH="141" zOrder="4" locked="false" isInGroup="614">
+          <controlProperties>
+            <rowHeight>30</rowHeight>
+            <selectedIndex>1</selectedIndex>
+            <text>PID%2C%20Nombre%20%5Ev%2CCargo%2CSueldo%2C%20DNI%2C%20Tel%E9fono%2C%20Estado%0A1%2CNombre%20gen%E9rico%201%2CJefe%20de%20almac%E9n%2C2000.00%2C12345678A%2C%20600000000%2C%20Ocupado%0A2%2CNombre%20gen%E9rico%202%2CMozo%20de%20almac%E9n%2C1000.00%2C12345678B%2C700000000%2C%20Libre%0A3%2CNombre%20gen%E9rico%203%2CTransportista%2C1200.00%2C12345678C%2C700000001%2C%20Ocupado%0A%20%0A%7B2%2C%209%2C10%2C5%2C%208%2C%209%2C%207%7D</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="180" y="132" w="79" h="27" measuredW="77" measuredH="27" zOrder="5" locked="false" isInGroup="614">
+          <controlProperties>
+            <menuIcon>false</menuIcon>
+            <state>up</state>
+            <text>Modificar</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::Button" x="266" y="132" w="71" h="27" measuredW="70" measuredH="27" zOrder="6" locked="false" isInGroup="614">
+          <controlProperties>
+            <menuIcon>false</menuIcon>
+            <state>selected</state>
+            <text>Eliminar</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::Alert" x="323" y="168" w="366" h="149" measuredW="200" measuredH="133" zOrder="7" locked="false" isInGroup="614">
+          <controlProperties>
+            <text>Confirmaci%F3n%0A%BFDesea%20eliminar%20el%20empleado%20NOMBRE%20GEN%C9RICO%202%3F%0ANo%2C%20S%ED</text>
+          </controlProperties>
+        </control>
+        <control controlID="8" controlTypeID="com.balsamiq.mockups::SearchBox" x="711" y="133" w="-1" h="-1" measuredW="140" measuredH="25" zOrder="8" locked="false" isInGroup="614">
+          <controlProperties>
+            <text>Buscar%20por%20nombre</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="653" controlTypeID="__group__" x="2062" y="1190" w="866" h="459" measuredW="866" measuredH="459" zOrder="36" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="653">
+          <controlProperties>
+            <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/almacen/inventario/focos/agregarfoco</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="19" y="87" w="-1" h="-1" measuredW="198" measuredH="24" zOrder="1" locked="false" isInGroup="653">
+          <controlProperties>
+            <text>Inventario%2C%20focos%2C%20agregar%20foco</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Accordion" x="19" y="126" w="150" h="256" measuredW="150" measuredH="321" zOrder="2" locked="false" isInGroup="653">
+          <controlProperties>
+            <selectedIndex>4</selectedIndex>
+            <text>Env%EDos%0AInventario%0A-%20-Altavoces%0A-%20-Cables%0A-%20-Focos%0A-%20-Mesas%20de%20mezcla%0A-%20-Micr%F3fonos%0A-%20-Proyectores%0A%CDtems%20alquilados</text>
+            <value>0</value>
+            <verticalScrollbar>true</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="277" y="157" w="-1" h="-1" measuredW="46" measuredH="21" zOrder="3" locked="false" isInGroup="653">
+          <controlProperties>
+            <text>Nombre</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="277" y="262" w="-1" h="-1" measuredW="68" measuredH="21" zOrder="4" locked="false" isInGroup="653">
+          <controlProperties>
+            <text>Tipo%20de%20luz%3A</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Label" x="277" y="193" w="-1" h="-1" measuredW="40" measuredH="21" zOrder="5" locked="false" isInGroup="653">
+          <controlProperties>
+            <text>Precio%3A</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="277" y="227" w="-1" h="-1" measuredW="25" measuredH="21" zOrder="6" locked="false" isInGroup="653">
+          <controlProperties>
+            <text>PID%3A</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::Label" x="278" y="296" w="-1" h="-1" measuredW="117" measuredH="21" zOrder="7" locked="false" isInGroup="653">
+          <controlProperties>
+            <text>Tipo%20de%20movimiento%3A</text>
+          </controlProperties>
+        </control>
+        <control controlID="8" controlTypeID="com.balsamiq.mockups::Button" x="680" y="352" w="-1" h="-1" measuredW="99" measuredH="27" zOrder="8" locked="false" isInGroup="653">
+          <controlProperties>
+            <text>Agregar%20foco</text>
+          </controlProperties>
+        </control>
+        <control controlID="9" controlTypeID="com.balsamiq.mockups::Button" x="691" y="310" w="-1" h="-1" measuredW="77" measuredH="27" zOrder="9" locked="false" isInGroup="653">
+          <controlProperties>
+            <text>Cancelar</text>
+          </controlProperties>
+        </control>
+        <control controlID="10" controlTypeID="com.balsamiq.mockups::TextInput" x="407" y="154" w="170" h="-1" measuredW="79" measuredH="26" zOrder="10" locked="false" isInGroup="653">
+          <controlProperties>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="11" controlTypeID="com.balsamiq.mockups::TextInput" x="407" y="190" w="170" h="-1" measuredW="79" measuredH="26" zOrder="11" locked="false" isInGroup="653">
+          <controlProperties>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="12" controlTypeID="com.balsamiq.mockups::TextInput" x="407" y="223" w="170" h="-1" measuredW="79" measuredH="26" zOrder="12" locked="false" isInGroup="653">
+          <controlProperties>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="13" controlTypeID="com.balsamiq.mockups::TextInput" x="407" y="259" w="170" h="-1" measuredW="79" measuredH="26" zOrder="13" locked="false" isInGroup="653">
+          <controlProperties>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="14" controlTypeID="com.balsamiq.mockups::TextInput" x="407" y="293" w="170" h="-1" measuredW="79" measuredH="26" zOrder="14" locked="false" isInGroup="653">
+          <controlProperties>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="15" controlTypeID="com.balsamiq.mockups::TextInput" x="407" y="331" w="170" h="-1" measuredW="79" measuredH="26" zOrder="15" locked="false" isInGroup="653">
+          <controlProperties>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="16" controlTypeID="com.balsamiq.mockups::Label" x="277" y="334" w="-1" h="-1" measuredW="54" measuredH="21" zOrder="16" locked="false" isInGroup="653">
+          <controlProperties>
+            <text>Potencia%3A</text>
+          </controlProperties>
+        </control>
+        <control controlID="17" controlTypeID="com.balsamiq.mockups::StickyNote" x="676" y="120" w="131" h="145" measuredW="109" measuredH="123" zOrder="17" locked="false" isInGroup="653">
+          <controlProperties>
+            <text>Formulario%20para%20a%F1adir%20el%20%EDtem%20al%20inventario.%20Cambian%20los%20campos%20seg%FAn%20el%20tipo%20de%20%EDtem.</text>
+          </controlProperties>
+        </control>
+        <control controlID="18" controlTypeID="com.balsamiq.mockups::Label" x="437" y="120" w="-1" h="-1" measuredW="107" measuredH="26" zOrder="18" locked="false" isInGroup="653">
+          <controlProperties>
+            <size>18</size>
+            <text>Agregar%20foco</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="663" controlTypeID="__group__" x="1024" y="1190" w="866" h="459" measuredW="866" measuredH="459" zOrder="35" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="663">
+          <controlProperties>
+            <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/almacen/inventario/focos</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="19" y="87" w="-1" h="-1" measuredW="107" measuredH="24" zOrder="1" locked="false" isInGroup="663">
+          <controlProperties>
+            <text>Inventario%2C%20focos</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::DataGrid" x="184" y="159" w="670" h="229" measuredW="435" measuredH="81" zOrder="2" locked="false" isInGroup="663">
+          <controlProperties>
+            <rowHeight>30</rowHeight>
+            <selectedIndex>0</selectedIndex>
+            <text>Referencia%20%5E%2CNombre%2C%20tipoLuz%20%5Ev%2CtipoMovimiento%2CPotencia%0A0003%2CMartin%20Rush%20MH7%2CLED%2CM%F3vil%20de%20haz%2C250%0A%20%0A%7B5%2C%209%2C7%2C7%2C4%7D</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Accordion" x="19" y="126" w="150" h="256" measuredW="150" measuredH="321" zOrder="3" locked="false" isInGroup="663">
+          <controlProperties>
+            <selectedIndex>4</selectedIndex>
+            <text>Env%EDos%0AInventario%0A-%20-Altavoces%0A-%20-Cables%0A-%20-Focos%0A-%20-Mesas%20de%20mezcla%0A-%20-Micr%F3fonos%0A-%20-Proyectores%0A%CDtems%20alquilados</text>
+            <value>0</value>
+            <verticalScrollbar>true</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Tooltip" x="326" y="329" w="211" h="95" measuredW="204" measuredH="0" zOrder="4" locked="false" isInGroup="663">
+          <controlProperties>
+            <size>16</size>
+            <text>Lista%20con%20todos%20los%20focos%20%28campo%20seleccionado%29%20y%20sus%20caracter%EDsticas.</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="184" y="126" w="-1" h="-1" measuredW="99" measuredH="27" zOrder="5" locked="false" isInGroup="663">
+          <controlProperties>
+            <menuIcon>false</menuIcon>
+            <state>selected</state>
+            <text>Agregar%20foco</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::SearchBox" x="714" y="127" w="-1" h="-1" measuredW="140" measuredH="25" zOrder="6" locked="false" isInGroup="663">
+          <controlProperties>
+            <text>Buscar%20por%20nombre</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::Button" x="292" y="126" w="-1" h="-1" measuredW="88" measuredH="27" zOrder="7" locked="false" isInGroup="663">
+          <controlProperties>
+            <text>Borrar%20foco</text>
+          </controlProperties>
+        </control>
+        <control controlID="8" controlTypeID="com.balsamiq.mockups::Label" x="460" y="127" w="-1" h="-1" measuredW="81" measuredH="26" zOrder="8" locked="false" isInGroup="663">
+          <controlProperties>
+            <size>18</size>
+            <text>Inventario</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="664" controlTypeID="__group__" x="0" y="1190" w="866" h="459" measuredW="866" measuredH="459" zOrder="34" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="664">
+          <controlProperties>
+            <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/almacen/inventario</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="12" y="88" w="-1" h="-1" measuredW="83" measuredH="24" zOrder="1" locked="false" isInGroup="664">
+          <controlProperties>
+            <text>Inventario</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::DataGrid" x="177" y="160" w="677" h="229" measuredW="501" measuredH="201" zOrder="2" locked="false" isInGroup="664">
+          <controlProperties>
+            <rowHeight>30</rowHeight>
+            <text>Referencia%20%5E%2C%20Nombre%20%5Ev%2CestadoItem%2CprecioAlquiler%2C%20PID%2C%20PEID%0A0001%2CBehringer%20UMC204%2CDisponible%2C20.00%2C1%2Cnull%0A0002%2CAOC%202590G5%2CenEvento%2C7.00%2C1%2C1%0A0003%2CMartin%20Rush%20MH7%2CenEvento%2C24.00%2C1%2C2%0A0004%2CRoland%20RSS%20M5000%2CenMantenimiento%2C35.00%2C1%2Cnull%0A0005%2CBlue%20Dragonfly%2CporReparar%2C12.00%2C1%2Cnull%0A%20%0A%7B5%2C%209%2C7%2C7%2C%208%2C6%7D</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Accordion" x="12" y="127" w="150" h="256" measuredW="150" measuredH="321" zOrder="3" locked="false" isInGroup="664">
+          <controlProperties>
+            <selectedIndex>1</selectedIndex>
+            <text>Env%EDos%0AInventario%0A-%20-Altavoces%0A-%20-Cables%0A-%20-Focos%0A-%20-Mesas%20de%20mezcla%0A-%20-Micr%F3fonos%0A-%20-Proyectores%0A%CDtems%20alquilados</text>
+            <value>0</value>
+            <verticalScrollbar>true</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Tooltip" x="319" y="356" w="211" h="69" measuredW="200" measuredH="0" zOrder="4" locked="false" isInGroup="664">
+          <controlProperties>
+            <size>16</size>
+            <text>Lista%20con%20todos%20los%20%EDtems%20del%20almac%E9n.</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Tooltip" x="135" y="99" w="211" h="69" measuredW="211" measuredH="0" zOrder="5" locked="false" isInGroup="664">
+          <controlProperties>
+            <size>16</size>
+            <text>Desplegable%20con%20cada%20tipo%20de%20%EDtem.</text>
+            <tooltipDirection>SW</tooltipDirection>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::SearchBox" x="714" y="128" w="-1" h="-1" measuredW="140" measuredH="25" zOrder="6" locked="false" isInGroup="664">
+          <controlProperties>
+            <text>Buscar%20por%20nombre</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::Label" x="413" y="120" w="-1" h="-1" measuredW="81" measuredH="26" zOrder="7" locked="false" isInGroup="664">
+          <controlProperties>
+            <size>18</size>
+            <text>Inventario</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="672" controlTypeID="__group__" x="0" y="1795" w="866" h="459" measuredW="866" measuredH="459" zOrder="37" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="672">
+          <controlProperties>
+            <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/itemsalquilados</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="15" y="87" w="-1" h="-1" measuredW="120" measuredH="24" zOrder="1" locked="false" isInGroup="672">
+          <controlProperties>
+            <text>%EDtems%20alquilados</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Accordion" x="15" y="135" w="150" h="165" measuredW="150" measuredH="240" zOrder="2" locked="false" isInGroup="672">
+          <controlProperties>
+            <selectedIndex>2</selectedIndex>
+            <text>Env%EDos%0AInventario%0A%CDtems%20alquilados%0AMantenimiento%0APartes%20de%20equipo%0APersonal%20de%20almac%E9n</text>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="180" y="166" w="670" h="229" measuredW="596" measuredH="81" zOrder="3" locked="false" isInGroup="672">
+          <controlProperties>
+            <rowHeight>30</rowHeight>
+            <selectedIndex>0</selectedIndex>
+            <text>Nombre%20%5E%2CTipo%2C%20Empresa%20%5Ev%2CfechaLlegada%2CfechaDevolucion%2CCantidad%2CPrecio%2CPID%2CPEID%0ABOSE%20S1%2CAltavoz%2CSiemens%2C12/03/2019%2C03/05/2019%2C2%2C25.00%2C1%2C3%0A%20%0A%7B9%2C%206%2C6%2C6%2C7%7D</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Tooltip" x="597" y="262" w="211" h="130" measuredW="221" measuredH="0" zOrder="4" locked="false" isInGroup="672">
+          <controlProperties>
+            <size>16</size>
+            <text>Lista%20con%20los%20%EDtems%20alquilados.%20El%20departamento%20de%20almac%E9n%20debe%20devolverlos%2C%20creando%20una%20devoluci%F3n.</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="180" y="135" w="-1" h="-1" measuredW="74" measuredH="27" zOrder="5" locked="false" isInGroup="672">
+          <controlProperties>
+            <menuIcon>false</menuIcon>
+            <state>selected</state>
+            <text>Devolver</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="429" y="135" w="-1" h="-1" measuredW="133" measuredH="26" zOrder="6" locked="false" isInGroup="672">
+          <controlProperties>
+            <size>18</size>
+            <text>%CDtems%20alquilados</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="682" controlTypeID="__group__" x="1027" y="2377" w="866" h="459" measuredW="866" measuredH="459" zOrder="39" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="682">
+          <controlProperties>
+            <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/mantenimiento</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="15" y="87" w="-1" h="-1" measuredW="111" measuredH="24" zOrder="1" locked="false" isInGroup="682">
+          <controlProperties>
+            <text>Mantenimiento</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Accordion" x="15" y="135" w="150" h="165" measuredW="150" measuredH="240" zOrder="2" locked="false" isInGroup="682">
+          <controlProperties>
+            <selectedIndex>3</selectedIndex>
+            <text>Env%EDos%0AInventario%0A%CDtems%20alquilados%0AMantenimiento%0APartes%20de%20equipo%0APersonal%20de%20almac%E9n</text>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="180" y="166" w="670" h="229" measuredW="334" measuredH="81" zOrder="3" locked="false" isInGroup="682">
+          <controlProperties>
+            <rowHeight>30</rowHeight>
+            <selectedIndex>1</selectedIndex>
+            <text>Referencia%20%5E%2CNombre%2C%20fechaInicio%2C%20PID%0A0004%2CRoland%20RSS%20M5000%2C%2010/03/2019%2C%201%0A0005%2C%20Blue%20Dragonfly%2C%20null%2C%20null%0A%7B4%2C%2015%2C6%2C3%7D</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Tooltip" x="314" y="4" w="211" h="129" measuredW="219" measuredH="0" zOrder="4" locked="false" isInGroup="682">
+          <controlProperties>
+            <size>16</size>
+            <text>Al%20seleccionar%20%22Comenzar%20reparaci%F3n%22%2C%20permite%20asignar%20un%20trabajador%20a%20la%20reparaci%F3n%20que%20est%E1%20por%20hacer.</text>
+            <tooltipDirection>SW</tooltipDirection>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="180" y="135" w="-1" h="-1" measuredW="151" measuredH="27" zOrder="5" locked="false" isInGroup="682">
+          <controlProperties>
+            <menuIcon>false</menuIcon>
+            <state>selected</state>
+            <text>Comenzar%20reparaci%F3n</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::SearchBox" x="710" y="136" w="-1" h="-1" measuredW="140" measuredH="25" zOrder="6" locked="false" isInGroup="682">
+          <controlProperties>
+            <text>Buscar%20por%20nombre</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::Label" x="450" y="133" w="-1" h="-1" measuredW="120" measuredH="26" zOrder="7" locked="false" isInGroup="682">
+          <controlProperties>
+            <size>18</size>
+            <text>Mantenimiento</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="690" controlTypeID="__group__" x="0" y="2377" w="866" h="459" measuredW="866" measuredH="459" zOrder="38" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="866" h="459" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="690">
+          <controlProperties>
+            <text>ZeUS%20-%20Departamento%20de%20almac%E9n%0Ahttp%3A//zeusware.com/mantenimiento</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="15" y="87" w="-1" h="-1" measuredW="111" measuredH="24" zOrder="1" locked="false" isInGroup="690">
+          <controlProperties>
+            <text>Mantenimiento</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Accordion" x="15" y="135" w="150" h="165" measuredW="150" measuredH="240" zOrder="2" locked="false" isInGroup="690">
+          <controlProperties>
+            <selectedIndex>3</selectedIndex>
+            <text>Env%EDos%0AInventario%0A%CDtems%20alquilados%0AMantenimiento%0APartes%20de%20equipo%0APersonal%20de%20almac%E9n</text>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="180" y="166" w="670" h="229" measuredW="334" measuredH="81" zOrder="3" locked="false" isInGroup="690">
+          <controlProperties>
+            <rowHeight>30</rowHeight>
+            <selectedIndex>0</selectedIndex>
+            <text>Referencia%20%5E%2CNombre%2C%20fechaInicio%2C%20PID%0A0004%2CRoland%20RSS%20M5000%2C%2010/03/2019%2C%201%0A0005%2C%20Blue%20Dragonfly%2C%20null%2C%20null%0A%7B4%2C%2015%2C6%2C3%7D</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Tooltip" x="595" y="277" w="211" h="121" measuredW="220" measuredH="0" zOrder="4" locked="false" isInGroup="690">
+          <controlProperties>
+            <size>16</size>
+            <text>Lista%20con%20los%20%EDtems%20que%20est%E1n%20en%20mantenimiento%2C%20tanto%20en%20reparaci%F3n%20como%20en%20espera%20de%20reparaci%F3n.</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="180" y="135" w="-1" h="-1" measuredW="139" measuredH="27" zOrder="5" locked="false" isInGroup="690">
+          <controlProperties>
+            <menuIcon>false</menuIcon>
+            <state>selected</state>
+            <text>Finalizar%20reparaci%F3n</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::SearchBox" x="714" y="136" w="-1" h="-1" measuredW="140" measuredH="25" zOrder="6" locked="false" isInGroup="690">
+          <controlProperties>
+            <text>Buscar%20por%20nombre</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::Label" x="444" y="133" w="-1" h="-1" measuredW="120" measuredH="26" zOrder="7" locked="false" isInGroup="690">
+          <controlProperties>
+            <size>18</size>
+            <text>Mantenimiento</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+  </controls>
+</mockup>
