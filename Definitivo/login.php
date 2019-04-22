@@ -12,7 +12,7 @@
 		$num_usuarios = consultarUsuario($conexion,$email,$pass);
 		cerrarConexionBD($conexion);	
 	
-		if ($num_usuarios == 0)
+		if ($num_usuarios == 2)
 			$login = "error";	
 		else {
 			$_SESSION['login'] = $email;

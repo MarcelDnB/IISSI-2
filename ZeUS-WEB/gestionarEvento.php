@@ -11,10 +11,10 @@ function consultarTodosEventos($conexion) {
     return $conexion->query($consulta);
 }
   
-function quitar_evento($conexion,$OidLibro) { //hay q hacer procedimientos para esto
+function quitar_evento($conexion,$EID) { //hay q hacer procedimientos para esto
 	try {
-		$stmt=$conexion->prepare('CALL QUITAR_LIBRO(:OidLibro)');
-		$stmt->bindParam(':OidLibro',$OidLibro);
+		$stmt=$conexion->prepare('CALL QUITAR_EVENTO(:EID)');
+		$stmt->bindParam(':EID',$EID);
 		$stmt->execute();
 		return "";
 	} catch(PDOException $e) {

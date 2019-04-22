@@ -191,7 +191,7 @@
 						<input id="PRECIOTOTAL" name="PRECIOTOTAL" type="hidden" value="<?php echo $fila['PRECIOTOTAL'];?>"/>
 					  <div class="titulo"><label><b>Evento: </b><?php echo $fila['EID'];?></label><label><b> Precio: </b><?php echo $fila['PRECIOTOTAL'];?></label>
 				<?php } ?>
-						<label><b>Fecha de Inicio:</b> <?php echo $fila['FECHAINICIO'];?></label><label><b> Fecha Fin: </b><?php echo $fila['FECHAFIN'] ?></label>
+						z	<label><b>Fecha de Inicio:</b> <?php echo $fila['FECHAINICIO'];?></label><label><b> Fecha Fin: </b><?php echo $fila['FECHAFIN'] ?></label>
 						<label><b>Estado:</b> <?php echo $fila['ESTADOEVENTO'];?></label>
             <div>
             <label><b> Descripcion del cliente: </b> <?php echo $fila['DESCRIPCIONCLIENTE'];?></label>

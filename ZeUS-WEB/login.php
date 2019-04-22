@@ -12,53 +12,40 @@
 		$num_usuarios = consultarUsuario($conexion,$email,$pass);
 		cerrarConexionBD($conexion);	
 	
-		if ($num_usuarios == 2){
+		if ($num_usuarios == 0){
 			$login = "error";
 		}else {
 			$_SESSION['login'] = $email;
-			Header("Location: index.php");
+			Header("Location: produccion1.php");
 		}
 	}
-
 ?>
 
 <!DOCTYPE html>
 <html lang="es" >
-
 <head>
   <meta charset="UTF-8">
   <title>ZeUSware</title>
-  
-  
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:600'>
-
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
-<main>
-<?php if (isset($login)) {
+	<div class="body">
+	<form action="login.php" method="post">
+	<div class="login">
+		<input type="text" placeholder="Email" name="email" id="email"/>
+		<input placeholder="Contraseña" type="password" id="pass" name="pass"/>
+		<input type="submit" name="submit" class="button" value="Login"/>
+		<?php if (isset($login)) {
 		echo "<div class=\"error\">";
 		echo "Error en la contraseña o no existe el usuario.";
 		echo "</div>";
 	}	
 	?>
-
-		<div class="login-html">
-		<form action="login.php" method="post">
-		<label id="aversiva" class="aversiva">Login</label><br><br><br>
-		<label for="email" class="label1">Usuario:</label>
-		<input id="email" name="email" type="text" class="input"/>
-		<br><label for="pass" class="label2">Contraseña:</label>
-		<input id="pass" name="pass" type="password" class="input"/>
-		<br><input type="submit" name="submit" class="button" value="submit"/>
-		</form>
-</main>
-		<div class="hr"></div>
-		<a href="#forgot">He olvidado mi contraseña</a>
-		</div>
+	</div>
+	</form>
+	</div>
 </div>
-
 </body>
-
 </html>
