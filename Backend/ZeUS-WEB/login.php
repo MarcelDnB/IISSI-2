@@ -31,11 +31,12 @@
 </head>
 
 <body>
+<img class="image" src="images/zeus.png">
 	<div class="body">
 	<form action="login.php" method="post">
 	<div class="login">
-		<input type="text" placeholder="Email" name="email" id="email"/>
-		<input placeholder="Contraseña" type="password" id="pass" name="pass"/>
+		<input type="text" placeholder="Email" name="email" id="email" class="text"/>
+		<input placeholder="Contraseña" type="password" id="pass" name="pass" class="pass"/>
 		<input type="submit" name="submit" class="button" value="Login"/>
 		<?php if (isset($login)) {
 		echo "<div class=\"error\">";

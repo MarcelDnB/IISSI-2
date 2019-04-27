@@ -9,9 +9,10 @@
 
 		$_SESSION["transporte"] = $transporte;
 			
-		if (isset($_REQUEST["editar"])) Header("Location: produccion3.php"); 
+		if (isset($_REQUEST["editar"])) Header("Location: produccion3.php");
 		else if (isset($_REQUEST["grabar"])) Header("Location: accion_modificar_evento.php");
-		else /* if (isset($_REQUEST["borrar"])) */ Header("Location: accion_borrar_evento.php"); 
+		else /*if (isset($_REQUEST["borrar"]))*/ Header("Location: accion_borrar_transporte.php"); 
+		echo "<h1>se ha intentado</h1>";
 	}
 	else 
 		Header("Location: produccion3.php");
