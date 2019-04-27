@@ -6,7 +6,7 @@ Proyecto ZeUS de IISSI2
 - [x] Mockup de los departamentos
 - [ ] Pasar de mockup a HTML y CSS en todos los departamentos
 - [ ] Crear esqueleto de PHP
-- [ ] Crear Login en PHP
+- [x] Crear Login en PHP
 - [ ] Comunicar la base de datos con PHP 
 - [ ] Terminar para la entrega
 
