@@ -11,3 +11,14 @@ Proyecto ZeUS de IISSI2
 - [ ] Terminar para la entrega
 
 ## changelog
+- Añadida tabla USUARIOS, es necesario modificar todo el sistema de logueo para cada departamento (en otra actualizacion)
+- Añadido procedimiento para quitar transporte
+- Añadido procedimiento para modificar transporte
+- Añadido procedimiento para quitar evento
+- Añadido procedimiento para modificar evento
+- Añadido procedimiento para quitar alojamiento
+- Añadido procedimiento para modificar alojamiento
+- Añadido procedimiento para quitar material
+- Añadido procedimiento para modificar material
+- Añadido procedimiento para quitar personal
+- Añadido procedimiento para modificar personal
