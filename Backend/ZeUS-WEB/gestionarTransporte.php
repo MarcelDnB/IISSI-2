@@ -5,12 +5,6 @@
      * #	de libros de la capa de acceso a datos 		
      * #==========================================================#
      */
-     
-function consultarTodosTransporte($conexion) {
-	$consulta = "SELECT * FROM TRANSPORTE";
-    return $conexion->query($consulta);
-}
-  
 function quitar_transporte($conexion,$TID) { //hay q hacer procedimientos para esto
 	try {
 		$stmt=$conexion->prepare('CALL QUITAR_TRANSPORTE(:TID)');
@@ -22,11 +16,13 @@ function quitar_transporte($conexion,$TID) { //hay q hacer procedimientos para e
 		}
 }
 
-function modificar_titulo($conexion,$OidLibro,$TituloLibro) {
+function modificar_transporte($conexion,$TID,$MEDIOUTILIZADO,$NUMPERSONAS,$EID) {
 	try {
-		$stmt=$conexion->prepare('CALL MODIFICAR_TITULO(:OidLibro,:TituloLibro)');
-		$stmt->bindParam(':OidLibro',$OidLibro);
-		$stmt->bindParam(':TituloLibro',$TituloLibro);
+		$stmt=$conexion->prepare('CALL MODIFICAR_TRANSPORTE(:TID,:MEDIOUTILIZADO,:NUMPERSONAS,:EID)');
+		$stmt->bindParam(':TID',$TID);
+		$stmt->bindParam(':MEDIOUTILIZADO',$MEDIOUTILIZADO);
+		$stmt->bindParam(':NUMPERSONAS',$NUMPERSONAS);
+		$stmt->bindParam(':EID',$EID);
 		$stmt->execute();
 		return "";
 	} catch(PDOException $e) {

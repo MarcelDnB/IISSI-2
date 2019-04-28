@@ -7,9 +7,9 @@
 	if (!isset($_SESSION['login'])) {
 		Header("Location: login.php");
 	}else {
-	if (isset($_SESSION["transporte"])){
-		$transporte = $_SESSION["transporte"];
-		unset($_SESSION["transporte"]);
+	if (isset($_SESSION["TRANSPORTE"])){
+		$transporte = $_SESSION["TRANSPORTE"];
+		unset($_SESSION["TRANSPORTE"]);
 	}
 	
 	//                                                      	 PAGINACION                                                           //
@@ -142,9 +142,8 @@
 	?>
 	<article class="evento">
 		<form method="post" action="controlador_transporte.php">
-					<!-- Controles de los campos que quedan ocultos:
-						OID_LIBRO, OID_AUTOR, OID_AUTORIA, NOMBRE, APELLIDOS -->
-						<input id="tid" name="tid" type="hidden"
+
+						<input id="TID" name="TID" type="hidden"
 						value="<?php echo $fila["TID"];?>"/>
 						<input id="MEDIOUTILIZADO" name="MEDIOUTILIZADO" type="hidden"
 						value="<?php echo $fila["MEDIOUTILIZADO"];?>"/>
@@ -153,20 +152,30 @@
             <input id="EID" name="EID" type="hidden"
 						value="<?php echo $fila["EID"];?>"/>
 				<?php
-					if (isset($transporte) and ($fila["tid"] == $transporte["tid"])) { ?>
+				
+				if (isset($transporte) and ($transporte["TID"] == $fila["TID"])) { ?>
 						<!-- Editando título -->
-						<input id="MEDIOUTILIZADO" name="MEDIOUTILIZADO" type="text" value="<?php echo $fila['MEDIOUTILIZADO'];?>"/>
-						<h4><?php echo $fila["MEDIOUTILIZADO"] . " " . $fila["MEDIOUTILIZADO"]; ?></h4>
+						<label><b>Transporte: </b><?php echo $fila['TID'];?></label>
+						<label><b> Medio utilizado: </b></label><input id="MEDIOUTILIZADO" name="MEDIOUTILIZADO" type="text" value="<?php echo $fila['MEDIOUTILIZADO'];?>"/>
+						<label><b> Numero de personas: </b><input id="NUMPERSONAS" name="NUMPERSONAS" type="text" value="<?php echo $fila['NUMPERSONAS'];?>"/>
+
+						<label><b>Evento: </b></label><input id="EID" name="EID" type="text" value="<?php echo $fila['EID'];?>"/>
+					
 						<?php }	else { ?>
+
 						<!-- mostrando título -->	
 						<input id="MEDIOUTILIZADO" name="MEDIOUTILIZADO" type="hidden" value="<?php echo $fila['MEDIOUTILIZADO'];?>"/>
+						<input id="NUMPERSONAS" name="NUMPERSONAS" type="hidden" value="<?php echo $fila['NUMPERSONAS'];?>"/>
+						<input id="EID" name="EID" type="hidden" value="<?php echo $fila['EID'];?>"/>
 					  <div class="titulo"><label><b>Transporte: </b><?php echo $fila['TID'];?></label><label><b> Medio utilizado: </b><?php echo $fila['MEDIOUTILIZADO'];?></label>
-				<?php } ?>
-            <label><b>Evento: </b> <?php echo $fila['EID'];?></label>
 						<label><b>Numero de personas:</b> <?php echo $fila['NUMPERSONAS'];?></label>
+						<label><b>Evento: </b> <?php echo $fila['EID'];?></label>
+						
+				<?php } ?>
+            
             <div>
 
-				<?php if (isset($transporte) and $fila["tid"] == $transporte["tid"]) { ?>
+				<?php if (isset($transporte) and ($transporte["TID"] == $fila["TID"])) { ?>
 						<button id="grabar" name="grabar" type="submit" class="editar_fila">
 						<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar Cambios">
 					</button>
@@ -183,11 +192,5 @@
 	<div>
 	<?php } ?>
 <!--                                                       CONSULTA_EVENTO                                                            -->
-
-
-
-
-
-
 </body>
 </html>
