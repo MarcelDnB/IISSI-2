@@ -22,11 +22,30 @@ function quitar_evento($conexion,$EID) { //hay q hacer procedimientos para esto
     }
 }
 
-function modificar_titulo($conexion,$OidLibro,$TituloLibro) {
+function modificar_evento($conexion,$EID,$PRECIOTOTAL,$LUGAR,$FECHAINICIO,$FECHAFIN,$DESCRIPCIONCLIENTE,$ESTADOEVENTO) {
 	try {
-		$stmt=$conexion->prepare('CALL MODIFICAR_TITULO(:OidLibro,:TituloLibro)');
-		$stmt->bindParam(':OidLibro',$OidLibro);
-		$stmt->bindParam(':TituloLibro',$TituloLibro);
+		$stmt=$conexion->prepare('CALL MODIFICAR_EVENTO(:EID,:PRECIOTOTAL,:LUGAR,:FECHAINICIO,:FECHAFIN,:DESCRIPCIONCLIENTE,:ESTADOEVENTO)');
+		$stmt->bindParam(':EID',$EID);
+		$stmt->bindParam(':PRECIOTOTAL',$PRECIOTOTAL);
+		$stmt->bindParam(':LUGAR',$LUGAR);
+		$stmt->bindParam(':FECHAINICIO',$FECHAINICIO);
+		$stmt->bindParam(':FECHAFIN',$FECHAFIN);
+		$stmt->bindParam(':DESCRIPCIONCLIENTE',$DESCRIPCIONCLIENTE);
+		$stmt->bindParam(':ESTADOEVENTO',$ESTADOEVENTO);
+		$stmt->execute();
+		return "";
+	} catch(PDOException $e) {
+		return $e->getMessage();
+    }
+}
+function crear_evento($conexion,$PRECIOTOTAL,$LUGAR,$FECHAINICIO,$FECHAFIN,$DESCRIPCIONCLIENTE) { //hay q hacer procedimientos para esto
+	try {
+		$stmt=$conexion->prepare('CALL crear_evento(:PRECIOTOTAL,:LUGAR,:FECHAINICIO,:FECHAFIN,:DESCRIPCIONCLIENTE)');
+		$stmt->bindParam(':PRECIOTOTAL',$PRECIOTOTAL);
+		$stmt->bindParam(':LUGAR',$LUGAR);
+		$stmt->bindParam(':FECHAINICIO',$FECHAINICIO);
+		$stmt->bindParam(':FECHAFIN',$FECHAFIN);
+		$stmt->bindParam(':DESCRIPCIONCLIENTE',$DESCRIPCIONCLIENTE);
 		$stmt->execute();
 		return "";
 	} catch(PDOException $e) {

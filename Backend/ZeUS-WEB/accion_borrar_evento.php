@@ -1,9 +1,9 @@
 <?php	
 	session_start();	
 	
-	if (isset($_SESSION["evento"])) {
-		$evento = $_SESSION["evento"];
-		unset($_SESSION["evento"]);
+	if (isset($_SESSION["EVENTO"])) {
+		$evento = $_SESSION["EVENTO"];
+		unset($_SESSION["EVENTO"]);
 		
 		require_once("gestionBD.php");
 		require_once("gestionarEvento.php");

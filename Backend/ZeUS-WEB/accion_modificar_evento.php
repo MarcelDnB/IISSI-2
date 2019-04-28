@@ -1,24 +1,24 @@
 <?php	
 	session_start();	
 	
-	if (isset($_SESSION["evento"])) {
-		$evento = $_SESSION["evento"];
-		unset($_SESSION["evento"]);
+	if (isset($_SESSION["EVENTO"])) {
+		$evento = $_SESSION["EVENTO"];
+		unset($_SESSION["EVENTO"]);
 		
 		require_once("gestionBD.php");
 		require_once("gestionarEvento.php");
 		
 		$conexion = crearConexionBD();		
-		$excepcion = modificar_titulo($conexion,$evento["eid"],$evento["preciototal"]);
+		$excepcion = modificar_evento($conexion,$evento["EID"],$evento["PRECIOTOTAL"],$evento["LUGAR"],$evento["FECHAINICIO"],$evento["FECHAFIN"],$evento["DESCRIPCIONCLIENTE"],$evento["ESTADOEVENTO"]);
 		cerrarConexionBD($conexion);
 			
 		if ($excepcion<>"") {
 			$_SESSION["excepcion"] = $excepcion;
-			$_SESSION["destino"] = "consulta_evento.php";
+			$_SESSION["destino"] = "produccion1.php";
 			Header("Location: excepcion.php");
 		}
 		else
-			Header("Location: consulta_evento.php");
+			Header("Location: produccion1.php");
 	}
-	else Header("Location: carajo.php"); // Se ha tratado de acceder directamente a este PHP
+	else Header("Location: produccion1.php"); // Se ha tratado de acceder directamente a este PHP
 ?>

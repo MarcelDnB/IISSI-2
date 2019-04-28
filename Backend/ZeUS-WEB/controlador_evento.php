@@ -1,16 +1,16 @@
 <?php	
 	session_start();
 	
-	if (isset($_REQUEST["eid"])) {
-		$evento["eid"] = $_REQUEST["eid"];
-		$evento["preciototal"] = $_REQUEST["preciototal"];
-        $evento["lugar"] = $_REQUEST["lugar"];
-        $evento["fechainicio"] = $_REQUEST["fechainicio"];
-        $evento["fechafin"] = $_REQUEST["fechafin"];
-		$evento["descripcioncliente"] = $_REQUEST["descripcioncliente"];
-		$evento["estadoevento"] = $_REQUEST["estadoevento"];
+	if (isset($_REQUEST["EID"])) {
+		$evento["EID"] = $_REQUEST["EID"];
+		$evento["PRECIOTOTAL"] = $_REQUEST["PRECIOTOTAL"];
+        $evento["LUGAR"] = $_REQUEST["LUGAR"];
+        $evento["FECHAINICIO"] = $_REQUEST["FECHAINICIO"];
+        $evento["FECHAFIN"] = $_REQUEST["FECHAFIN"];
+		$evento["DESCRIPCIONCLIENTE"] = $_REQUEST["DESCRIPCIONCLIENTE"];
+		$evento["ESTADOEVENTO"] = $_REQUEST["ESTADOEVENTO"];
 
-		$_SESSION["evento"] = $evento;
+		$_SESSION["EVENTO"] = $evento;
 			
 		if (isset($_REQUEST["editar"])) Header("Location: produccion1.php"); 
 		else if (isset($_REQUEST["grabar"])) Header("Location: accion_modificar_evento.php");

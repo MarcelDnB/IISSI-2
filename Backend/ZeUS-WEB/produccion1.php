@@ -7,9 +7,9 @@
 	if (!isset($_SESSION['login'])) {
 		Header("Location: login.php");
 	}else {
-	if (isset($_SESSION["evento"])){
-		$evento = $_SESSION["evento"];
-		unset($_SESSION["evento"]);
+	if (isset($_SESSION["EVENTO"])){
+		$evento = $_SESSION["EVENTO"];
+		unset($_SESSION["EVENTO"]);
 	}
 	
 	//                                                      	 PAGINACION                                                           //
@@ -55,8 +55,26 @@
 	cerrarConexionBD($conexion);
 ?>
 <!--                                                      	 PAGINACION                                                           -->
+<?php if (isset($_POST['agregar'])){
+		$evento['place']= $_POST['place'];
+		$evento['finicio'] = $_POST['finicio'];
+		$evento['ffin'] = $_POST['ffin'];
+		$evento['totalprice'] = $_POST['totalprice'];
+		$evento['description'] = $_POST['description'];
 
+		$conexion = crearConexionBD();
+		$excepcion = crear_evento($conexion,$evento['totalprice'],$evento['place'],$evento['finicio'],$evento['ffin'],$evento['description']);
+		cerrarConexionBD($conexion);
 
+		if ($excepcion<>"") {
+			$_SESSION["excepcion"] = $excepcion;
+			$_SESSION["destino"] = "produccion1.php";
+			Header("Location: excepcion.php");
+		}
+		else
+			Header("Location: produccion1.php");
+	}
+?>
 
 
 
@@ -114,7 +132,7 @@
 
 		min="1" max="<?php echo $total_registros; ?>"
 
-		value="<?php echo $pag_tam?>" autofocus="autofocus" />
+		value="<?php echo $pag_tam-1?>" autofocus="autofocus" />
 
 	entradas de <?php echo $total_registros?>
 
@@ -139,14 +157,13 @@
           <h2>Añadir Evento</h2>
         </div>
     <div class="modal-body">
-      <form>
-        <div><label>Lugar: </label> <input type="text" id="modal" class="form-modal"></div>
-				<div><label>Fecha de Inicio: </label> <input type="date" id="finicio" class="form-modal"></div>
-				<div><label>Fecha de Fin: </label> <input type="date" id="ffin" class="form-modal"></div>
-				<div><label>Precio Total: </label> <input type="text" id="preciototal" class="form-modal"></div>
-        <div><label>Descripcion: </label> <input type="text" id="descripcion" class="form-modal"></div>
-        <div><input type="submit" id="form-modal" formaction="www.meme.com" value="Añadir" class="btn"></div>
-
+      <form method="post" action="produccion1.php">
+        <div><label>Lugar: </label> <input type="text" id="place" name="place" class="form-modal"></div>
+				<div><label>Fecha de Inicio: </label> <input type="text" id="finicio" name="finicio" class="form-modal"></div>
+				<div><label>Fecha de Fin: </label> <input type="text" id="ffin" name="ffin" class="form-modal"></div>
+				<div><label>Precio Total: </label> <input type="text" id="totalprice" name="totalprice" class="form-modal"></div>
+        <div><label>Descripcion: </label> <input type="text" id="description" name="description" class="form-modal"></div>
+        <div><button id="agregar" name="agregar" type="submit" value="Añadir" class="btn"></div>
       </form>
     </div>
 	</div>
@@ -178,27 +195,46 @@
 						<input id="EID" name="EID" type="hidden"
 						value="<?php echo $fila["EID"];?>"/>
 						<input id="PRECIOTOTAL" name="PRECIOTOTAL" type="hidden"
-						value="<?php echo $fila["preciototal"];?>"/>
+						value="<?php echo $fila["PRECIOTOTAL"];?>"/>
 						<input id="LUGAR" name="LUGAR" type="hidden"
 						value="<?php echo $fila["LUGAR"];?>"/>
+						<input id="FECHAINICIO" name="FECHAINICIO" type="hidden"
+						value="<?php echo $fila["FECHAINICIO"];?>"/>
+						<input id="FECHAFIN" name="FECHAFIN" type="hidden"
+						value="<?php echo $fila["FECHAFIN"];?>"/>
+						<input id="DESCRIPCIONCLIENTE" name="DESCRIPCIONCLIENTE" type="hidden"
+						value="<?php echo $fila["DESCRIPCIONCLIENTE"];?>"/>
+						<input id="ESTADOEVENTO" name="ESTADOEVENTO" type="hidden"
+						value="<?php echo $fila["ESTADOEVENTO"];?>"/>
+			
 				<?php
 					if (isset($evento) and ($fila["EID"] == $evento["EID"])) { ?>
 						<!-- Editando título -->
-						<input id="PRECIOTOTAL" name="PRECIOTOTAL" type="text" value="<?php echo $fila['PRECIOTOTAL'];?>"/>
-						<h4><?php echo $fila["LUGAR"] . " " . $fila["LUGAR"]; ?></h4>
+						<label><b>Evento: </b></label><input id="EID" name="EID" type="text" value="<?php echo $fila['EID'];?>"/>
+						<label><b> Precio: </b></label><input id="PRECIOTOTAL" name="PRECIOTOTAL" type="text" value="<?php echo $fila['PRECIOTOTAL'];?>"/>
+						<label><b>Fecha de Inicio:</b></label><input id="FECHAINICIO" name="FECHAINICIO" type="text" value="<?php echo $fila['FECHAINICIO'];?>"/>
+						<label><b> Fecha Fin: </b></label><input id="FECHAFIN" name="FECHAFIN" type="text" value="<?php echo $fila['FECHAFIN'];?>"/>
+						<label><b>Estado:</b></label><input id="ESTADOEVENTO" name="ESTADOEVENTO" type="text" value="<?php echo $fila['ESTADOEVENTO'];?>"/>
+						<div>
+						<label><b> Descripcion del cliente: </b></label><input id="DESCRIPCIONCLIENTE" name="DESCRIPCIONCLIENTE" type="text" value="<?php echo $fila['DESCRIPCIONCLIENTE'];?>"/>
+						</div>
+						<div>
+						<label><b> Lugar: </b></label><input id="LUGAR" name="LUGAR" type="text" value="<?php echo $fila['LUGAR'];?>"/>
+						</div>
 						<?php }	else { ?>
 						<!-- mostrando título -->	
-						<input id="PRECIOTOTAL" name="PRECIOTOTAL" type="hidden" value="<?php echo $fila['PRECIOTOTAL'];?>"/>
 					  <div class="titulo"><label><b>Evento: </b><?php echo $fila['EID'];?></label><label><b> Precio: </b><?php echo $fila['PRECIOTOTAL'];?></label>
-				<?php } ?>
-						z	<label><b>Fecha de Inicio:</b> <?php echo $fila['FECHAINICIO'];?></label><label><b> Fecha Fin: </b><?php echo $fila['FECHAFIN'] ?></label>
+						<label><b>Fecha de Inicio:</b> <?php echo $fila['FECHAINICIO'];?></label><label><b> Fecha Fin: </b><?php echo $fila['FECHAFIN'] ?></label>
 						<label><b>Estado:</b> <?php echo $fila['ESTADOEVENTO'];?></label>
             <div>
             <label><b> Descripcion del cliente: </b> <?php echo $fila['DESCRIPCIONCLIENTE'];?></label>
             </div>  
             <div>
-            <label><b> Lugar: </b><?php echo $fila['LUGAR'].''.$fila['LUGAR'];?></label>
+            <label><b> Lugar: </b><?php echo $fila['LUGAR']?></label>
             </div>
+			
+				<?php } ?>
+						
 				<?php if (isset($evento) and $fila["EID"] == $evento["EID"]) { ?>
 						<button id="grabar" name="grabar" type="submit" class="editar_fila">
 						<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar Cambios">
@@ -216,11 +252,6 @@
 	<div>
 	<?php } ?>
 <!--                                                       CONSULTA_EVENTO                                                            -->
-
-
-
-
-
 
 </body>
 </html>
