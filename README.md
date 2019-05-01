@@ -13,7 +13,7 @@ Proyecto ZeUS de IISSI2
 - [ ] Implementar las funciones en todas las entradas web
 - [ ] Terminar para la entrega
 
-## changelog
+## cambios en la base de datos
 - Añadida tabla USUARIOS, es necesario modificar todo el sistema de logueo para cada departamento (en otra actualizacion)
 - Añadido procedimiento para quitar transporte
 - Añadido procedimiento para modificar transporte
