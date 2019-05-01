@@ -1,0 +1,201 @@
+body{
+	font-family: 'Raleway', sans-serif;
+	margin: 0;
+	padding-top: 80px;	/*Igual al tamaño de la cabecera*/
+	overflow: hidden;
+}
+
+.sidebar{
+	font-family: 'Raleway', sans-serif;
+	position: absolute;
+	width: 250px;
+	height: 100%;
+	background: #333;
+	color: #fff;
+	outline: 1px solid #2a2a2a;
+}
+
+.sidebar h2{
+	text-align: center;
+	margin: 0;
+	padding: 10px;
+	background: #2a2a2a;
+}
+
+.sidebar ul{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.sidebar li{
+	outline: 1px solid #2a2a2a;
+	transition: border 0.3s;
+}
+
+.sidebar li:hover{
+	background: #444;
+	border-left: 5px solid #fff;
+}
+
+.sidebar a{
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	padding: 10px;
+}
+
+.contenido{
+	position: absolute;
+	background: rgb(127, 91, 255);
+	transition: all 0.3s;
+	padding:0px;
+	/*Al contenido sí se le puede hacer scroll vertical -> Quitar si la paginación no lo requiere*/
+	overflow-y: scroll;
+	top: 80px;
+	bottom: 0px;
+	width: 100%;
+
+}
+.abrir{
+	position: absolute;
+	transition: all 0.3s;
+	padding:0px;
+	overflow-y: scroll;
+	top: 80px;
+	bottom: 0px;
+	width: calc(100% - 250px);
+	background: rgb(255, 198, 198);
+	margin-left: 250px;
+}
+.menu-bar{
+	width: 80px;
+	cursor: pointer;
+	float: left;
+}
+
+
+
+/*Código para ocultar el sidebar si el ancho de la pantalla <600px*/
+@media (max-width: 415px) {
+	#nav-cerrar{
+		display: block;
+		text-decoration: none;
+		margin-top: -63px;
+		line-height: 40px;
+	}
+
+	#logo-header{
+		visibility: hidden;
+	}
+	
+
+	.contenido{
+	position: absolute;
+	background: rgb(127, 91, 255);
+	transition: all 0.3s;
+	padding:0px;
+	/*Al contenido sí se le puede hacer scroll vertical -> Quitar si la paginación no lo requiere*/
+	overflow-y: scroll;
+	bottom: 0px;
+	width: 100%;
+	}
+	
+	.abrir{
+		position: absolute;
+		transition: all 0.3s;
+		padding:0px;
+		overflow-y: scroll;
+		bottom: 0px;
+		width: calc(100% - 250px);
+		background: rgb(255, 198, 198);
+		margin-left: 250px;
+	}
+}
+
+/*Cabecera fija*/
+/*Nota: Uso de "#" en lugar de "." porque el elemento se identifica con un ID en lugar de una clase -> ID para un elemento, clase para varios*/
+#logo-header {
+	float: left;
+	padding: 20px 0 0 20px;
+	text-decoration: none;
+}
+
+#logo-header:hover {
+	color: rgb(22, 159, 201);
+}
+	
+#logo-header .site-name {
+	display: block;
+	font-weight: 700;
+	font-size: 1.4em;
+	text-align: center;
+}
+	
+#logo-header .site-desc {
+	display: block;
+	font-weight: 300;
+	font-size: 0.9em;
+	color: #999;
+}
+
+#main-header {
+	background: #333;
+	height: 80px;
+	width: 100%; /* Largo de la cabecera */
+	left: 0; /* Posicionamos la cabecera al lado izquierdo */
+	top: 0; /* Posicionamos la cabecera pegada arriba */
+	position: fixed; /* Cabecera fija */
+}
+	
+#main-header a {
+	color: white;
+}
+
+#main-header nav {
+	float: right;
+	text-decoration: none;
+}
+
+#main-header ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	padding-right: 20px;
+}
+	
+#main-header ul li {
+	display: inline-block;
+	line-height: 80px;
+}
+			
+#main-header nav ul li a {
+	display: block;
+	padding: 0 10px;
+	text-decoration: none;
+}
+			
+#main-header nav ul li a:hover {
+	background: #444;
+}
+
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+  }
+  
+  td, th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+  }
+  td p { /* para limitar el numero de caracteres*/
+	text-overflow: ellipsis;
+	width: 370px;
+	overflow:hidden;
+  }
+  
+  tr:nth-child(even) {
+	background-color: #dddddd;
+  }

@@ -1,0 +1,12 @@
+
+.btn {
+    background-color: rgba(0, 255, 13, 0.377);
+    text-decoration: none;
+    border: none;
+    padding: 15px 32px;
+    width:20%;
+    text-align:left;
+    position: relative;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
