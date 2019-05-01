@@ -124,12 +124,9 @@
 <!--                                                      	MODAL_FORM                                                            -->
 <!-- Trigger/Open The Modal -->
 <button id="myBtn" class="mybtn">Añadir Evento </button>
-<?php if(isset($_SESSION["grabar"]) && isset($_SESSION["excepcion"])) {
+<?php if(isset($_SESSION["excepcion"])) {
 				echo "Ha introducido algun dato mal";
-}else {
-			unset($_SESSION["excpcion"]);
-			unset($_SESSION["hayono"]);
-} ?>
+	}?>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -241,6 +238,8 @@
 	</article>
 	<div>
 	<?php } ?>
+	<?php unset($_SESSION["excepcion"]); ?> <!--para reestablecer el error que salia antes, para evitar que salga siempre -->
+	
 <!--                                                       CONSULTA_EVENTO                                                            -->
 
 </body>

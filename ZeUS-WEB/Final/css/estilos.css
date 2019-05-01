@@ -199,3 +199,30 @@ table {
   tr:nth-child(even) {
 	background-color: #dddddd;
   }
+
+  #enlaces span,#enlaces a{
+	width: 2em;
+	height: 2em;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #333;
+	color: white;
+	text-decoration: none;
+	margin: 5px;
+}
+#enlaces span:hover,#enlaces a:hover {
+	transform: scale(1.2);
+}
+.current{
+	color: #333 !important;
+	background-color: white !important;
+	border:solid 2px #333;
+	transform: scale(1.2);
+}
+#enlaces{
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	padding-left: 100px;
+}

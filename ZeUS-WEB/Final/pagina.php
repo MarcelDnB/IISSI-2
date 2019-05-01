@@ -27,7 +27,7 @@
 	?>
 	<div class="contenido abrir">	<!--Caben 11 párrafos Lorem Ipsum sin hacr scroll-->	
 	<div class="produccion">
-    <?php include_once("produccion1.php");?>
+    <?php include_once("produccion/produccion1.php");?>
     </div>
     
 </div>
