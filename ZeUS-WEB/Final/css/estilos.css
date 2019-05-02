@@ -47,7 +47,7 @@ body{
 
 .contenido{
 	position: absolute;
-	background: rgb(127, 91, 255);
+	background: rgb(153, 153, 153);
 	transition: all 0.3s;
 	padding:0px;
 	/*Al contenido sí se le puede hacer scroll vertical -> Quitar si la paginación no lo requiere*/
@@ -65,7 +65,7 @@ body{
 	top: 80px;
 	bottom: 0px;
 	width: calc(100% - 250px);
-	background: rgb(255, 198, 198);
+	background: rgb(153, 153, 153);
 	margin-left: 250px;
 }
 .menu-bar{
@@ -92,7 +92,7 @@ body{
 
 	.contenido{
 	position: absolute;
-	background: rgb(127, 91, 255);
+	background: rgb(153, 153, 153);
 	transition: all 0.3s;
 	padding:0px;
 	/*Al contenido sí se le puede hacer scroll vertical -> Quitar si la paginación no lo requiere*/
@@ -108,7 +108,7 @@ body{
 		overflow-y: scroll;
 		bottom: 0px;
 		width: calc(100% - 250px);
-		background: rgb(255, 198, 198);
+		background: rgb(153, 153, 153);
 		margin-left: 250px;
 	}
 }

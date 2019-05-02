@@ -174,7 +174,7 @@
 	<?php
 		foreach($filas as $fila) {
 	?>
-		<form method="post" action="controlador_evento.php">
+		<form method="post" action="produccion/controlador_evento.php">
 					<!-- Controles de los campos que quedan ocultos:
 						OID_LIBRO, OID_AUTOR, OID_AUTORIA, NOMBRE, APELLIDOS -->
 						<input id="EID" name="EID" type="hidden"

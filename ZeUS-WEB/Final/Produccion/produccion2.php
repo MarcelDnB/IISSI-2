@@ -55,33 +55,7 @@
 	cerrarConexionBD($conexion);
 ?>
 <!--                                                      	 PAGINACION                                                           -->
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en" class="html">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/prod1.css">
-    <script src="js/prod1.js"></script> 
-
-    <title>Departamento de Produccion</title>
-</head>
 <body>
-
-    <ul class="breadcrumb">
-        <li><a href="#">Alojamiento</a></li>
-        <li></li>
-      </ul> 
-	<label id="prod" class="prod">Departamento de Produccion</label><br><br><br><br>
-
-
-	
 	<!--                                                      	 PAGINACION                                                           -->
 <nav>
 <div id="enlaces">

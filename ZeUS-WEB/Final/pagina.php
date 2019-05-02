@@ -26,7 +26,7 @@
 		include_once("barrafija.php");
 	?>
 	<div class="contenido abrir">	<!--Caben 11 párrafos Lorem Ipsum sin hacr scroll-->	
-	<div class="produccion">
+	<div class="produccion"> <!-- Hay q de alguna manera, incorporar las otras paginas de produccion aqui sin necesidad de tener este codigo en cada una -->
     <?php include_once("produccion/produccion1.php");?>
     </div>
     

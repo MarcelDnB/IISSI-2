@@ -5,7 +5,7 @@
 		$evento = $_SESSION["EVENTO"];
 		unset($_SESSION["EVENTO"]);
 		
-		require_once("gestionBD.php");
+		require_once("../gestionBD.php");
 		require_once("gestionarEvento.php");
 	
 		$conexion=crearConexionBD();
@@ -13,12 +13,12 @@
 		cerrarConexionBD($conexion);
 		if($excepcion<>"") {
 			$_SESSION["excepcion"] = $excepcion;
-			$_SESSION["destino"] = "pagina.php";
+			$_SESSION["destino"] = "../pagina.php";
 		}
 		else {
-			Header("Location: pagina.php");
+			Header("Location: ../pagina.php");
 		}
 	}
 	else 
-		Header("Location: pagina.php"); 
+		Header("Location: ../pagina.php"); 
 ?>
