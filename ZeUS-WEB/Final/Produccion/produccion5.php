@@ -1,9 +1,9 @@
 <?php
 	session_start();
 
-	require_once("gestionBD.php");
+	require_once("../gestionBD.php");
 	require_once("gestionarPersonal.php");
-	require_once("paginacion_consulta.php");
+	require_once("../paginacion_consulta.php");
 	if (!isset($_SESSION['login'])) {
 		Header("Location: login.php");
 	}else {

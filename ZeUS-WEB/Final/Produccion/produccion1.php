@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	require_once("gestionBD.php");
 	require_once("gestionarEvento.php");
 	require_once("paginacion_consulta.php");
@@ -10,6 +9,7 @@
 		$evento = $_SESSION["EVENTO"];
 		unset($_SESSION["EVENTO"]);
 	}
+
 	
 	//                                                      	 PAGINACION                                                           //
 	// ¿Venimos simplemente de cambiar página o de haber seleccionado un registro ?
@@ -114,7 +114,8 @@
 
 	entradas de <?php echo $total_registros?>
 
-	<input type="submit" value="Cambiar" class="subpaginacion">
+	<input id="pagin" name="pagin" type="submit" value="Cambiar" class="subpaginacion">
+
 
 </form>
 
@@ -124,10 +125,15 @@
 <!--                                                      	MODAL_FORM                                                            -->
 <!-- Trigger/Open The Modal -->
 <button id="myBtn" class="mybtn">Añadir Evento </button>
-<?php if(isset($_SESSION["excepcion"])) {
-				echo "Ha introducido algun dato mal";
-	}?>
-
+<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
+<?php if(isset($_SESSION["borrado"])) {
+					echo "No se puede borrar";
+				}
+			if(isset($_SESSION["editando"])) {
+					echo "No se puede modificar, tenga cuidado con el formato que se requiere";
+			}
+			?>
+<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
 <!-- The Modal -->
 <div id="myModal" class="modal">
 
@@ -174,7 +180,7 @@
 	<?php
 		foreach($filas as $fila) {
 	?>
-		<form method="post" action="produccion/controlador_evento.php">
+		<form method="POST" action="produccion/controlador_evento.php">
 					<!-- Controles de los campos que quedan ocultos:
 						OID_LIBRO, OID_AUTOR, OID_AUTORIA, NOMBRE, APELLIDOS -->
 						<input id="EID" name="EID" type="hidden"
@@ -238,7 +244,9 @@
 	</article>
 	<div>
 	<?php } ?>
-	<?php unset($_SESSION["excepcion"]); ?> <!--para reestablecer el error que salia antes, para evitar que salga siempre -->
+	<?php unset($_SESSION["excepcion"]);
+				unset($_SESSION["borrado"]); ?> <!--para reestablecer el error que salia antes, para evitar que salga siempre -->
+	
 	
 <!--                                                       CONSULTA_EVENTO                                                            -->
 

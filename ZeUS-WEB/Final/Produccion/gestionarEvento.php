@@ -5,12 +5,6 @@
      * #	de libros de la capa de acceso a datos 		
      * #==========================================================#
      */
-     
-function consultarTodosEventos($conexion) {
-	$consulta = "SELECT * FROM EVENTO";
-    return $conexion->query($consulta);
-}
-  
 function quitar_evento($conexion,$EID) { //hay q hacer procedimientos para esto
 	try {
 		$stmt=$conexion->prepare('CALL QUITAR_EVENTO(:EID)');

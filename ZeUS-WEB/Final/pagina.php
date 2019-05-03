@@ -1,3 +1,15 @@
+<?php
+	session_start();
+	require_once("gestionBD.php");
+	require_once("produccion/gestionarEvento.php");
+	require_once("paginacion_consulta.php");
+	if (!isset($_SESSION['login'])) {
+		Header("Location: login.php");
+	}else {
+	
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,12 +37,30 @@
 		include_once("sidebar.php");
 		include_once("barrafija.php");
 	?>
-	<div class="contenido abrir">	<!--Caben 11 párrafos Lorem Ipsum sin hacr scroll-->	
-	<div class="produccion"> <!-- Hay q de alguna manera, incorporar las otras paginas de produccion aqui sin necesidad de tener este codigo en cada una -->
-    <?php include_once("produccion/produccion1.php");?>
-    </div>
+	<div class="contenido abrir">	<!--Caben 11 párrafos Lorem Ipsum sin hacr scroll-->	 <!-- Hay q de alguna manera, incorporar las otras paginas de produccion aqui sin necesidad de tener este codigo en cada una -->
     
+    <?php 
+
+    if (isset($_GET["eventos"]) || ($_SESSION["localidad"] == "evento")){
+        include_once("produccion/produccion1.php");
+    }
+    if (isset($_GET["alojamiento"]) || ($_SESSION["localidad"] == "alojamiento")) {
+        include_once("produccion/produccion2.php");
+    }
+    if (isset($_GET["transporte"]) || ($_SESSION["localidad"] == "transporte")) {
+        include_once("produccion/produccion3.php");
+    }
+    if (isset($_GET["material"]) || ($_SESSION["localidad"] == "material")) {
+        include_once("produccion/produccion4.php");
+    }
+    if (isset($_GET["personal"]) || ($_SESSION["localidad"] == "personal")) {
+        include_once("produccion/produccion5.php");
+    }
+
+
+    ?>
 </div>
 	<script src="js/main.js"></script>
 </body>
 </html>
+<?php } ?>

@@ -1,6 +1,4 @@
 <?php
-	session_start();
-
 	require_once("gestionBD.php");
 	require_once("gestionarTransporte.php");
 	require_once("paginacion_consulta.php");
@@ -74,14 +72,6 @@
 </head>
 <body>
 
-    <ul class="breadcrumb">
-        <li><a href="#">Transporte</a></li>
-        <li></li>
-      </ul> 
-	<label id="prod" class="prod">Departamento de Produccion</label><br><br><br><br>
-
-
-	
 	<!--                                                      	 PAGINACION                                                           -->
 <nav>
 <div id="enlaces">
@@ -124,16 +114,6 @@
 
 </nav>
 <!--                                                      	PAGINACION                                                            -->
-
-<!--                                                      	CUADRITO                                                            -->
-<div class="cuadrito">
-  <button class="acc-button" onclick="window.location='produccion1.php'">Eventos</button>
-	<button class="acc-button" onclick="window.location='produccion2.php'">Alojamiento</button>
-	<button class="acc-button" onclick="window.location='produccion3.php'">Transporte</button>
-	<button class="acc-button" onclick="window.location='produccion4.php'">Material</button>
-	<button class="acc-button" onclick="window.location='produccion5.php'">Personal</button>
-	</div>
-<!--                                                      	CUADRITO                                                            -->
 
 <!--                                                       CONSULTA_EVENTO                                                            -->
 	<div class="seccionEntradas">

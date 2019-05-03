@@ -1,15 +1,13 @@
 <?php
-	session_start();
-
 	require_once("gestionBD.php");
 	require_once("gestionarAlojamiento.php");
 	require_once("paginacion_consulta.php");
 	if (!isset($_SESSION['login'])) {
 		Header("Location: login.php");
 	}else {
-	if (isset($_SESSION["alojamiento"])){
-		$alojamiento = $_SESSION["alojamiento"];
-		unset($_SESSION["alojamiento"]);
+	if (isset($_SESSION["ALOJAMIENTO"])){
+		$alojamiento = $_SESSION["ALOJAMIENTO"];
+		unset($_SESSION["ALOJAMIENTO"]);
 	}
 	
 	//                                                      	 PAGINACION                                                           //
@@ -70,7 +68,7 @@
 
 	<?php }	else { ?>
 
-				<a href="produccion2.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+				<a href="pagina.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
 
 	<?php } ?>
 
@@ -78,7 +76,7 @@
 
 
 
-<form method="get" action="produccion2.php">
+<form method="get" action="pagina.php">
 
 	<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -98,70 +96,123 @@
 
 </nav>
 <!--                                                      	PAGINACION                                                            -->
+<!--                                                      	MODAL_FORM                                                            -->
+<!-- Trigger/Open The Modal -->
+<button id="myBtn" class="mybtn">Añadir Alojamiento </button>
+<?php if(isset($_SESSION["excepcion"])) {
+				echo "Ha introducido algun dato mal" . $_SESSION["excepcion"];
+	}?>
 
-<!--                                                      	CUADRITO                                                            -->
-<div class="cuadrito">
-  <button class="acc-button" onclick="window.location='produccion1.php'">Eventos</button>
-	<button class="acc-button" onclick="window.location='produccion2.php'">Alojamiento</button>
-	<button class="acc-button" onclick="window.location='produccion3.php'">Transporte</button>
-	<button class="acc-button" onclick="window.location='produccion4.php'">Material</button>
-	<button class="acc-button" onclick="window.location='produccion5.php'">Personal</button>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+      <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2>Añadir Evento</h2>
+        </div>
+    <div class="modal-body">
+      <form method="post" action="pagina.php">
+        <div><label>Lugar: </label> <input type="text" id="place" name="place" class="form-modal"></div>
+				<div><label>Fecha de Inicio: </label> <input type="text" id="finicio" name="finicio" class="form-modal"></div>
+				<div><label>Fecha de Fin: </label> <input type="text" id="ffin" name="ffin" class="form-modal"></div>
+				<div><label>Precio Total: </label> <input type="text" id="totalprice" name="totalprice" class="form-modal"></div>
+        <div><label>Descripcion: </label> <input type="text" id="description" name="description" class="form-modal"></div>
+				<div><button id="agregar" name="agregar" type="submit" value="Añadir" class="btn"></div>
+				<?php if(isset($_POST['agregar']) && isset($_SESSION['excepcion'])){
+					echo '<p>Ha introducido algo mal</p>';
+				} ?>
+      </form>
+    </div>
 	</div>
-<!--                                                      	CUADRITO                                                            -->
+	</div>
+	<script src="js/modal.js"></script> 
+<!--                                                      	MODAL_FORM                                                            -->
 
 <!--                                                       CONSULTA_EVENTO                                                            -->
-	<div class="seccionEntradas">
+<div class="seccionEntradas">
+<table id="tabla1" style="width:100%">
+			<tr>
+			<th>Evento</th>
+			<th>Direccion</th>
+			<th>Ciudad</th>
+			<th>Fecha de Inicio</th>
+			<th>Fecha Fin</th>
+			<th>Hotel</th>
+			<th>Numero personas</th>
+			<th>Editar</th>
+			<th>Borrar</th>
+			</tr>	
 	<?php
 		foreach($filas as $fila) {
 	?>
-	<article class="evento">
-		<form method="post" action="controlador_alojamiento.php">
+		<form method="post" action="produccion/controlador_alojamiento.php">
 					<!-- Controles de los campos que quedan ocultos:
 						OID_LIBRO, OID_AUTOR, OID_AUTORIA, NOMBRE, APELLIDOS -->
 						<input id="EID" name="EID" type="hidden"
 						value="<?php echo $fila["EID"];?>"/>
+						<input id="DIRECCION" name="DIRECCION" type="hidden"
+						value="<?php echo $fila["DIRECCION"];?>"/>
+						<input id="CIUDAD" name="CIUDAD" type="hidden"
+						value="<?php echo $fila["CIUDAD"];?>"/>
+						<input id="FECHAINICIO" name="FECHAINICIO" type="hidden"
+						value="<?php echo $fila["FECHAINICIO"];?>"/>
+						<input id="FECHAFIN" name="FECHAFIN" type="hidden"
+						value="<?php echo $fila["FECHAFIN"];?>"/>
 						<input id="HOTEL" name="HOTEL" type="hidden"
 						value="<?php echo $fila["HOTEL"];?>"/>
 						<input id="NUMPERSONAS" name="NUMPERSONAS" type="hidden"
 						value="<?php echo $fila["NUMPERSONAS"];?>"/>
 				<?php
-					if (isset($alojamiento) and ($fila["EID"] == $alojamiento["EID"])) { ?>
+					if (isset($evento) and ($fila["EID"] == $evento["EID"])) { ?>
 						<!-- Editando título -->
-						<input id="PRECIOTOTAL" name="PRECIOTOTAL" type="text" value="<?php echo $fila['PRECIOTOTAL'];?>"/>
-						<h4><?php echo $fila["LUGAR"] . " " . $fila["LUGAR"]; ?></h4>
+						<tr>
+						<td><input id="EID" name="EID" type="text" value="<?php echo $fila['EID'];?>"/></td>
+						<td><input id="DIRECCION" name="DIRECCION" type="text" value="<?php echo $fila['DIRECCION'];?>"/></td>
+						<td><input id="CIUDAD" name="CIUDAD" type="text" value="<?php echo $fila['CIUDAD'];?>"/></td>
+						<td><input id="FECHAINICIO" name="FECHAINICIO" type="text" value="<?php echo $fila['FECHAINICIO'];?>"/></td>
+						<td><input id="FECHAFIN" name="FECHAFIN" type="text" value="<?php echo $fila['FECHAFIN'];?>"/></td>
+						<td><input id="HOTEL" name="HOTEL" type="text" value="<?php echo $fila['HOTEL'];?>"/></td>
+						<td><input id="NUMPERSONAS" name="NUMPERSONAS" type="text" value="<?php echo $fila['NUMPERSONAS'];?>"/></td>
 						<?php }	else { ?>
 						<!-- mostrando título -->	
-						<input id="PRECIOTOTAL" name="PRECIOTOTAL" type="hidden" value="<?php echo $fila['PRECIOTOTAL'];?>"/>
+						<tr>
+						<td><?php echo $fila['EID'];?></td>
+						<td><?php echo $fila['DIRECCION'];?></td>
+						<td><?php echo $fila['CIUDAD']?></td>
+						<td><?php echo $fila['FECHAINICIO'];?></td>
+						<td><?php echo $fila['FECHAFIN'] ?></td>
+						<td> <?php echo $fila['HOTEL'];?></td>
+						<td><p><?php echo $fila['NUMPERSONAS'];?></p></td>
 						
-						<div class="titulo"><label><b>Evento: </b><?php echo $fila['EID'];?></label><label><b> Hotel: </b><?php echo $fila['HOTEL'];?></label>
-						<label><b>Ciudad:</b> <?php echo $fila['CIUDAD'];?></label><label><b>Direccion:</b> <?php echo $fila['DIRECCION'];?></label>
-				<?php } ?>
-						<label><b>Fecha de Inicio:</b> <?php echo $fila['FECHAINICIO'];?></label><label><b> Fecha Fin: </b><?php echo $fila['FECHAFIN'] ?></label>
 
-						<label><b>Numero de personas:</b> <?php echo $fila['NUMPERSONAS'];?></label>
-            <div>
+				<?php } ?>
+				
 				<?php if (isset($alojamiento) and $fila["EID"] == $alojamiento["EID"]) { ?>
-						<button id="grabar" name="grabar" type="submit" class="editar_fila">
+				<td>
+					<button id="grabar" name="grabar" type="submit" class="editar_fila">
 						<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar Cambios">
 					</button>
+				</td>
 				<?php } else {?>
+					<td>
 					<button id="editar" name="editar" type="submit" class="editar_fila">
 						<img src="images/pencil_menuito.bmp" class="editar_fila" alt="Editar Libro">
-					</button>
+					</button>	
+				</td>
 				<?php } ?>
+				<td>
 				<button id="borrar" name="borrar" type="submit" class="editar_fila">
 						<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar Libro">
 					</button>
+				</td>
+
 		</form>
 	</article>
 	<div>
 	<?php } ?>
 <!--                                                       CONSULTA_EVENTO                                                            -->
-
-
-
-
-
-
+<?php unset($_SESSION["excepcion"]);?>
 </body>
 </html>

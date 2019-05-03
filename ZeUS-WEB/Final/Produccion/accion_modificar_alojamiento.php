@@ -1,20 +1,19 @@
 <?php	
 	session_start();	
 	
-	if (isset($_SESSION["EVENTO"])) {
-		$evento = $_SESSION["EVENTO"];
-		unset($_SESSION["EVENTO"]);
+	if (isset($_SESSION["ALOJAMIENTO"])) {
+		$alojamiento = $_SESSION["ALOJAMIENTO"];
+		unset($_SESSION["ALOJAMIENTO"]);
 		
 		require_once("../gestionBD.php");
-		require_once("gestionarEvento.php");
+		require_once("gestionarAlojamiento.php");
 		
 		$conexion = crearConexionBD();		
-		$excepcion = modificar_evento($conexion,$evento["EID"],$evento["PRECIOTOTAL"],$evento["LUGAR"],$evento["FECHAINICIO"],$evento["FECHAFIN"],$evento["DESCRIPCIONCLIENTE"],$evento["ESTADOEVENTO"]);
+		$excepcion = modificar_alojamiento($conexion,$alojamiento["EID"],$alojamiento["CIUDAD"],$alojamiento["DIRECCION"],$alojamiento["FECHAINICIO"],$alojamiento["FECHAFIN"],$alojamiento["HOTEL"],$alojamiento["NUMPERSONAS"]);
 		cerrarConexionBD($conexion);
 		if ($excepcion<>"") {
 			$_SESSION["excepcion"] = $excepcion;
 			$_SESSION["destino"] = "../pagina.php";
-			$_SESSION["editando"] = 1;
 			Header("Location: ../pagina.php");
 		}
 		else

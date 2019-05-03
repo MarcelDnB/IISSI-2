@@ -14,11 +14,13 @@
 		if($excepcion<>"") {
 			$_SESSION["excepcion"] = $excepcion;
 			$_SESSION["destino"] = "../pagina.php";
+			$_SESSION["borrado"] = 1;
+			Header("Location: ../pagina.php");
 		}
 		else {
 			Header("Location: ../pagina.php");
 		}
 	}
 	else 
-		Header("Location: ../pagina.php"); 
+		Header("Location: ../pagina.php");
 ?>
