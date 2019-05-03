@@ -245,7 +245,8 @@
 	<div>
 	<?php } ?>
 	<?php unset($_SESSION["excepcion"]);
-				unset($_SESSION["borrado"]); ?> <!--para reestablecer el error que salia antes, para evitar que salga siempre -->
+				unset($_SESSION["borrado"]);
+				unset($_SESSION["editando"]); ?> <!--para reestablecer el error que salia antes, para evitar que salga siempre -->
 	
 	
 <!--                                                       CONSULTA_EVENTO                                                            -->
