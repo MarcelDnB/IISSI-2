@@ -36,18 +36,25 @@ body{
 .sidebar li:hover{
 	background: #444;
 	border-left: 5px solid #fff;
+	
 }
 
 .sidebar button{
 	display: block;
 	color: #fff;
 	text-decoration: none;
-	padding: 10px;
+	padding: 15px;
+	border: none;
+	background-color: rgb(85, 85, 85);
+	width: 250px;
+	text-align: left;
+	font-size: 16px;
+	cursor: pointer;
 }
 
 .contenido{
 	position: absolute;
-	background: rgb(153, 153, 153);
+	background: rgb(177, 177, 177);
 	transition: all 0.3s;
 	padding:0px;
 	/*Al contenido sí se le puede hacer scroll vertical -> Quitar si la paginación no lo requiere*/
@@ -65,7 +72,7 @@ body{
 	top: 80px;
 	bottom: 0px;
 	width: calc(100% - 250px);
-	background: rgb(153, 153, 153);
+	background: rgb(177, 177, 177);
 	margin-left: 250px;
 }
 .menu-bar{
@@ -183,10 +190,11 @@ table {
 	font-family: arial, sans-serif;
 	border-collapse: collapse;
 	width: 100%;
+	background-color: rgb(255, 255, 255);
   }
   
   td, th {
-	border: 1px solid #dddddd;
+	border: 1px solid #ff0000;
 	text-align: left;
 	padding: 8px;
   }
@@ -197,7 +205,11 @@ table {
   }
   
   tr:nth-child(even) {
-	background-color: #dddddd;
+	background-color: #2b2b2b;
+	color: rgb(255, 255, 255);
+  }
+  tr:hover {
+	  background-color: rgb(204, 181, 51);
   }
 
   #enlaces span,#enlaces a{
@@ -223,6 +235,93 @@ table {
 #enlaces{
 	display: flex;
 	justify-content: center;
-	flex-wrap: wrap;
+	flex-wrap: wrap; 
 	padding-left: 100px;
 }
+
+
+
+input[type=number] {
+	width: 5%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	border: 3px solid #ccc;
+	-webkit-transition: 0.5s;
+	transition: 0.5s;
+	outline: none;
+  }
+  
+  input[type=number]:focus {
+	border: 3px solid #555;
+  }
+
+  /* ocultar los botones de dar arriba y abajo en el input=number*/
+input[type=number]::-webkit-inner-spin-button,  /* para chrome*/
+input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+}
+input[type=number] { /* para firefox*/
+	-moz-appearance: textfield;
+	appearance: textfield;
+	margin: 0; 
+  }
+
+.formpaginacion {
+	padding:10px;
+	font-size: 18px;
+	background-color:grey;
+}
+.formpaginacion [type=submit] {
+	background-color: rgb(255, 255, 255); /* Green */
+	border: none;
+	color: rgb(0, 0, 0);
+	padding:12px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+.formpaginacion [type=submit]:hover {
+	background-color: #ff0000;
+}
+
+
+
+
+
+.btn {
+    background-color: rgba(0, 255, 13, 0.377);
+    text-decoration: none;
+    border: none;
+    padding: 15px 32px;
+    width:20%;
+    text-align:left;
+    position: relative;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.mybtn {
+	background-color: rgb(255, 255, 255); /* Green */
+	border: none;
+	color: rgb(0, 0, 0);
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+.mybtn:hover {
+	background-color: rgb(255, 34, 34);
+	color: rgb(0, 0, 0);
+  }

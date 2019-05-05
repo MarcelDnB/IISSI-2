@@ -80,31 +80,15 @@
 <body>
 	<!--                                                      	 PAGINACION                                                           -->
 <nav>
-<div id="enlaces">
-
-	<?php
-
-		for( $pagina = 1; $pagina <= $total_paginas; $pagina++ )
-
-			if ( $pagina == $pagina_seleccionada) { 	?>
-
-				<span class="current"><?php echo $pagina; ?></span>
-
-	<?php }	else { ?>
-
-				<a href="pagina.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
-
-	<?php } ?>
-
-</div>
 
 
 
-<form method="get" action="pagina.php">
+
+<form method="get" action="pagina.php" class="formpaginacion">
 
 	<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
-	Mostrando
+	<a class="mostrando">Mostrando</a>
 
 	<input id="PAG_TAM" name="PAG_TAM" type="number"
 
@@ -241,9 +225,29 @@
 				</td>
 
 		</form>
+		
 	</article>
 	<div>
+		
 	<?php } ?>
+	<div id="enlaces" class="enlaces">
+
+<?php
+
+	for( $pagina = 1; $pagina <= $total_paginas; $pagina++ )
+
+		if ( $pagina == $pagina_seleccionada) { 	?>
+
+			<span class="current"><?php echo $pagina; ?></span>
+
+<?php }	else { ?>
+
+			<a href="pagina.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+<?php } ?>
+
+</div>
+	
 	<?php unset($_SESSION["excepcion"]);
 				unset($_SESSION["borrado"]);
 				unset($_SESSION["editando"]); ?> <!--para reestablecer el error que salia antes, para evitar que salga siempre -->
