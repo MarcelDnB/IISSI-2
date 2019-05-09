@@ -7,16 +7,27 @@
 	if (isset($_POST['submit'])){
 		$email= $_POST['email'];
 		$pass = $_POST['pass'];
-
 		$conexion = crearConexionBD();
-		$num_usuarios = consultarUsuario($conexion,$email,$pass);
+		$num_usuarios_almacen = consultarUsuarioAlmacen($conexion,$email,$pass);
+		$num_usuarios_prod = consultarUsuarioProduccion($conexion,$email,$pass);
+		$num_usuarios_tec = consultarUsuarioTecnico($conexion,$email,$pass);
+		$_SESSION['consultaralmacen'] = $num_usuarios_almacen;
+		$_SESSION['consultarproduccion'] = $num_usuarios_prod;
+		$_SESSION['consultartecnico'] = $num_usuarios_tec;
 		cerrarConexionBD($conexion);	
 
-		if ($num_usuarios == 0){
-			$_SESSION['login'] = "error";
-		}else {
+		if ($num_usuarios_almacen > 0){
 			$_SESSION['login'] = $email;
-			Header("Location: pagina.php");
+			Header("Location: homeAlmacen.php");
+		}else if($num_usuarios_prod > 0){
+			$_SESSION['login'] = $email;
+			Header("Location: pagina.php");	//Anteriormente, pagina.php
+		}else if($num_usuarios_tec >0){
+			$_SESSION['login'] = $email;
+			Header("Location: homeTecnico.php");
+		}
+		else{
+			$_SESSION['login'] = "error";
 		}
 	}
 ?>
@@ -38,9 +49,10 @@
 		<input type="text" placeholder="Email" name="email" id="email" class="text"/>
 		<input placeholder="Contraseña" type="password" id="pass" name="pass" class="pass"/>
 		<input type="submit" name="submit" class="button" value="Login"/>
+		
 		<?php if ((isset($_POST['submit'])) && $_SESSION['login'] == "error") {
 		echo "<div class=\"error\">";
-		echo "Error en la contraseña o no existe el usuario.";
+		echo "Error en la contraseña o no existe el usuario";
 		echo "</div>";
 	}	
 	?>

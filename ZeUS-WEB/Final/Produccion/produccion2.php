@@ -55,32 +55,11 @@
 <!--                                                      	 PAGINACION                                                           -->
 <body>
 	<!--                                                      	 PAGINACION                                                           -->
-<nav>
-<div id="enlaces">
-
-	<?php
-
-		for( $pagina = 1; $pagina <= $total_paginas; $pagina++ )
-
-			if ( $pagina == $pagina_seleccionada) { 	?>
-
-				<span class="current"><?php echo $pagina; ?></span>
-
-	<?php }	else { ?>
-
-				<a href="pagina.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
-
-	<?php } ?>
-
-</div>
-
-
-
-<form method="get" action="pagina.php">
+<form method="get" action="pagina.php" class="formpaginacion">
 
 	<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
-	Mostrando
+	<a class="mostrando">Mostrando</a>
 
 	<input id="PAG_TAM" name="PAG_TAM" type="number"
 
@@ -90,7 +69,8 @@
 
 	entradas de <?php echo $total_registros?>
 
-	<input type="submit" value="Cambiar">
+	<input id="pagin" name="pagin" type="submit" value="Cambiar" class="subpaginacion">
+
 
 </form>
 
@@ -165,7 +145,7 @@
 						<input id="NUMPERSONAS" name="NUMPERSONAS" type="hidden"
 						value="<?php echo $fila["NUMPERSONAS"];?>"/>
 				<?php
-					if (isset($evento) and ($fila["EID"] == $evento["EID"])) { ?>
+					if (isset($alojamiento) and ($fila["EID"] == $alojamiento["EID"])) { ?>
 						<!-- Editando título -->
 						<tr>
 						<td><input id="EID" name="EID" type="text" value="<?php echo $fila['EID'];?>"/></td>
@@ -210,8 +190,26 @@
 
 		</form>
 	</article>
-	<div>
+
+	
 	<?php } ?>
+	<div id="enlaces" class="enlaces">
+
+<?php
+
+	for( $pagina = 1; $pagina <= $total_paginas; $pagina++ )
+
+		if ( $pagina == $pagina_seleccionada) { 	?>
+
+			<span class="current"><?php echo $pagina; ?></span>
+
+<?php }	else { ?>
+
+			<a href="pagina.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+<?php } ?>
+
+</div>
 <!--                                                       CONSULTA_EVENTO                                                            -->
 <?php unset($_SESSION["excepcion"]);?>
 </body>

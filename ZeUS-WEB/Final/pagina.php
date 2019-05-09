@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	require_once("gestionBD.php");
+    require_once("gestionBD.php");
 	require_once("produccion/gestionarEvento.php");
 	require_once("paginacion_consulta.php");
 	if (!isset($_SESSION['login'])) {
@@ -16,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ZeUS - Almacén</title>
+    <title>ZeUS</title>
     <!--Hoja de estilo-->
     <link rel="stylesheet" type="text/css" media="screen" href="css/estilos.css">
     <!--jQuery-->
@@ -37,27 +37,32 @@
 		include_once("sidebar.php");
 		include_once("barrafija.php");
 	?>
-	<div class="contenido abrir">	<!--Caben 11 párrafos Lorem Ipsum sin hacr scroll-->	 <!-- Hay q de alguna manera, incorporar las otras paginas de produccion aqui sin necesidad de tener este codigo en cada una -->
+	<div class="abrir contenido">	<!--Caben 11 párrafos Lorem Ipsum sin hacr scroll-->	 <!-- Hay q de alguna manera, incorporar las otras paginas de produccion aqui sin necesidad de tener este codigo en cada una -->
     
-    <?php 
+    <?php
+if($_SESSION['consultarproduccion'] == 1) { //Para produccion
 
     if (isset($_GET["eventos"]) || ($_SESSION["localidad"] == "evento")){
         include_once("produccion/produccion1.php");
     }
-    if (isset($_GET["alojamiento"]) || ($_SESSION["localidad"] == "alojamiento")) {
+    else if (isset($_GET["alojamiento"]) || ($_SESSION["localidad"] == "alojamiento")) {
         include_once("produccion/produccion2.php");
     }
-    if (isset($_GET["transporte"]) || ($_SESSION["localidad"] == "transporte")) {
+    else if (isset($_GET["transporte"]) || ($_SESSION["localidad"] == "transporte")) {
         include_once("produccion/produccion3.php");
     }
-    if (isset($_GET["material"]) || ($_SESSION["localidad"] == "material")) {
+    else if (isset($_GET["material"]) || ($_SESSION["localidad"] == "material")) {
         include_once("produccion/produccion4.php");
     }
-    if (isset($_GET["personal"]) || ($_SESSION["localidad"] == "personal")) {
+    else if (isset($_GET["personal"]) || ($_SESSION["localidad"] == "personal")) {
         include_once("produccion/produccion5.php");
     }
+    else {
+        //esto ocurre cuando no se ha pulsado en nada del sidebar podriamos poner el logo o una subpagina por defecto
+    }
+}//lo mismo para almacen y tecnico
 
-    ?>
+?>
 </div>
 	<script src="js/main.js"></script>
 </body>

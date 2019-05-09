@@ -6,15 +6,10 @@
      * #==========================================================#
      */
      
-function consultarTodosTransporte($conexion) {
-	$consulta = "SELECT * FROM PERSONAL";
-    return $conexion->query($consulta);
-}
-  
-function quitar_evento($conexion,$OidLibro) { //hay q hacer procedimientos para esto
+function quitar_personal($conexion,$PID) { //hay q hacer procedimientos para esto
 	try {
-		$stmt=$conexion->prepare('CALL QUITAR_LIBRO(:OidLibro)');
-		$stmt->bindParam(':OidLibro',$OidLibro);
+		$stmt=$conexion->prepare('CALL QUITAR_PERSONAL(:PID)');
+		$stmt->bindParam(':PID',$PID);
 		$stmt->execute();
 		return "";
 	} catch(PDOException $e) {
@@ -22,11 +17,19 @@ function quitar_evento($conexion,$OidLibro) { //hay q hacer procedimientos para 
     }
 }
 
-function modificar_titulo($conexion,$OidLibro,$TituloLibro) {
+function modificar_personal($conexion,$PID,$DEPARTAMENTO,$NOMBRE,$CARGO,$SUELDO,$DNI,$TELEFONO,$ESTADO,$EID,$PEID) {
 	try {
-		$stmt=$conexion->prepare('CALL MODIFICAR_TITULO(:OidLibro,:TituloLibro)');
-		$stmt->bindParam(':OidLibro',$OidLibro);
-		$stmt->bindParam(':TituloLibro',$TituloLibro);
+		$stmt=$conexion->prepare('CALL MODIFICAR_PERSONAL(:PID,:DEPARTAMENTO,:NOMBRE,:CARGO,:SUELDO,:DNI,:TELEFONO,:ESTADO,:EID,:PEID)');
+		$stmt->bindParam(':PID',$PID);
+		$stmt->bindParam(':DEPARTAMENTO',$DEPARTAMENTO);
+		$stmt->bindParam(':NOMBRE',$NOMBRE);
+		$stmt->bindParam(':CARGO',$CARGO);
+		$stmt->bindParam(':SUELDO',$SUELDO);
+		$stmt->bindParam(':DNI',$DNI);
+		$stmt->bindParam(':TELEFONO',$TELEFONO);
+		$stmt->bindParam(':ESTADO',$ESTADO);
+		$stmt->bindParam(':EID',$EID);
+		$stmt->bindParam(':PEID',$PEID);
 		$stmt->execute();
 		return "";
 	} catch(PDOException $e) {
