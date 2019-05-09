@@ -18,7 +18,6 @@ Proyecto ZeUS de IISSI2
 
 ## cambios en la base de datos
 - Añadida tabla USUARIOS, es necesario modificar todo el sistema de logueo para cada departamento (en otra actualizacion)
-- Añadida tabla DEVOLUCION para diferenciar de forma más clara las devoluciones de material de los envíos a eventos.
 - Añadido procedimiento para crear una devolución
 - Añadido procedimiento para quitar transporte
 - Añadido procedimiento para modificar transporte
