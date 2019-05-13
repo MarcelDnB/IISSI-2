@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	session_start();
     require_once("gestionBD.php");
 	require_once("produccion/gestionarEvento.php");
@@ -60,7 +60,30 @@ if($_SESSION['consultarproduccion'] == 1) { //Para produccion
     else {
         //esto ocurre cuando no se ha pulsado en nada del sidebar podriamos poner el logo o una subpagina por defecto
     }
-}//lo mismo para almacen y tecnico
+}//lo mismo para tecnico
+
+if($_SESSION['consultaralmacen'] == 1) {
+    if (isset($_GET["inventario"]) || ($_SESSION["localidad"] == "inventario")){
+        include_once("almacen/consulta_inventario.php");
+    }
+    else if (isset($_GET["envios"]) || ($_SESSION["localidad"] == "envios")) {
+        include_once("almacen/consulta_envios.php");
+    }
+    else if (isset($_GET["itemsalquilados"]) || ($_SESSION["localidad"] == "itemsalquilados")) {
+        include_once("almacen/consulta_itemsalquilados.php");
+    }
+    else if (isset($_GET["mantenimiento"]) || ($_SESSION["localidad"] == "mantenimiento")) {
+        include_once("almacen/consulta_mantenimiento.php");
+    }
+    else if (isset($_GET["personal"]) || ($_SESSION["localidad"] == "personal")) {
+        include_once("almacen/consulta_personalalmacen.php");
+    }
+    else if (isset($_GET["parte"]) || $_SESSION["localidad"] == "parte"){
+	include_once("almacen/consulta_parte.php");
+    }
+    else{
+	include_once("almacen/consulta_inventario.php");
+    }
 
 ?>
 </div>

@@ -1,4 +1,4 @@
-<div class="sidebar"><!--Inicio del sidebar-->
+﻿<div class="sidebar"><!--Inicio del sidebar-->
 	<h2>Menú</h2>
 	<?php if($_SESSION['consultarproduccion'] == 1) { /*Este es el menu para produccion*/?> 
 	<form method="get" action="pagina.php">
@@ -28,5 +28,42 @@
 	if(isset($_GET["personal"])) {
 		$_SESSION["localidad"] = "personal";
 	}
-	}/*Para los demas igual */
+} else if($_SESSION['consultaralmacen']==1){	/*Menú de almacén*/?>
+	<form method="get" action="homeAlmacen.php">
+	<ul>
+		<li><button class="inventario" name="inventario" type="submit">Inventario</button></li>
+		<div class="dropdown-container">
+			<li><button class="altavoces" name="altavoces" type="submit">Altavoces</button></li>
+		</div>
+		<li><button id="envios" name="envios" type="submit">Envíos</button></li>
+		<li><button id="itemsalquilados" name="itemsalquilados" type="submit">Ítems alquilados</button></li>		
+		<li><button id="mantenimiento" name="mantenimiento" type="submit">Mantenimiento</button></li>
+		<li><button id="parte" name="parte" type="submit">Partes de equipo</button></li>
+		<li><button id="personal" name="personal" type="submit">Personal de almacén</button></li>
+	</ul>
+</form>
+</div><!--/sidebar-->
+
+<?php 
+	if(isset($_GET["inventario"])) {
+		$_SESSION["localidad"] = "inventario";
+	}
+	if(isset($_GET["altavoces"])){
+		$_SESSION["localidad"] = "altavoces";
+	}
+	if(isset($_GET["envios"])) {
+		$_SESSION["localidad"] = "envios";
+	}
+	if(isset($_GET["itemsalquilados"])) {
+		$_SESSION["localidad"] = "itemsalquilados";
+	}
+	if(isset($_GET["mantenimiento"])) {
+		$_SESSION["localidad"] = "mantenimiento";
+	}
+	if(isset($_GET["parte"])){
+		$_SESSION["localidad"] = "parte";
+	}
+	if(isset($_GET["personal"])) {
+		$_SESSION["localidad"] = "personal";
+	}
 ?>
