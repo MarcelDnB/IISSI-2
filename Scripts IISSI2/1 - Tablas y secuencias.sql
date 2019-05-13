@@ -62,8 +62,8 @@
             sueldo number(10) check (sueldo>30),
             dni varchar2(9) unique,
             telefono number(9),
-	    email varchar2(35) unique,
-	    pass varchar2(30),
+            email varchar2(35) unique,
+            pass varchar2(30),
             estado varchar2(7)check (estado in('Libre','Ocupado')),
             eid number(7),
             peid number(7),
@@ -112,9 +112,7 @@
             estadoItem varchar2(20) check (estadoItem in ('Disponible','enEvento','enMantenimiento','porReparar')),
             precio number(20) check (precio>=0),
             peid number(7),
-            pid number(7),
-            foreign key(peid) references parteEquipo,
-            foreign key(pid) references personal  
+            foreign key(peid) references parteEquipo
             );
             
             create table Altavoces(
