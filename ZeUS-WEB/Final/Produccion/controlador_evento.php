@@ -63,5 +63,31 @@
 				Header("Location: ../pagina.php");
 			}
 		}
+		
+	}else { // he puesto el modal en este else pq el el if veo si tengo eid proveniente del post, por lo q no es el caso
+		 if(isset($_REQUEST["agregar"])) {
+			$evento2['place']= $_REQUEST['place'];
+			$evento2['finicio'] = $_REQUEST['finicio'];
+			$evento2['ffin'] = $_REQUEST['ffin'];
+			$evento2['totalprice'] = $_REQUEST['totalprice'];
+			$evento2['description'] = $_REQUEST['description'];
+			require_once("../gestionBD.php");
+			require_once("gestionarEvento.php");
+			$conexion = crearConexionBD($conexion);
+			$excepcion = crear_evento($conexion,$evento2['totalprice'],$evento2['place'],$evento2['finicio'],$evento2['ffin'],$evento2['description']);
+			cerrarConexionBD($conexion);
+	
+			if ($excepcion<>"") {
+				$_SESSION["excepcion"] = $excepcion;
+				$_SESSION["destino"] = "../pagina.php";
+				$_SESSION["errormodal"] ="TRUE";
+
+				Header("Location: ../pagina.php");
+				
+			}
+			else{
+				Header("Location: ../pagina.php");
+			}
+	}
 	}
 ?>

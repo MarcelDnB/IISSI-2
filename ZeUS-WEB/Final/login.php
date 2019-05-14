@@ -21,6 +21,7 @@
 			Header("Location: homeAlmacen.php");
 		}else if($num_usuarios_prod > 0){
 			$_SESSION['login'] = $email;
+			$_SESSION['localidad']="evento";
 			Header("Location: pagina.php");	//Anteriormente, pagina.php
 		}else if($num_usuarios_tec >0){
 			$_SESSION['login'] = $email;
@@ -50,15 +51,20 @@
 		<input placeholder="Contraseña" type="password" id="pass" name="pass" class="pass"/>
 		<input type="submit" name="submit" class="button" value="Login"/>
 		
-		<?php if ((isset($_POST['submit'])) && $_SESSION['login'] == "error") {
+		<?php if (((isset($_POST['submit'])) && $_SESSION['login'] == "error")) {
 		echo "<div class=\"error\">";
 		echo "Error en la contraseña o no existe el usuario";
 		echo "</div>";
-	}	
+	}else if((isset($_SESSION['errorBD']))) {
+		echo "<div class=\"error\">";
+		echo "Error con la base de datos";
+		echo "</div>";
+	}
 	?>
 	</div>
 	</form>
 	</div>
 </div>
 </body>
+<?php unset($_SESSION['errorBD']); ?>
 </html>

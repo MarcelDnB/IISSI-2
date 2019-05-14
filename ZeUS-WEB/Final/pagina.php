@@ -6,8 +6,7 @@
 	if (!isset($_SESSION['login'])) {
 		Header("Location: login.php");
 	}else {
-	
-
+	 //por defecto al principio
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +30,7 @@
 		<script src="js/prod1.js"></script> 
 </head>
 
-<body>
+<body id="body22">
 	
 	<?php
 		include_once("sidebar.php");
@@ -42,23 +41,22 @@
     <?php
 if($_SESSION['consultarproduccion'] == 1) { //Para produccion
 
-    if (isset($_GET["eventos"]) || ($_SESSION["localidad"] == "evento")){
+    if (($_SESSION["localidad"] == "evento")){
         include_once("produccion/produccion1.php");
     }
-    else if (isset($_GET["alojamiento"]) || ($_SESSION["localidad"] == "alojamiento")) {
+    else if (($_SESSION["localidad"] == "alojamiento")) {
         include_once("produccion/produccion2.php");
     }
-    else if (isset($_GET["transporte"]) || ($_SESSION["localidad"] == "transporte")) {
+    else if ( ($_SESSION["localidad"] == "transporte")) {
         include_once("produccion/produccion3.php");
     }
-    else if (isset($_GET["material"]) || ($_SESSION["localidad"] == "material")) {
+    else if ( ($_SESSION["localidad"] == "material")) {
         include_once("produccion/produccion4.php");
     }
-    else if (isset($_GET["personal"]) || ($_SESSION["localidad"] == "personal")) {
+    else if (($_SESSION["localidad"] == "personal")) {
         include_once("produccion/produccion5.php");
-    }
-    else {
-        //esto ocurre cuando no se ha pulsado en nada del sidebar podriamos poner el logo o una subpagina por defecto
+    }else {
+
     }
 }//lo mismo para almacen y tecnico
 

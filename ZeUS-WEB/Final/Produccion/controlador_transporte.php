@@ -27,6 +27,7 @@
 				if ($excepcion<>"") {
 					$_SESSION["excepcion"] = $excepcion;
 					$_SESSION["destino"] = "../pagina.php";
+					$_SESSION["editando"] = 1;
 					Header("Location: ../pagina.php");
 				}
 				else
@@ -47,6 +48,7 @@
 				if($excepcion<>"") {
 					$_SESSION["excepcion"] = $excepcion;
 					$_SESSION["destino"] = "../pagina.php";
+					$_SESSION["borrado"] = 1;
 					Header("Location: ../pagina.php");
 				}
 				else {
@@ -55,7 +57,27 @@
 		}
 		echo "<h1>se ha intentado</h1>";
 	}
-	else 
-		Header("Location: ../pagina.php");
+}else {
+		if (isset($_POST['agregar'])){
+		$transporte2['transp']= $_REQUEST['transp'];
+		$transporte2['medioutil'] = $_REQUEST['medioutil'];
+		$transporte2['numpers'] = $_REQUEST['numpers'];
+		$transporte2['event'] = $_REQUEST['event'];
+		require_once("../gestionBD.php");
+		require_once("gestionarTransporte.php");
+		$conexion = crearConexionBD();
+		$excepcion = crear_transporte($conexion, $transporte2['transp'],$transporte2['medioutil'],$transporte2['numpers'],$transporte2['event']);
+		cerrarConexionBD($conexion);
+
+		if ($excepcion<>"") {
+			$_SESSION["excepcion"] = $excepcion;
+			$_SESSION["destino"] = "pagina.php";
+			$_SESSION["errormodal"] = 1;
+			Header("Location: ../pagina.php");
+		}
+		else
+			Header("Location: ../pagina.php");
+	}
 }
+	
 ?>

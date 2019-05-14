@@ -1,6 +1,8 @@
 var modal = document.getElementById('myModal');
 var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
+var bol = "<?php echo $_SESSION['errormodal']; ?>";
+
 
 btn.onclick = function() {
   modal.style.display = "block";  
@@ -11,5 +13,10 @@ span.onclick = function() {
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
+  }
+}
+window.onload = function(event){
+  if(bol=="TRUE") {
+    modal.style.display = "block";
   }
 }

@@ -10,9 +10,16 @@
 		unset($_SESSION["ALOJAMIENTO"]);
 	}
 	
+
+
+
+
+
+
+
+
+
 	//                                                      	 PAGINACION                                                           //
-	// ¿Venimos simplemente de cambiar página o de haber seleccionado un registro ?
-	// ¿Hay una sesión activa?
 	if (isset($_SESSION["paginacion"]))
 		$paginacion = $_SESSION["paginacion"];
 	
@@ -21,40 +28,24 @@
 
 	if ($pagina_seleccionada < 1) 		$pagina_seleccionada = 1;
 	if ($pag_tam < 1) 		$pag_tam = 5;
-
-	// Antes de seguir, borramos las variables de sección para no confundirnos más adelante
 	unset($_SESSION["paginacion"]);
-
 	$conexion = crearConexionBD();
-
-	// La consulta que ha de paginarse
 	$query = 'SELECT * from ALOJAMIENTO';
-
-	// Se comprueba que el tamaño de página, página seleccionada y total de registros son conformes.
-	// En caso de que no, se asume el tamaño de página propuesto, pero desde la página 1
 	$total_registros = total_consulta($conexion, $query);
 	$total_paginas = (int)($total_registros / $pag_tam);
-
 	if ($total_registros % $pag_tam > 0)		$total_paginas++;
-
 	if ($pagina_seleccionada > $total_paginas)		$pagina_seleccionada = $total_paginas;
-
-	// Generamos los valores de sesión para página e intervalo para volver a ella después de una operación
 	$paginacion["PAG_NUM"] = $pagina_seleccionada;
 	$paginacion["PAG_TAM"] = $pag_tam;
 	$_SESSION["paginacion"] = $paginacion;
-
 	$filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
-
 	cerrarConexionBD($conexion);
 }
 	$conexion = crearConexionBD();
 	$filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
 	cerrarConexionBD($conexion);
 ?>
-<!--                                                      	 PAGINACION                                                           -->
 <body>
-	<!--                                                      	 PAGINACION                                                           -->
 <form method="get" action="pagina.php" class="formpaginacion">
 
 	<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
@@ -73,15 +64,27 @@
 
 
 </form>
-
 </nav>
 <!--                                                      	PAGINACION                                                            -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--                                                      	MODAL_FORM                                                            -->
 <!-- Trigger/Open The Modal -->
 <button id="myBtn" class="mybtn">Añadir Alojamiento </button>
-<?php if(isset($_SESSION["excepcion"])) {
-				echo "Ha introducido algun dato mal" . $_SESSION["excepcion"];
-	}?>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -90,25 +93,81 @@
   <div class="modal-content">
       <div class="modal-header">
           <span class="close">&times;</span>
-          <h2>Añadir Evento</h2>
+          <h2>Añadir Alojamiento</h2>
         </div>
     <div class="modal-body">
-      <form method="post" action="pagina.php">
-        <div><label>Lugar: </label> <input type="text" id="place" name="place" class="form-modal"></div>
-				<div><label>Fecha de Inicio: </label> <input type="text" id="finicio" name="finicio" class="form-modal"></div>
-				<div><label>Fecha de Fin: </label> <input type="text" id="ffin" name="ffin" class="form-modal"></div>
-				<div><label>Precio Total: </label> <input type="text" id="totalprice" name="totalprice" class="form-modal"></div>
-        <div><label>Descripcion: </label> <input type="text" id="description" name="description" class="form-modal"></div>
-				<div><button id="agregar" name="agregar" type="submit" value="Añadir" class="btn"></div>
-				<?php if(isset($_POST['agregar']) && isset($_SESSION['excepcion'])){
-					echo '<p>Ha introducido algo mal</p>';
-				} ?>
+      <form method="POST" action="produccion/controlador_alojamiento.php">
+				<label>Evento: </label> 
+				
+				<input list="opcionesEventos" autocomplete="off" id="event" name="event" class="form-modal">
+				
+				<datalist id="opcionesEventos">
+			  	<?php
+			  		$eventos = listarEventos($conexion);
+			  		foreach($eventos as $evento) {
+			  			echo "<option label=Evento-".$evento["EID"]." value='".$evento["EID"]."'>";
+					}
+				?>
+			</datalist>
+
+				<div><label>Direccion: </label> <input type="text" id="direction" name="direction" class="form-modal"></div>
+				<div><label>Ciudad: </label> <input type="text" id="city" name="city" class="form-modal"></div>
+				<div><label>Fecha de Inicio: </label> <input type="date" id="startdate" name="startdate" class="form-modal"></div>
+				<div><label>Fecha Fin: </label> <input type="date" id="enddate" name="enddate" class="form-modal"></div>
+				<label>Hotel: </label> 
+				<input list="opcionesHoteles" autocomplete="off" id="hotelmodal" name="hotelmodal" class="form-modal">
+				<datalist id="opcionesHoteles">
+			  	<?php
+			  		$hoteles = listarHoteles($conexion);
+			  		foreach($hoteles as $hotel) {
+			  			echo "<option label=Hotel-".$hotel["HOTEL"]." value='".$hotel["HOTEL"]."'>";
+					}
+				?>
+			</datalist>
+				
+				<div><label>Numero de Personas: </label> <input type="text" id="numpersons" name="numpersonas" class="form-modal"></div>
+				<div><button id="agregar" name="agregar" type="submit" value="Añadir" class="btn">Agregar</button></div>
       </form>
     </div>
 	</div>
 	</div>
 	<script src="js/modal.js"></script> 
 <!--                                                      	MODAL_FORM                                                            -->
+
+
+
+
+
+
+
+
+
+
+<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
+<?php if (isset($_SESSION["borrado"])) {
+		echo "No se puede borrar";
+	}
+	if (isset($_SESSION["editando"])) {
+		echo "No se puede modificar, tenga cuidado con el formato que se requiere";
+	}
+	if (isset($_SESSION["errormodal"])) {
+		echo "No se ha podido crear el alojamiento, ha introducido algún dato inválido";
+	}
+	?>
+	<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
+
+
+
+
+
+
+	
+
+
+
+
+
+
 
 <!--                                                       CONSULTA_EVENTO                                                            -->
 <div class="seccionEntradas">
@@ -148,12 +207,12 @@
 					if (isset($alojamiento) and ($fila["EID"] == $alojamiento["EID"])) { ?>
 						<!-- Editando título -->
 						<tr>
-						<td><input id="EID" name="EID" type="text" value="<?php echo $fila['EID'];?>"/></td>
-						<td><input id="DIRECCION" name="DIRECCION" type="text" value="<?php echo $fila['DIRECCION'];?>"/></td>
-						<td><input id="CIUDAD" name="CIUDAD" type="text" value="<?php echo $fila['CIUDAD'];?>"/></td>
-						<td><input id="FECHAINICIO" name="FECHAINICIO" type="text" value="<?php echo $fila['FECHAINICIO'];?>"/></td>
-						<td><input id="FECHAFIN" name="FECHAFIN" type="text" value="<?php echo $fila['FECHAFIN'];?>"/></td>
-						<td><input id="HOTEL" name="HOTEL" type="text" value="<?php echo $fila['HOTEL'];?>"/></td>
+						<td><input id="EID" name="EID" type="text" required value="<?php echo $fila['EID'];?>"/></td>
+						<td><input id="DIRECCION" name="DIRECCION" type="text" required value="<?php echo $fila['DIRECCION'];?>"/></td>
+						<td><input id="CIUDAD" name="CIUDAD" type="text" required value="<?php echo $fila['CIUDAD'];?>"/></td>
+						<td><input id="FECHAINICIO" name="FECHAINICIO" type="date" required required value="<?php echo date_format(date_create_from_format('d/m/y', $fila['FECHAINICIO']), 'Y-m-d'); ?>" /></td>
+						<td><input id="FECHAFIN" name="FECHAFIN" type="date" required required value="<?php if ($fila["FECHAFIN"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAFIN']), 'Y-m-d'); ?>" /></td>
+						<td><input id="HOTEL" name="HOTEL" type="text"  value="<?php echo $fila['HOTEL'];?>"/></td>
 						<td><input id="NUMPERSONAS" name="NUMPERSONAS" type="text" value="<?php echo $fila['NUMPERSONAS'];?>"/></td>
 						<?php }	else { ?>
 						<!-- mostrando título -->	
@@ -161,10 +220,10 @@
 						<td><?php echo $fila['EID'];?></td>
 						<td><?php echo $fila['DIRECCION'];?></td>
 						<td><?php echo $fila['CIUDAD']?></td>
-						<td><?php echo $fila['FECHAINICIO'];?></td>
-						<td><?php echo $fila['FECHAFIN'] ?></td>
+						<td><?php if ($fila["FECHAINICIO"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAINICIO']), 'Y-m-d'); ?></td>
+						<td><?php if ($fila["FECHAFIN"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAFIN']), 'Y-m-d'); ?></td>
 						<td> <?php echo $fila['HOTEL'];?></td>
-						<td><p><?php echo $fila['NUMPERSONAS'];?></p></td>
+						<td><?php echo $fila['NUMPERSONAS'];?></td>
 						
 
 				<?php } ?>
@@ -211,6 +270,10 @@
 
 </div>
 <!--                                                       CONSULTA_EVENTO                                                            -->
-<?php unset($_SESSION["excepcion"]);?>
+<?php unset($_SESSION["excepcion"]);
+				unset($_SESSION["borrado"]);
+				unset($_SESSION["editando"]);
+				unset($_SESSION["errormodal"]);
+				?>
 </body>
 </html>

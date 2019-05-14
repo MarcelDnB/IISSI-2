@@ -12,78 +12,31 @@
 
 	
 	//                                                      	 PAGINACION                                                           //
-	// ¿Venimos simplemente de cambiar página o de haber seleccionado un registro ?
-	// ¿Hay una sesión activa?
 	if (isset($_SESSION["paginacion"]))
-		$paginacion = $_SESSION["paginacion"];
-	
+	$paginacion = $_SESSION["paginacion"];
 	$pagina_seleccionada = isset($_GET["PAG_NUM"]) ? (int)$_GET["PAG_NUM"] : (isset($paginacion) ? (int)$paginacion["PAG_NUM"] : 1);
 	$pag_tam = isset($_GET["PAG_TAM"]) ? (int)$_GET["PAG_TAM"] : (isset($paginacion) ? (int)$paginacion["PAG_TAM"] : 5);
-
 	if ($pagina_seleccionada < 1) 		$pagina_seleccionada = 1;
 	if ($pag_tam < 1) 		$pag_tam = 5;
-
-	// Antes de seguir, borramos las variables de sección para no confundirnos más adelante
 	unset($_SESSION["paginacion"]);
-
 	$conexion = crearConexionBD();
-
-	// La consulta que ha de paginarse
 	$query = 'SELECT * from TRANSPORTE';
-
-	// Se comprueba que el tamaño de página, página seleccionada y total de registros son conformes.
-	// En caso de que no, se asume el tamaño de página propuesto, pero desde la página 1
 	$total_registros = total_consulta($conexion, $query);
 	$total_paginas = (int)($total_registros / $pag_tam);
-
 	if ($total_registros % $pag_tam > 0)		$total_paginas++;
-
 	if ($pagina_seleccionada > $total_paginas)		$pagina_seleccionada = $total_paginas;
-
-	// Generamos los valores de sesión para página e intervalo para volver a ella después de una operación
 	$paginacion["PAG_NUM"] = $pagina_seleccionada;
 	$paginacion["PAG_TAM"] = $pag_tam;
 	$_SESSION["paginacion"] = $paginacion;
-
 	$filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
-
 	cerrarConexionBD($conexion);
 }
 	$conexion = crearConexionBD();
 	$filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
 	cerrarConexionBD($conexion);
 ?>
-<!--                                                      	 PAGINACION                                                           -->
-<!-- crear evento -->
-<?php if (isset($_POST['agregar'])){
-		$transporte['place']= $_POST['place'];
-		$transporte['finicio'] = $_POST['finicio'];
-		$transporte['ffin'] = $_POST['ffin'];
-		$transporte['totalprice'] = $_POST['totalprice'];
-		$transporte['description'] = $_POST['description'];
-
-		$conexion = crearConexionBD();
-		$excepcion = crear_evento($conexion,$transporte['totalprice'],$transporte['place'],$transporte['finicio'],$transporte['ffin'],$transporte['description']);
-		cerrarConexionBD($conexion);
-
-		if ($excepcion<>"") {
-			$_SESSION["excepcion"] = $excepcion;
-			$_SESSION["destino"] = "pagina.php";
-			Header("Location: pagina.php");
-		}
-		else
-			Header("Location: pagina.php");
-	}
-?>
-<!-- crear evento -->
-
 <body>
-	<!--                                                      	 PAGINACION                                                           -->
 <nav>
-
-
-
-
 <form method="get" action="pagina.php" class="formpaginacion">
 
 	<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
@@ -106,9 +59,20 @@
 </nav>
 <!--                                                      	 PAGINACION                                                           -->
 
-<!--                                                      	MODAL_FORM                                                            -->
-<!-- Trigger/Open The Modal -->
-<button id="myBtn" class="mybtn">Añadir Transporte</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
 <?php if(isset($_SESSION["borrado"])) {
 					echo "No se puede borrar";
@@ -116,9 +80,26 @@
 			if(isset($_SESSION["editando"])) {
 					echo "No se puede modificar, tenga cuidado con el formato que se requiere";
 			}
+			if(isset($_SESSION["errormodal"])) {
+				echo "No se ha podido crear el transporte, ha introducido algún dato inválido";
+		}
 			?>
 <!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!--                                                      	MODAL_FORM                                                            -->
 <!-- The Modal -->
+<button id="myBtn" class="mybtn">Añadir Transporte</button>
 <div id="myModal" class="modal">
 
   <!-- Modal content -->
@@ -128,16 +109,28 @@
           <h2>Añadir Transporte</h2>
         </div>
     <div class="modal-body">
-      <form method="post" action="pagina.php">
-        <div><label>Lugar: </label> <input type="text" id="place" name="place" class="form-modal"></div>
-				<div><label>Fecha de Inicio: </label> <input type="text" id="finicio" name="finicio" class="form-modal"></div>
-				<div><label>Fecha de Fin: </label> <input type="text" id="ffin" name="ffin" class="form-modal"></div>
-				<div><label>Precio Total: </label> <input type="text" id="totalprice" name="totalprice" class="form-modal"></div>
-        <div><label>Descripcion: </label> <input type="text" id="description" name="description" class="form-modal"></div>
-				<div><button id="agregar" name="agregar" type="submit" value="Añadir" class="btn"></div>
-				<?php if(isset($_POST['agregar']) && isset($_SESSION['excepcion'])){
-					echo '<p>Ha introducido algo mal</p>';
-				} ?>
+      <form method="post" action="produccion/controlador_transporte.php">
+        <div><label>Transporte: </label> <input type="text" id="transp" name="transp" class="form-modal"></div>
+				<label>Evento: </label>
+				<input list="opcionesEventos" autocomplete="off" id="event" name="event" class="form-modal">
+				
+				<datalist id="opcionesEventos">
+			  	<?php
+			  		$eventos = listarEventos($conexion);
+			  		foreach($eventos as $evento) {
+			  			echo "<option label=Evento-".$evento["EID"]." value='".$evento["EID"]."'>";
+					}
+				?>
+			</datalist>
+
+
+
+
+
+
+				<div><label>Medio Utilizado: </label> <input type="text" id="medioutil" name="medioutil" class="form-modal"></div>
+				<div><label>Numero de personas: </label> <input type="text" id="numpers" name="numpers" class="form-modal"></div>
+				<div><button id="agregar" name="agregar" type="submit" value="Añadir" class="btn">Agregar</button></div>
       </form>
     </div>
 	</div>
@@ -145,7 +138,18 @@
 	<script src="js/modal.js"></script> 
 <!--                                                      	MODAL_FORM                                                            -->
 
-<!--                                                      	PAGINACION                                                            -->
+
+
+
+
+
+
+
+
+
+
+
+
 <!--                                                       CONSULTA_EVENTO                                                            -->
 
 <div class="seccionEntradas">
@@ -178,7 +182,18 @@
 						<!-- Editando título -->
 						<tr>
 						<td><input id="TID" name="TID" type="text" value="<?php echo $fila['TID'];?>"/></td>
+
+						
+						
+
+
 						<td><input id="EID" name="EID" type="text" value="<?php echo $fila['EID'];?>"/></td>
+						
+
+
+						
+						
+						
 						<td><input id="MEDIOUTILIZADO" name="MEDIOUTILIZADO" type="text" value="<?php echo $fila['MEDIOUTILIZADO'];?>"/></td>
 						<td><input id="NUMPERSONAS" name="NUMPERSONAS" type="text" value="<?php echo $fila['NUMPERSONAS'];?>"/></td>
 						<?php }	else { ?>
@@ -235,7 +250,8 @@
 	
 	<?php unset($_SESSION["excepcion"]);
 				unset($_SESSION["borrado"]);
-				unset($_SESSION["editando"]); ?> <!--para reestablecer el error que salia antes, para evitar que salga siempre -->
+				unset($_SESSION["editando"]);
+				unset($_SESSION["errormodal"]); ?> <!--para reestablecer el error que salia antes, para evitar que salga siempre -->
 	
 	
 <!--                                                       CONSULTA_EVENTO                                                            -->

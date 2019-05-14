@@ -29,6 +29,7 @@
 				if ($excepcion<>"") {
 					$_SESSION["excepcion"] = $excepcion;
 					$_SESSION["destino"] = "../pagina.php";
+					$_SESSION["editando"] = 1;
 					Header("Location: ../pagina.php");
 				}
 				else
@@ -58,7 +59,32 @@
 			}
 		}
 	}
-	else 
-		Header("Location: ../pagina.php");
+	else {
+			if(isset($_REQUEST["agregar"])) {
+				$alojamiento2['direction']= $_REQUEST['direction'];
+				$alojamiento2['event']= $_REQUEST['event'];
+				$alojamiento2['city'] = $_REQUEST['city'];
+				$alojamiento2['startdate'] = $_REQUEST['startdate'];
+				$alojamiento2['enddate'] = $_REQUEST['enddate'];
+				$alojamiento2['hotelmodal'] = $_REQUEST['hotelmodal'];
+				$alojamiento2['numpersonas'] = $_REQUEST['numpersonas'];
+				require_once("../gestionBD.php");
+				require_once("gestionarAlojamiento.php");
+				$conexion = crearConexionBD($conexion);
+				$excepcion = crear_alojamiento($conexion,$alojamiento2['event'],$alojamiento2['city'],$alojamiento2['direction']
+				,$alojamiento2['startdate'],$alojamiento2['enddate'],$alojamiento2['hotelmodal'],$alojamiento2['numpersonas']);
+				cerrarConexionBD($conexion);
+		
+				if ($excepcion<>"") {
+					$_SESSION["excepcion"] = $excepcion;
+					$_SESSION["destino"] = "../pagina.php";
+					$_SESSION["errormodal"] = 1;
+					Header("Location: ../pagina.php");
+				}
+				else{
+					Header("Location: ../pagina.php");
+				}
+		}
+		}
 	
 ?>

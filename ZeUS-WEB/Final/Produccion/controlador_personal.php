@@ -64,7 +64,38 @@
 			}
 		 }
 	}
-	else 
-		Header("Location: ../pagina.php");
+	else {
+			if (isset($_REQUEST['agregar'])){
+				$personal2['persid']= $_REQUEST['persid'];
+				$personal2['dept'] = $_REQUEST['dept'];
+				$personal2['nmbre'] = $_REQUEST['nmbre'];
+				$personal2['carg'] = $_REQUEST['carg'];
+				$personal2['sueld'] = $_REQUEST['sueld'];
+				$personal2['denei'] = $_REQUEST['denei'];
+				$personal2['telf'] = $_REQUEST['telf'];
+				$personal2['estd'] = $_REQUEST['estd'];
+				$personal2['event'] = $_REQUEST['event'];
+				$personal2['parteid'] = $_REQUEST['parteid'];
+				$personal2['emeil'] = $_REQUEST['emeil'];
+				$personal2['contra'] = $_REQUEST['contra'];
+				require_once("../gestionBD.php");
+				require_once("gestionarPersonal.php");
+				$conexion = crearConexionBD();
+				$excepcion = crear_usuario($conexion,$personal2['persid'],$personal2['dept'],$personal2['nmbre'],$personal2['carg'],
+				$personal2['sueld'],$personal2['denei'],$personal2['telf'],$personal2['estd'],$personal2['event'],$personal2['parteid'],$personal2['emeil'],
+				$personal2['contra']);
+				cerrarConexionBD($conexion);
+		
+				if ($excepcion<>"") {
+					$_SESSION["excepcion"] = $excepcion;
+					$_SESSION["destino"] = "../pagina.php";
+					$_SESSION['errormodal']=1;
+					Header("Location: ../pagina.php");
+
+				}
+				else
+					Header("Location: ../pagina.php");
+			}
+		}
 	
 ?>

@@ -1,0 +1,189 @@
+call crear_alojamiento(42,null,'Me cago dios',null,null,null,null);
+insert into alojamiento values('barcelona','Me cago en dios',null,null,null,null,null);
+select eid from evento where eid not in (select eid from alojamiento) order by eid;
+
+
+create table HOTELES (hotel varchar2(40),indexHotel number(6), primary key (hotel));
+drop table hoteles;
+
+
+
+            create table Alojamiento(
+            ciudad varchar2(20),
+            direccion varchar2(50) primary key,
+            fechaInicio date default SYSDATE,
+            fechaFin date,
+            constraint FECHAALOJ check(fechaInicio < fechaFin),
+            hotel varchar2(40),
+            numPersonas number(4),
+            eid number(7) unique,
+            foreign key (eid) references evento,
+            foreign key (hotel) references hoteles
+            );
+drop table alojamiento;
+
+create table materialnecesario(
+nombre varchar2(40),
+tipo varchar2(40),
+cantidad NUMBER(4),
+ia NUMBER(4),
+foreign key (ia) references itemalquilado);
+
+drop table itemalquilado;
+
+create table itemAlquilado(
+            ia number(4) primary key,
+            tipo varchar2(10),
+            nombre varchar2(10),
+            Empresa varchar2(10) not null,
+            fechaLlegada date default sysdate,
+            fechaDevolucion date not null,
+            constraint FECHAALQ check(fechaLlegada <= fechaDevolucion),
+            cantidad number(5),
+            precio number(5) check (precio >=0),
+            pid number(7),
+            peid number(7),
+            foreign key(peid) references parteEquipo
+            );
+
+
+
+
+PROCEDIMIENTOS PROCEDIMIENTOS PROCEDIMIENTOS PROCEDIMIENTOS PROCEDIMIENTOS PROCEDIMIENTOS PROCEDIMIENTOS
+
+
+create or replace PROCEDURE crear_alojamiento(w_EID IN alojamiento.eid%TYPE,w_ciudad IN alojamiento.ciudad%TYPE,w_direccion IN alojamiento.direccion%TYPE,w_fechaInicio IN alojamiento.fechaInicio%TYPE,w_fechaFin IN alojamiento.fechafin%TYPE
+,w_hotel IN alojamiento.hotel%TYPE,w_numPersonas IN alojamiento.numpersonas%TYPE) IS
+BEGIN
+INSERT INTO alojamiento(ciudad,direccion, fechainicio,fechafin,hotel,numpersonas,eid)
+VALUES (w_ciudad, w_direccion, w_fechaInicio, w_fechaFin,w_hotel, w_numPersonas, w_EID);
+COMMIT WORK;
+end crear_alojamiento;
+
+
+create or replace PROCEDURE crear_evento(w_precioTotal IN evento.precioTotal%TYPE,w_lugar IN evento.lugar%TYPE,w_fechaInicio IN evento.fechaInicio%TYPE,w_fechaFin IN evento.fechaFin%TYPE,w_descripcionCliente IN evento.descripcionCliente%TYPE) IS
+BEGIN
+INSERT INTO evento(eid,precioTotal, lugar,fechainicio,fechafin,descripcioncliente,estadoevento)
+VALUES (sec_evento.nextval, w_precioTotal, w_lugar, w_fechaInicio,w_fechaFin, w_descripcionCliente, 'porRealizar');
+COMMIT WORK;
+end crear_evento;
+
+
+
+create or replace PROCEDURE crear_transporte(w_tid IN transporte.tid%TYPE,w_medioutilizado IN transporte.medioutilizado%TYPE,w_numpersonas in transporte.numpersonas%type,w_eid IN transporte.eid%TYPE) IS
+BEGIN
+INSERT INTO transporte(tid,medioutilizado, numpersonas,eid)
+VALUES (w_tid, w_medioutilizado, w_numpersonas, w_eid);
+COMMIT WORK;
+end crear_transporte;
+
+
+
+create or replace PROCEDURE crear_usuario(w_pid IN personal.pid%TYPE,w_departamento IN personal.departamento%TYPE,w_nombre IN personal.nombre%TYPE,w_cargo IN personal.cargo%TYPE,w_sueldo IN personal.sueldo%TYPE,
+w_dni IN personal.dni%TYPE,w_telefono IN personal.telefono%TYPE,w_estado IN personal.estado%TYPE,w_eid IN personal.eid%TYPE,w_peid IN personal.peid%TYPE,w_email IN personal.email%TYPE,
+w_pass IN personal.pass%TYPE) IS
+BEGIN
+INSERT INTO personal(pid,departamento,nombre,cargo,sueldo,dni,telefono,email,pass,estado,eid,peid)
+VALUES (w_pid, w_departamento, w_nombre, w_cargo,w_sueldo,w_dni,w_telefono,w_email,w_pass,w_estado,w_eid,w_peid);
+COMMIT WORK;
+end crear_usuario;
+
+
+
+
+create or replace PROCEDURE MODIFICAR_ALOJAMIENTO(w_CIUDAD IN ALOJAMIENTO.CIUDAD%TYPE,w_DIRECCION IN alojamiento.direccion%TYPE,w_FECHAI IN alojamiento.fechainicio%TYPE,w_FECHAF IN alojamiento.fechafin%TYPE,
+w_HOTEL IN alojamiento.hotel%TYPE,w_NUMPERSONAS IN alojamiento.numpersonas%TYPE, w_EID IN alojamiento.eid%TYPE) is
+begin
+UPDATE ALOJAMIENTO SET CIUDAD = w_CIUDAD,direccion=w_direccion, fechainicio=w_fechai,fechafin=w_fechaf,HOTEL=w_HOTEL,numpersonas=w_numpersonas where EID=w_EID;
+commit work;
+end MODIFICAR_ALOJAMIENTO;
+
+
+
+
+create or replace PROCEDURE MODIFICAR_EVENTO(w_EID IN evento.eid%TYPE,w_PRECIOTOTAL IN EVENTO.PRECIOTOTAL%TYPE,w_LUGAR IN EVENTO.LUGAR%TYPE,w_FECHAI IN EVENTO.FECHAINICIO%TYPE,
+w_FECHAF IN evento.fechafin%TYPE,w_DESCRIPCION IN evento.descripcioncliente%TYPE, w_ESTADO IN evento.estadoevento%TYPE) is
+begin
+UPDATE EVENTO SET PRECIOTOTAL = w_PRECIOTOTAL,LUGAR=w_LUGAR, fechainicio=w_fechai,fechafin=w_fechaf,descripcioncliente=w_descripcion,estadoevento=w_estado where EID=w_EID;
+commit work;
+end MODIFICAR_EVENTO;
+
+
+
+
+create or replace PROCEDURE MODIFICAR_MATERIAL(w_TIPO IN itemalquilado.tipo%TYPE,w_NOMBRE IN itemalquilado.nombre%TYPE,w_EMPRESA IN itemalquilado.EMPRESA%TYPE,w_FECHALLE IN itemalquilado.fechallegada%TYPE,
+w_FECHADEV IN itemalquilado.fechadevolucion%TYPE,w_CANTIDAD IN itemalquilado.cantidad%TYPE,w_PRECIO IN itemalquilado.precio%TYPE, w_PID IN itemalquilado.pid%TYPE,w_PEID IN itemalquilado.peid%TYPE) is
+begin
+UPDATE itemalquilado SET TIPO = w_TIPO,NOMBRE=w_NOMBRE, EMPRESA=w_EMPRESA,fechallegada=w_FECHALLE,fechadevolucion=w_FECHADEV,CANTIDAD=w_CANTIDAD,precio=w_PRECIO,PID=w_PID,
+PEID=w_PEID where NOMBRE=w_nombre and PEID=W_PEID;
+commit work;
+end MODIFICAR_MATERIAL;
+
+
+
+
+
+create or replace PROCEDURE MODIFICAR_PERSONAL(w_PID IN PERSONAL.PID%TYPE, w_DEPARTAMENTO IN personal.departamento%TYPE,w_NOMBRE IN PERSONAL.NOMBRE%TYPE,w_CARGO IN PERSONAL.CARGO%TYPE,
+w_SUELDO IN PERSONAL.SUELDO%TYPE,w_DNI IN PERSONAL.DNI%TYPE,w_TELEFONO IN PERSONAL.TELEFONO%TYPE,w_ESTADO IN PERSONAL.ESTADO%TYPE,w_EID IN PERSONAL.EID%TYPE,
+w_PEID IN PERSONAL.PEID%TYPE) is
+begin
+UPDATE personal SET PID=w_PID, DEPARTAMENTO=w_DEPARTAMENTO, NOMBRE=w_NOMBRE,CARGO=w_CARGO,SUELDO=w_SUELDO,DNI=w_DNI, TELEFONO=w_TELEFONO,ESTADO=w_ESTADO,EID=w_EID,PEID=w_PEID where PID=w_PID;
+commit work;
+end MODIFICAR_PERSONAL;
+
+
+
+
+create or replace PROCEDURE MODIFICAR_TRANSPORTE(w_TID IN TRANSPORTE.TID%TYPE,w_MU IN transporte.medioutilizado%TYPE,w_NP IN transporte.numpersonas%TYPE,w_EID IN transporte.eid%TYPE) is
+begin
+UPDATE transporte SET MEDIOUTILIZADO = w_MU,NUMPERSONAS=w_NP, EID=w_EID where TID=w_TID;
+commit work;
+end MODIFICAR_TRANSPORTE;
+
+
+
+create or replace PROCEDURE quitar_alojamiento(w_EID IN evento.EID%TYPE,w_HOTEL IN ALOJAMIENTO.HOTEL%TYPE) is
+begin
+delete alojamiento where EID=w_eid AND HOTEL=w_hotel;
+commit work;
+end quitar_alojamiento;
+
+
+
+create or replace PROCEDURE quitar_evento(w_EID IN evento.EID%TYPE) is
+begin
+delete evento cascade where eid=w_EID;
+commit work;
+end quitar_evento;
+
+
+
+
+create or replace PROCEDURE quitar_material(w_nombre IN itemalquilado.nombre%TYPE,w_peid IN itemalquilado.peid%TYPE) is
+begin
+delete itemalquilado where nombre=w_nombre AND peid=w_peid;
+commit work;
+end quitar_material;
+
+
+
+
+
+create or replace PROCEDURE quitar_personal(w_pid in personal.pid%type) is
+begin
+delete personal where pid=w_pid;
+commit work;
+end quitar_personal;
+
+
+
+
+create or replace PROCEDURE QUITAR_TRANSPORTE(w_TID IN TRANSPORTE.TID%TYPE) is
+begin
+delete TRANSPORTE cascade where TID=w_TID;
+commit work;
+end QUITAR_TRANSPORTE;
+
+
+
+            

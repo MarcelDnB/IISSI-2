@@ -18,7 +18,7 @@ function quitar_evento($conexion,$EID) { //hay q hacer procedimientos para esto
 
 function modificar_evento($conexion,$EID,$PRECIOTOTAL,$LUGAR,$FECHAINICIO,$FECHAFIN,$DESCRIPCIONCLIENTE,$ESTADOEVENTO) {
 	try {
-		$stmt=$conexion->prepare('CALL MODIFICAR_EVENTO(:EID,:PRECIOTOTAL,:LUGAR,:FECHAINICIO,:FECHAFIN,:DESCRIPCIONCLIENTE,:ESTADOEVENTO)');
+		$stmt=$conexion->prepare("CALL MODIFICAR_EVENTO(:EID,:PRECIOTOTAL,:LUGAR,TO_DATE(:FECHAINICIO,'YYYY-MM-DD'),TO_DATE(:FECHAFIN,'YYYY-MM-DD'),:DESCRIPCIONCLIENTE,:ESTADOEVENTO)");
 		$stmt->bindParam(':EID',$EID);
 		$stmt->bindParam(':PRECIOTOTAL',$PRECIOTOTAL);
 		$stmt->bindParam(':LUGAR',$LUGAR);
@@ -34,7 +34,7 @@ function modificar_evento($conexion,$EID,$PRECIOTOTAL,$LUGAR,$FECHAINICIO,$FECHA
 }
 function crear_evento($conexion,$PRECIOTOTAL,$LUGAR,$FECHAINICIO,$FECHAFIN,$DESCRIPCIONCLIENTE) { //hay q hacer procedimientos para esto
 	try {
-		$stmt=$conexion->prepare('CALL crear_evento(:PRECIOTOTAL,:LUGAR,:FECHAINICIO,:FECHAFIN,:DESCRIPCIONCLIENTE)');
+		$stmt=$conexion->prepare("CALL crear_evento(:PRECIOTOTAL,:LUGAR,TO_DATE(:FECHAINICIO,'YYYY-MM-DD'),TO_DATE(:FECHAFIN,'YYYY-MM-DD'),:DESCRIPCIONCLIENTE)");
 		$stmt->bindParam(':PRECIOTOTAL',$PRECIOTOTAL);
 		$stmt->bindParam(':LUGAR',$LUGAR);
 		$stmt->bindParam(':FECHAINICIO',$FECHAINICIO);

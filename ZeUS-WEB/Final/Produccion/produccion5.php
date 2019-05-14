@@ -12,78 +12,31 @@
 
 	
 	//                                                      	 PAGINACION                                                           //
-	// ¿Venimos simplemente de cambiar página o de haber seleccionado un registro ?
-	// ¿Hay una sesión activa?
 	if (isset($_SESSION["paginacion"]))
 		$paginacion = $_SESSION["paginacion"];
-	
 	$pagina_seleccionada = isset($_GET["PAG_NUM"]) ? (int)$_GET["PAG_NUM"] : (isset($paginacion) ? (int)$paginacion["PAG_NUM"] : 1);
 	$pag_tam = isset($_GET["PAG_TAM"]) ? (int)$_GET["PAG_TAM"] : (isset($paginacion) ? (int)$paginacion["PAG_TAM"] : 5);
-
 	if ($pagina_seleccionada < 1) 		$pagina_seleccionada = 1;
 	if ($pag_tam < 1) 		$pag_tam = 5;
-
-	// Antes de seguir, borramos las variables de sección para no confundirnos más adelante
 	unset($_SESSION["paginacion"]);
-
 	$conexion = crearConexionBD();
-
-	// La consulta que ha de paginarse
 	$query = 'SELECT * from PERSONAL';
-
-	// Se comprueba que el tamaño de página, página seleccionada y total de registros son conformes.
-	// En caso de que no, se asume el tamaño de página propuesto, pero desde la página 1
 	$total_registros = total_consulta($conexion, $query);
 	$total_paginas = (int)($total_registros / $pag_tam);
-
 	if ($total_registros % $pag_tam > 0)		$total_paginas++;
-
 	if ($pagina_seleccionada > $total_paginas)		$pagina_seleccionada = $total_paginas;
-
-	// Generamos los valores de sesión para página e intervalo para volver a ella después de una operación
 	$paginacion["PAG_NUM"] = $pagina_seleccionada;
 	$paginacion["PAG_TAM"] = $pag_tam;
 	$_SESSION["paginacion"] = $paginacion;
-
 	$filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
-
 	cerrarConexionBD($conexion);
 }
 	$conexion = crearConexionBD();
 	$filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
 	cerrarConexionBD($conexion);
 ?>
-<!--                                                      	 PAGINACION                                                           -->
-<!-- crear evento -->
-<?php if (isset($_POST['agregar'])){
-		$evento['place']= $_POST['place'];
-		$evento['finicio'] = $_POST['finicio'];
-		$evento['ffin'] = $_POST['ffin'];
-		$evento['totalprice'] = $_POST['totalprice'];
-		$evento['description'] = $_POST['description'];
-
-		$conexion = crearConexionBD();
-		$excepcion = crear_evento($conexion,$evento['totalprice'],$evento['place'],$evento['finicio'],$evento['ffin'],$evento['description']);
-		cerrarConexionBD($conexion);
-
-		if ($excepcion<>"") {
-			$_SESSION["excepcion"] = $excepcion;
-			$_SESSION["destino"] = "pagina.php";
-			Header("Location: pagina.php");
-		}
-		else
-			Header("Location: pagina.php");
-	}
-?>
-<!-- crear evento -->
-
 <body>
-	<!--                                                      	 PAGINACION                                                           -->
 <nav>
-
-
-
-
 <form method="get" action="pagina.php" class="formpaginacion">
 
 	<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
@@ -99,16 +52,22 @@
 	entradas de <?php echo $total_registros?>
 
 	<input id="pagin" name="pagin" type="submit" value="Cambiar" class="subpaginacion">
-
-
 </form>
-
 </nav>
 <!--                                                      	 PAGINACION                                                           -->
 
-<!--                                                      	MODAL_FORM                                                            -->
-<!-- Trigger/Open The Modal -->
-<button id="myBtn" class="mybtn">Añadir Personal </button>
+
+
+
+
+
+
+
+
+
+
+
+
 <!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
 <?php if(isset($_SESSION["borrado"])) {
 					echo "No se puede borrar";
@@ -117,9 +76,28 @@
 					echo "No se puede modificar, tenga cuidado con el formato que se requiere";
 					echo $_SESSION["excepcion"];
 			}
+			if(isset($_SESSION["errormodal"])) {
+				echo "No se ha podido crear el usuario, ha introducido algún dato inválido";
+				
+		}
 			?>
 <!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--                                                      	MODAL_FORM                                                            -->
 <!-- The Modal -->
+<button id="myBtn" class="mybtn">Añadir Personal </button>
 <div id="myModal" class="modal">
 
   <!-- Modal content -->
@@ -129,16 +107,63 @@
           <h2>Añadir Personal</h2>
         </div>
     <div class="modal-body">
-      <form method="post" action="pagina.php">
-        <div><label>Lugar: </label> <input type="text" id="place" name="place" class="form-modal"></div>
-				<div><label>Fecha de Inicio: </label> <input type="text" id="finicio" name="finicio" class="form-modal"></div>
-				<div><label>Fecha de Fin: </label> <input type="text" id="ffin" name="ffin" class="form-modal"></div>
-				<div><label>Precio Total: </label> <input type="text" id="totalprice" name="totalprice" class="form-modal"></div>
-        <div><label>Descripcion: </label> <input type="text" id="description" name="description" class="form-modal"></div>
+      <form method="post" action="produccion/controlador_personal.php">
+        <div><label>Personal ID: </label> <input type="text" id="persid" name="persid" class="form-modal"></div>
+				<div><label>Departamento: </label> 
+				<select class="form-modal" id="DEPARTAMENTO" required name="DEPARTAMENTO">
+									<option selected="selected">Produccion</option>
+									<option>Tecnico</option>
+									<option>Almacen</option>
+								</select></div>
+				<div><label>Nombre: </label> <input type="text" id="nmbre" name="nmbre" class="form-modal"></div>
+				<div><label>Cargo: </label> <input type="text" id="carg" name="carg" class="form-modal"></div>
+				<div><label>Sueldo: </label> <input type="text" id="sueld" name="sueld" class="form-modal"></div>
+				<div><label>DNI: </label> <input type="text" id="denei" name="denei" class="form-modal"></div>
+				<div><label>Email: </label> <input type="text" id="emeil" name="emeil" class="form-modal"></div>
+				<div><label>Contraseña: </label> <input type="text" id="contra" name="contra" class="form-modal"></div>
+				<div><label>Telefono: </label> <input type="text" id="telf" name="telf" class="form-modal"></div>
+				<div><label>Estado: </label> 
+				<select class="form-modal" id="estd" required name="estd">
+									<option selected="selected">Libre</option>
+									<option>Ocupado</option>
+								</select></div>
+				
+				
+				
+				<label>EID: </label>
+				<input list="opcionesEventos" autocomplete="off" id="event" name="event" class="form-modal">
+				
+				<datalist id="opcionesEventos">
+			  	<?php
+			  		$eventos = listarEventos($conexion);
+			  		foreach($eventos as $evento) {
+			  			echo "<option label=Evento-".$evento["EID"]." value='".$evento["EID"]."'>";
+					}
+				?>
+			</datalist>
+
+
+
+
+
+				<label>PEID: </label> 
+				<input list="opcionesParte" autocomplete="off" id="parteid" name="parteid" class="form-modal">
+				
+				<datalist id="opcionesParte">
+			  	<?php
+			  		$partes = listarParteequipo($conexion);
+			  		foreach($partes as $parte) {
+			  			echo "<option label=Parte-".$parte["PEID"]." value='".$parte["PEID"]."'>";
+					}
+				?>
+			</datalist>
+
+
+
+
+
+
 				<div><button id="agregar" name="agregar" type="submit" value="Añadir" class="btn"></div>
-				<?php if(isset($_POST['agregar']) && isset($_SESSION['excepcion'])){
-					echo '<p>Ha introducido algo mal</p>';
-				} ?>
       </form>
     </div>
 	</div>
@@ -146,7 +171,24 @@
 	<script src="js/modal.js"></script> 
 <!--                                                      	MODAL_FORM                                                            -->
 
-<!--                                                      	PAGINACION                                                            -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--                                                       CONSULTA_EVENTO                                                            -->
 
 <div class="seccionEntradas">
@@ -196,15 +238,51 @@
 						<!-- Editando título -->
 						<tr>
 						<td><input id="PID" name="PID" type="text" value="<?php echo $fila['PID'];?>"/></td>
-						<td><input id="DEPARTAMENTO" name="DEPARTAMENTO" type="text" value="<?php echo $fila['DEPARTAMENTO'];?>"/></td>
+						
+						<td><select id="DEPARTAMENTO" required name="DEPARTAMENTO">
+									<?php if ($fila['DEPARTAMENTO'] != "Produccion") echo "<option>Produccion</option>" ?>
+									<?php if ($fila['DEPARTAMENTO'] != "Tecnico") echo "<option>Tecnico</option>" ?>
+									<?php if ($fila['DEPARTAMENTO'] != "Almacen") echo "<option>Almacen</option>" ?>
+									<option selected="selected"><?php echo $fila['DEPARTAMENTO']; ?></option>
+								</select></td>
+						
+						
+						
+						
 						<td><input id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $fila['NOMBRE'];?>"/></td>
 						<td><input id="CARGO" name="CARGO" type="text" value="<?php echo $fila['CARGO'];?>"/></td>
 						<td><input id="SUELDO" name="SUELDO" type="text" value="<?php echo $fila['SUELDO'];?>"/></td>
 						<td><input id="DNI" name="DNI" type="text" value="<?php echo $fila['DNI'];?>"/></td>
 						<td><input id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $fila['TELEFONO'];?>"/></td>
-						<td><input id="ESTADO" name="ESTADO" type="text" value="<?php echo $fila['ESTADO'];?>"/></td>
-						<td><input id="EID" name="EID" type="text" value="<?php echo $fila['EID'];?>"/></td>
-						<td><input id="PEID" name="PEID" type="text" value="<?php echo $fila['PEID'];?>"/></td>
+						<td><select id="ESTADO" required name="ESTADO">
+									<?php if ($fila['ESTADO'] != "Libre") echo "<option>Libre</option>" ?>
+									<?php if ($fila['ESTADO'] != "Ocupado") echo "<option>Ocupado</option>" ?>
+									<option selected="selected"><?php echo $fila['ESTADO']; ?></option>
+								</select></td>
+						<td><input list="opcionesEventos" id="EID" name="EID" autocomplete="off">
+				
+				<datalist id="opcionesEventos">
+			  	<?php
+			  		$eventos = listarEventos($conexion);
+			  		foreach($eventos as $evento) {
+			  			echo "<option label=Evento-".$evento["EID"]." value='".$evento["EID"]."'>";
+					}
+				?>
+			</datalist></td>
+
+				<td><input list="opcionesParte" autocomplete="off" id="PEID" name="PEID">
+				
+				<datalist id="opcionesParte">
+			  	<?php
+			  		$partes = listarParteequipo($conexion);
+			  		foreach($partes as $parte) {
+			  			echo "<option label=Parte-".$parte["PEID"]." value='".$parte["PEID"]."'>";
+					}
+				?>
+			</datalist></td>
+
+
+
 						<?php }	else { ?>
 						<!-- mostrando título -->	
 						<tr>
@@ -266,7 +344,8 @@
 	
 	<?php unset($_SESSION["excepcion"]);
 				unset($_SESSION["borrado"]);
-				unset($_SESSION["editando"]); ?> <!--para reestablecer el error que salia antes, para evitar que salga siempre -->
+				unset($_SESSION["editando"]);
+				unset($_SESSION["errormodal"]);?> <!--para reestablecer el error que salia antes, para evitar que salga siempre -->
 	
 	
 <!--                                                       CONSULTA_EVENTO                                                            -->
