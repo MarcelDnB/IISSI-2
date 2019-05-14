@@ -1,0 +1,107 @@
+body{
+	width: 100wh;
+	height: 100vh;
+	background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+	background-size: 400% 400%;
+	animation: Gradient 15s ease infinite;
+	margin: 0;
+	padding: 0;
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+.header{
+	position: absolute;
+	top: calc(50% - 35px);
+	left: calc(50% - 255px);
+	z-index: 2;
+}
+
+.header div{
+	float: left;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 35px;
+	font-weight: 200;
+}
+
+.login{
+	position: absolute;
+	top: calc(50% - 100px);
+	left: calc(50% - 140px);
+	height: 150px;
+	width: 350px;
+	padding: 10px;
+	z-index: 2;
+	
+}
+
+.text{
+	width: 250px;
+	height: 30px;
+	background: transparent;
+	border: 1px solid rgb(255, 255, 255);
+	border-radius: 2px;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 4px;
+}
+
+.pass{
+	width: 250px;
+	height: 30px;
+	background: transparent;
+	border: 1px solid rgb(255, 255, 255);
+	border-radius: 2px;
+	color: rgb(255, 255, 255);
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 4px;
+	margin-top: 10px;
+}
+
+.button{
+	width: 260px;
+	height: 35px;
+	color: rgb(0, 0, 0);
+	border: 1px solid #fff;
+	cursor: pointer;
+	border-radius: 2px;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 6px;
+	margin-top: 10px;
+}
+.button:hover {
+	background-color: orange;
+	background: orange;
+	border: 1px solid orange;
+	transition: all 0.3s;
+}
+
+.error {
+	font-size: 13px;
+	margin-top: 10px;
+	color: red;
+
+}
+
+.image {
+	width: 60%;
+	padding-left: 21%;
+	margin-top: -6%;
+}

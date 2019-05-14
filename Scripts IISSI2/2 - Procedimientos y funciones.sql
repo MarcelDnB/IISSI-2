@@ -1,10 +1,10 @@
 --Proyecto ZeUS
 ------------------------------------Procedures----------------------------------
 --Procedures para contratar personal según su departamento
-create or replace PROCEDURE contratar_personal_almacen(w_nombre IN personal.nombre%TYPE,w_cargo IN personal.cargo%TYPE,w_sueldo IN personal.sueldo%TYPE,w_dni IN personal.dni%TYPE,w_telefono IN personal.telefono%TYPE) 
+create or replace PROCEDURE contratar_personal_almacen(w_nombre IN personal.nombre%TYPE,w_cargo IN personal.cargo%TYPE,w_sueldo IN personal.sueldo%TYPE,w_dni IN personal.dni%TYPE,w_telefono IN personal.telefono%TYPE,w_email IN personal.email%TYPE, w_pass IN personal.pass%TYPE) 
 IS
 BEGIN
-INSERT INTO personal(pid,departamento,nombre,cargo,sueldo,dni,telefono,estado,eid,peid)VALUES (sec_personal_almacen.nextval, 'Almacen', w_nombre, w_cargo,w_sueldo, w_dni, w_telefono,'Libre',null,null);
+INSERT INTO personal(pid,departamento,nombre,cargo,sueldo,dni,telefono,estado,eid,peid,email,pass)VALUES (sec_personal_almacen.nextval, 'Almacen', w_nombre, w_cargo,w_sueldo, w_dni, w_telefono,'Libre',null,null,w_email,w_pass);
 COMMIT WORK;
 end contratar_personal_almacen;
 
@@ -40,11 +40,11 @@ COMMIT WORK;
 end contratar_personal_externo;
 
 --Procedures para agregar ítems al inventario. ARF03
-create or replace procedure agregar_altavoz(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type, w_pid IN inventario.pid%type, w_potencia IN altavoces.potencia%type, w_pulgadas IN altavoces.pulgadas%type)
+create or replace procedure agregar_altavoz(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type, w_potencia IN altavoces.potencia%type, w_pulgadas IN altavoces.pulgadas%type)
 IS
 n_referencia number;
 BEGIN
-INSERT INTO inventario(referencia, nombre, estadoItem, precio, peid, pid) values(sec_item.nextval, w_nombre, 'Disponible', w_precio,null, w_pid) returning referencia into n_referencia;
+INSERT INTO inventario(referencia, nombre, estadoItem, precio, peid) values(sec_item.nextval, w_nombre, 'Disponible', w_precio,null) returning referencia into n_referencia;
 INSERT INTO altavoces(referencia, potencia, pulgadas) values(n_referencia, w_potencia, w_pulgadas);
 COMMIT WORK;
 end agregar_altavoz;
@@ -113,12 +113,9 @@ COMMIT WORK;
 end agregar_ordenador;
 
 --Procedure para borrar ítems. Contiene una restricción para asegurar que el que borra el ítem pertenece al departamento de almacén. ARF03
-CREATE OR REPLACE PROCEDURE borrar_item(w_referencia IN inventario.referencia%type, w_pid IN inventario.pid%type) IS 
+CREATE OR REPLACE PROCEDURE borrar_item(w_referencia IN inventario.referencia%type) IS 
 BEGIN
-IF w_PID > 1000000 then
- raise_application_error(-20610, 'ID de usuario incorrecto');
-else delete from inventario where referencia=w_referencia;
-end if;
+DELETE from inventario where referencia=w_referencia;
 COMMIT WORK;
 end borrar_item;
 
