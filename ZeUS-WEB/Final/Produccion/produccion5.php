@@ -77,6 +77,7 @@
 			}
 			if(isset($_SESSION["errormodal"])) {
 				echo "No se ha podido crear el usuario, ha introducido algún dato inválido";
+				echo $_SESSION["excepcion"];
 		}
 			if(isset($_SESSION['pagconsult'])) {
 				echo "Ha ocurrido un error con la paginación";
@@ -111,7 +112,7 @@
       <form method="post" action="produccion/controlador_personal.php">
         <div><label>Personal ID: </label> <input type="text" id="persid" name="persid" class="form-modal"></div>
 				<div><label>Departamento: </label> 
-				<select class="form-modal" id="DEPARTAMENTO" required name="DEPARTAMENTO">
+				<select class="form-modal" id="dept" required name="dept">
 									<option selected="selected">Produccion</option>
 									<option>Tecnico</option>
 									<option>Almacen</option>
@@ -164,7 +165,7 @@
 
 
 
-				<div><button id="agregar" name="agregar" type="submit" value="Añadir" class="btn"></div>
+				<div><button id="agregar" name="agregar" type="submit" value="Añadir" class="btn">Añadir</button></div>
       </form>
     </div>
 	</div>
@@ -246,10 +247,6 @@
 									<?php if ($fila['DEPARTAMENTO'] != "Almacen") echo "<option>Almacen</option>" ?>
 									<option selected="selected"><?php echo $fila['DEPARTAMENTO']; ?></option>
 								</select></td>
-						
-						
-						
-						
 						<td><input id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $fila['NOMBRE'];?>"/></td>
 						<td><input id="CARGO" name="CARGO" type="text" value="<?php echo $fila['CARGO'];?>"/></td>
 						<td><input id="SUELDO" name="SUELDO" type="text" value="<?php echo $fila['SUELDO'];?>"/></td>

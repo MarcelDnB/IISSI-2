@@ -34,18 +34,14 @@ function modificar_itema($conexion,$TIPO,$NOMBRE,$EMPRESA,$FECHALLEGADA,$FECHADE
 		return $e->getMessage();
     }
 }
-function crear_itemalquilado($conexion,$TIPO,$NOMBRE,$EMPRESA,$FECHALLEGADA,$FECHADEVOLUCION,$CANTIDAD,$PRECIO,$PID,$PEID) { //hay q hacer procedimientos para esto
+function crear_itemalquilado($conexion,$TIPO,$NOMBRE,$CANTIDAD,$MID,$PID) { //hay q hacer procedimientos para esto
 	try {
-		$stmt=$conexion->prepare("CALL alquilar_item(:TIPO,:NOMBRE,:EMPRESA,TO_DATE(:FECHALLEGADA,'YYYY-MM-DD'),TO_DATE(:FECHADEVOLUCION,'YYYY-MM-DD'),:CANTIDAD,:PRECIO,:PID,:PEID)");
+		$stmt=$conexion->prepare("CALL alquilar_item(:TIPO,:NOMBRE,'','','',:CANTIDAD,'',:PID,'',:MID)");
 		$stmt->bindParam(':TIPO',$TIPO);
 		$stmt->bindParam(':NOMBRE',$NOMBRE);
-		$stmt->bindParam(':EMPRESA',$EMPRESA);
-		$stmt->bindParam(':FECHALLEGADA',$FECHALLEGADA);
-		$stmt->bindParam(':FECHADEVOLUCION',$FECHADEVOLUCION);
 		$stmt->bindParam(':CANTIDAD',$CANTIDAD);
-		$stmt->bindParam(':PRECIO',$PRECIO);
+		$stmt->bindParam(':MID',$MID);
 		$stmt->bindParam(':PID',$PID);
-		$stmt->bindParam(':PEID',$PEID);
 		$stmt->execute();
 		return "";
 	} catch(PDOException $e) {
@@ -55,8 +51,19 @@ function crear_itemalquilado($conexion,$TIPO,$NOMBRE,$EMPRESA,$FECHALLEGADA,$FEC
 
 function listarMaterial($conexion){
 	try{
-		$consulta = "SELECT * FROM materialnecesario"; 
+		$consulta = "SELECT * FROM materialnecesario WHERE MID NOT IN (SELECT MID FROM ITEMALQUILADO)"; 
     	$stmt = $conexion->query($consulta);
+		return $stmt;
+	}catch(PDOException $e) {
+		return $e->getMessage();
+    }
+}
+function comprobarUsuario($conexion){
+	try{
+		$consulta = "SELECT * FROM PERSONAL WHERE EMAIL=:EMAIL";
+			$stmt = $conexion->prepare($consulta);
+			$stmt->bindParam(':EMAIL',$_SESSION["login"]);
+			$stmt->execute();
 		return $stmt;
 	}catch(PDOException $e) {
 		return $e->getMessage();

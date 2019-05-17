@@ -72,17 +72,12 @@
 		 if(isset($_REQUEST["agregar"])) {
 			$itema2['iatipo']= $_REQUEST['iatipo'];
 			$itema2['ianombre'] = $_REQUEST['ianombre'];
-			$itema2['iaempresa'] = $_REQUEST['iaempresa'];
-			$itema2['iafechallegada'] = $_REQUEST['iafechallegada'];
-			$itema2['iafechadevolucion'] = $_REQUEST['iafechadevolucion'];
 			$itema2['iacantidad'] = $_REQUEST['iacantidad'];
-			$itema2['iaprecio'] = $_REQUEST['iaprecio'];
-			$itema2['iapid'] = $_REQUEST['iapid'];
-			$itema2['iapeid'] = $_REQUEST['iapeid'];
+			$itema2['iamid'] = $_REQUEST['iamid'];
 			require_once("../gestionBD.php");
 			require_once("gestionarItemA.php");
 			$conexion = crearConexionBD($conexion);
-			$excepcion = crear_itemalquilado($conexion,$itema2['iatipo'],$itema2['ianombre'],$itema2['iaempresa'],$itema2['iafechallegada'],$itema2['iafechadevolucion'],$itema2['iacantidad'],$itema2['iaprecio'],$itema2['iapid'],$itema2['iapeid']);
+			$excepcion = crear_itemalquilado($conexion,$itema2['iatipo'],$itema2['ianombre'],$itema2['iacantidad'],$itema2['iamid'],(int)comprobarUsuario($conexion));
 			cerrarConexionBD($conexion);
 	
 			if ($excepcion<>"") {

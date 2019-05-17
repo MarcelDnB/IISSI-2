@@ -57,7 +57,6 @@ cerrarConexionBD($conexion);
 		cerrarConexionBD($conexion);
 		?>
 
-
 	<!--                                                      	MODAL_FORM                                                            -->
 	<!-- Trigger/Open The Modal -->
 	<button id="myBtn" class="mybtn">Añadir Item </button>
@@ -67,32 +66,33 @@ cerrarConexionBD($conexion);
 	<div id="myModal" class="modal">
 
 		<!-- Modal content -->
-		<div class="modal-content">
+		<div class="modal-content-material">
 			<div class="modal-header">
 				<span class="close">&times;</span> <!-- he utilizado bootstrap solo para la X -->
 				<h2>Añadir Item</h2>
 			</div>
 			<div class="modal-body">
 				<form method="POST" action="produccion/controlador_itemA.php">
-				
-				<div><label>Material: </label> 
-				<select class="form-modal" id="material" required name="material">
-				<?php  foreach ($materiales as $material) {       ?>
-						<option>Nombre: <?php echo  $material['NOMBRE']; ?> Tipo: <?php echo  $material['TIPO']; ?>
-						Cantidad: <?php echo  $material['CANTIDAD']; ?> </option><button></button>
-				<?php } ?>
-				</select></div>
-					
-					<label>Tipo: </label><input required type="text" id="iatipo" name="iatipo" class="form-modal">
-					<label>Nombre: </label> <input required type="text" id="ianombre" name="ianombre" class="form-modal">
-					<label>Empresa: </label> <input required type="text" id="iaempresa" name="iaempresa" class="form-modal">
-					<label>Fecha de llegada: </label> <input type="date" id="iafechallegada" name="iafechallegada" class="form-modal">
-					<label>Fecha de devolución: </label> <input required type="date" id="iafechadevolucion" name="iafechadevolucion" class="form-modal">
-					<label>Cantidad: </label><input required type="text" id="iacantidad" name="iacantidad" class="form-modal">
-					<label>Precio: </label><input required type="text" id="iaprecio" name="iaprecio" class="form-modal">
-					<label>PID: </label><input required type="text" id="iapid" name="iapid" class="form-modal">
-					<label>PEID: </label><input required type="text" id="iapeid" name="iapeid" class="form-modal">
-					<button id="agregar" name="agregar" type="submit" value="Añadir" class="btn">Añadir</button>
+				<table id="tabla3" style="width:100%">
+			<tr>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Tipo</th>
+				<th>Cantidad</th>
+				<th>Confirmar</th>
+			</tr>
+			<?php foreach ($materiales as $material) { ?>
+			<tr>
+				<td ><input type="text" id="iamid" name="iamid" readonly value="<?php echo $material['MID']; ?>"> </td>
+				<td ><input type="text" id="ianombre" name="ianombre" readonly value="<?php echo $material['NOMBRE']; ?>"> </td>
+				<td ><input type="text" id="iatipo" name="iatipo" readonly value="<?php echo $material['TIPO']; ?>"></td>
+				<td ><input type="text" id="iacantidad" name="iacantidad" readonly value="<?php echo $material['CANTIDAD']; ?>"></td>
+				<td>
+					<button id="agregar" name="agregar" type="submit" class="editar_fila">Alquilar</button>
+				</td>
+			</tr>
+			<?php } ?>
+				</table>
 					<?php if (isset($_SESSION["errormodal"])) { ?>
 						<label>HA OCURRIDO UN ERROR</label>
 					<?php } ?>
@@ -121,9 +121,11 @@ cerrarConexionBD($conexion);
 	}
 	if (isset($_SESSION["editando"])) {
 		echo "No se puede modificar, tenga cuidado con el formato que se requiere";
+		echo $_SESSION["excepcion"];
 	}
 	if(isset($_SESSION["errormodal"])) {
 		echo "No se ha podido crear el usuario, ha introducido algún dato inválido";
+		echo $_SESSION["excepcion"];
 }
 	if(isset($_SESSION['pagconsult'])) {
 		echo "Ha ocurrido un error con la paginación";
