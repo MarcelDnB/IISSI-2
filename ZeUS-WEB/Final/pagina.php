@@ -59,6 +59,16 @@ if($_SESSION['consultarproduccion'] == 1) { //Para produccion
 
     }
 }
+if($_SESSION['consultartecnico']==1){
+    if(($_SESSION['localidad']=="evento")){
+        include_once("tecnico/tecnico.php");
+    }
+    else if(($_SESSION['localidad']=="personal")){
+        include_once("tecnico/tecnico2.php");
+    }else{
+        include_once("tecnico/tecnico.php");
+    }
+}
 
 if($_SESSION['consultaralmacen'] == 1) {    //Para almacén
     if (isset($_GET["inventario"]) || ($_SESSION["localidad"] == "inventario")){
