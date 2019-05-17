@@ -68,4 +68,4 @@
 	if(isset($_GET["personal"])) {
 		$_SESSION["localidad"] = "personal";
 	}
-?>
+}?>
