@@ -81,8 +81,11 @@
 					echo "No se puede modificar, tenga cuidado con el formato que se requiere";
 			}
 			if(isset($_SESSION["errormodal"])) {
-				echo "No se ha podido crear el transporte, ha introducido algún dato inválido";
+				echo "No se ha podido crear el usuario, ha introducido algún dato inválido";
 		}
+			if(isset($_SESSION['pagconsult'])) {
+				echo "Ha ocurrido un error con la paginación";
+			}
 			?>
 <!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
 

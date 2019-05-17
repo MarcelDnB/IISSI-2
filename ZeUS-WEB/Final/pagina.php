@@ -6,7 +6,6 @@
 	if (!isset($_SESSION['login'])) {
 		Header("Location: login.php");
 	}else {
-	 //por defecto al principio
 ?>
 
 <!DOCTYPE html>

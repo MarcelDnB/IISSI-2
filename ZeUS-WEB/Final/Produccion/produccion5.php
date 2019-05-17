@@ -20,7 +20,7 @@
 	if ($pag_tam < 1) 		$pag_tam = 5;
 	unset($_SESSION["paginacion"]);
 	$conexion = crearConexionBD();
-	$query = 'SELECT * from PERSONAL';
+	$query = "SELECT * FROM PERSONAL";
 	$total_registros = total_consulta($conexion, $query);
 	$total_paginas = (int)($total_registros / $pag_tam);
 	if ($total_registros % $pag_tam > 0)		$total_paginas++;
@@ -74,12 +74,13 @@
 				}
 			if(isset($_SESSION["editando"])) {
 					echo "No se puede modificar, tenga cuidado con el formato que se requiere";
-					echo $_SESSION["excepcion"];
 			}
 			if(isset($_SESSION["errormodal"])) {
 				echo "No se ha podido crear el usuario, ha introducido algún dato inválido";
-				
 		}
+			if(isset($_SESSION['pagconsult'])) {
+				echo "Ha ocurrido un error con la paginación";
+			}
 			?>
 <!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
 

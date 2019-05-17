@@ -1,13 +1,13 @@
 <?php
 require_once("gestionBD.php");
-require_once("gestionarEvento.php");
+require_once("gestionarItemA.php");
 require_once("paginacion_consulta.php");
 if (!isset($_SESSION['login'])) {
 	Header("Location: login.php");
 } else {
-	if (isset($_SESSION["EVENTO"])) {
-		$evento = $_SESSION["EVENTO"];
-		unset($_SESSION["EVENTO"]);
+	if (isset($_SESSION["ITEMA"])) {
+		$itema = $_SESSION["ITEMA"];
+		unset($_SESSION["ITEMA"]);
 	}
 
 
@@ -23,7 +23,7 @@ if (!isset($_SESSION['login'])) {
 	if ($pag_tam < 1) 		$pag_tam = 5;
 	unset($_SESSION["paginacion"]);
 	$conexion = crearConexionBD();
-	$query = 'SELECT * from EVENTO';
+	$query = 'SELECT * from ITEMALQUILADO';
 	$total_registros = total_consulta($conexion, $query);
 	$total_paginas = (int)($total_registros / $pag_tam);
 	if ($total_registros % $pag_tam > 0)		$total_paginas++;
@@ -51,18 +51,16 @@ cerrarConexionBD($conexion);
 	</nav>
 	<!--                                                      	 PAGINACION                                                           -->
 
-
-
-
-
-
-
-
+		<?php
+		$conexion = crearConexionBD();
+		$materiales=listarMaterial($conexion);
+		cerrarConexionBD($conexion);
+		?>
 
 
 	<!--                                                      	MODAL_FORM                                                            -->
 	<!-- Trigger/Open The Modal -->
-	<button id="myBtn" class="mybtn">Añadir Evento </button>
+	<button id="myBtn" class="mybtn">Añadir Item </button>
 
 	<!-- The Modal -->
 	
@@ -72,37 +70,38 @@ cerrarConexionBD($conexion);
 		<div class="modal-content">
 			<div class="modal-header">
 				<span class="close">&times;</span> <!-- he utilizado bootstrap solo para la X -->
-				<h2>Añadir Evento</h2>
+				<h2>Añadir Item</h2>
 			</div>
 			<div class="modal-body">
-				<form method="POST" action="produccion/controlador_evento.php">
-					<label>Lugar: </label>
-					<div><textarea required type="text" id="place" name="place" rows="3" cols="40"></textarea></div>
-					<label>Fecha de Inicio: </label> <input required type="date" id="finicio" name="finicio" class="form-modal">
-					<label>Fecha de Fin: </label> <input required type="date" id="ffin" name="ffin" class="form-modal">
-					<label>Precio Total: </label> <input type="text" id="totalprice" name="totalprice" class="form-modal">
-					<label>Descripcion: </label>
-					<div><textarea id="description" name="description" rows="10" cols="70"></textarea></div>
+				<form method="POST" action="produccion/controlador_itemA.php">
+				
+				<div><label>Material: </label> 
+				<select class="form-modal" id="material" required name="material">
+				<?php  foreach ($materiales as $material) {       ?>
+						<option>Nombre: <?php echo  $material['NOMBRE']; ?> Tipo: <?php echo  $material['TIPO']; ?>
+						Cantidad: <?php echo  $material['CANTIDAD']; ?> </option><button></button>
+				<?php } ?>
+				</select></div>
+					
+					<label>Tipo: </label><input required type="text" id="iatipo" name="iatipo" class="form-modal">
+					<label>Nombre: </label> <input required type="text" id="ianombre" name="ianombre" class="form-modal">
+					<label>Empresa: </label> <input required type="text" id="iaempresa" name="iaempresa" class="form-modal">
+					<label>Fecha de llegada: </label> <input type="date" id="iafechallegada" name="iafechallegada" class="form-modal">
+					<label>Fecha de devolución: </label> <input required type="date" id="iafechadevolucion" name="iafechadevolucion" class="form-modal">
+					<label>Cantidad: </label><input required type="text" id="iacantidad" name="iacantidad" class="form-modal">
+					<label>Precio: </label><input required type="text" id="iaprecio" name="iaprecio" class="form-modal">
+					<label>PID: </label><input required type="text" id="iapid" name="iapid" class="form-modal">
+					<label>PEID: </label><input required type="text" id="iapeid" name="iapeid" class="form-modal">
 					<button id="agregar" name="agregar" type="submit" value="Añadir" class="btn">Añadir</button>
 					<?php if (isset($_SESSION["errormodal"])) { ?>
 						<label>HA OCURRIDO UN ERROR</label>
 					<?php } ?>
-
-
 				</form>
 			</div>
 		</div>
 	</div>
 	<script src="js/modal.js"></script>
-	<script>
-		window.onload = function(event){
- 		 if($_SESSION["errormodal"]=="TRUE") {
-    		modal.style.display = "block";
-  }
-}
-</script>
 	<!--                                                      	MODAL_FORM                                                            -->
-
 
 
 
@@ -150,62 +149,66 @@ cerrarConexionBD($conexion);
 	<div class="seccionEntradas">
 		<table id="tabla1" style="width:100%">
 			<tr>
-				<th>Evento</th>
+				<th>ID</th>
+				<th>Tipo</th>
+				<th>Nombre</th>
+				<th>Empresa</th>
+				<th>Fecha de llegada</th>
+				<th>Fecha de devolución</th>
+				<th>Cantidad</th>
 				<th>Precio</th>
-				<th>Fecha de Inicio</th>
-				<th>Fecha Fin</th>
-				<th>Estado</th>
-				<th>Descripcion del cliente</th>
-				<th>Lugar</th>
+				<th>PID</th>
+				<th>PEID</th>
 				<th>Editar</th>
 				<th>Borrar</th>
 			</tr>
 			<?php
 			foreach ($filas as $fila) {
 				?>
-				<form method="POST" action="produccion/controlador_evento.php">
+				<form method="POST" action="produccion/controlador_itemA.php">
 					<!-- Controles de los campos que quedan ocultos:
 								OID_LIBRO, OID_AUTOR, OID_AUTORIA, NOMBRE, APELLIDOS -->
-					<input id="EID" name="EID" type="hidden" value="<?php echo $fila["EID"]; ?>" />
-					<input id="PRECIOTOTAL" name="PRECIOTOTAL" type="hidden" value="<?php echo $fila["PRECIOTOTAL"]; ?>" />
-					<input id="LUGAR" name="LUGAR" type="hidden" value="<?php echo $fila["LUGAR"]; ?>" />
-					<input id="FECHAINICIO" name="FECHAINICIO" type="hidden" value="<?php echo $fila["FECHAINICIO"]; ?>" />
-					<input id="FECHAFIN" name="FECHAFIN" type="hidden" value="<?php echo $fila["FECHAFIN"]; ?>" />
-					<input id="DESCRIPCIONCLIENTE" name="DESCRIPCIONCLIENTE" type="hidden" value="<?php echo $fila["DESCRIPCIONCLIENTE"]; ?>" />
-					<input id="ESTADOEVENTO" name="ESTADOEVENTO" type="hidden" value="<?php echo $fila["ESTADOEVENTO"]; ?>" />
+					<input id="IA" name="IA" type="hidden" value="<?php echo $fila["IA"]; ?>" />
+					<input id="TIPO" name="TIPO" type="hidden" value="<?php echo $fila["TIPO"]; ?>" />
+					<input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $fila["NOMBRE"]; ?>" />
+					<input id="EMPRESA" name="EMPRESA" type="hidden" value="<?php echo $fila["EMPRESA"]; ?>" />
+					<input id="FECHALLEGADA" name="FECHALLEGADA" type="hidden" value="<?php echo $fila["FECHALLEGADA"]; ?>" />
+					<input id="FECHADEVOLUCION" name="FECHADEVOLUCION" type="hidden" value="<?php echo $fila["FECHADEVOLUCION"]; ?>" />
+					<input id="CANTIDAD" name="CANTIDAD" type="hidden" value="<?php echo $fila["CANTIDAD"]; ?>" />
+					<input id="PRECIO" name="PRECIO" type="hidden" value="<?php echo $fila["PRECIO"]; ?>" />
+					<input id="PID" name="PID" type="hidden" value="<?php echo $fila["PID"]; ?>" />
+					<input id="PEID" name="PEID" type="hidden" value="<?php echo $fila["PEID"]; ?>" />
 
 					<?php
-					if (isset($evento) and ($fila["EID"] == $evento["EID"])) { ?>
+					if (isset($itema) and ($fila["IA"] == $itema["IA"])) { ?>
 						<!-- Editando título -->
 						<tr>
-							<td><?php echo $fila['EID']; ?></td>
-							<td><input id="PRECIOTOTAL" name="PRECIOTOTAL" type="text" value="<?php echo $fila['PRECIOTOTAL']; ?>" /></td>
-							<td><input id="FECHAINICIO" name="FECHAINICIO" type="date" required value="<?php echo date_format(date_create_from_format('d/m/y', $fila['FECHAINICIO']), 'Y-m-d'); ?>" /></td>
-							<td><input id="FECHAFIN" name="FECHAFIN" type="date" required value="<?php if ($fila["FECHAFIN"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAFIN']), 'Y-m-d'); ?>" /></td>
-							<td><select id="ESTADOEVENTO" required name="ESTADOEVENTO">
-									<?php if ($fila['ESTADOEVENTO'] != "porRealizar") echo "<option>porRealizar</option>" ?>
-									<?php if ($fila['ESTADOEVENTO'] != "enPreparacion") echo "<option>enPreparacion</option>" ?>
-									<?php if ($fila['ESTADOEVENTO'] != "Realizado") echo "<option>Realizado</option>" ?>
-									<option selected="selected"><?php echo $fila['ESTADOEVENTO']; ?></option>
-								</select></td>
-							<td><input id="DESCRIPCIONCLIENTE" name="DESCRIPCIONCLIENTE" type="text" value="<?php echo $fila['DESCRIPCIONCLIENTE']; ?>" /></td>
-							<td><input id="LUGAR" name="LUGAR" required type="text" value="<?php echo $fila['LUGAR']; ?>" /> </td>
+							<td><?php echo $fila['IA']; ?></td>
+							<td><input id="TIPO" name="TIPO" type="text" value="<?php echo $fila['TIPO']; ?>" /></td>
+							<td><input id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $fila['NOMBRE']; ?>" /></td>
+							<td><input id="EMPRESA" name="EMPRESA" type="text" value="<?php echo $fila['EMPRESA']; ?>" /></td>
+							<td><input id="FECHALLEGADA" name="FECHALLEGADA" type="date" required value="<?php if ($fila["FECHALLEGADA"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHALLEGADA']), 'Y-m-d'); ?>" /></td>
+							<td><input id="FECHADEVOLUCION" name="FECHADEVOLUCION" type="date" required value="<?php if ($fila["FECHADEVOLUCION"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHADEVOLUCION']), 'Y-m-d'); ?>" /></td>
+							<td><input id="CANTIDAD" name="CANTIDAD" type="text" value="<?php echo $fila['CANTIDAD']; ?>" /></td>
+							<td><input id="PRECIO" name="PRECIO" type="text" value="<?php echo $fila['PRECIO']; ?>" /></td>
+							<td><input id="PID" name="PID" type="text" value="<?php echo $fila['PID']; ?>" /></td>
+							<td><input id="PEID" name="PEID" type="text" value="<?php echo $fila['PEID']; ?>" /></td>
 						<?php } else { ?>
 							<!-- mostrando título -->
 						<tr>
-							<td><?php echo $fila['EID']; ?></td>
-							<td><?php echo $fila['PRECIOTOTAL']; ?></td>
-							<td><?php if ($fila["FECHAINICIO"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAINICIO']), 'Y-m-d'); ?></td>
-							<td><?php if ($fila["FECHAFIN"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAFIN']), 'Y-m-d'); ?></td>
-							<td> <?php echo $fila['ESTADOEVENTO']; ?></td>
-							<td>
-								<p><?php echo $fila['DESCRIPCIONCLIENTE']; ?></p>
-							</td>
-							<td><?php echo $fila['LUGAR'] ?></td>
-
+							<td><?php echo $fila['IA']; ?></td>
+							<td><?php echo $fila['TIPO']; ?></td>
+							<td><?php echo $fila['NOMBRE']; ?></td>
+							<td><?php echo $fila['EMPRESA']; ?></td>
+							<td><?php if ($fila["FECHALLEGADA"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHALLEGADA']), 'Y-m-d'); ?></td>
+							<td><?php if ($fila["FECHADEVOLUCION"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHADEVOLUCION']), 'Y-m-d'); ?></td>
+							<td><?php echo $fila['CANTIDAD']; ?></td>
+							<td><?php echo $fila['PRECIO']; ?></td>
+							<td><?php echo $fila['PID']; ?></td>
+							<td> <?php echo $fila['PEID']; ?></td>
 						<?php } ?>
 
-						<?php if (isset($evento) and $fila["EID"] == $evento["EID"]) { ?>
+						<?php if (isset($itema) and $fila["IA"] == $itema["IA"]) { ?>
 							<td>
 								<button id="grabar" name="grabar" type="submit" class="editar_fila">
 									<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar Cambios">
@@ -251,6 +254,7 @@ cerrarConexionBD($conexion);
 				<?php unset($_SESSION["excepcion"]);
 				unset($_SESSION["borrado"]);
 				unset($_SESSION["editando"]);
+				unset($_SESSION["errormodal"]);
 				
 				
 				?>
