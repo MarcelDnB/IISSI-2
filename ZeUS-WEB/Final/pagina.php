@@ -26,8 +26,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" crossorigin="anonymous"/>
     
     <link rel="stylesheet" href="css/prod1.css">
-		<link rel="stylesheet" href="css/modal.css">
-		<script src="js/prod1.js"></script> 
+	<link rel="stylesheet" href="css/modal.css">
+	<script src="js/prod1.js"></script> 
 </head>
 
 <body id="body22">
@@ -58,9 +58,9 @@ if($_SESSION['consultarproduccion'] == 1) { //Para produccion
     }else {
 
     }
-}//lo mismo para tecnico
+}
 
-if($_SESSION['consultaralmacen'] == 1) {
+if($_SESSION['consultaralmacen'] == 1) {    //Para almacén
     if (isset($_GET["inventario"]) || ($_SESSION["localidad"] == "inventario")){
         include_once("almacen/consulta_inventario.php");
     }
@@ -82,10 +82,10 @@ if($_SESSION['consultaralmacen'] == 1) {
     else{
 	include_once("almacen/consulta_inventario.php");
     }
-
+}
 ?>
 </div>
-	<script src="js/main.js"></script>
+	<script src="js/toggleSidebar.js"></script>
 </body>
 
 </html>

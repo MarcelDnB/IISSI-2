@@ -1,6 +1,7 @@
 ﻿<div class="sidebar"><!--Inicio del sidebar-->
-	<h2>Menú</h2>
+	<!--<h2>Menú</h2>-->
 	<?php if($_SESSION['consultarproduccion'] == 1) { /*Este es el menu para produccion*/?> 
+	<h2>Producción</h2>
 	<form method="get" action="pagina.php">
 	<ul>
 		<li><button id="eventos" name="eventos" type="submit">Eventos</button></li>
@@ -29,6 +30,7 @@
 		$_SESSION["localidad"] = "personal";
 	}
 } else if($_SESSION['consultaralmacen']==1){	/*Menú de almacén*/?>
+	<h2>Almacén</h2>
 	<form method="get" action="homeAlmacen.php">
 	<ul>
 		<li><button class="inventario" name="inventario" type="submit">Inventario</button></li>
