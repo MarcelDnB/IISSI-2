@@ -39,7 +39,7 @@
   <meta charset="UTF-8">
   <title>ZeUSware</title>
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:600'>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/estiloLogin.css">
 </head>
 
 <body>
