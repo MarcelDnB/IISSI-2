@@ -68,4 +68,33 @@
 	if(isset($_GET["personal"])) {
 		$_SESSION["localidad"] = "personal";
 	}
-}?>
+}
+ else if($_SESSION['consultartecnico']==1){ ?>
+	<h2>Técnico</h2>
+	<form method="get" action="pagina.php">
+	<ul>
+		<li><button id="eventoTecnico" name="eventoTecnico" type="submit">Eventos</button></li>
+		<div class="dropdown-container">
+			<li><button class="parteEquipo" name="parteEquipo" type="submit">Partes de Equipo</button></li>
+			<li><button class="peticion" name="peticion" type="submit">Peticiones</button></li>
+		<li><button id="personaltecnico" name="personaltecnico" type="submit">Personal</button></li>
+	</ul>
+</form>
+</div>
+
+<?php 
+	if(isset($_GET["eventoTecnico"])){
+		$_SESSION["localidad"]="eventoTecnico";
+	}
+	if(isset($_GET["parteEquipo"])){
+		$_SESSION["localidad"]="parteEquipo";
+	}
+	if(isset($_GET["peticion"])){
+		$_SESSION["localidad"]="peticion";
+	}
+	if(isset($_GET["personaltecnico"])){
+		$_SESSION["localidad"]="personaltecnico";
+	}
+ 
+}
+?>
