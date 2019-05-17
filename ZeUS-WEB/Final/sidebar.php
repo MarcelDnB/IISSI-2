@@ -31,7 +31,7 @@
 	}
 } else if($_SESSION['consultaralmacen']==1){	/*Menú de almacén*/?>
 	<h2>Almacén</h2>
-	<form method="get" action="homeAlmacen.php">
+	<form method="get" action="pagina.php">
 	<ul>
 		<li><button class="inventario" name="inventario" type="submit">Inventario</button></li>
 		<div class="dropdown-container">

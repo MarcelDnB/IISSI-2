@@ -18,14 +18,14 @@
 
 		if ($num_usuarios_almacen > 0){
 			$_SESSION['login'] = $email;
-			Header("Location: homeAlmacen.php");
+			Header("Location: pagina.php");
 		}else if($num_usuarios_prod > 0){
 			$_SESSION['login'] = $email;
 			$_SESSION['localidad']="evento";
 			Header("Location: pagina.php");	//Anteriormente, pagina.php
 		}else if($num_usuarios_tec >0){
 			$_SESSION['login'] = $email;
-			Header("Location: homeTecnico.php");
+			Header("Location: pagina.php");
 		}
 		else{
 			$_SESSION['login'] = "error";
