@@ -76,7 +76,7 @@ if($_SESSION['consultaralmacen'] == 1) {    //Para almacén
     else if (isset($_GET["personal"]) || ($_SESSION["localidad"] == "personal")) {
         include_once("almacen/consulta_personalalmacen.php");
     }
-    else if (isset($_GET["parte"]) || $_SESSION["localidad"] == "parte"){
+    else if (isset($_GET["parte"]) || ($_SESSION["localidad"] == "parte"){
 	include_once("almacen/consulta_parte.php");
     }
     else{
