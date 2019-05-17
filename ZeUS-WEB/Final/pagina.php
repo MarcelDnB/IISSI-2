@@ -1,7 +1,6 @@
-﻿<?php
+<?php
 	session_start();
     require_once("gestionBD.php");
-	require_once("produccion/gestionarEvento.php");
 	require_once("paginacion_consulta.php");
 	if (!isset($_SESSION['login'])) {
 		Header("Location: login.php");
@@ -58,24 +57,40 @@ if($_SESSION['consultarproduccion'] == 1) { //Para produccion
 
     }
 }
+if($_SESSION['consultartecnico']==1){
+    if(($_SESSION['localidad']=="eventoTecnico")){
+        include_once("tecnico/tecnico.php");
+    }
+    else if(($_SESSION['localidad']=="parteEquipo")){
+        include_once("tecnico/tecnico2.php");
+    }
+    else if(($_SESSION['localidad']=="peticion")){
+        include_once("tecnico/tecnico3.php");
+    }
+    else if(($_SESSION['localidad']=="personalTecnico")){
+        include_once("tecnico/tecnico4.php");
+    }else{
+        include_once("tecnico/tecnico.php");
+    }
+}
 
 if($_SESSION['consultaralmacen'] == 1) {    //Para almacén
-    if (isset($_GET["inventario"]) || ($_SESSION["localidad"] == "inventario")){
+    if (($_SESSION["localidad"] == "inventario")){
         include_once("almacen/consulta_inventario.php");
     }
-    else if (isset($_GET["envios"]) || ($_SESSION["localidad"] == "envios")) {
+    else if (($_SESSION["localidad"] == "envios")) {
         include_once("almacen/consulta_envios.php");
     }
-    else if (isset($_GET["itemsalquilados"]) || ($_SESSION["localidad"] == "itemsalquilados")) {
+    else if (($_SESSION["localidad"] == "itemsalquilados")) {
         include_once("almacen/consulta_itemsalquilados.php");
     }
-    else if (isset($_GET["mantenimiento"]) || ($_SESSION["localidad"] == "mantenimiento")) {
+    else if (($_SESSION["localidad"] == "mantenimiento")) {
         include_once("almacen/consulta_mantenimiento.php");
     }
-    else if (isset($_GET["personal"]) || ($_SESSION["localidad"] == "personal")) {
+    else if (($_SESSION["localidad"] == "personal")) {
         include_once("almacen/consulta_personalalmacen.php");
     }
-    else if (isset($_GET["parte"]) || $_SESSION["localidad"] == "parte"){
+    else if (($_SESSION["localidad"] == "parte")){
 	include_once("almacen/consulta_parte.php");
     }
     else{
