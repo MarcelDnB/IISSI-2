@@ -67,7 +67,7 @@
     <div class="modal-body">
       <form method="POST" action="Almacen/controlador_mantenimiento.php">
 				<label>Ítems por reparar: </label> 
-				<input list="opcionesItems" autocomplete="off" id="event" name="event" class="form-modal">
+				<input list="opcionesItems" autocomplete="off" id="maitems" name="maitems" class="form-modal">
 				<datalist id="opcionesItems">
 			  	<?php
 			  		$items = listarItemsPorReparar($conexion);
@@ -78,7 +78,7 @@
 			</datalist>
 				<!--<div><label>Fecha de Inicio: </label> <input type="date" id="startdate" name="startdate" class="form-modal"></div>-->
 				<label>Encargado de la reparación: </label> 
-				<input list="opcionesPersonal" autocomplete="off" id="event" name="event" class="form-modal">
+				<input list="opcionesPersonal" autocomplete="off" id="mapersonal" name="mapersonal" class="form-modal">
 				<datalist id="opcionesPersonal">
 			  	<?php
 			  	  $empleadosDisponibles = listarPersonalAlmacenDisponible($conexion);
@@ -114,6 +114,7 @@
 	}
 	if (isset($_SESSION["errormodal"])) {
 		echo "No se ha podido asignar la reparación, ha introducido algún dato inválido";
+		echo $_SESSION['excepcion'];
 	}
 	if(isset($_SESSION['pagconsult'])) {
 		echo "Ha ocurrido un error con la paginación";

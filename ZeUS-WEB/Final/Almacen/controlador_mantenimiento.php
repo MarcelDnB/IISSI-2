@@ -30,15 +30,13 @@
 		}
 	}
 	else if(isset($_REQUEST["agregar"])) {
-			if(isset($_SESSION["MANTENIMIENTO"])){
-				$mantenimiento=$_SESSION["MANTENIMIENTO"];
-				unset($_SESSION["MANTENIMIENTO"]);
+				$mantenimiento2['maitems'] = $_REQUEST['maitems'];
+				$mantenimiento2['mapersonal'] = $_REQUEST['mapersonal'];
 
 				require_once("../gestionBD.php");
 				require_once("gestionarMantenimiento.php");
-
 				$conexion = crearConexionBD($conexion);
-				$excepcion = asignar_reparacion($conexion,$personal['PID'],$inventario['REFERENCIA']);
+				$excepcion = asignar_reparacion($conexion,$mantenimiento2['mapersonal'],$mantenimiento2['maitems']);
 				cerrarConexionBD($conexion);
 		
 				if ($excepcion<>"") {
@@ -54,6 +52,5 @@
 			else{
 				Header("Location: ../pagina.php");
 			}
-		}
 	
 ?>
