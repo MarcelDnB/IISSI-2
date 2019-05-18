@@ -54,8 +54,14 @@ cerrarConexionBD($conexion);
 		<?php
 		$conexion = crearConexionBD();
 		$materiales=listarMaterial($conexion);
+		$usuarios = comprobarUsuario($conexion,$_SESSION['login']);
 		cerrarConexionBD($conexion);
 		?>
+
+		<?php foreach($usuarios as $usuario){$usuariomod= $usuario['PID'];}?>
+
+
+
 
 	<!--                                                      	MODAL_FORM                                                            -->
 	<!-- Trigger/Open The Modal -->
@@ -79,6 +85,7 @@ cerrarConexionBD($conexion);
 				<th>Nombre</th>
 				<th>Tipo</th>
 				<th>Cantidad</th>
+				<th>PID</th>
 				<th>Confirmar</th>
 			</tr>
 			<?php foreach ($materiales as $material) { ?>
@@ -87,6 +94,7 @@ cerrarConexionBD($conexion);
 				<td ><input type="text" id="ianombre" name="ianombre" readonly value="<?php echo $material['NOMBRE']; ?>"> </td>
 				<td ><input type="text" id="iatipo" name="iatipo" readonly value="<?php echo $material['TIPO']; ?>"></td>
 				<td ><input type="text" id="iacantidad" name="iacantidad" readonly value="<?php echo $material['CANTIDAD']; ?>"></td>
+				<th><input type="text" id="iapid" name="iapid" readonly value="<?php echo $usuariomod ?>"></th>
 				<td>
 					<button id="agregar" name="agregar" type="submit" class="editar_fila">Alquilar</button>
 				</td>

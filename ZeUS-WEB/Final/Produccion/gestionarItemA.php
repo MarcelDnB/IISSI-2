@@ -58,15 +58,14 @@ function listarMaterial($conexion){
 		return $e->getMessage();
     }
 }
-function comprobarUsuario($conexion){
+function comprobarUsuario($conexion,$email){
 	try{
-		$consulta = "SELECT * FROM PERSONAL WHERE EMAIL=:EMAIL";
-			$stmt = $conexion->prepare($consulta);
-			$stmt->bindParam(':EMAIL',$_SESSION["login"]);
-			$stmt->execute();
+		$consulta = "SELECT * FROM PERSONAL WHERE EMAIL='$email'"; 
+		$stmt = $conexion->query($consulta);
 		return $stmt;
 	}catch(PDOException $e) {
 		return $e->getMessage();
     }
 }
+
 ?>

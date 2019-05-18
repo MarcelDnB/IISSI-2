@@ -74,10 +74,11 @@
 			$itema2['ianombre'] = $_REQUEST['ianombre'];
 			$itema2['iacantidad'] = $_REQUEST['iacantidad'];
 			$itema2['iamid'] = $_REQUEST['iamid'];
+			$itema2['iapid'] = $_REQUEST['iapid'];
 			require_once("../gestionBD.php");
 			require_once("gestionarItemA.php");
 			$conexion = crearConexionBD($conexion);
-			$excepcion = crear_itemalquilado($conexion,$itema2['iatipo'],$itema2['ianombre'],$itema2['iacantidad'],$itema2['iamid'],(int)comprobarUsuario($conexion));
+			$excepcion = crear_itemalquilado($conexion,$itema2['iatipo'],$itema2['ianombre'],$itema2['iacantidad'],$itema2['iamid'],$itema2['iapid']);
 			cerrarConexionBD($conexion);
 	
 			if ($excepcion<>"") {
