@@ -78,13 +78,7 @@ cerrarConexionBD($conexion);
 
 
 	<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
-	<?php if (isset($_SESSION["borrado"])) {
-		echo "No se puede borrar";
-	}
-	if (isset($_SESSION["editando"])) {
-		echo "No se puede modificar, tenga cuidado con el formato que se requiere";
-	}
-	?>
+
 	<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
 
 
@@ -112,8 +106,7 @@ cerrarConexionBD($conexion);
 				<th>Estado</th>
 				<th>Descripcion del cliente</th>
 				<th>Lugar</th>
-				<th>Editar</th>
-				<th>Borrar</th>
+
 			</tr>
 			<?php
 			foreach ($filas as $fila) {
@@ -160,24 +153,7 @@ cerrarConexionBD($conexion);
 
 						<?php } ?>
 
-						<?php if (isset($evento) and $fila["EID"] == $evento["EID"]) { ?>
-							<td>
-								<button id="grabar" name="grabar" type="submit" class="editar_fila">
-									<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar Cambios">
-								</button>
-							</td>
-						<?php } else { ?>
-							<td>
-								<button id="editar" name="editar" type="submit" class="editar_fila">
-									<img src="images/pencil_menuito.bmp" class="editar_fila" alt="Editar Libro">
-								</button>
-							</td>
-						<?php } ?>
-						<td>
-							<button id="borrar" name="borrar" type="submit" class="editar_fila">
-								<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar Libro">
-							</button>
-						</td>
+
 
 				</form>
 
