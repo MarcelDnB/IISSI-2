@@ -76,5 +76,15 @@ function listarParteequipo($conexion){
 		return $e->getMessage();
     }
 }
+function personalTecnico($conexion){
+	try{
+		$consulta= "SELECT * FROM personal WHERE departamento='Tecnico' ";
+			$stmt=$conexion->query($consulta);
+		return $stmt;
+	}catch(PDOException $e){
+		return $e->getMessage();
+	}
+
+}
 	
 ?>

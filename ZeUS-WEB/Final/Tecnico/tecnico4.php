@@ -20,7 +20,7 @@
 	if ($pag_tam < 1) 		$pag_tam = 5;
 	unset($_SESSION["paginacion"]);
 	$conexion = crearConexionBD();
-	$query = "SELECT * FROM PERSONAL";
+	$query = "SELECT * FROM PERSONAL WHERE DEPARTAMENTO='Tecnico'";
 	$total_registros = total_consulta($conexion, $query);
 	$total_paginas = (int)($total_registros / $pag_tam);
 	if ($total_registros % $pag_tam > 0)		$total_paginas++;
@@ -137,6 +137,7 @@
 
 			</tr>	
 	<?php
+	$filas=personalTecnico($conexion);
 		foreach($filas as $fila) {
 	?>
 		<form method="POST" action="tecnico/controlador_personal.php">
