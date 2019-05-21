@@ -20,7 +20,7 @@
 	if ($pag_tam < 1) 		$pag_tam = 5;
 	unset($_SESSION["paginacion"]);
 	$conexion = crearConexionBD();
-	$query = "SELECT * FROM PERSONAL";
+	$query = "SELECT * FROM PERSONAL ORDER BY PID";
 	$total_registros = total_consulta($conexion, $query);
 	$total_paginas = (int)($total_registros / $pag_tam);
 	if ($total_registros % $pag_tam > 0)		$total_paginas++;
@@ -43,7 +43,7 @@
 
 	<a class="mostrando">Mostrando</a>
 
-	<input id="PAG_TAM" name="PAG_TAM" type="number"
+	<input id="PAG_TAM" name="PAG_TAM" type="number" class="PAG_TAM"
 
 		min="1" max="<?php echo $total_registros; ?>"
 
@@ -117,13 +117,13 @@
 									<option>Tecnico</option>
 									<option>Almacen</option>
 								</select></div>
-				<div><label>Nombre: </label> <input type="text" id="nmbre" name="nmbre" class="form-modal"></div>
-				<div><label>Cargo: </label> <input type="text" id="carg" name="carg" class="form-modal"></div>
-				<div><label>Sueldo: </label> <input type="text" id="sueld" name="sueld" class="form-modal"></div>
-				<div><label>DNI: </label> <input type="text" id="denei" name="denei" class="form-modal"></div>
-				<div><label>Email: </label> <input type="text" id="emeil" name="emeil" class="form-modal"></div>
-				<div><label>Contraseña: </label> <input type="text" id="contra" name="contra" class="form-modal"></div>
-				<div><label>Telefono: </label> <input type="text" id="telf" name="telf" class="form-modal"></div>
+				<div><label>Nombre: </label> <input required type="text" maxlength="20" id="nmbre" name="nmbre" class="form-modal"></div>
+				<div><label>Cargo: </label> <input required type="text" id="carg" maxlength="20" name="carg" class="form-modal"></div>
+				<div><label>Sueldo: </label> <input  type="number" max=100000 id="sueld" name="sueld" class="form-modal"></div>
+				<div><label>DNI: </label> <input required maxlength="9" type="text" id="denei" name="denei" class="form-modal"></div>
+				<div><label>Email: </label> <input type="text" maxlength="20" id="emeil" name="emeil" class="form-modal"></div>
+				<div><label>Contraseña: </label> <input type="password" maxlength="20" id="contra" name="contra" class="form-modal"></div>
+				<div><label>Telefono: </label> <input type="number" max=9 id="telf" name="telf" class="form-modal"></div>
 				<div><label>Estado: </label> 
 				<select class="form-modal" id="estd" required name="estd">
 									<option selected="selected">Libre</option>

@@ -23,7 +23,7 @@ if (!isset($_SESSION['login'])) {
 	if ($pag_tam < 1) 		$pag_tam = 5;
 	unset($_SESSION["paginacion"]);
 	$conexion = crearConexionBD();
-	$query = 'SELECT * from ITEMALQUILADO';
+	$query = 'SELECT * from ITEMALQUILADO ORDER BY IA';
 	$total_registros = total_consulta($conexion, $query);
 	$total_paginas = (int)($total_registros / $pag_tam);
 	if ($total_registros % $pag_tam > 0)		$total_paginas++;
@@ -44,7 +44,7 @@ cerrarConexionBD($conexion);
 		<form method="get" action="pagina.php" class="formpaginacion">
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada ?>" />
 			<a class="mostrando">Mostrando</a>
-			<input id="PAG_TAM" name="PAG_TAM" type="number" min="1" max="<?php echo $total_registros; ?>" value="<?php echo $pag_tam ?>" autofocus="autofocus" />
+			<input id="PAG_TAM" name="PAG_TAM" class="PAG_TAM" type="number" min="1" max="<?php echo $total_registros; ?>" value="<?php echo $pag_tam ?>" autofocus="autofocus" />
 			entradas de <?php echo $total_registros ?>
 			<input id="pagin" name="pagin" type="submit" value="Cambiar" class="subpaginacion">
 		</form>

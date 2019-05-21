@@ -20,7 +20,7 @@
 	if ($pag_tam < 1) 		$pag_tam = 5;
 	unset($_SESSION["paginacion"]);
 	$conexion = crearConexionBD();
-	$query = 'SELECT * from TRANSPORTE';
+	$query = 'SELECT * from TRANSPORTE ORDER BY TID';
 	$total_registros = total_consulta($conexion, $query);
 	$total_paginas = (int)($total_registros / $pag_tam);
 	if ($total_registros % $pag_tam > 0)		$total_paginas++;
@@ -43,7 +43,7 @@
 
 	<a class="mostrando">Mostrando</a>
 
-	<input id="PAG_TAM" name="PAG_TAM" type="number"
+	<input id="PAG_TAM" name="PAG_TAM" type="number" class="PAG_TAM"
 
 		min="1" max="<?php echo $total_registros; ?>"
 
@@ -64,6 +64,65 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--                                                      	MODAL_FORM                                                            -->
+<!-- The Modal -->
+<button id="myBtn" class="mybtn">Añadir Transporte</button>
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+      <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2>Añadir Transporte</h2>
+        </div>
+    <div class="modal-body">
+      <form method="post" action="produccion/controlador_transporte.php">
+        <div><label>Transporte: </label> <input type="text" id="transp" name="transp" class="form-modal"></div>
+				<label>Evento: </label>
+				<input required	 list="opcionesEventos" autocomplete="off" id="event" name="event" class="form-modal">
+				
+				<datalist id="opcionesEventos">
+			  	<?php
+			  		$eventos = listarEventos($conexion);
+			  		foreach($eventos as $evento) {
+			  			echo "<option label=Evento-".$evento["EID"]." value='".$evento["EID"]."'>";
+					}
+				?>
+			</datalist>
+
+
+
+
+
+
+				<div><label>Medio Utilizado: </label> <input type="text" maxlength="20" id="medioutil" name="medioutil" class="form-modal"></div>
+				<div><label>Numero de personas: </label> <input type="text" id="numpers" min=1 max=50 name="numpers" class="form-modal"></div>
+				<div><button id="agregar" name="agregar" type="submit" value="Añadir" class="btn">Agregar</button></div>
+      </form>
+    </div>
+	</div>
+	</div>
+	<script src="js/modal.js"></script> 
+<!--                                                      	MODAL_FORM                                                            -->
 
 
 
@@ -94,52 +153,6 @@
 
 
 
-
-
-
-
-
-
-<!--                                                      	MODAL_FORM                                                            -->
-<!-- The Modal -->
-<button id="myBtn" class="mybtn">Añadir Transporte</button>
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-      <div class="modal-header">
-          <span class="close">&times;</span>
-          <h2>Añadir Transporte</h2>
-        </div>
-    <div class="modal-body">
-      <form method="post" action="produccion/controlador_transporte.php">
-        <div><label>Transporte: </label> <input type="text" id="transp" name="transp" class="form-modal"></div>
-				<label>Evento: </label>
-				<input list="opcionesEventos" autocomplete="off" id="event" name="event" class="form-modal">
-				
-				<datalist id="opcionesEventos">
-			  	<?php
-			  		$eventos = listarEventos($conexion);
-			  		foreach($eventos as $evento) {
-			  			echo "<option label=Evento-".$evento["EID"]." value='".$evento["EID"]."'>";
-					}
-				?>
-			</datalist>
-
-
-
-
-
-
-				<div><label>Medio Utilizado: </label> <input type="text" id="medioutil" name="medioutil" class="form-modal"></div>
-				<div><label>Numero de personas: </label> <input type="text" id="numpers" name="numpers" class="form-modal"></div>
-				<div><button id="agregar" name="agregar" type="submit" value="Añadir" class="btn">Agregar</button></div>
-      </form>
-    </div>
-	</div>
-	</div>
-	<script src="js/modal.js"></script> 
-<!--                                                      	MODAL_FORM                                                            -->
 
 
 

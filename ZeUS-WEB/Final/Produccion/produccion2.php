@@ -30,7 +30,7 @@
 	if ($pag_tam < 1) 		$pag_tam = 5;
 	unset($_SESSION["paginacion"]);
 	$conexion = crearConexionBD();
-	$query = 'SELECT * from ALOJAMIENTO';
+	$query = 'SELECT * from ALOJAMIENTO ORDER BY EID';
 	$total_registros = total_consulta($conexion, $query);
 	$total_paginas = (int)($total_registros / $pag_tam);
 	if ($total_registros % $pag_tam > 0)		$total_paginas++;
@@ -52,7 +52,7 @@
 
 	<a class="mostrando">Mostrando</a>
 
-	<input id="PAG_TAM" name="PAG_TAM" type="number"
+	<input id="PAG_TAM" name="PAG_TAM" class="PAG_TAM" type="number"
 
 		min="1" max="<?php echo $total_registros; ?>"
 
@@ -110,12 +110,12 @@
 				?>
 			</datalist>
 
-				<div><label>Direccion: </label> <input type="text" id="direction" name="direction" class="form-modal"></div>
-				<div><label>Ciudad: </label> <input type="text" id="city" name="city" class="form-modal"></div>
+				<div><label>Direccion: </label> <input required type="text" maxlength="50" id="direction" name="direction" class="form-modal"></div>
+				<div><label>Ciudad: </label> <input required type="text" maxlength="20" id="city" name="city" class="form-modal"></div>
 				<div><label>Fecha de Inicio: </label> <input type="date" id="startdate" name="startdate" class="form-modal"></div>
 				<div><label>Fecha Fin: </label> <input type="date" id="enddate" name="enddate" class="form-modal"></div>
-				<label>Hotel: </label> 
-				<input list="opcionesHoteles" autocomplete="off" id="hotelmodal" name="hotelmodal" class="form-modal">
+				<label>Hotel: </label>
+				<input required list="opcionesHoteles" autocomplete="off" maxlength="40" id="hotelmodal" name="hotelmodal" class="form-modal">
 				<datalist id="opcionesHoteles">
 			  	<?php
 			  		$hoteles = listarHoteles($conexion);
@@ -125,7 +125,7 @@
 				?>
 			</datalist>
 				
-				<div><label>Numero de Personas: </label> <input type="text" id="numpersons" name="numpersonas" class="form-modal"></div>
+				<div><label>Numero de Personas: </label> <input type="number" min=1 max=50 id="numpersons" name="numpersonas" class="form-modal"></div>
 				<div><button id="agregar" name="agregar" type="submit" value="Añadir" class="btn">Agregar</button></div>
       </form>
     </div>

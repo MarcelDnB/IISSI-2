@@ -241,7 +241,7 @@ table {
 
 
 
-input[type=number] {
+.PAG_TAM {
 	width: 5%;
 	padding: 12px 20px;
 	margin: 8px 0;
@@ -252,7 +252,7 @@ input[type=number] {
 	outline: none;
   }
   
-  input[type=number]:focus {
+.PAG_TAM:focus {
 	border: 3px solid #555;
   }
 

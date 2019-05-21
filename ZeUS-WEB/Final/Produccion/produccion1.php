@@ -23,7 +23,7 @@ if (!isset($_SESSION['login'])) {
 	if ($pag_tam < 1) 		$pag_tam = 5;
 	unset($_SESSION["paginacion"]);
 	$conexion = crearConexionBD();
-	$query = 'SELECT * from EVENTO';
+	$query = 'SELECT * from EVENTO ORDER BY EID';
 	$total_registros = total_consulta($conexion, $query);
 	$total_paginas = (int)($total_registros / $pag_tam);
 	if ($total_registros % $pag_tam > 0)		$total_paginas++;
@@ -44,7 +44,7 @@ cerrarConexionBD($conexion);
 		<form method="get" action="pagina.php" class="formpaginacion">
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada ?>" />
 			<a class="mostrando">Mostrando</a>
-			<input id="PAG_TAM" name="PAG_TAM" type="number" min="1" max="<?php echo $total_registros; ?>" value="<?php echo $pag_tam ?>" autofocus="autofocus" />
+			<input id="PAG_TAM" name="PAG_TAM" class="PAG_TAM" type="number" min="1" max="<?php echo $total_registros; ?>" value="<?php echo $pag_tam ?>" autofocus="autofocus" />
 			entradas de <?php echo $total_registros ?>
 			<input id="pagin" name="pagin" type="submit" value="Cambiar" class="subpaginacion">
 		</form>
@@ -77,12 +77,12 @@ cerrarConexionBD($conexion);
 			<div class="modal-body">
 				<form method="POST" action="produccion/controlador_evento.php">
 					<label>Lugar: </label>
-					<div><textarea required type="text" id="place" name="place" rows="3" cols="40"></textarea></div>
+					<div><textarea required type="text" id="place" name="place" rows="1" cols="40" maxlength="40"></textarea></div>
 					<label>Fecha de Inicio: </label> <input required type="date" id="finicio" name="finicio" class="form-modal">
-					<label>Fecha de Fin: </label> <input required type="date" id="ffin" name="ffin" class="form-modal">
-					<label>Precio Total: </label> <input type="text" id="totalprice" name="totalprice" class="form-modal">
+					<label>Fecha de Fin: </label> <input type="date" id="ffin" name="ffin" class="form-modal">
+					<label>Precio Total: </label> <input type="number" min="1" max="1000000000" id="totalprice" name="totalprice" class="form-modal">
 					<label>Descripcion: </label>
-					<div><textarea id="description" name="description" rows="10" cols="70"></textarea></div>
+					<div><textarea id="description" maxlength="140" name="description" rows="10" cols="70"></textarea></div>
 					<button id="agregar" name="agregar" type="submit" value="Añadir" class="btn">Añadir</button>
 					<?php if (isset($_SESSION["errormodal"])) { ?>
 						<label>HA OCURRIDO UN ERROR</label>
@@ -94,13 +94,6 @@ cerrarConexionBD($conexion);
 		</div>
 	</div>
 	<script src="js/modal.js"></script>
-	<script>
-		window.onload = function(event){
- 		 if($_SESSION["errormodal"]=="TRUE") {
-    		modal.style.display = "block";
-  }
-}
-</script>
 	<!--                                                      	MODAL_FORM                                                            -->
 
 
@@ -251,6 +244,8 @@ cerrarConexionBD($conexion);
 				<?php unset($_SESSION["excepcion"]);
 				unset($_SESSION["borrado"]);
 				unset($_SESSION["editando"]);
+				unset($_SESSION["errormodal"]);
+				unset($_SESSION["pagconsult"]);
 				
 				
 				?>
