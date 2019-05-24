@@ -183,7 +183,7 @@ BEGIN
 END;
 
 --Requisito funcional PRF07
-CREATE OR REPLACE TRIGGER PRF07 
+/*CREATE OR REPLACE TRIGGER PRF07 
 after INSERT OR UPDATE ON ALOJAMIENTO
 DECLARE 
 AUX1 INTEGER;
@@ -194,7 +194,7 @@ SELECT numPersonas INTO AUX2 FROM ALOJAMIENTO WHERE EID=EID;
   IF NOT(AUX2<=AUX1) then raise_application_error(-20620,'El alojamiento tiene que ser para todas las personas asignadas al evento');
   end if;
 END;
-
+*/
 --Requisito funcional PRF08
 create or replace TRIGGER PRF08
 after UPDATE of estado ON PERSONAL
@@ -234,4 +234,26 @@ BEGIN
 IF(:new.estado='Ocupado' AND :new.eid=0) THEN
 RAISE_APPLICATION_ERROR(-20624,'No es posible que un empleado esté ocupado sin ningún Evento asignado');
 END IF;
+END;
+
+
+--ELIMINAR ALOJAMIENTO AL REALIZAR EVENTO
+create or replace TRIGGER EVENTO_ALOJAMIENTO
+BEFORE UPDATE ON evento
+FOR EACH ROW
+BEGIN
+  IF(:NEW.ESTADOEVENTO='Realizado') then 
+  delete alojamiento where eid=:new.eid;
+  end if;
+END;
+
+
+-ELIMINAR TRANSPORTE AL REALIZAR EVENTO
+create or replace TRIGGER EVENTO_TRANSPORTE
+BEFORE UPDATE ON evento
+FOR EACH ROW
+BEGIN
+  IF(:NEW.ESTADOEVENTO='Realizado') then 
+  delete transporte where eid=:new.eid;
+  end if;
 END;

@@ -68,26 +68,6 @@
 
 
 
-<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
-<?php if(isset($_SESSION["borrado"])) {
-					echo "No se puede borrar";
-				}
-			if(isset($_SESSION["editando"])) {
-					echo "No se puede modificar, tenga cuidado con el formato que se requiere";
-			}
-			if(isset($_SESSION["errormodal"])) {
-				echo "No se ha podido crear el usuario, ha introducido algún dato inválido";
-				echo $_SESSION["excepcion"];
-		}
-			if(isset($_SESSION['pagconsult'])) {
-				echo "Ha ocurrido un error con la paginación";
-			}
-			?>
-<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
-
-
-
-
 
 
 
@@ -110,20 +90,19 @@
         </div>
     <div class="modal-body">
       <form method="post" action="produccion/controlador_personal.php">
-        <div><label>Personal ID: </label> <input type="text" id="persid" name="persid" class="form-modal"></div>
 				<div><label>Departamento: </label> 
 				<select class="form-modal" id="dept" required name="dept">
 									<option selected="selected">Produccion</option>
 									<option>Tecnico</option>
 									<option>Almacen</option>
 								</select></div>
-				<div><label>Nombre: </label> <input required type="text" maxlength="20" id="nmbre" name="nmbre" class="form-modal"></div>
-				<div><label>Cargo: </label> <input required type="text" id="carg" maxlength="20" name="carg" class="form-modal"></div>
-				<div><label>Sueldo: </label> <input  type="number" max=100000 id="sueld" name="sueld" class="form-modal"></div>
-				<div><label>DNI: </label> <input required maxlength="9" type="text" id="denei" name="denei" class="form-modal"></div>
-				<div><label>Email: </label> <input type="text" maxlength="20" id="emeil" name="emeil" class="form-modal"></div>
-				<div><label>Contraseña: </label> <input type="password" maxlength="20" id="contra" name="contra" class="form-modal"></div>
-				<div><label>Telefono: </label> <input type="number" max=9 id="telf" name="telf" class="form-modal"></div>
+				<div><label>Nombre: </label> <input autocomplete="off" required type="text" maxlength="20" id="nmbre" name="nmbre" class="form-modal"></div>
+				<div><label>Cargo: </label> <input autocomplete="off" required type="text" id="carg" maxlength="20" name="carg" class="form-modal"></div>
+				<div><label>Sueldo: </label> <input autocomplete="off"  type="number" max=100000 id="sueld" name="sueld" class="form-modal"></div>
+				<div><label>DNI: </label> <input autocomplete="off" required maxlength="9" type="text" id="denei" name="denei" class="form-modal"></div>
+				<div><label>Email: </label> <input autocomplete="off" type="text" maxlength="20" id="emeil" name="emeil" class="form-modal"></div>
+				<div><label>Contraseña: </label> <input autocomplete="off" type="password" maxlength="20" id="contra" name="contra" class="form-modal"></div>
+				<div><label>Telefono: </label> <input autocomplete="off" type="number" max=999999999 id="telf" name="telf" class="form-modal"></div>
 				<div><label>Estado: </label> 
 				<select class="form-modal" id="estd" required name="estd">
 									<option selected="selected">Libre</option>
@@ -180,6 +159,25 @@
 
 
 
+<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
+<?php if(isset($_SESSION["borrado"])) {
+					echo "No se puede borrar";
+				}
+			if(isset($_SESSION["editando"])) {
+					echo "No se puede modificar, tenga cuidado con el formato que se requiere";
+			}
+			if(isset($_SESSION["errormodal"])) {
+				echo "No se ha podido crear el usuario, ha introducido algún dato inválido";
+		}
+			if(isset($_SESSION['pagconsult'])) {
+				echo "Ha ocurrido un error con la paginación";
+			}
+			?>
+<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
+
+
+			
+
 
 
 
@@ -195,7 +193,8 @@
 
 <div class="seccionEntradas">
 <table id="tabla1" style="width:100%">
-			<tr>
+<thead>		
+<tr>
 			<th>Personal</th>
 			<th>Departamento</th>
 			<th>Nombre</th>
@@ -209,6 +208,7 @@
 			<th>Editar</th>
 			<th>Borrar</th>
 			</tr>	
+		</thead>
 	<?php
 		foreach($filas as $fila) {
 	?>
@@ -239,25 +239,25 @@
 					if (isset($PERSONAL) and ($fila["PID"] == $PERSONAL["PID"])) { ?>
 						<!-- Editando título -->
 						<tr>
-						<td><input id="PID" name="PID" type="text" value="<?php echo $fila['PID'];?>"/></td>
+						<td data-title="Personal:"><input id="PID" name="PID" type="text" value="<?php echo $fila['PID'];?>"/></td>
 						
-						<td><select id="DEPARTAMENTO" required name="DEPARTAMENTO">
+						<td data-title="Departamento:"><select id="DEPARTAMENTO" required name="DEPARTAMENTO">
 									<?php if ($fila['DEPARTAMENTO'] != "Produccion") echo "<option>Produccion</option>" ?>
 									<?php if ($fila['DEPARTAMENTO'] != "Tecnico") echo "<option>Tecnico</option>" ?>
 									<?php if ($fila['DEPARTAMENTO'] != "Almacen") echo "<option>Almacen</option>" ?>
 									<option selected="selected"><?php echo $fila['DEPARTAMENTO']; ?></option>
 								</select></td>
-						<td><input id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $fila['NOMBRE'];?>"/></td>
-						<td><input id="CARGO" name="CARGO" type="text" value="<?php echo $fila['CARGO'];?>"/></td>
-						<td><input id="SUELDO" name="SUELDO" type="text" value="<?php echo $fila['SUELDO'];?>"/></td>
-						<td><input id="DNI" name="DNI" type="text" value="<?php echo $fila['DNI'];?>"/></td>
-						<td><input id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $fila['TELEFONO'];?>"/></td>
-						<td><select id="ESTADO" required name="ESTADO">
+						<td data-title="Personal:"><input id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $fila['NOMBRE'];?>"/></td>
+						<td data-title="Cargo:"><input id="CARGO" name="CARGO" type="text" value="<?php echo $fila['CARGO'];?>"/></td>
+						<td data-title="Sueldo:"><input id="SUELDO" name="SUELDO" type="text" value="<?php echo $fila['SUELDO'];?>"/></td>
+						<td data-title="DNI:"><input id="DNI" name="DNI" type="text" value="<?php echo $fila['DNI'];?>"/></td>
+						<td data-title="Telefono:"><input id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $fila['TELEFONO'];?>"/></td>
+						<td data-title="Estado:"><select id="ESTADO" required name="ESTADO">
 									<?php if ($fila['ESTADO'] != "Libre") echo "<option>Libre</option>" ?>
 									<?php if ($fila['ESTADO'] != "Ocupado") echo "<option>Ocupado</option>" ?>
 									<option selected="selected"><?php echo $fila['ESTADO']; ?></option>
 								</select></td>
-						<td><input list="opcionesEventos" id="EID" name="EID" autocomplete="off">
+						<td data-title="Evento:"><input list="opcionesEventos" id="EID" name="EID" autocomplete="off">
 				
 				<datalist id="opcionesEventos">
 			  	<?php
@@ -268,7 +268,7 @@
 				?>
 			</datalist></td>
 
-				<td><input list="opcionesParte" autocomplete="off" id="PEID" name="PEID">
+				<td data-title="PEID:"><input list="opcionesParte" autocomplete="off" id="PEID" name="PEID">
 				
 				<datalist id="opcionesParte">
 			  	<?php
@@ -284,33 +284,33 @@
 						<?php }	else { ?>
 						<!-- mostrando título -->	
 						<tr>
-						<td><?php echo $fila['PID'];?></td>
-						<td><?php echo $fila['DEPARTAMENTO'];?></td>
-						<td><?php echo $fila['NOMBRE'];?></td>
-						<td><?php echo $fila['CARGO'] ?></td>
-						<td><?php echo $fila['SUELDO'];?></td>
-						<td><?php echo $fila['DNI'];?></td>
-						<td><?php echo $fila['TELEFONO']?></td>
-						<td><?php echo $fila['ESTADO']?></td>
-						<td><?php echo $fila['EID']?></td>
-						<td><?php echo $fila['PEID']?></td>
+						<td data-title="Personal:"><?php echo $fila['PID'];?></td>
+						<td data-title="Departamento:"><?php echo $fila['DEPARTAMENTO'];?></td>
+						<td data-title="Nombre:"><?php echo $fila['NOMBRE'];?></td>
+						<td data-title="Cargo:"><?php echo $fila['CARGO'] ?></td>
+						<td data-title="Sueldo:"><?php echo $fila['SUELDO'];?></td>
+						<td data-title="DNI:"><?php echo $fila['DNI'];?></td>
+						<td data-title="Telefono:"><?php echo $fila['TELEFONO']?></td>
+						<td data-title="Estado:"><?php echo $fila['ESTADO']?></td>
+						<td data-title="Evento:"><?php echo $fila['EID']?></td>
+						<td data-title="PEID:"><?php echo $fila['PEID']?></td>
 
 				<?php } ?>
 				
 				<?php if (isset($PERSONAL) and $fila["PID"] == $PERSONAL["PID"]) { ?>
-				<td>
+				<td data-title="Confirmar:">
 					<button id="grabar" name="grabar" type="submit" class="editar_fila">
 						<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar Cambios">
 					</button>
 				</td>
 				<?php } else {?>
-					<td>
+					<td data-title="Editar:">
 					<button id="editar" name="editar" type="submit" class="editar_fila">
 						<img src="images/pencil_menuito.bmp" class="editar_fila" alt="Editar Libro">
 					</button>	
 				</td>
 				<?php } ?>
-				<td>
+				<td data-title="Borrar:">
 				<button id="borrar" name="borrar" type="submit" class="editar_fila">
 						<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar Libro">
 					</button>

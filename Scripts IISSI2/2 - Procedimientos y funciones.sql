@@ -30,7 +30,7 @@ COMMIT WORK;
 end contratar_personal_comercial;
 
 --PRN01.2 Solo el departamento de producción puede contratar personal externo
-create or replace PROCEDURE contratar_personal_externo(w_nombre IN personal.nombre%TYPE,w_cargo IN personal.cargo%TYPE,w_sueldo IN personal.sueldo%TYPE,w_dni IN personal.dni%TYPE,w_telefono IN personal.telefono%TYPE, w_eid IN personal.eid%TYPE, w_peid IN personal.peid%TYPE, w_contrata IN personal.pid%TYPE) 
+/*create or replace PROCEDURE contratar_personal_externo(w_nombre IN personal.nombre%TYPE,w_cargo IN personal.cargo%TYPE,w_sueldo IN personal.sueldo%TYPE,w_dni IN personal.dni%TYPE,w_telefono IN personal.telefono%TYPE, w_eid IN personal.eid%TYPE, w_peid IN personal.peid%TYPE, w_contrata IN personal.pid%TYPE) 
 IS
 BEGIN 
 IF (w_contrata > 999999 and w_contrata < 2000000) then
@@ -38,6 +38,15 @@ INSERT INTO personal(pid,departamento,nombre,cargo,sueldo,dni,telefono,estado,ei
 end if;
 COMMIT WORK;
 end contratar_personal_externo;
+*/
+create or replace PROCEDURE crear_usuario(w_departamento IN personal.departamento%TYPE,w_nombre IN personal.nombre%TYPE,w_cargo IN personal.cargo%TYPE,w_sueldo IN personal.sueldo%TYPE,
+w_dni IN personal.dni%TYPE,w_telefono IN personal.telefono%TYPE,w_estado IN personal.estado%TYPE,w_eid IN personal.eid%TYPE,w_peid IN personal.peid%TYPE,w_email IN personal.email%TYPE,
+w_pass IN personal.pass%TYPE) IS
+BEGIN
+INSERT INTO personal(pid,departamento,nombre,cargo,sueldo,dni,telefono,email,pass,estado,eid,peid)
+VALUES (sec_personal.nextval, w_departamento, w_nombre, w_cargo,w_sueldo,w_dni,w_telefono,w_email,w_pass,w_estado,w_eid,w_peid);
+COMMIT WORK;
+end crear_usuario;
 
 --Procedures para agregar ítems al inventario. ARF03
 create or replace procedure agregar_altavoz(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type, w_potencia IN altavoces.potencia%type, w_pulgadas IN altavoces.pulgadas%type)
@@ -120,19 +129,19 @@ COMMIT WORK;
 end borrar_item;
 
 --Procedure para alquilar un ítem
-CREATE OR REPLACE PROCEDURE alquilar_item(w_tipo IN itemalquilado.tipo%TYPE, w_nombre IN itemalquilado.nombre%TYPE, w_empresa IN itemalquilado.empresa%TYPE, w_fechallegada IN itemalquilado.fechaLlegada%TYPE, w_fechadevolucion IN itemalquilado.fechadevolucion%TYPE, w_cantidad IN itemalquilado.cantidad%TYPE, w_precio IN itemalquilado.precio%TYPE, w_pid IN itemalquilado.pid%TYPE, w_peid IN itemalquilado.peid%TYPE)
+create or replace PROCEDURE alquilar_item(w_tipo IN itemalquilado.tipo%TYPE, w_nombre IN itemalquilado.nombre%TYPE, w_empresa IN itemalquilado.empresa%TYPE, w_fechallegada IN itemalquilado.fechaLlegada%TYPE, w_fechadevolucion IN itemalquilado.fechadevolucion%TYPE, w_cantidad IN itemalquilado.cantidad%TYPE, w_precio IN itemalquilado.precio%TYPE, w_pid IN itemalquilado.pid%TYPE, w_peid IN itemalquilado.peid%TYPE,
+w_mid IN itemalquilado.mid%TYPE)
 IS
 BEGIN 
-INSERT INTO itemAlquilado(tipo, nombre, empresa, fechaLlegada, fechaDevolucion, cantidad, precio, pid, peid) values(w_tipo, w_nombre, w_empresa, w_fechaLlegada, w_fechaDevolucion, w_cantidad, w_precio, w_pid, w_peid);
+INSERT INTO itemAlquilado(ia,tipo, nombre, empresa, fechaLlegada, fechaDevolucion, cantidad, precio, pid, peid,mid) values(SEC_ITEM.nextval,w_tipo, w_nombre, w_empresa, w_fechaLlegada, w_fechaDevolucion, w_cantidad, w_precio, w_pid, w_peid,w_mid);
 COMMIT WORK;
 end alquilar_item;
-
 --Procedure para ver el personal de cada evento. COMPILAR ANTES LA FUNCIÓN
-CREATE OR REPLACE PROCEDURE DIRECCION_PERSONAL_EVENTO(weid in evento.eid%type) AS 
+/*CREATE OR REPLACE PROCEDURE DIRECCION_PERSONAL_EVENTO(weid in evento.eid%type) AS 
 BEGIN
   DBMS_OUTPUT.PUT_LINE(personal_evento(weid));
 END DIRECCION_PERSONAL_EVENTO;
-
+*/
 --Procedure para dar el aviso de que un ítem necesita ser reparado.
 CREATE OR REPLACE PROCEDURE necesita_reparacion(w_referencia IN inventario.referencia%TYPE)
 IS
@@ -180,6 +189,7 @@ COMMIT WORK;
 END actualiza_estado_envio;
 
 --Procedures para crear un evento y para avisar de que se empieza a preparar. El evento finalizará cuando llegue el envío de material de vuelta al almacén
+
 create or replace PROCEDURE crear_evento(w_precioTotal IN evento.precioTotal%TYPE,w_lugar IN evento.lugar%TYPE,w_fechaInicio IN evento.fechaInicio%TYPE,w_fechaFin IN evento.fechaFin%TYPE,w_descripcionCliente IN evento.descripcionCliente%TYPE) IS
 BEGIN
 INSERT INTO evento(eid,precioTotal, lugar,fechainicio,fechafin,descripcioncliente,estadoevento)
@@ -187,22 +197,25 @@ VALUES (sec_evento.nextval, w_precioTotal, w_lugar, w_fechaInicio,w_fechaFin, w_
 COMMIT WORK;
 end crear_evento;
 
-create or replace PROCEDURE comenzar_evento(w_eid IN evento.eid%TYPE) IS
+/*create or replace PROCEDURE comenzar_evento(w_eid IN evento.eid%TYPE) IS
 BEGIN
 UPDATE evento set estadoevento = 'enPreparacion' where eid=w_eid;
 COMMIT WORK;
 end comenzar_evento;
+*/
 
 --Procedure para asignar un empleado a un evento
-CREATE OR REPLACE PROCEDURE asignar_personal_evento(w_pid IN mantenimiento.pid%TYPE, w_eid IN Personal.eid%TYPE)
+
+/*CREATE OR REPLACE PROCEDURE asignar_personal_evento(w_pid IN mantenimiento.pid%TYPE, w_eid IN Personal.eid%TYPE)
 IS
 BEGIN 
 UPDATE personal set estado='Ocupado' where pid=w_pid;
 UPDATE personal set eid=w_eid where pid=w_pid;
 COMMIT WORK;
 end asignar_personal_evento;
-
+*/
 --Procedure para liberar personal
+
 CREATE OR REPLACE PROCEDURE liberar_personal_evento(w_eid IN Personal.eid%TYPE)
 IS
 BEGIN
@@ -319,7 +332,7 @@ COMMIT WORK;
 end ver_empresa;
 
 --Procedure para ver los datos del personal
-create or replace PROCEDURE ver_personal IS
+/*create or replace PROCEDURE ver_personal IS
 CURSOR c6 IS
 SELECT cargo,nombre,dni,telefono FROM personal;
 BEGIN
@@ -329,6 +342,7 @@ DBMS_OUTPUT.PUT_LINE('Nombre: ' ||fila.nombre ||  '  Cargo:   ' ||fila.cargo || 
 END LOOP;
 COMMIT WORK;
 end ver_personal;
+*/
 
 --Procedure para ver el personal técnico. TRN04
 create or replace PROCEDURE ver_tecnicos(w_eid IN personal.eid%TYPE) IS
@@ -343,6 +357,7 @@ COMMIT WORK;
 end ver_tecnicos;
 
 --Procedure para ver ítems alquilados
+/*
 create or replace PROCEDURE ver_itemsalquilados IS
 CURSOR c8 IS
 SELECT tipo, nombre,empresa FROM itemalquilado;
@@ -353,6 +368,7 @@ DBMS_OUTPUT.PUT_LINE('Tipo: ' ||fila.tipo ||  '  Nombre:   ' || fila.nombre|| ' 
 END LOOP;
 COMMIT WORK;
 end ver_itemsalquilados;
+*/
 
 --Requisito funcional TRF02
 CREATE OR REPLACE PROCEDURE TRF02 IS CURSOR c9 IS 
@@ -377,9 +393,119 @@ END LOOP;
 COMMIT WORK;
 end ver_inventario_evento;
 
+--CREA ALOJAMIENTO
+create or replace PROCEDURE crear_alojamiento(w_EID IN alojamiento.eid%TYPE,w_ciudad IN alojamiento.ciudad%TYPE,w_direccion IN alojamiento.direccion%TYPE,w_fechaInicio IN alojamiento.fechaInicio%TYPE,w_fechaFin IN alojamiento.fechafin%TYPE
+,w_hotel IN alojamiento.hotel%TYPE,w_numPersonas IN alojamiento.numpersonas%TYPE) IS
+BEGIN
+INSERT INTO alojamiento(ciudad,direccion, fechainicio,fechafin,hotel,numpersonas,eid)
+VALUES (w_ciudad, w_direccion, w_fechaInicio, w_fechaFin,w_hotel, w_numPersonas, w_EID);
+COMMIT WORK;
+end crear_alojamiento;
+
+--PARA CREAR TRANSPORTE
+create or replace PROCEDURE crear_transporte(w_medioutilizado IN transporte.medioutilizado%TYPE,w_numpersonas in transporte.numpersonas%type,w_eid IN transporte.eid%TYPE) IS
+BEGIN
+INSERT INTO transporte(tid,medioutilizado, numpersonas,eid)
+VALUES (SEC_TRANSPORTE.nextval, w_medioutilizado, w_numpersonas, w_eid);
+COMMIT WORK;
+end crear_transporte;
+
+--PARA MODIFICAR ALOJAMIENTO
+create or replace PROCEDURE MODIFICAR_ALOJAMIENTO(w_CIUDAD IN ALOJAMIENTO.CIUDAD%TYPE,w_DIRECCION IN alojamiento.direccion%TYPE,w_FECHAI IN alojamiento.fechainicio%TYPE,w_FECHAF IN alojamiento.fechafin%TYPE,
+w_HOTEL IN alojamiento.hotel%TYPE,w_NUMPERSONAS IN alojamiento.numpersonas%TYPE, w_EID IN alojamiento.eid%TYPE) is
+begin
+UPDATE ALOJAMIENTO SET CIUDAD = w_CIUDAD,direccion=w_direccion, fechainicio=w_fechai,fechafin=w_fechaf,HOTEL=w_HOTEL,numpersonas=w_numpersonas where EID=w_EID;
+commit work;
+end MODIFICAR_ALOJAMIENTO;
+
+--PARA MODIFICAR EVENTO
+create or replace PROCEDURE MODIFICAR_EVENTO(w_EID IN evento.eid%TYPE,w_PRECIOTOTAL IN EVENTO.PRECIOTOTAL%TYPE,w_LUGAR IN EVENTO.LUGAR%TYPE,w_FECHAI IN EVENTO.FECHAINICIO%TYPE,
+w_FECHAF IN evento.fechafin%TYPE,w_DESCRIPCION IN evento.descripcioncliente%TYPE, w_ESTADO IN evento.estadoevento%TYPE) is
+begin
+UPDATE EVENTO SET PRECIOTOTAL = w_PRECIOTOTAL,LUGAR=w_LUGAR, fechainicio=w_fechai,fechafin=w_fechaf,descripcioncliente=w_descripcion,estadoevento=w_estado where EID=w_EID;
+commit work;
+end MODIFICAR_EVENTO;
+
+--PARA MODIFICAR ITEM ALQUILADO
+create or replace PROCEDURE modificar_itema(w_IA IN itemalquilado.IA%TYPE,w_tipo IN itemalquilado.tipo%TYPE, w_nombre IN itemalquilado.nombre%TYPE, w_empresa IN itemalquilado.empresa%TYPE, w_fechallegada IN itemalquilado.fechaLlegada%TYPE, w_fechadevolucion IN itemalquilado.fechadevolucion%TYPE, w_cantidad IN itemalquilado.cantidad%TYPE, w_precio IN itemalquilado.precio%TYPE, w_pid IN itemalquilado.pid%TYPE, w_peid IN itemalquilado.peid%TYPE)
+IS
+BEGIN 
+update itemalquilado set tipo=w_tipo, nombre=w_nombre, empresa=w_empresa, fechaLlegada=w_fechallegada, fechaDevolucion=w_fechadevolucion, cantidad=w_cantidad, precio=w_precio, pid=w_pid, peid=w_peid where
+IA=W_IA;
+COMMIT WORK;
+end modificar_itema;
+
+--PARA MODIFICAR PERSONAL
+create or replace PROCEDURE MODIFICAR_PERSONAL(w_PID IN PERSONAL.PID%TYPE, w_DEPARTAMENTO IN personal.departamento%TYPE,w_NOMBRE IN PERSONAL.NOMBRE%TYPE,w_CARGO IN PERSONAL.CARGO%TYPE,
+w_SUELDO IN PERSONAL.SUELDO%TYPE,w_DNI IN PERSONAL.DNI%TYPE,w_TELEFONO IN PERSONAL.TELEFONO%TYPE,w_ESTADO IN PERSONAL.ESTADO%TYPE,w_EID IN PERSONAL.EID%TYPE,
+w_PEID IN PERSONAL.PEID%TYPE) is
+begin
+UPDATE personal SET PID=w_PID, DEPARTAMENTO=w_DEPARTAMENTO, NOMBRE=w_NOMBRE,CARGO=w_CARGO,SUELDO=w_SUELDO,DNI=w_DNI, TELEFONO=w_TELEFONO,ESTADO=w_ESTADO,EID=w_EID,PEID=w_PEID where PID=w_PID;
+commit work;
+end MODIFICAR_PERSONAL;
+
+
+--PARA MODIFICAR TRANSPORTE
+create or replace PROCEDURE MODIFICAR_TRANSPORTE(w_TID IN TRANSPORTE.TID%TYPE,w_MU IN transporte.medioutilizado%TYPE,w_NP IN transporte.numpersonas%TYPE,w_EID IN transporte.eid%TYPE) is
+begin
+UPDATE transporte SET MEDIOUTILIZADO = w_MU,NUMPERSONAS=w_NP, EID=w_EID where TID=w_TID;
+commit work;
+end MODIFICAR_TRANSPORTE;
+
+
+--PARA QUITAR ALOJAMIENTO
+create or replace PROCEDURE quitar_alojamiento(w_EID IN evento.EID%TYPE,w_HOTEL IN ALOJAMIENTO.HOTEL%TYPE) is
+begin
+delete alojamiento where EID=w_eid AND HOTEL=w_hotel;
+commit work;
+end quitar_alojamiento;
+
+
+-PARA QUITAR EVENTO
+create or replace PROCEDURE quitar_evento(w_EID IN evento.EID%TYPE) is
+begin
+delete evento cascade where eid=w_EID;
+commit work;
+end quitar_evento;
+
+
+--PARA QUITAR ITEMALQUILADO
+create or replace PROCEDURE quitar_itema(w_IA IN itemalquilado.ia%TYPE) is
+begin
+delete itemalquilado where IA=w_IA;
+commit work;
+end quitar_itema;
+
+
+-PARA QUITAR MATERIALNECESARIO
+create or replace PROCEDURE quitar_materialnecesario(w_MID IN materialnecesario.MID%TYPE) is
+begin
+delete materialnecesario where mid=w_MID;
+commit work;
+end quitar_materialnecesario;
+
+
+
+-PARA QUITAR PERSONAL
+create or replace PROCEDURE quitar_personal(w_pid in personal.pid%type) is
+begin
+delete personal where pid=w_pid;
+commit work;
+end quitar_personal;
+
+
+
+-PARA QUITAR TRANSPORTE
+create or replace PROCEDURE QUITAR_TRANSPORTE(w_TID IN TRANSPORTE.TID%TYPE) is
+begin
+delete TRANSPORTE cascade where TID=w_TID;
+commit work;
+end QUITAR_TRANSPORTE;
+
+
 ------------------------------------Funciones-----------------------------------
 --Requisito PRF05
-CREATE OR REPLACE FUNCTION  PERSONAL_EVENTO(weid in evento.eid%type) RETURN VARCHAR2 AS wdireccion alojamiento.direccion%type;
+/*CREATE OR REPLACE FUNCTION  PERSONAL_EVENTO(weid in evento.eid%type) RETURN VARCHAR2 AS wdireccion alojamiento.direccion%type;
 BEGIN
 select direccion into wdireccion from alojamiento where eid=weid;
   RETURN wdireccion;
@@ -391,5 +517,6 @@ BEGIN
 select peid into wpeid from parteequipo where eid=weid;
   RETURN wpeid;
 END FUNCION_VER_INVENTARIO;
+*/
 
 --

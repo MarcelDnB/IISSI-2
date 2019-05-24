@@ -86,6 +86,7 @@ cerrarConexionBD($conexion);
 				<th>Tipo</th>
 				<th>Cantidad</th>
 				<th>PID</th>
+				<th>PEID</th>
 				<th>Confirmar</th>
 			</tr>
 			<?php foreach ($materiales as $material) { ?>
@@ -95,6 +96,7 @@ cerrarConexionBD($conexion);
 				<td ><input type="text" id="iatipo" name="iatipo" readonly value="<?php echo $material['TIPO']; ?>"></td>
 				<td ><input type="text" id="iacantidad" name="iacantidad" readonly value="<?php echo $material['CANTIDAD']; ?>"></td>
 				<th><input type="text" id="iapid" name="iapid" readonly value="<?php echo $usuariomod ?>"></th>
+				<td ><input type="text" id="iapeid" name="iapeid" readonly value="<?php echo $material['PEID']; ?>"></td>
 				<td>
 					<button id="agregar" name="agregar" type="submit" class="editar_fila">Alquilar</button>
 				</td>
@@ -126,15 +128,12 @@ cerrarConexionBD($conexion);
 	<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
 	<?php if (isset($_SESSION["borrado"])) {
 		echo "No se puede borrar";
-		echo $_SESSION["excepcion"];
 	}
 	if (isset($_SESSION["editando"])) {
 		echo "No se puede modificar, tenga cuidado con el formato que se requiere";
-		echo $_SESSION["excepcion"];
 	}
 	if(isset($_SESSION["errormodal"])) {
 		echo "No se ha podido crear el transporte, ha introducido algún dato inválido";
-		echo $_SESSION["excepcion"];
 }
 	if(isset($_SESSION['pagconsult'])) {
 		echo "Ha ocurrido un error con la paginación";
@@ -159,7 +158,8 @@ cerrarConexionBD($conexion);
 	<!--                                                       CONSULTA_EVENTO                                                            -->
 	<div class="seccionEntradas">
 		<table id="tabla1" style="width:100%">
-			<tr>
+		<thead>	
+		<tr>
 				<th>ID</th>
 				<th>Tipo</th>
 				<th>Nombre</th>
@@ -173,6 +173,7 @@ cerrarConexionBD($conexion);
 				<th>Editar</th>
 				<th>Borrar</th>
 			</tr>
+</thead>
 			<?php
 			foreach ($filas as $fila) {
 				?>
@@ -195,45 +196,45 @@ cerrarConexionBD($conexion);
 					if (isset($itema) and ($fila["IA"] == $itema["IA"])) { ?>
 						<!-- Editando título -->
 						<tr>
-							<td><?php echo $fila['IA']; ?></td>
-							<td><input id="TIPO" name="TIPO" type="text" value="<?php echo $fila['TIPO']; ?>" /></td>
-							<td><input id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $fila['NOMBRE']; ?>" /></td>
-							<td><input id="EMPRESA" name="EMPRESA" type="text" value="<?php echo $fila['EMPRESA']; ?>" /></td>
-							<td><input id="FECHALLEGADA" name="FECHALLEGADA" type="date" required value="<?php if ($fila["FECHALLEGADA"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHALLEGADA']), 'Y-m-d'); ?>" /></td>
-							<td><input id="FECHADEVOLUCION" name="FECHADEVOLUCION" type="date" required value="<?php if ($fila["FECHADEVOLUCION"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHADEVOLUCION']), 'Y-m-d'); ?>" /></td>
-							<td><input id="CANTIDAD" name="CANTIDAD" type="text" value="<?php echo $fila['CANTIDAD']; ?>" /></td>
-							<td><input id="PRECIO" name="PRECIO" type="text" value="<?php echo $fila['PRECIO']; ?>" /></td>
-							<td><input id="PID" name="PID" type="text" value="<?php echo $fila['PID']; ?>" /></td>
-							<td><input id="PEID" name="PEID" type="text" value="<?php echo $fila['PEID']; ?>" /></td>
+							<td data-title="ID:"><?php echo $fila['IA']; ?></td>
+							<td data-title="Tipo:"><input id="TIPO" name="TIPO" type="text" value="<?php echo $fila['TIPO']; ?>" /></td>
+							<td data-title="Nombre:"><input id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $fila['NOMBRE']; ?>" /></td>
+							<td data-title="Empresa:"><input id="EMPRESA" name="EMPRESA" type="text" value="<?php echo $fila['EMPRESA']; ?>" /></td>
+							<td data-title="F.Llegada:"><input id="FECHALLEGADA" name="FECHALLEGADA" type="date" required value="<?php if ($fila["FECHALLEGADA"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHALLEGADA']), 'Y-m-d'); ?>" /></td>
+							<td data-title="F.Devolucion:"><input id="FECHADEVOLUCION" name="FECHADEVOLUCION" type="date" required value="<?php if ($fila["FECHADEVOLUCION"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHADEVOLUCION']), 'Y-m-d'); ?>" /></td>
+							<td data-title="Cantidad:"><input id="CANTIDAD" name="CANTIDAD" type="text" value="<?php echo $fila['CANTIDAD']; ?>" /></td>
+							<td data-title="Precio:"><input id="PRECIO" name="PRECIO" type="text" value="<?php echo $fila['PRECIO']; ?>" /></td>
+							<td data-title="PID:"><input id="PID" name="PID" type="text" value="<?php echo $fila['PID']; ?>" /></td>
+							<td data-title="PEID:"><input id="PEID" name="PEID" type="text" value="<?php echo $fila['PEID']; ?>" /></td>
 						<?php } else { ?>
 							<!-- mostrando título -->
 						<tr>
-							<td><?php echo $fila['IA']; ?></td>
-							<td><?php echo $fila['TIPO']; ?></td>
-							<td><?php echo $fila['NOMBRE']; ?></td>
-							<td><?php echo $fila['EMPRESA']; ?></td>
-							<td><?php if ($fila["FECHALLEGADA"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHALLEGADA']), 'Y-m-d'); ?></td>
-							<td><?php if ($fila["FECHADEVOLUCION"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHADEVOLUCION']), 'Y-m-d'); ?></td>
-							<td><?php echo $fila['CANTIDAD']; ?></td>
-							<td><?php echo $fila['PRECIO']; ?></td>
-							<td><?php echo $fila['PID']; ?></td>
-							<td> <?php echo $fila['PEID']; ?></td>
+							<td data-title="ID:"><?php echo $fila['IA']; ?></td>
+							<td data-title="Tipo:"><?php echo $fila['TIPO']; ?></td>
+							<td data-title="Nombre:"><?php echo $fila['NOMBRE']; ?></td>
+							<td data-title="Empresa:"><?php echo $fila['EMPRESA']; ?></td>
+							<td data-title="F.Llegada:"><?php if ($fila["FECHALLEGADA"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHALLEGADA']), 'Y-m-d'); ?></td>
+							<td data-title="F.Devolucion:"><?php if ($fila["FECHADEVOLUCION"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHADEVOLUCION']), 'Y-m-d'); ?></td>
+							<td data-title="Cantidad:"><?php echo $fila['CANTIDAD']; ?></td>
+							<td data-title="Precio:"><?php echo $fila['PRECIO']; ?></td>
+							<td data-title="PID:"><?php echo $fila['PID']; ?></td>
+							<td data-title="PEID:"> <?php echo $fila['PEID']; ?></td>
 						<?php } ?>
 
 						<?php if (isset($itema) and $fila["IA"] == $itema["IA"]) { ?>
-							<td>
+							<td data-title="Confirmar:">
 								<button id="grabar" name="grabar" type="submit" class="editar_fila">
 									<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar Cambios">
 								</button>
 							</td>
 						<?php } else { ?>
-							<td>
+							<td data-title="Editar:">
 								<button id="editar" name="editar" type="submit" class="editar_fila">
 									<img src="images/pencil_menuito.bmp" class="editar_fila" alt="Editar Libro">
 								</button>
 							</td>
 						<?php } ?>
-						<td>
+						<td data-title="Borrar:">
 							<button id="borrar" name="borrar" type="submit" class="editar_fila">
 								<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar Libro">
 							</button>

@@ -36,10 +36,9 @@ function modificar_personal($conexion,$PID,$DEPARTAMENTO,$NOMBRE,$CARGO,$SUELDO,
 		return $e->getMessage();
     }
 }
-function crear_usuario($conexion,$PID,$DEPARTAMENTO,$NOMBRE,$CARGO,$SUELDO,$DNI,$TELEFONO,$ESTADO,$EID,$PEID,$EMAIL,$PASS) { 
+function crear_usuario($conexion,$DEPARTAMENTO,$NOMBRE,$CARGO,$SUELDO,$DNI,$TELEFONO,$ESTADO,$EID,$PEID,$EMAIL,$PASS) { 
 	try {
-		$stmt=$conexion->prepare("CALL crear_usuario(:PID,:DEPARTAMENTO,:NOMBRE,:CARGO,:SUELDO,:DNI,:TELEFONO,:ESTADO,:EID,:PEID,:EMAIL,:PASS)");
-		$stmt->bindParam(':PID',$PID);
+		$stmt=$conexion->prepare("CALL crear_usuario(:DEPARTAMENTO,:NOMBRE,:CARGO,:SUELDO,:DNI,:TELEFONO,:ESTADO,:EID,:PEID,:EMAIL,:PASS)");
 		$stmt->bindParam(':DEPARTAMENTO',$DEPARTAMENTO);
 		$stmt->bindParam(':NOMBRE',$NOMBRE);
 		$stmt->bindParam(':CARGO',$CARGO);

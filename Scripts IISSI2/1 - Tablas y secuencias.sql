@@ -21,6 +21,7 @@
             DROP TABLE personal;
             DROP TABLE ParteEquipo;
             DROP TABLE Evento;
+		 DROP TABLE hoteles;
             
 
 ------------------------------------TABLAS------------------------------------
@@ -92,17 +93,21 @@
             foreign key (peid) references parteEquipo
             );
             
-            create table itemAlquilado(
+
+create table itemAlquilado(
+		 IA number(4),
             tipo varchar2(10),
             nombre varchar2(10),
-            Empresa varchar2(10) not null,
+            Empresa varchar2(10),
             fechaLlegada date default sysdate,
-            fechaDevolucion date not null,
+            fechaDevolucion date ,
             constraint FECHAALQ check(fechaLlegada <= fechaDevolucion),
             cantidad number(5),
             precio number(5) check (precio >=0),
             pid number(7),
             peid number(7),
+		 mid number(4),
+		 foreign key(mid) references materialnecesario,
             foreign key(peid) references parteEquipo
             );
             
@@ -181,14 +186,25 @@
             foreign key(referencia) references inventario
             );
             
+
+create table HOTELES (
+hotel varchar2(40),
+indexHotel number(6),
+ primary key (hotel)
+);
+
+
+
+
+create table materialnecesario(
+mid number(4) primary key,
+nombre varchar2(40),
+tipo varchar2(40),
+cantidad NUMBER(4)
+);
             
 ------------------------------------Secuencias----------------------------------
 --Secuencias para generar los ID de cada empleado según su departamento
-create SEQUENCE sec_personal_almacen minvalue 1 maxvalue 999999 increment by 1 start with 1;
-create SEQUENCE sec_personal_produccion minvalue 1000000 maxvalue 1999999 increment by 1 start with 1000000;
-create SEQUENCE sec_personal_tecnico minvalue 2000000 maxvalue 2999999 increment by 1 start with 2000000;
-create SEQUENCE sec_personal_comercial minvalue 3000000 maxvalue 3999999 increment by 1 start with 3000000;
-create SEQUENCE sec_personal_externo minvalue 4000000 maxvalue 4999999 increment by 1 start with 4000000;
 --Secuencia para generar la referencia de los ítems
 create SEQUENCE sec_item minvalue 1 maxvalue 4999999999 increment by 1 start with 1;
 --Secuencia para generar los ID de los envíos
@@ -197,6 +213,14 @@ create SEQUENCE sec_envio minvalue 1 maxvalue 9999999 increment by 1 start with 
 create SEQUENCE sec_evento minvalue 1 maxvalue 9999999 increment by 1 start with 1;
 --Secuencia para generar un ID de parte de equipo
 create SEQUENCE sec_parteequipo minvalue 1 maxvalue 9999999 increment by 1 start with 1;
+--Secuencia para generar un ID de transporte
 create SEQUENCE sec_transporte minvalue 1 maxvalue 999999 increment by 1 start with 1;
+--Secuencia para generar un ID de alojamiento
+create SEQUENCE sec_alojamiento minvalue 1 maxvalue 999999 increment by 1 start with 1;
+--Secuencia para generar un ID de itemalquilado
+create SEQUENCE sec_alojamiento minvalue 1 maxvalue 999999 increment by 1 start with 1;
+--Secuencia para generar un ID de personal
+create SEQUENCE sec_personal minvalue 1 maxvalue 999999 increment by 1 start with 1;
+
 
 

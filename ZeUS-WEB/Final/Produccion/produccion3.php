@@ -113,8 +113,8 @@
 
 
 
-				<div><label>Medio Utilizado: </label> <input type="text" maxlength="20" id="medioutil" name="medioutil" class="form-modal"></div>
-				<div><label>Numero de personas: </label> <input type="text" id="numpers" min=1 max=50 name="numpers" class="form-modal"></div>
+				<div><label>Medio Utilizado: </label> <input autocomplete="off" type="text" maxlength="20" id="medioutil" name="medioutil" class="form-modal"></div>
+				<div><label>Numero de personas: </label> <input autocomplete="off" type="text" id="numpers" min=1 max=50 name="numpers" class="form-modal"></div>
 				<div><button id="agregar" name="agregar" type="submit" value="Añadir" class="btn">Agregar</button></div>
       </form>
     </div>
@@ -139,7 +139,7 @@
 					echo "No se puede modificar, tenga cuidado con el formato que se requiere";
 			}
 			if(isset($_SESSION["errormodal"])) {
-				echo "No se ha podido crear el usuario, ha introducido algún dato inválido";
+				echo "No se ha podido crear el transporte, ha introducido algún dato inválido";
 		}
 			if(isset($_SESSION['pagconsult'])) {
 				echo "Ha ocurrido un error con la paginación";
@@ -169,6 +169,7 @@
 
 <div class="seccionEntradas">
 <table id="tabla1" style="width:100%">
+<thead>	
 			<tr>
 			<th>Transporte</th>
 			<th>Evento</th>
@@ -177,6 +178,7 @@
 			<th>Editar</th>
 			<th>Borrar</th>
 			</tr>	
+		</thead>	
 	<?php
 		foreach($filas as $fila) {
 	?>
@@ -196,44 +198,44 @@
 					if (isset($transporte) and ($fila["TID"] == $transporte["TID"])) { ?>
 						<!-- Editando título -->
 						<tr>
-						<td><input id="TID" name="TID" type="text" value="<?php echo $fila['TID'];?>"/></td>
+						<td data-title="Transporte:"><input id="TID" name="TID" type="text" value="<?php echo $fila['TID'];?>"/></td>
 
 						
 						
 
 
-						<td><input id="EID" name="EID" type="text" value="<?php echo $fila['EID'];?>"/></td>
+						<td data-title="Evento:"><input id="EID" name="EID" type="text" value="<?php echo $fila['EID'];?>"/></td>
 						
 
 
 						
 						
 						
-						<td><input id="MEDIOUTILIZADO" name="MEDIOUTILIZADO" type="text" value="<?php echo $fila['MEDIOUTILIZADO'];?>"/></td>
-						<td><input id="NUMPERSONAS" name="NUMPERSONAS" type="text" value="<?php echo $fila['NUMPERSONAS'];?>"/></td>
+						<td data-title="Medio utilizado:"> <input id="MEDIOUTILIZADO" name="MEDIOUTILIZADO" type="text" value="<?php echo $fila['MEDIOUTILIZADO'];?>"/></td>
+						<td data-title="Num.Personas:"><input id="NUMPERSONAS" name="NUMPERSONAS" type="text" value="<?php echo $fila['NUMPERSONAS'];?>"/></td>
 						<?php }	else { ?>
 						<!-- mostrando título -->	
 						<tr>
-						<td><?php echo $fila['TID'];?></td>
-						<td><?php echo $fila['EID'];?></td>
-						<td><?php echo $fila['MEDIOUTILIZADO'];?></td>
-						<td><?php echo $fila['NUMPERSONAS'] ?></td>
+						<td data-title="Transporte:"><?php echo $fila['TID'];?></td>
+						<td data-title="Evento:"><?php echo $fila['EID'];?></td>
+						<td data-title="Medio utilizado:"><?php echo $fila['MEDIOUTILIZADO'];?></td>
+						<td data-title="Num.Personas:"><?php echo $fila['NUMPERSONAS'] ?></td>
 				<?php } ?>
 				
 				<?php if (isset($transporte) and $fila["TID"] == $transporte["TID"]) { ?>
-				<td>
+				<td data-title="Confirmar:">
 					<button id="grabar" name="grabar" type="submit" class="editar_fila">
 						<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar Cambios">
 					</button>
 				</td>
 				<?php } else {?>
-					<td>
+					<td data-title="Editar:">
 					<button id="editar" name="editar" type="submit" class="editar_fila">
 						<img src="images/pencil_menuito.bmp" class="editar_fila" alt="Editar Libro">
 					</button>	
 				</td>
 				<?php } ?>
-				<td>
+				<td data-title="Borrar:">
 				<button id="borrar" name="borrar" type="submit" class="editar_fila">
 						<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar Libro">
 					</button>
