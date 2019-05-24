@@ -10,6 +10,7 @@ function consulta_paginada( $conn, $query, $pag_num, $pag_size )
 				."WHERE ROWNUM <= :ultima"
 			.") "
 			."WHERE RNUM >= :primera";
+
 		$stmt = $conn->prepare( $consulta_paginada );
 		$stmt->bindParam( ':primera', $primera );
 		$stmt->bindParam( ':ultima',  $ultima  );
@@ -18,13 +19,16 @@ function consulta_paginada( $conn, $query, $pag_num, $pag_size )
 	}	
 	catch ( PDOException $e ) {
 		$_SESSION['excepcion'] = $e->GetMessage();
-		header("Location: excepcion.php");
+		$_SESSION['pagconsult'] = "error";
+		header("Location: pagina.php");
 	}
 } 
+
 function total_consulta( $conn, $query )
 {
 	try {
 		$total_consulta = "SELECT COUNT(*) AS TOTAL FROM ($query)";
+
 		$stmt = $conn->query($total_consulta);
 		$result = $stmt->fetch();
 		$total = $result['TOTAL'];
@@ -32,7 +36,8 @@ function total_consulta( $conn, $query )
 	}
 	catch ( PDOException $e ) {
 		$_SESSION['excepcion'] = $e->GetMessage();
-		header("Location: excepcion.php");
+		$_SESSION['pagconsult'] = "error";
+		header("Location: pagina.php");
 	}
 } 
 ?>
