@@ -78,6 +78,12 @@ if($_SESSION['consultaralmacen'] == 1) {    //Para almacén
     if (($_SESSION["localidad"] == "inventario")){
         include_once("almacen/consulta_inventario.php");
     }
+    else if (($_SESSION["localidad"] == "altavoces")) {
+        include_once("almacen/consulta_altavoces.php");
+    }
+    else if (($_SESSION["localidad"] == "focos")) {
+        include_once("almacen/consulta_focos.php");
+    }
     else if (($_SESSION["localidad"] == "envios")) {
         include_once("almacen/consulta_envios.php");
     }
