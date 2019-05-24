@@ -68,26 +68,6 @@
 
 
 
-<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
-<?php if(isset($_SESSION["borrado"])) {
-					echo "No se puede borrar";
-				}
-			if(isset($_SESSION["editando"])) {
-					echo "No se puede modificar, tenga cuidado con el formato que se requiere";
-			}
-			if(isset($_SESSION["errormodal"])) {
-				echo "No se ha podido crear el usuario, ha introducido algún dato inválido";
-				echo $_SESSION["excepcion"];
-		}
-			if(isset($_SESSION['pagconsult'])) {
-				echo "Ha ocurrido un error con la paginación";
-			}
-			?>
-<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
-
-
-
-
 
 
 
@@ -110,20 +90,19 @@
         </div>
     <div class="modal-body">
       <form method="post" action="produccion/controlador_personal.php">
-        <div><label>Personal ID: </label> <input type="text" id="persid" name="persid" class="form-modal"></div>
 				<div><label>Departamento: </label> 
 				<select class="form-modal" id="dept" required name="dept">
 									<option selected="selected">Produccion</option>
 									<option>Tecnico</option>
 									<option>Almacen</option>
 								</select></div>
-				<div><label>Nombre: </label> <input required type="text" maxlength="20" id="nmbre" name="nmbre" class="form-modal"></div>
-				<div><label>Cargo: </label> <input required type="text" id="carg" maxlength="20" name="carg" class="form-modal"></div>
-				<div><label>Sueldo: </label> <input  type="number" max=100000 id="sueld" name="sueld" class="form-modal"></div>
-				<div><label>DNI: </label> <input required maxlength="9" type="text" id="denei" name="denei" class="form-modal"></div>
-				<div><label>Email: </label> <input type="text" maxlength="20" id="emeil" name="emeil" class="form-modal"></div>
-				<div><label>Contraseña: </label> <input type="password" maxlength="20" id="contra" name="contra" class="form-modal"></div>
-				<div><label>Telefono: </label> <input type="number" max=9 id="telf" name="telf" class="form-modal"></div>
+				<div><label>Nombre: </label> <input autocomplete="off" required type="text" maxlength="20" id="nmbre" name="nmbre" class="form-modal"></div>
+				<div><label>Cargo: </label> <input autocomplete="off" required type="text" id="carg" maxlength="20" name="carg" class="form-modal"></div>
+				<div><label>Sueldo: </label> <input autocomplete="off"  type="number" max=100000 id="sueld" name="sueld" class="form-modal"></div>
+				<div><label>DNI: </label> <input autocomplete="off" required maxlength="9" type="text" id="denei" name="denei" class="form-modal"></div>
+				<div><label>Email: </label> <input autocomplete="off" type="text" maxlength="20" id="emeil" name="emeil" class="form-modal"></div>
+				<div><label>Contraseña: </label> <input autocomplete="off" type="password" maxlength="20" id="contra" name="contra" class="form-modal"></div>
+				<div><label>Telefono: </label> <input autocomplete="off" type="number" max=999999999 id="telf" name="telf" class="form-modal"></div>
 				<div><label>Estado: </label> 
 				<select class="form-modal" id="estd" required name="estd">
 									<option selected="selected">Libre</option>
@@ -179,6 +158,25 @@
 
 
 
+
+<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
+<?php if(isset($_SESSION["borrado"])) {
+					echo "No se puede borrar";
+				}
+			if(isset($_SESSION["editando"])) {
+					echo "No se puede modificar, tenga cuidado con el formato que se requiere";
+			}
+			if(isset($_SESSION["errormodal"])) {
+				echo "No se ha podido crear el usuario, ha introducido algún dato inválido";
+		}
+			if(isset($_SESSION['pagconsult'])) {
+				echo "Ha ocurrido un error con la paginación";
+			}
+			?>
+<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
+
+
+			
 
 
 

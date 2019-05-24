@@ -80,7 +80,7 @@ cerrarConexionBD($conexion);
 					<div><textarea required type="text" id="place" name="place" rows="1" cols="40" maxlength="40"></textarea></div>
 					<label>Fecha de Inicio: </label> <input required type="date" id="finicio" name="finicio" class="form-modal">
 					<label>Fecha de Fin: </label> <input type="date" id="ffin" name="ffin" class="form-modal">
-					<label>Precio Total: </label> <input type="number" min="1" max="1000000000" id="totalprice" name="totalprice" class="form-modal">
+					<label>Precio Total: </label> <input autocomplete="off" type="number" min="1" max="1000000000" id="totalprice" name="totalprice" class="form-modal">
 					<label>Descripcion: </label>
 					<div><textarea id="description" maxlength="140" name="description" rows="10" cols="70"></textarea></div>
 					<button id="agregar" name="agregar" type="submit" value="Añadir" class="btn">Añadir</button>
@@ -117,7 +117,7 @@ cerrarConexionBD($conexion);
 		echo "No se puede modificar, tenga cuidado con el formato que se requiere";
 	}
 	if(isset($_SESSION["errormodal"])) {
-		echo "No se ha podido crear el usuario, ha introducido algún dato inválido";
+		echo "No se ha podido crear el evento, ha introducido algún dato inválido";
 }
 	if(isset($_SESSION['pagconsult'])) {
 		echo "Ha ocurrido un error con la paginación";

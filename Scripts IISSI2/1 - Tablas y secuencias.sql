@@ -93,13 +93,14 @@
             foreign key (peid) references parteEquipo
             );
             
-            create table itemAlquilado(
+
+create table itemAlquilado(
 		 IA number(4),
             tipo varchar2(10),
             nombre varchar2(10),
-            Empresa varchar2(10) not null,
+            Empresa varchar2(10),
             fechaLlegada date default sysdate,
-            fechaDevolucion date not null,
+            fechaDevolucion date ,
             constraint FECHAALQ check(fechaLlegada <= fechaDevolucion),
             cantidad number(5),
             precio number(5) check (precio >=0),
@@ -190,6 +191,16 @@ create table HOTELES (
 hotel varchar2(40),
 indexHotel number(6),
  primary key (hotel)
+);
+
+
+
+
+create table materialnecesario(
+mid number(4) primary key,
+nombre varchar2(40),
+tipo varchar2(40),
+cantidad NUMBER(4)
 );
             
 ------------------------------------Secuencias----------------------------------

@@ -81,7 +81,7 @@
 				require_once("../gestionBD.php");
 				require_once("gestionarPersonal.php");
 				$conexion = crearConexionBD();
-				$excepcion = crear_usuario($conexion,$personal2['persid'],$personal2['dept'],$personal2['nmbre'],$personal2['carg'],
+				$excepcion = crear_usuario($conexion,$personal2['dept'],$personal2['nmbre'],$personal2['carg'],
 				$personal2['sueld'],$personal2['denei'],$personal2['telf'],$personal2['estd'],$personal2['event'],$personal2['parteid'],$personal2['emeil'],
 				$personal2['contra']);
 				cerrarConexionBD($conexion);

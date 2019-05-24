@@ -110,8 +110,8 @@
 				?>
 			</datalist>
 
-				<div><label>Direccion: </label> <input required type="text" maxlength="50" id="direction" name="direction" class="form-modal"></div>
-				<div><label>Ciudad: </label> <input required type="text" maxlength="20" id="city" name="city" class="form-modal"></div>
+				<div><label>Direccion: </label> <input autocomplete="off" required type="text" maxlength="50" id="direction" name="direction" class="form-modal"></div>
+				<div><label>Ciudad: </label> <input autocomplete="off" required type="text" maxlength="20" id="city" name="city" class="form-modal"></div>
 				<div><label>Fecha de Inicio: </label> <input type="date" id="startdate" name="startdate" class="form-modal"></div>
 				<div><label>Fecha Fin: </label> <input type="date" id="enddate" name="enddate" class="form-modal"></div>
 				<label>Hotel: </label>
@@ -151,7 +151,7 @@
 		echo "No se puede modificar, tenga cuidado con el formato que se requiere";
 	}
 	if(isset($_SESSION["errormodal"])) {
-		echo "No se ha podido crear el usuario, ha introducido algún dato inválido";
+		echo "No se ha podido crear el alojamiento, ha introducido algún dato inválido";
 }
 	if(isset($_SESSION['pagconsult'])) {
 		echo "Ha ocurrido un error con la paginación";

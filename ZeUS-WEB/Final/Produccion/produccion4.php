@@ -86,6 +86,7 @@ cerrarConexionBD($conexion);
 				<th>Tipo</th>
 				<th>Cantidad</th>
 				<th>PID</th>
+				<th>PEID</th>
 				<th>Confirmar</th>
 			</tr>
 			<?php foreach ($materiales as $material) { ?>
@@ -95,6 +96,7 @@ cerrarConexionBD($conexion);
 				<td ><input type="text" id="iatipo" name="iatipo" readonly value="<?php echo $material['TIPO']; ?>"></td>
 				<td ><input type="text" id="iacantidad" name="iacantidad" readonly value="<?php echo $material['CANTIDAD']; ?>"></td>
 				<th><input type="text" id="iapid" name="iapid" readonly value="<?php echo $usuariomod ?>"></th>
+				<td ><input type="text" id="iapeid" name="iapeid" readonly value="<?php echo $material['PEID']; ?>"></td>
 				<td>
 					<button id="agregar" name="agregar" type="submit" class="editar_fila">Alquilar</button>
 				</td>
@@ -126,15 +128,12 @@ cerrarConexionBD($conexion);
 	<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
 	<?php if (isset($_SESSION["borrado"])) {
 		echo "No se puede borrar";
-		echo $_SESSION["excepcion"];
 	}
 	if (isset($_SESSION["editando"])) {
 		echo "No se puede modificar, tenga cuidado con el formato que se requiere";
-		echo $_SESSION["excepcion"];
 	}
 	if(isset($_SESSION["errormodal"])) {
 		echo "No se ha podido crear el transporte, ha introducido algún dato inválido";
-		echo $_SESSION["excepcion"];
 }
 	if(isset($_SESSION['pagconsult'])) {
 		echo "Ha ocurrido un error con la paginación";

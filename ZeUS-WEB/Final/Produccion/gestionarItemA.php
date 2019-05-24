@@ -45,10 +45,11 @@ function modificar_itema($conexion,$IA,$TIPO,$NOMBRE,$EMPRESA,$FECHALLEGADA,$FEC
 		return $e->getMessage();
     }
 }
-function crear_itemalquilado($conexion,$TIPO,$NOMBRE,$CANTIDAD,$MID,$PID) { //hay q hacer procedimientos para esto
+function crear_itemalquilado($conexion,$PEID,$TIPO,$NOMBRE,$CANTIDAD,$MID,$PID) { //hay q hacer procedimientos para esto
 	try {
-		$stmt=$conexion->prepare("CALL alquilar_item(:TIPO,:NOMBRE,'','','',:CANTIDAD,'',:PID,'',:MID)");
+		$stmt=$conexion->prepare("CALL alquilar_item(:TIPO,:NOMBRE,'','','',:CANTIDAD,'',:PID,:PEID,:MID)");
 		$stmt->bindParam(':TIPO',$TIPO);
+		$stmt->bindParam(':PEID',$PEID);
 		$stmt->bindParam(':NOMBRE',$NOMBRE);
 		$stmt->bindParam(':CANTIDAD',$CANTIDAD);
 		$stmt->bindParam(':MID',$MID);

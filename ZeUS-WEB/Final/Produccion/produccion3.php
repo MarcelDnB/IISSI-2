@@ -113,8 +113,8 @@
 
 
 
-				<div><label>Medio Utilizado: </label> <input type="text" maxlength="20" id="medioutil" name="medioutil" class="form-modal"></div>
-				<div><label>Numero de personas: </label> <input type="text" id="numpers" min=1 max=50 name="numpers" class="form-modal"></div>
+				<div><label>Medio Utilizado: </label> <input autocomplete="off" type="text" maxlength="20" id="medioutil" name="medioutil" class="form-modal"></div>
+				<div><label>Numero de personas: </label> <input autocomplete="off" type="text" id="numpers" min=1 max=50 name="numpers" class="form-modal"></div>
 				<div><button id="agregar" name="agregar" type="submit" value="Añadir" class="btn">Agregar</button></div>
       </form>
     </div>
@@ -139,7 +139,7 @@
 					echo "No se puede modificar, tenga cuidado con el formato que se requiere";
 			}
 			if(isset($_SESSION["errormodal"])) {
-				echo "No se ha podido crear el usuario, ha introducido algún dato inválido";
+				echo "No se ha podido crear el transporte, ha introducido algún dato inválido";
 		}
 			if(isset($_SESSION['pagconsult'])) {
 				echo "Ha ocurrido un error con la paginación";
