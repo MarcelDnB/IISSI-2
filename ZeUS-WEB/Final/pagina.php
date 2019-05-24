@@ -34,7 +34,7 @@
 		include_once("sidebar.php");
 		include_once("barrafija.php");
 	?>
-	<div class="abrir contenido">	<!--Caben 11 párrafos Lorem Ipsum sin hacr scroll-->	 <!-- Hay q de alguna manera, incorporar las otras paginas de produccion aqui sin necesidad de tener este codigo en cada una -->
+	<div class="contenido">	<!--Caben 11 párrafos Lorem Ipsum sin hacr scroll-->	 <!-- Hay q de alguna manera, incorporar las otras paginas de produccion aqui sin necesidad de tener este codigo en cada una -->
     
     <?php
 if($_SESSION['consultarproduccion'] == 1) { //Para produccion

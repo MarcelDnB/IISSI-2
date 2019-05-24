@@ -142,6 +142,7 @@ cerrarConexionBD($conexion);
 	<!--                                                       CONSULTA_EVENTO                                                            -->
 	<div class="seccionEntradas">
 		<table id="tabla1" style="width:100%">
+		<thead>
 			<tr>
 				<th>Evento</th>
 				<th>Precio</th>
@@ -153,11 +154,13 @@ cerrarConexionBD($conexion);
 				<th>Editar</th>
 				<th>Borrar</th>
 			</tr>
+		</thead>
 			<?php
 			foreach ($filas as $fila) {
 				?>
 				<form method="POST" action="produccion/controlador_evento.php">
-					<!-- Controles de los campos que quedan ocultos:
+				
+				<!-- Controles de los campos que quedan ocultos:
 								OID_LIBRO, OID_AUTOR, OID_AUTORIA, NOMBRE, APELLIDOS -->
 					<input id="EID" name="EID" type="hidden" value="<?php echo $fila["EID"]; ?>" />
 					<input id="PRECIOTOTAL" name="PRECIOTOTAL" type="hidden" value="<?php echo $fila["PRECIOTOTAL"]; ?>" />
@@ -171,52 +174,54 @@ cerrarConexionBD($conexion);
 					if (isset($evento) and ($fila["EID"] == $evento["EID"])) { ?>
 						<!-- Editando título -->
 						<tr>
-							<td><?php echo $fila['EID']; ?></td>
-							<td><input id="PRECIOTOTAL" name="PRECIOTOTAL" type="text" value="<?php echo $fila['PRECIOTOTAL']; ?>" /></td>
-							<td><input id="FECHAINICIO" name="FECHAINICIO" type="date" required value="<?php echo date_format(date_create_from_format('d/m/y', $fila['FECHAINICIO']), 'Y-m-d'); ?>" /></td>
-							<td><input id="FECHAFIN" name="FECHAFIN" type="date" required value="<?php if ($fila["FECHAFIN"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAFIN']), 'Y-m-d'); ?>" /></td>
-							<td><select id="ESTADOEVENTO" required name="ESTADOEVENTO">
+							<td data-title="Evento:" ><?php echo $fila['EID']; ?></td>
+							<td data-title="Precio:"><input id="PRECIOTOTAL" name="PRECIOTOTAL" type="text" value="<?php echo $fila['PRECIOTOTAL']; ?>" /></td>
+							<td data-title="F.Inicio:"><input id="FECHAINICIO" name="FECHAINICIO" type="date" required value="<?php echo date_format(date_create_from_format('d/m/y', $fila['FECHAINICIO']), 'Y-m-d'); ?>" /></td>
+							<td data-title="F.Fin:"><input id="FECHAFIN" name="FECHAFIN" type="date" required value="<?php if ($fila["FECHAFIN"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAFIN']), 'Y-m-d'); ?>" /></td>
+							<td data-title="Estado:"><select id="ESTADOEVENTO" required name="ESTADOEVENTO">
 									<?php if ($fila['ESTADOEVENTO'] != "porRealizar") echo "<option>porRealizar</option>" ?>
 									<?php if ($fila['ESTADOEVENTO'] != "enPreparacion") echo "<option>enPreparacion</option>" ?>
 									<?php if ($fila['ESTADOEVENTO'] != "Realizado") echo "<option>Realizado</option>" ?>
 									<option selected="selected"><?php echo $fila['ESTADOEVENTO']; ?></option>
 								</select></td>
-							<td><input id="DESCRIPCIONCLIENTE" name="DESCRIPCIONCLIENTE" type="text" value="<?php echo $fila['DESCRIPCIONCLIENTE']; ?>" /></td>
-							<td><input id="LUGAR" name="LUGAR" required type="text" value="<?php echo $fila['LUGAR']; ?>" /> </td>
+							<td data-title="Descripcion:"><input id="DESCRIPCIONCLIENTE" name="DESCRIPCIONCLIENTE" type="text" value="<?php echo $fila['DESCRIPCIONCLIENTE']; ?>" /></td>
+							<td data-title="Lugar:"><input id="LUGAR" name="LUGAR" required type="text" value="<?php echo $fila['LUGAR']; ?>" /> </td>
 						<?php } else { ?>
 							<!-- mostrando título -->
+							
 						<tr>
-							<td><?php echo $fila['EID']; ?></td>
-							<td><?php echo $fila['PRECIOTOTAL']; ?></td>
-							<td><?php if ($fila["FECHAINICIO"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAINICIO']), 'Y-m-d'); ?></td>
-							<td><?php if ($fila["FECHAFIN"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAFIN']), 'Y-m-d'); ?></td>
-							<td> <?php echo $fila['ESTADOEVENTO']; ?></td>
-							<td>
+							<td data-title="Evento:" ><?php echo $fila['EID']; ?></td>
+							<td data-title="Precio:"><?php echo $fila['PRECIOTOTAL']; ?></td>
+							<td data-title="F.Inicio:"><?php if ($fila["FECHAINICIO"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAINICIO']), 'Y-m-d'); ?></td>
+							<td data-title="F.Fin:"><?php if ($fila["FECHAFIN"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAFIN']), 'Y-m-d'); ?></td>
+							<td data-title="Estado:"> <?php echo $fila['ESTADOEVENTO']; ?></td>
+							<td data-title="Descripcion:">
 								<p><?php echo $fila['DESCRIPCIONCLIENTE']; ?></p>
 							</td>
-							<td><?php echo $fila['LUGAR'] ?></td>
+							<td data-title="Lugar:"><?php echo $fila['LUGAR'] ?></td>
 
 						<?php } ?>
 
 						<?php if (isset($evento) and $fila["EID"] == $evento["EID"]) { ?>
-							<td>
+							<td data-title="Confirmar">
 								<button id="grabar" name="grabar" type="submit" class="editar_fila">
 									<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar Cambios">
 								</button>
 							</td>
 						<?php } else { ?>
-							<td>
+							<td data-title="Editar">
 								<button id="editar" name="editar" type="submit" class="editar_fila">
 									<img src="images/pencil_menuito.bmp" class="editar_fila" alt="Editar Libro">
 								</button>
 							</td>
 						<?php } ?>
-						<td>
+						<td data-title="Borrar">
 							<button id="borrar" name="borrar" type="submit" class="editar_fila">
 								<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar Libro">
 							</button>
 						</td>
-
+						</tr>
+						</tr>
 				</form>
 
 				</article>

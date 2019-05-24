@@ -175,6 +175,7 @@
 <!--                                                       CONSULTA_EVENTO                                                            -->
 <div class="seccionEntradas">
 <table id="tabla1" style="width:100%">
+<thead>		
 			<tr>
 			<th>Evento</th>
 			<th>Direccion</th>
@@ -186,6 +187,7 @@
 			<th>Editar</th>
 			<th>Borrar</th>
 			</tr>	
+</thead>
 	<?php
 		foreach($filas as $fila) {
 	?>
@@ -210,41 +212,41 @@
 					if (isset($alojamiento) and ($fila["EID"] == $alojamiento["EID"])) { ?>
 						<!-- Editando título -->
 						<tr>
-						<td><input id="EID" name="EID" type="text" required value="<?php echo $fila['EID'];?>"/></td>
-						<td><input id="DIRECCION" name="DIRECCION" type="text" required value="<?php echo $fila['DIRECCION'];?>"/></td>
-						<td><input id="CIUDAD" name="CIUDAD" type="text" required value="<?php echo $fila['CIUDAD'];?>"/></td>
-						<td><input id="FECHAINICIO" name="FECHAINICIO" type="date" required required value="<?php echo date_format(date_create_from_format('d/m/y', $fila['FECHAINICIO']), 'Y-m-d'); ?>" /></td>
-						<td><input id="FECHAFIN" name="FECHAFIN" type="date" required required value="<?php if ($fila["FECHAFIN"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAFIN']), 'Y-m-d'); ?>" /></td>
-						<td><input id="HOTEL" name="HOTEL" type="text"  value="<?php echo $fila['HOTEL'];?>"/></td>
-						<td><input id="NUMPERSONAS" name="NUMPERSONAS" type="text" value="<?php echo $fila['NUMPERSONAS'];?>"/></td>
+						<td data-title="Evento:"><?php echo $fila['EID'];?></td>
+						<td data-title="Direccion:"><input id="DIRECCION" name="DIRECCION" type="text" required value="<?php echo $fila['DIRECCION'];?>"/></td>
+						<td data-title="Ciudad:"><input id="CIUDAD" name="CIUDAD" type="text" required value="<?php echo $fila['CIUDAD'];?>"/></td>
+						<td data-title="F.Inicio:"><input id="FECHAINICIO" name="FECHAINICIO" type="date" required required value="<?php echo date_format(date_create_from_format('d/m/y', $fila['FECHAINICIO']), 'Y-m-d'); ?>" /></td>
+						<td data-title="F.Fin:"><input id="FECHAFIN" name="FECHAFIN" type="date" required required value="<?php if ($fila["FECHAFIN"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAFIN']), 'Y-m-d'); ?>" /></td>
+						<td data-title="Hotel:"><input id="HOTEL" name="HOTEL" type="text"  value="<?php echo $fila['HOTEL'];?>"/></td>
+						<td data-title="Num.Personas:"><input id="NUMPERSONAS" name="NUMPERSONAS" type="text" value="<?php echo $fila['NUMPERSONAS'];?>"/></td>
 						<?php }	else { ?>
 						<!-- mostrando título -->	
 						<tr>
-						<td><?php echo $fila['EID'];?></td>
-						<td><?php echo $fila['DIRECCION'];?></td>
-						<td><?php echo $fila['CIUDAD']?></td>
-						<td><?php if ($fila["FECHAINICIO"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAINICIO']), 'Y-m-d'); ?></td>
-						<td><?php if ($fila["FECHAFIN"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAFIN']), 'Y-m-d'); ?></td>
-						<td> <?php echo $fila['HOTEL'];?></td>
-						<td><?php echo $fila['NUMPERSONAS'];?></td>
+						<td data-title="Evento:"><?php echo $fila['EID'];?></td>
+						<td data-title="Direccion:"><?php echo $fila['DIRECCION'];?></td>
+						<td data-title="Ciudad:"><?php echo $fila['CIUDAD']?></td>
+						<td data-title="F.Inicio:"><?php if ($fila["FECHAINICIO"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAINICIO']), 'Y-m-d'); ?></td>
+						<td data-title="F.Fin:"><?php if ($fila["FECHAFIN"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAFIN']), 'Y-m-d'); ?></td>
+						<td data-title="Hotel:"> <?php echo $fila['HOTEL'];?></td>
+						<td data-title="Num.Personas:"><?php echo $fila['NUMPERSONAS'];?></td>
 						
 
 				<?php } ?>
 				
 				<?php if (isset($alojamiento) and $fila["EID"] == $alojamiento["EID"]) { ?>
-				<td>
+				<td data-title="Confirmar:">
 					<button id="grabar" name="grabar" type="submit" class="editar_fila">
 						<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar Cambios">
 					</button>
 				</td>
 				<?php } else {?>
-					<td>
+					<td data-title="Editar:">
 					<button id="editar" name="editar" type="submit" class="editar_fila">
 						<img src="images/pencil_menuito.bmp" class="editar_fila" alt="Editar Libro">
 					</button>	
 				</td>
 				<?php } ?>
-				<td>
+				<td data-title="Borrar:">
 				<button id="borrar" name="borrar" type="submit" class="editar_fila">
 						<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar Libro">
 					</button>
