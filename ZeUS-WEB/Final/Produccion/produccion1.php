@@ -184,11 +184,11 @@ cerrarConexionBD($conexion);
 									<?php if ($fila['ESTADOEVENTO'] != "Realizado") echo "<option>Realizado</option>" ?>
 									<option selected="selected"><?php echo $fila['ESTADOEVENTO']; ?></option>
 								</select></td>
-							<td data-title="Descripcion:"><input id="DESCRIPCIONCLIENTE" name="DESCRIPCIONCLIENTE" type="text" value="<?php echo $fila['DESCRIPCIONCLIENTE']; ?>" /></td>
+							<td data-title="Descripcion:"><textarea id="DESCRIPCIONCLIENTE" name="DESCRIPCIONCLIENTE"><?php echo $fila['DESCRIPCIONCLIENTE']; ?></textarea></td>
 							<td data-title="Lugar:"><input id="LUGAR" name="LUGAR" required type="text" value="<?php echo $fila['LUGAR']; ?>" /> </td>
 						<?php } else { ?>
 							<!-- mostrando título -->
-							
+						
 						<tr>
 							<td data-title="Evento:" ><?php echo $fila['EID']; ?></td>
 							<td data-title="Precio:"><?php echo $fila['PRECIOTOTAL']; ?></td>
@@ -196,7 +196,7 @@ cerrarConexionBD($conexion);
 							<td data-title="F.Fin:"><?php if ($fila["FECHAFIN"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAFIN']), 'Y-m-d'); ?></td>
 							<td data-title="Estado:"> <?php echo $fila['ESTADOEVENTO']; ?></td>
 							<td data-title="Descripcion:">
-								<p><?php echo $fila['DESCRIPCIONCLIENTE']; ?></p>
+							<textarea rows="10" cols="70"><?php echo $fila['DESCRIPCIONCLIENTE']; ?></textarea>
 							</td>
 							<td data-title="Lugar:"><?php echo $fila['LUGAR'] ?></td>
 

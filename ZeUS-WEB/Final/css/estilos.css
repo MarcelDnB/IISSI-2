@@ -198,10 +198,10 @@ table {
 	text-align: left;
 	padding: 8px;
   }
-  td p { /* para limitar el numero de caracteres*/
-	text-overflow: ellipsis;
-	width: 370px;
-	overflow:hidden;
+  td textarea { /* para limitar el numero de caracteres*/
+	width: 300px;
+	height: 100px;
+	
   }
   
   tr:nth-child(even) {
@@ -328,7 +328,7 @@ input[type=number] { /* para firefox*/
 	
 
 
-	@media only screen and (max-width: 800px) {
+	@media only screen and (max-width: 950px) {
 		.PAG_TAM {
 			width: 30%;
 			padding: 12px 20px;
@@ -394,5 +394,23 @@ input[type=number] { /* para firefox*/
 				}
 				table input[type=text] {
 					width: 120px;
+				}
+
+				.sidebar{
+					font-family: 'Raleway', sans-serif;
+					position: absolute;
+					width: 250px;
+					height: 100%;
+					background: #333;
+					color: #fff;
+					outline: 1px solid #2a2a2a;
+					overflow-y: scroll;
+				}
+
+				#enlaces{
+					display: flex;
+					justify-content: center;
+					flex-wrap: wrap; 
+					padding-left: 1px;
 				}
 	}

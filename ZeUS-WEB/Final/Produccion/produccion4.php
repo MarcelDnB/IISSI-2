@@ -80,6 +80,7 @@ cerrarConexionBD($conexion);
 			<div class="modal-body">
 				<form method="POST" action="produccion/controlador_itemA.php">
 				<table id="tabla3" style="width:100%">
+			<thead>
 			<tr>
 				<th>ID</th>
 				<th>Nombre</th>
@@ -89,15 +90,16 @@ cerrarConexionBD($conexion);
 				<th>PEID</th>
 				<th>Confirmar</th>
 			</tr>
+			</thead>
 			<?php foreach ($materiales as $material) { ?>
 			<tr>
-				<td ><input type="text" id="iamid" name="iamid" readonly value="<?php echo $material['MID']; ?>"> </td>
-				<td ><input type="text" id="ianombre" name="ianombre" readonly value="<?php echo $material['NOMBRE']; ?>"> </td>
-				<td ><input type="text" id="iatipo" name="iatipo" readonly value="<?php echo $material['TIPO']; ?>"></td>
-				<td ><input type="text" id="iacantidad" name="iacantidad" readonly value="<?php echo $material['CANTIDAD']; ?>"></td>
-				<th><input type="text" id="iapid" name="iapid" readonly value="<?php echo $usuariomod ?>"></th>
-				<td ><input type="text" id="iapeid" name="iapeid" readonly value="<?php echo $material['PEID']; ?>"></td>
-				<td>
+				<td data-title="Material:"><input type="text" id="iamid" name="iamid" readonly value="<?php echo $material['MID']; ?>"> </td>
+				<td data-title="Nombre:"><input type="text" id="ianombre" name="ianombre" readonly value="<?php echo $material['NOMBRE']; ?>"> </td>
+				<td data-title="Tipo:"><input type="text" id="iatipo" name="iatipo" readonly value="<?php echo $material['TIPO']; ?>"></td>
+				<td data-title="Cantidad:"><input type="text" id="iacantidad" name="iacantidad" readonly value="<?php echo $material['CANTIDAD']; ?>"></td>
+				<td data-title="PID:"><input type="text" id="iapid" name="iapid" readonly value="<?php echo $usuariomod; ?>"></td>
+				<td data-title="PEID:"><input type="text" id="iapeid" name="iapeid" readonly value="<?php echo $material['PEID']; ?>"></td>
+				<td data-title="Agregar:">
 					<button id="agregar" name="agregar" type="submit" class="editar_fila">Alquilar</button>
 				</td>
 			</tr>

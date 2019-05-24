@@ -3,7 +3,18 @@
 	<a id="logo-header" href="#">
 		
 		<span class="site-name">ZeUS</span>
-		<span class="site-desc">Departamento de almacén</span>
+	<?php 
+	if($_SESSION['consultarproduccion'] == 1) {
+		echo '<span class="site-desc">Departamento de Producción</span>';
+	}
+	if($_SESSION['consultartecnico'] == 1) {
+		echo '<span class="site-desc">Departamento Técnico</span>';
+	}
+	if($_SESSION['consultaralmacen'] == 1) {
+		echo '<span class="site-desc">Departamento de Almacén</span>';
+	}
+	?>
+		
 	</a> <!--/#logo-header-->
 	<nav id="nav-cerrar">
 		<ul>
