@@ -30,10 +30,9 @@ function modificar_transporte($conexion,$TID,$MEDIOUTILIZADO,$NUMPERSONAS,$EID) 
     }
 }
 
-function crear_transporte($conexion,$TID,$MEDIOUTILIZADO,$NUMPERSONAS,$EID) {
+function crear_transporte($conexion,$MEDIOUTILIZADO,$NUMPERSONAS,$EID) {
 	try {
-		$stmt=$conexion->prepare("CALL crear_transporte(:TID,:MEDIOUTILIZADO,:NUMPERSONAS,:EID)");
-		$stmt->bindParam(':TID',$TID);
+		$stmt=$conexion->prepare("CALL crear_transporte(:MEDIOUTILIZADO,:NUMPERSONAS,:EID)");
 		$stmt->bindParam(':MEDIOUTILIZADO',$MEDIOUTILIZADO);
 		$stmt->bindParam(':NUMPERSONAS',$NUMPERSONAS);
 		$stmt->bindParam(':EID',$EID);

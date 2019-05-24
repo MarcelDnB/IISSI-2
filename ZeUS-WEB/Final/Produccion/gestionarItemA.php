@@ -15,11 +15,22 @@ function quitar_itema($conexion,$IA) { //hay q hacer procedimientos para esto
 		return $e->getMessage();
     }
 }
-
-function modificar_itema($conexion,$TIPO,$NOMBRE,$EMPRESA,$FECHALLEGADA,$FECHADEVOLUCION,$CANTIDAD,$PRECIO,$PID,$PEID) {
+function quitar_materialnecesario($conexion,$IA) { //hay q hacer procedimientos para esto
 	try {
-		$stmt=$conexion->prepare("CALL MODIFICAR_ITEMA(:TIPO,:NOMBRE,:EMPRESA,TO_DATE(:FECHALLEGADA,'YYYY-MM-DD'),TO_DATE(:FECHADEVOLUCION,'YYYY-MM-DD'),:CANTIDAD,:PRECIO,:PID,:PEID)");
+		$stmt=$conexion->prepare('CALL QUITAR_MATERIALNECESARIO(:IA)');	
+		$stmt->bindParam(':IA',$IA);
+		$stmt->execute();
+		return "";
+	} catch(PDOException $e) {
+		return $e->getMessage();
+    }
+}
+
+function modificar_itema($conexion,$IA,$TIPO,$NOMBRE,$EMPRESA,$FECHALLEGADA,$FECHADEVOLUCION,$CANTIDAD,$PRECIO,$PID,$PEID) {
+	try {
+		$stmt=$conexion->prepare("CALL MODIFICAR_ITEMA(:IA,:TIPO,:NOMBRE,:EMPRESA,TO_DATE(:FECHALLEGADA,'YYYY-MM-DD'),TO_DATE(:FECHADEVOLUCION,'YYYY-MM-DD'),:CANTIDAD,:PRECIO,:PID,:PEID)");
 		$stmt->bindParam(':TIPO',$TIPO);
+		$stmt->bindParam(':IA',$IA);
 		$stmt->bindParam(':NOMBRE',$NOMBRE);
 		$stmt->bindParam(':EMPRESA',$EMPRESA);
 		$stmt->bindParam(':FECHALLEGADA',$FECHALLEGADA);

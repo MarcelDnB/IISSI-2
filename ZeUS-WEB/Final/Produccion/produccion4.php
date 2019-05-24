@@ -126,13 +126,14 @@ cerrarConexionBD($conexion);
 	<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
 	<?php if (isset($_SESSION["borrado"])) {
 		echo "No se puede borrar";
+		echo $_SESSION["excepcion"];
 	}
 	if (isset($_SESSION["editando"])) {
 		echo "No se puede modificar, tenga cuidado con el formato que se requiere";
 		echo $_SESSION["excepcion"];
 	}
 	if(isset($_SESSION["errormodal"])) {
-		echo "No se ha podido crear el usuario, ha introducido algún dato inválido";
+		echo "No se ha podido crear el transporte, ha introducido algún dato inválido";
 		echo $_SESSION["excepcion"];
 }
 	if(isset($_SESSION['pagconsult'])) {
@@ -188,6 +189,7 @@ cerrarConexionBD($conexion);
 					<input id="PRECIO" name="PRECIO" type="hidden" value="<?php echo $fila["PRECIO"]; ?>" />
 					<input id="PID" name="PID" type="hidden" value="<?php echo $fila["PID"]; ?>" />
 					<input id="PEID" name="PEID" type="hidden" value="<?php echo $fila["PEID"]; ?>" />
+					<input id="MID" name="MID" type="hidden" value="<?php echo $fila["MID"]; ?>" />
 
 					<?php
 					if (isset($itema) and ($fila["IA"] == $itema["IA"])) { ?>

@@ -66,7 +66,7 @@
 		require_once("../gestionBD.php");
 		require_once("gestionarTransporte.php");
 		$conexion = crearConexionBD();
-		$excepcion = crear_transporte($conexion, $transporte2['transp'],$transporte2['medioutil'],$transporte2['numpers'],$transporte2['event']);
+		$excepcion = crear_transporte($conexion, $transporte2['medioutil'],$transporte2['numpers'],$transporte2['event']);
 		cerrarConexionBD($conexion);
 
 		if ($excepcion<>"") {

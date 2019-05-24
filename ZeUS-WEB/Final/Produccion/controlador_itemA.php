@@ -12,6 +12,7 @@
 		$itema["PRECIO"] = $_REQUEST["PRECIO"];
 		$itema["PID"] = $_REQUEST["PID"];
 		$itema["PEID"] = $_REQUEST["PEID"];
+		$itema["MID"] = $_REQUEST["MID"];
 		$itema["grabar"] = $_REQUEST["grabar"];
 		$_SESSION["ITEMA"] = $itema;
 
@@ -27,7 +28,7 @@
 				require_once("gestionarItemA.php");
 				
 				$conexion = crearConexionBD();		
-				$excepcion = modificar_itema($conexion,$itema["TIPO"],$itema["NOMBRE"],$itema["EMPRESA"],$itema["FECHALLEGADA"],$itema["FECHADEVOLUCION"],$itema["CANTIDAD"],$itema["PRECIO"],$itema["PID"],$itema["PEID"]);
+				$excepcion = modificar_itema($conexion,$itema["IA"],$itema["TIPO"],$itema["NOMBRE"],$itema["EMPRESA"],$itema["FECHALLEGADA"],$itema["FECHADEVOLUCION"],$itema["CANTIDAD"],$itema["PRECIO"],$itema["PID"],$itema["PEID"]);
 				cerrarConexionBD($conexion);
 
 				if ($excepcion<>"") { //si hubo excepcion tenemos que controlarla
@@ -52,6 +53,9 @@
 			
 				$conexion=crearConexionBD();
 				$excepcion=quitar_itema($conexion,$itema["IA"]);
+				$excepcion=quitar_materialnecesario($conexion,$itema["MID"]);
+				
+				
 				cerrarConexionBD($conexion);
 				if($excepcion<>"") {
 					$_SESSION["excepcion"] = $excepcion;

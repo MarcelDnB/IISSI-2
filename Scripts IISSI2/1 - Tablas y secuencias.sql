@@ -197,6 +197,6 @@ create SEQUENCE sec_envio minvalue 1 maxvalue 9999999 increment by 1 start with 
 create SEQUENCE sec_evento minvalue 1 maxvalue 9999999 increment by 1 start with 1;
 --Secuencia para generar un ID de parte de equipo
 create SEQUENCE sec_parteequipo minvalue 1 maxvalue 9999999 increment by 1 start with 1;
-
+create SEQUENCE sec_transporte minvalue 1 maxvalue 999999 increment by 1 start with 1;
 
 

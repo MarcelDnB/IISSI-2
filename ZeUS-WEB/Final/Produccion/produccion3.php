@@ -96,7 +96,6 @@
         </div>
     <div class="modal-body">
       <form method="post" action="produccion/controlador_transporte.php">
-        <div><label>Transporte: </label> <input type="text" id="transp" name="transp" class="form-modal"></div>
 				<label>Evento: </label>
 				<input required	 list="opcionesEventos" autocomplete="off" id="event" name="event" class="form-modal">
 				
