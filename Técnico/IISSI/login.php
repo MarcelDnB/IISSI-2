@@ -2,20 +2,33 @@
 	session_start();
   	
   	include_once("gestionBD.php");
- 	include_once("gestionUsuarios.php");
+ 	include_once("gestionarUsuarios.php");
 	
 	if (isset($_POST['submit'])){
 		$email= $_POST['email'];
 		$pass = $_POST['pass'];
 		$conexion = crearConexionBD();
-		$num_usuarios = consultarUsuario($conexion,$email,$pass);
+		$num_usuarios_almacen = consultarUsuarioAlmacen($conexion,$email,$pass);
+		$num_usuarios_prod = consultarUsuarioProduccion($conexion,$email,$pass);
+		$num_usuarios_tec = consultarUsuarioTecnico($conexion,$email,$pass);
+		$_SESSION['consultaralmacen'] = $num_usuarios_almacen;
+		$_SESSION['consultarproduccion'] = $num_usuarios_prod;
+		$_SESSION['consultartecnico'] = $num_usuarios_tec;
 		cerrarConexionBD($conexion);	
-	
-		if ($num_usuarios == 0){
-			$login = "error";
-		}else {
+
+		if ($num_usuarios_almacen > 0){
 			$_SESSION['login'] = $email;
-			Header("Location: tecnico.php");
+			Header("Location: pagina.php");
+		}else if($num_usuarios_prod > 0){
+			$_SESSION['login'] = $email;
+			$_SESSION['localidad']="evento";
+			Header("Location: pagina.php");	//Anteriormente, pagina.php
+		}else if($num_usuarios_tec >0){
+			$_SESSION['login'] = $email;
+			Header("Location: pagina.php");
+		}
+		else{
+			$_SESSION['login'] = "error";
 		}
 	}
 ?>
@@ -26,7 +39,7 @@
   <meta charset="UTF-8">
   <title>ZeUSware</title>
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:600'>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/estiloLogin.css">
 </head>
 
 <body>
@@ -37,15 +50,21 @@
 		<input type="text" placeholder="Email" name="email" id="email" class="text"/>
 		<input placeholder="Contraseña" type="password" id="pass" name="pass" class="pass"/>
 		<input type="submit" name="submit" class="button" value="Login"/>
-		<?php if (isset($login)) {
+		
+		<?php if (((isset($_POST['submit'])) && $_SESSION['login'] == "error")) {
 		echo "<div class=\"error\">";
-		echo "Error en la contraseña o no existe el usuario.";
+		echo "Error en la contraseña o no existe el usuario";
 		echo "</div>";
-	}	
+	}else if((isset($_SESSION['errorBD']))) {
+		echo "<div class=\"error\">";
+		echo "Error con la base de datos";
+		echo "</div>";
+	}
 	?>
 	</div>
 	</form>
 	</div>
 </div>
 </body>
+<?php unset($_SESSION['errorBD']); ?>
 </html>

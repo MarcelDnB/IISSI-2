@@ -1,9 +1,11 @@
 <?php
+
 function crearConexionBD()
 {
 	$host="oci:dbname=localhost/XE;charset=UTF8";
-	$usuario="zeus";
+	$usuario="ZEUS";
 	$password="zeusweb";
+
 	try{
 		/* Indicar que las sucesivas conexiones se puedan reutilizar */	
 		$conexion=new PDO($host,$usuario,$password,array(PDO::ATTR_PERSISTENT => true));
@@ -12,10 +14,13 @@ function crearConexionBD()
 		return $conexion;
 	}catch(PDOException $e){
 		$_SESSION['excepcion'] = $e->GetMessage();
-		header("Location: excepcion.php");
+		$_SESSION['errorBD']="errorBD";
+		Header("Location: login.php");
 	}
 }
+
 function cerrarConexionBD($conexion){
 	$conexion=null;
 }
+
 ?>
