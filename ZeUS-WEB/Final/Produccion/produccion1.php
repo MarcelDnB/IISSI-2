@@ -196,7 +196,7 @@ cerrarConexionBD($conexion);
 							<td data-title="F.Fin:"><?php if ($fila["FECHAFIN"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAFIN']), 'Y-m-d'); ?></td>
 							<td data-title="Estado:"> <?php echo $fila['ESTADOEVENTO']; ?></td>
 							<td data-title="Descripcion:">
-							<textarea rows="10" cols="70"><?php echo $fila['DESCRIPCIONCLIENTE']; ?></textarea>
+							<textarea disabled rows="10" cols="70"><?php echo $fila['DESCRIPCIONCLIENTE']; ?></textarea>
 							</td>
 							<td data-title="Lugar:"><?php echo $fila['LUGAR'] ?></td>
 
