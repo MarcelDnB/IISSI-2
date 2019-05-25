@@ -1,17 +1,15 @@
 <?php	
 	session_start();
 	
-	if (isset($_REQUEST["IA"])) {
+	if (isset($_REQUEST["MID"])) {
 		$peticion["NOMBRE"] = $_REQUEST["NOMBRE"];
 		$peticion["TIPO"] = $_REQUEST["TIPO"];
 		$peticion["CANTIDAD"] = $_REQUEST["CANTIDAD"];
 		$peticion["PEID"] = $_REQUEST["PEID"];
-		$peticion["IA"] = $_REQUEST["IA"];
+		$peticion["MID"] = $_REQUEST["MID"];
 		$_SESSION["PETICION"] = $peticion;
-
 		if(isset($_REQUEST["editar"])) { //si se ha apretado el boton editar
 			Header("Location: ../pagina.php");  //redireccionamos a pagina y ahi sigue el codigo
-
 		}else if(isset($_REQUEST["grabar"])) { // si se ha apretado el boton grabar
 			if(isset($_SESSION["PETICION"])) { // comprobamos que en la _session haya un "parteequipo" (habia sesion activa)
 				$peticion = $_SESSION["PETICION"]; // si habia lo guardamos en $parteequipo
@@ -21,9 +19,8 @@
 				require_once("gestionarPeticiones.php");
 				
 				$conexion = crearConexionBD();		
-				$excepcion = modificar_peticion($conexion,$peticion["IA"],$peticion["NOMBRE"],$peticion["TIPO"],$peticion["CANTIDAD"],$peticion["PEID"]);
+				$excepcion = modificar_peticion($conexion,$peticion["MID"],$peticion["NOMBRE"],$peticion["TIPO"],$peticion["CANTIDAD"],$peticion["PEID"]);
 				cerrarConexionBD($conexion);
-
 				if ($excepcion<>"") { //si hubo excepcion tenemos que controlarla
 					$_SESSION["excepcion"] = $excepcion;
 					$_SESSION["destino"] = "../pagina.php";
@@ -44,7 +41,7 @@
 				require_once("gestionarPeticiones.php");
 			
 				$conexion=crearConexionBD();
-				$excepcion=quitar_solicitud($conexion,$peticion["IA"]);
+				$excepcion=quitar_solicitud($conexion,$peticion["MID"]);
 				cerrarConexionBD($conexion);
 				if($excepcion<>"") {
 					$_SESSION["excepcion"] = $excepcion;
@@ -94,7 +91,6 @@
 				else{
 					Header("Location: ../pagina.php");
 				}
-
 			}else{
 				$_SESSION["fallo"]=1;
 				Header("Location: ../pagina.php");
