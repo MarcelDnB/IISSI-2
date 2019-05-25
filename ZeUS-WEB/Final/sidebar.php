@@ -36,6 +36,7 @@
 		<li><button class="inventario" name="inventario" type="submit">Inventario</button></li>
 		<div class="dropdown-container">
 			<li><button class="altavoces" name="altavoces" type="submit">Altavoces</button></li>
+			<li><button class="otrositems" name="otrositems" type="submit">Otros ítems</button></li>
 		</div>
 		<li><button id="envios" name="envios" type="submit">Envíos</button></li>
 		<li><button id="itemsalquilados" name="itemsalquilados" type="submit">Ítems alquilados</button></li>		
@@ -52,6 +53,9 @@
 	}
 	if(isset($_GET["altavoces"])){
 		$_SESSION["localidad"] = "altavoces";
+	}
+	if(isset($_GET["otrositems"])){
+		$_SESSION["localidad"] = "otrositems";
 	}
 	if(isset($_GET["envios"])) {
 		$_SESSION["localidad"] = "envios";

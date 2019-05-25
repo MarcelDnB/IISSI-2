@@ -5,9 +5,9 @@ require_once("paginacion_consulta.php");
 if (!isset($_SESSION['login'])) {
 	Header("Location: login.php");
 } else {
-	if (isset($_SESSION["altavoz"])) {
-		$altavoz = $_SESSION["altavoz"];
-		unset($_SESSION["altavoz"]);
+	if (isset($_SESSION["otrositems"])) {
+		$otrositems = $_SESSION["otrositems"];
+		unset($_SESSION["otrositems"]);
 	}
 
 
@@ -23,7 +23,7 @@ if (!isset($_SESSION['login'])) {
 	if ($pag_tam < 1) 		$pag_tam = 5;
 	unset($_SESSION["paginacion"]);
 	$conexion = crearConexionBD();
-	$query = 'SELECT * from ALTAVOZ';
+	$query = 'SELECT * from OTROSITEMS ORDER BY REFERENCIA';
 	$total_registros = total_consulta($conexion, $query);
 	$total_paginas = (int)($total_registros / $pag_tam);
 	if ($total_registros % $pag_tam > 0)		$total_paginas++;
@@ -53,7 +53,7 @@ cerrarConexionBD($conexion);
 
 	<!--                                                      	MODAL_FORM                                                            -->
 	<!-- Trigger/Open The Modal -->
-	<button id="myBtn" class="mybtn">Añadir altavoz </button>
+	<button id="myBtn" class="mybtn">Añadir ítem </button>
 
 	<!-- The Modal -->
 	
@@ -63,15 +63,13 @@ cerrarConexionBD($conexion);
 		<div class="modal-content">
 			<div class="modal-header">
 				<span class="close">&times;</span> <!-- he utilizado bootstrap solo para la X -->
-				<h2>Añadir altavoz</h2>
+				<h2>Añadir ítem</h2>
 			</div>
 			<div class="modal-body">
-				<form method="POST" action="almacen/controlador_altavoz.php">
+				<form method="POST" action="almacen/controlador_otrositems.php">
 					<label>Nombre: </label>
-					<div><textarea required type="text" id="nombreal" name="nombreal" rows="1" cols="40" maxlength="30"></textarea></div>
+					<div><textarea required type="text" id="nombreoi" name="nombreoi" rows="1" cols="40" maxlength="30"></textarea></div>
 					<label>Precio Total: </label> <input required type="number" min="1" max="1000000000" id="totalprice" name="totalprice" class="form-modal">
-					<label>Potencia: </label> <input required type="number" min="1" max="9999" id="potenciaal" name="potenciaal" class="form-modal">
-					<label>Pulgadas: </label> <input required type="number" min="1" max="99" id="pulgadaal" name="pulgadaal" class="form-modal">
 					<button id="agregar" name="agregar" type="submit" value="Añadir" class="btn">Añadir</button>
 					<?php if (isset($_SESSION["errormodal"])) { ?>
 						<label>HA OCURRIDO UN ERROR</label>
@@ -136,44 +134,35 @@ cerrarConexionBD($conexion);
 				<th>Referencia</th>
 				<th>Nombre</th>
 				<th>Precio</th>
-				<th>Potencia</th>
-				<th>Pulgadas</th>
 				<th>Editar</th>
 				</tr>
 			</thead>
 			<?php
 			foreach ($filas as $fila) {
 				?>
-				<form method="POST" action="almacen/controlador_altavoz.php">
+				<form method="POST" action="almacen/controlador_otrositems.php">
 					<!-- Controles de los campos que quedan ocultos:
 								OID_LIBRO, OID_AUTOR, OID_AUTORIA, NOMBRE, APELLIDOS -->
 					<input id="REFERENCIA" name="REFERENCIA" type="hidden" value="<?php echo $fila["REFERENCIA"]; ?>" />
 					<input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $fila["NOMBRE"]; ?>" />
 					<input id="PRECIO" name="PRECIO" type="hidden" value="<?php echo $fila["PRECIO"]; ?>" />
-					<input id="POTENCIA" name="POTENCIA" type="hidden" value="<?php echo $fila["POTENCIA"]; ?>" />
-					<input id="PULGADAS" name="PULGADAS" type="hidden" value="<?php echo $fila["PULGADAS"]; ?>" />
 			
-
 					<?php
-					if (isset($altavoz) and ($fila["REFERENCIA"] == $altavoz["REFERENCIA"])) { ?>
+					if (isset($otrositems) and ($fila["REFERENCIA"] == $otrositems["REFERENCIA"])) { ?>
 						<!-- Editando título -->
 						<tr>
 							<td data-title="Referencia:"><?php echo $fila['REFERENCIA']; ?></td>
-							<td data-title="Nombre:"><?php echo $fila['NOMBRE']; ?></td>
+							<td data-title="Nombre:"><input required type="text" id="NOMBRE" name="NOMBRE" maxlength=30 value="<?php echo $fila['NOMBRE'];?>"</input></td>
 							<td data-title="Precio:"><input id="PRECIO" name="PRECIO" required type="number" min="1" max="1000000000" value="<?php echo $fila['PRECIO']; ?>" /></td>
-							<td data-title="Potencia:"><input id="POTENCIA" name="POTENCIA" required type="number" min="1" max="9999" value="<?php echo $fila['POTENCIA']; ?>" /></td>
-							<td data-title="Pulgadas:"><input id="PULGADA" name="PULGADAS" required type="number" min="1" max ="99" value="<?php echo $fila['PULGADAS']; ?>" /> </td>
 						<?php } else { ?>
 							<!-- mostrando título -->
 						<tr>
 							<td data-title="Referencia:"><?php echo $fila['REFERENCIA']; ?></td>
 							<td data-title="Nombre:"><?php echo $fila['NOMBRE']; ?></td>
 							<td data-title="Precio:"><?php echo $fila['PRECIO']; ?></td>
-							<td data-title="Potencia:"><?php echo $fila['POTENCIA']; ?></td>
-							<td data-title="Pulgadas:"><?php echo $fila['PULGADAS']; ?></td>
 						<?php } ?>
 
-						<?php if (isset($altavoz) and $fila["REFERENCIA"] == $altavoz["REFERENCIA"]) { ?>
+						<?php if (isset($otrositems) and $fila["REFERENCIA"] == $otrositems["REFERENCIA"]) { ?>
 							<td data-title="Confirmar:">
 								<button id="grabar" name="grabar" type="submit" class="editar_fila">
 									<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar Cambios">
@@ -220,6 +209,6 @@ cerrarConexionBD($conexion);
 				
 				?>
 				<!--para reestablecer el error que salia antes, para evitar que salga siempre -->
-				<!--                                                       CONSULTA_ALTAVOCES                                                         -->
+				<!--                                                       CONSULTA_OTROSITEMS                                                           -->
 
 </body>

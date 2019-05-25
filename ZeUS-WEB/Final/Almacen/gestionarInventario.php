@@ -53,4 +53,28 @@ function modificar_altavoz($conexion,$referencia, $precioal, $potenciaal, $pulga
     }
 }
 
+function agregar_otrositems($conexion, $nombreoi, $preciooi){
+	try {
+		$stmt=$conexion->prepare("CALL AGREGAR_OTROSITEMS(:NOMBREOI, :PRECIOOI)");
+		$stmt->bindParam(':NOMBREOI',$nombreoi);
+		$stmt->bindParam(':PRECIOOI',$preciooi);
+		$stmt->execute();
+		return "";
+	} catch(PDOException $e) {
+		return $e->getMessage();
+    }
+}
+
+function modificar_otrositems($conexion,$referencia, $nombreoi, $preciooi){
+	try {
+		$stmt=$conexion->prepare("CALL MODIFICAR_OTROSITEMS(:REFERENCIA, :NOMBREOI, :PRECIOOI)");
+		$stmt->bindParam(':REFERENCIA', $referencia);
+		$stmt->bindParam(':NOMBREOI',$nombreoi);
+		$stmt->bindParam(':PRECIOOI',$preciooi);
+		$stmt->execute();
+		return "";
+	} catch(PDOException $e) {
+		return $e->getMessage();
+    }
+}
 ?>
