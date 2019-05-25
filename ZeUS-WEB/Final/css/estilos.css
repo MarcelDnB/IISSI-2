@@ -368,6 +368,7 @@ input[type=number] { /* para firefox*/
 		  td { 
 			/* Behave  like a "row" */
 			border: none;
+			min-height: 20px;
 			border-bottom: 1px solid #eee; 
 			position: relative;
 			padding-left: 60%; 
