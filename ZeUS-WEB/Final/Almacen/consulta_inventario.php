@@ -57,17 +57,15 @@
 
 <body>
 	<!--                                                      	 PAGINACION                                                           -->
-<nav>
-<form method="get" action="pagina.php" class="formpaginacion">
-	<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
-	<a class="mostrando">Mostrando</a>
-	<input id="PAG_TAM" name="PAG_TAM" type="number"
-		min="1" max="<?php echo $total_registros; ?>"
-		value="<?php echo $pag_tam?>" autofocus="autofocus" />
-	entradas de <?php echo $total_registros?>
-	<input id="pagin" name="pagin" type="submit" value="Cambiar" class="subpaginacion">
-</form>
-</nav>
+	<nav>
+		<form method="get" action="pagina.php" class="formpaginacion">
+			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada ?>" />
+			<a class="mostrando">Mostrando</a>
+			<input id="PAG_TAM" name="PAG_TAM" class="PAG_TAM" type="number" min="1" max="<?php echo $total_registros; ?>" value="<?php echo $pag_tam ?>" autofocus="autofocus" />
+			entradas de <?php echo $total_registros ?>
+			<input id="pagin" name="pagin" type="submit" value="Cambiar" class="subpaginacion">
+		</form>
+	</nav>
 <!--                                                      	 PAGINACION                                                           -->
 
 <!--                                                      	EXCEPCIONES                                                            -->
@@ -86,6 +84,7 @@
 
 <div class="seccionEntradas">
 <table id="tabla1" style="width:100%">
+		<thead>
 			<tr>
 			<th>Referencia</th>
 			<th>Nombre</th>
@@ -95,6 +94,7 @@
 			<th>Necesita reparación</th>
 			<th>Borrar</th>
 			</tr>	
+		</thead>
 	<?php
 		foreach($filas as $fila) {
 	?>
@@ -108,35 +108,33 @@
 						<?php if (isset($inventario) and ($fila["REFERENCIA"] == $inventario["REFERENCIA"])) { ?>
 							<!--Edición-->
 							<tr>
-							<td><?php echo $fila['REFERENCIA'];?></td>
-							<td><?php echo $fila['NOMBRE'];?></td>
-							<td><select id="ESTADOITEM" required name="ESTADOITEM">
+							<td data-title="Referencia:"><?php echo $fila['REFERENCIA'];?></td>
+							<td data-title="Nombre:"><?php echo $fila['NOMBRE'];?></td>
+							<td data-title="Estado:"><select id="ESTADOITEM" required name="ESTADOITEM">
 								<?php if ($fila['ESTADOITEM'] != "Disponible") echo "<option>Disponible</option>" ?>
 								<?php if ($fila['ESTADOITEM'] != "porReparar") echo "<option>enMantenimiento</option>" ?>
 								<option selected="selected"><?php echo $fila['ESTADOITEM']; ?></option>
 							</select></td>
-							<td><?php echo $fila['PRECIO'] ?></td>
-							<td> <?php echo $fila['PEID'];?></td>
-						<!--<td><p><?php echo $fila['DESCRIPCIONCLIENTE'];?></p></td>-->	
+							<td data-title="Precio:"><?php echo $fila['PRECIO'] ?></td>
+							<td data-title="PEID:"> <?php echo $fila['PEID'];?></td>	
 						
 						<?php }else{ ?>
 						<!--Mostrando-->
 						<tr>
-						<td><?php echo $fila['REFERENCIA'];?></td>
-						<td><?php echo $fila['NOMBRE'];?></td>
-						<td><?php echo $fila['ESTADOITEM'];?></td>
-						<td><?php echo $fila['PRECIO'] ?></td>
-						<td> <?php echo $fila['PEID'];?></td>
-						<!--<td><p><?php echo $fila['DESCRIPCIONCLIENTE'];?></p></td>-->	
+						<td data-title="Referencia:"><?php echo $fila['REFERENCIA'];?></td>
+						<td data-title="Nombre:"><?php echo $fila['NOMBRE'];?></td>
+						<td data-title="Estado:"><?php echo $fila['ESTADOITEM'];?></td>
+						<td data-title="Precio:"><?php echo $fila['PRECIO'] ?></td>
+						<td data-title="PEID:"> <?php echo $fila['PEID'];?></td>	
 						<?php } ?>
 						
 						
-							<td>
+							<td data-title="A reparar:">
 								<button id="editar" name="editar" type="submit" class="editar_fila">
 									<img src="images/pencil_menuito.bmp" class="editar_fila" alt="Editar ítem">
 								</button>
 							</td>
-						<td>
+						<td data-title="Borrar:">
 							<button id="borrar" name="borrar" type="submit" class="editar_fila">
 								<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar tem">
 							</button>

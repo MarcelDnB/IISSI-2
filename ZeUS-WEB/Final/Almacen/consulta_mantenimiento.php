@@ -38,16 +38,15 @@
 	cerrarConexionBD($conexion);
 ?>
 <body>
-<form method="get" action="pagina.php" class="formpaginacion">
-	<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
-	<a class="mostrando">Mostrando</a>
-	<input id="PAG_TAM" name="PAG_TAM" type="number"
-		min="1" max="<?php echo $total_registros; ?>"
-		value="<?php echo $pag_tam?>" autofocus="autofocus" />
-	entradas de <?php echo $total_registros?>
-	<input id="pagin" name="pagin" type="submit" value="Cambiar" class="subpaginacion">
-</form>
-</nav>
+<nav>
+		<form method="get" action="pagina.php" class="formpaginacion">
+			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada ?>" />
+			<a class="mostrando">Mostrando</a>
+			<input id="PAG_TAM" name="PAG_TAM" class="PAG_TAM" type="number" min="1" max="<?php echo $total_registros; ?>" value="<?php echo $pag_tam ?>" autofocus="autofocus" />
+			entradas de <?php echo $total_registros ?>
+			<input id="pagin" name="pagin" type="submit" value="Cambiar" class="subpaginacion">
+		</form>
+	</nav>
 <!--                                                      	PAGINACION                                                            -->
 
 
@@ -67,7 +66,7 @@
     <div class="modal-body">
       <form method="POST" action="Almacen/controlador_mantenimiento.php">
 				<label>Ítems por reparar: </label> 
-				<input list="opcionesItems" autocomplete="off" id="maitems" name="maitems" class="form-modal">
+				<input required list="opcionesItems" autocomplete="off" id="maitems" name="maitems" class="form-modal">
 				<datalist id="opcionesItems">
 			  	<?php
 			  		$items = listarItemsPorReparar($conexion);
@@ -78,9 +77,9 @@
 			</datalist>
 				<!--<div><label>Fecha de Inicio: </label> <input type="date" id="startdate" name="startdate" class="form-modal"></div>-->
 				<label>Encargado de la reparación: </label> 
-				<input list="opcionesPersonal" autocomplete="off" id="mapersonal" name="mapersonal" class="form-modal">
+				<input required list="opcionesPersonal" autocomplete="off" id="mapersonal" name="mapersonal" class="form-modal">
 				<datalist id="opcionesPersonal">
-			  	<?php
+					<?php
 			  	  $empleadosDisponibles = listarPersonalAlmacenDisponible($conexion);
 			  		foreach($empleadosDisponibles as $personal) {
 			  			echo "<option label=Empleado-".$personal["PID"]." value='".$personal["PID"]."'>";
@@ -114,7 +113,7 @@
 	}
 	if (isset($_SESSION["errormodal"])) {
 		echo "No se ha podido asignar la reparación, ha introducido algún dato inválido";
-		echo $_SESSION['excepcion'];
+		//echo $_SESSION['excepcion'];
 	}
 	if(isset($_SESSION['pagconsult'])) {
 		echo "Ha ocurrido un error con la paginación";
@@ -126,12 +125,14 @@
 <!--                                                       CONSULTA_EVENTO                                                            -->
 <div class="seccionEntradas">
 <table id="tabla1" style="width:100%">
+	<thead>
 			<tr>
 			<th>Fecha de inicio</th>
 			<th>Empleado encargado</th>
 			<th>Referencia</th>
 			<th>Finalizar</th>
 			</tr>	
+</thead>
 	<?php
 		foreach($filas as $fila) {
 	?>
@@ -144,12 +145,12 @@
 						value="<?php echo $fila["REFERENCIA"];?>"/>
 					
 						<tr>
-						<td><?php if ($fila["FECHAINICIO"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAINICIO']), 'Y-m-d'); ?></td>
-						<td><?php echo $fila['PID'];?></td>
-						<td><?php echo $fila['REFERENCIA'];?></td>
+						<td data-title="Inicio:"><?php if ($fila["FECHAINICIO"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAINICIO']), 'Y-m-d'); ?></td>
+						<td data-title="PID:"><?php echo $fila['PID'];?></td>
+						<td data-title="REFERENCIA"><?php echo $fila['REFERENCIA'];?></td>
 			
 				
-				<td>
+				<td data-title="Borrar">
 				<button id="borrar" name="borrar" type="submit" class="editar_fila">
 					<img src="images/remove_menuito.bmp" class="editar_fila" alt="Finalizar mantenimiento">
 				</button>

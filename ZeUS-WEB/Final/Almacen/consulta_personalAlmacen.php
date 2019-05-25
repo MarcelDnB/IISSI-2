@@ -55,17 +55,15 @@
 
 <body>
 	<!--                                                      	 PAGINACION                                                           -->
-<nav>
-<form method="get" action="pagina.php" class="formpaginacion">
-	<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
-	<a class="mostrando">Mostrando</a>
-	<input id="PAG_TAM" name="PAG_TAM" type="number"
-		min="1" max="<?php echo $total_registros; ?>"
-		value="<?php echo $pag_tam?>" autofocus="autofocus" />
-	entradas de <?php echo $total_registros?>
-	<input id="pagin" name="pagin" type="submit" value="Cambiar" class="subpaginacion">
-</form>
-</nav>
+	<nav>
+		<form method="get" action="pagina.php" class="formpaginacion">
+			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada ?>" />
+			<a class="mostrando">Mostrando</a>
+			<input id="PAG_TAM" name="PAG_TAM" class="PAG_TAM" type="number" min="1" max="<?php echo $total_registros; ?>" value="<?php echo $pag_tam ?>" autofocus="autofocus" />
+			entradas de <?php echo $total_registros ?>
+			<input id="pagin" name="pagin" type="submit" value="Cambiar" class="subpaginacion">
+		</form>
+	</nav>
 <!--                                                      	 PAGINACION                                                           -->
 
 <!--                                                      	MODAL_FORM                                                            -->
@@ -74,6 +72,7 @@
 
 <div class="seccionEntradas">
 <table id="tabla1" style="width:100%">
+	<thead>
 			<tr>
 			<th>PID</th>
 			<th>Nombre</th>
@@ -86,6 +85,7 @@
 			<th>Evento asignado</th>
 			<th>PEID</th>
 			</tr>	
+	</thead>
 	<?php
 		foreach($filas as $fila) {
 	?>
@@ -112,18 +112,18 @@
 						value="<?php echo $fila["PEID"];?>"/>
 
 						<tr>
-						<td><?php echo $fila['PID'];?></td>
-						<td><?php echo $fila['NOMBRE'];?></td>
-						<td><?php echo $fila['CARGO'];?></td>
-						<td><?php echo $fila['SUELDO'] ?></td>
-						<td> <?php echo $fila['DNI'];?></td>
-						<td><?php echo $fila['TELEFONO'];?></td>
-						<td><?php echo $fila['EMAIL'];?></td>
-						<td><?php echo $fila['ESTADO'];?></td>
-						<td><?php echo $fila['EID'];?></td>
-						<td><?php echo $fila['PEID'];?></td>
+						<td data-title="PID:"><?php echo $fila['PID'];?></td>
+						<td data-title="Nombre:"><?php echo $fila['NOMBRE'];?></td>
+						<td data-title="Cargo:"><?php echo $fila['CARGO'];?></td>
+						<td data-title="Sueldo:"><?php echo $fila['SUELDO'] ?></td>
+						<td data-title="DNI:"> <?php echo $fila['DNI'];?></td>
+						<td data-title="Teléfono:"><?php echo $fila['TELEFONO'];?></td>
+						<td data-title="eMail:"><?php echo $fila['EMAIL'];?></td>
+						<td data-title="Estado:"><?php echo $fila['ESTADO'];?></td>
+						<td data-title="EID:"><?php echo $fila['EID'];?></td>
+						<td data-title="PEID:"><?php echo $fila['PEID'];?></td>
 
-						<!--<td><p><?php echo $fila['DESCRIPCIONCLIENTE'];?></p></td>-->	
+						
 			
 
 		</form>
