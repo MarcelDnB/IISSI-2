@@ -42,6 +42,7 @@ body{
 .sidebar button{
 	display: block;
 	color: #fff;
+	font-family: 'raleway', sans-serif;
 	text-decoration: none;
 	padding: 15px;
 	border: none;
@@ -187,7 +188,7 @@ body{
 }
 
 table {
-	font-family: arial, sans-serif;
+	font-family: 'raleway', sans-serif;
 	border-collapse: collapse;
 	width: 100%;
 	background-color: rgb(255, 255, 255);
@@ -298,7 +299,8 @@ input[type=number] { /* para firefox*/
 
 
 .btn {
-    background-color: rgba(0, 255, 13, 0.377);
+		background-color: rgba(0, 255, 13, 0.377);
+		font-family: 'raleway', sans-serif;
     text-decoration: none;
     border: none;
     padding: 15px 32px;
@@ -314,6 +316,7 @@ input[type=number] { /* para firefox*/
 	border: none;
 	color: rgb(0, 0, 0);
 	padding: 16px 32px;
+	font-family: 'raleway', sans-serif;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
