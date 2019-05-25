@@ -68,18 +68,17 @@ cerrarConexionBD($conexion);
 	<button id="myBtn" class="mybtn">Añadir Item </button>
 
 	<!-- The Modal -->
-	
-	<div id="myModal" class="modal">
+	<div id="myModal" class="modal-material modal">
 
 		<!-- Modal content -->
-		<div class="modal-content-material">
+		<div class="modal-content">
 			<div class="modal-header">
 				<span class="close">&times;</span> <!-- he utilizado bootstrap solo para la X -->
 				<h2>Añadir Item</h2>
 			</div>
 			<div class="modal-body">
 				<form method="POST" action="produccion/controlador_itemA.php">
-				<table id="tabla3" style="width:100%">
+				<table id="tabla3" class="tabla3">
 			<thead>
 			<tr>
 				<th>ID</th>

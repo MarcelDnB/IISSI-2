@@ -199,10 +199,10 @@ table {
 	text-align: left;
 	padding: 8px;
   }
-  td p { /* para limitar el numero de caracteres*/
-	text-overflow: ellipsis;
-	width: 370px;
-	overflow:hidden;
+  td textarea { /* para limitar el numero de caracteres*/
+	width: 380px;
+	height: 100px;
+	overflow: scroll;
   }
   
   tr:nth-child(even) {
@@ -371,7 +371,7 @@ input[type=number] { /* para firefox*/
 			min-height: 20px;
 			border-bottom: 1px solid #eee; 
 			position: relative;
-			padding-left: 60%; 
+			padding-left: 55%; 
 			white-space: normal;
 			text-align:left;
 		}
@@ -403,3 +403,72 @@ input[type=number] { /* para firefox*/
 					width: 120px;
 				}
 	}
+
+	
+	
+
+
+
+
+
+
+
+
+
+	/* Force table to not be like tables anymore */
+	.modal-material table, 
+	.modal-material thead, 
+	.modal-material tbody, 
+	.modal-material	th, 
+	.modal-material td, 
+	.modal-material tr { 
+	display: block; 
+}
+
+/* Hide table headers (but not display: none;, for accessibility) */
+.modal-material thead tr { 
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
+}
+
+.modal-material tr { border: 1px solid #ccc; }
+
+.modal-material td { 
+	/* Behave  like a "row" */
+	border: none;
+	min-height: 20px;
+	border-bottom: 1px solid #eee; 
+	position: relative;
+	padding-left: 55%; 
+	white-space: normal;
+	text-align:left;
+}
+
+.modal-material	td:before { 
+	/* Now like a table header */
+	position: absolute;
+	/* Top/left values mimic padding */
+	top: 6px;
+	left: 10px;
+	width: 45%; 
+	padding-right: 10px; 
+	white-space: nowrap;
+	text-align:left;
+	font-weight: bold;
+}
+
+/*
+Label the data
+*/
+.modal-material td:before { content: attr(data-title); }
+	
+.modal-material	td p { /* para limitar el numero de caracteres*/
+		text-overflow: ellipsis;
+		width: 140px;
+		overflow:hidden;
+		}
+		table input[type=text] {
+			width: 120px;
+		}
+
