@@ -186,4 +186,57 @@ end QUITAR_TRANSPORTE;
 
 
 
-            
+//Cambios de almacén
+-Tabla otrosItems para los ítems sin clasificar
+create table otrosItems(
+            referencia number(10) primary key,
+            nombre varchar2(30),
+            precio number(20) check (precio>=0),
+            foreign key(referencia) references inventario on delete cascade
+);
+
+-Procedures para modificar los ítems
+CREATE OR REPLACE PROCEDURE modificar_altavoz(w_REFERENCIA IN altavoz.referencia%TYPE, w_precio IN altavoz.precio%TYPE, w_potencia IN altavoz.potencia%TYPE,w_pulgadas IN altavoz.pulgadas%TYPE)
+IS
+BEGIN
+UPDATE ALTAVOZ SET precio = w_precio, potencia=w_potencia ,pulgadas=w_pulgadas where REFERENCIA=w_REFERENCIA;
+UPDATE INVENTARIO SET precio = w_precio where REFERENCIA=w_REFERENCIA;
+commit work;
+end MODIFICAR_ALTAVOZ;
+
+CREATE OR REPLACE PROCEDURE modificar_otrositems(w_REFERENCIA IN microfono.referencia%TYPE, w_nombre IN otrositems.nombre%TYPE, w_precio IN microfono.precio%TYPE)
+IS
+BEGIN
+UPDATE OTROSITEMS SET precio = w_precio, nombre=w_nombre where REFERENCIA=w_REFERENCIA;
+UPDATE INVENTARIO SET precio = w_precio, nombre=w_nombre where REFERENCIA=w_REFERENCIA;
+commit work;
+end MODIFICAR_otrositems;
+
+-Triggers para controlar la entrada de datos por la página web
+ --Trigger almacén IISSI2 2
+CREATE OR REPLACE TRIGGER ARN06
+BEFORE UPDATE OF PID ON MANTENIMIENTO FOR EACH ROW
+DECLARE AUX INTEGER;
+BEGIN
+SELECT COUNT(*) INTO AUX FROM PERSONAL WHERE DEPARTAMENTO='Almacen' AND :NEW.PID = PID;
+ IF(AUX=0) THEN RAISE_APPLICATION_ERROR(-20631,'El trabajador no es departamento de almacén');
+ end if;
+ end;
+ 
+ --Trigger almacén IISSI2 3 -> MIRA SI EL ÍTEM SELECCIONADO REQUIERE REPARACIÓN (ESTADO = PORREPARAR)
+CREATE OR REPLACE TRIGGER ARN07
+BEFORE UPDATE OF ESTADOITEM ON INVENTARIO FOR EACH ROW
+BEGIN
+  IF :NEW.ESTADOITEM='enMantenimiento' AND :OLD.ESTADOITEM!='porReparar' then
+   RAISE_APPLICATION_ERROR(-20632, 'El ítem no necesita reparación');
+end if;
+END;
+ 
+--Trigger almacén IISSI2 3 -> NO DEJA MANDAR A REPARACIONES PENDIENTES UN ÍTEM QUE YA SE ESTÁ REPARANDO
+CREATE OR REPLACE TRIGGER ARN08
+BEFORE UPDATE OF ESTADOITEM ON INVENTARIO FOR EACH ROW
+BEGIN
+  IF :NEW.ESTADOITEM='porReparar' AND :OLD.ESTADOITEM='enMantenimiento' then
+   RAISE_APPLICATION_ERROR(-20632, 'El ítem está en reparación');
+end if;
+END;

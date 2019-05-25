@@ -146,7 +146,6 @@ cerrarConexionBD($conexion);
 					<input id="REFERENCIA" name="REFERENCIA" type="hidden" value="<?php echo $fila["REFERENCIA"]; ?>" />
 					<input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $fila["NOMBRE"]; ?>" />
 					<input id="PRECIO" name="PRECIO" type="hidden" value="<?php echo $fila["PRECIO"]; ?>" />
-			
 					<?php
 					if (isset($otrositems) and ($fila["REFERENCIA"] == $otrositems["REFERENCIA"])) { ?>
 						<!-- Editando título -->
