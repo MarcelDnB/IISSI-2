@@ -67,14 +67,14 @@
 	}else { 
 		 if(isset($_REQUEST["agregar"])) {
 			$envios2['direccionenv']= $_REQUEST['direccionenv'];
+			$envios2['fentradaenv'] = $_REQUEST['fentradaenv'];
 			$envios2['fsalidaenv'] = $_REQUEST['fsalidaenv'];
-			$envios2['fregresoenv'] = $_REQUEST['fregresoenv'];
 			$envios2['envpersonal'] = $_REQUEST['envpersonal'];
 			$envios2['envparte'] = $_REQUEST['envparte'];
 			require_once("../gestionBD.php");
 			require_once("gestionarEnvios.php");
 			$conexion = crearConexionBD($conexion);
-			$excepcion = crear_envio($conexion,$envios2['direccionenv'],$envios2['fregresoenv'],$envios2['fsalidaenv'],$envios2['envpersonal'],$envios2['envparte']);
+			$excepcion = crear_envio($conexion,$envios2['direccionenv'],$envios2['fentradaenv'],$envios2['fsalidaenv'],$envios2['envpersonal'],$envios2['envparte']);
 			cerrarConexionBD($conexion);
 	
 			if ($excepcion<>"") {

@@ -1,11 +1,11 @@
 <?php
   //Funciones para los envíos
 
-function crear_envio($conexion, $direccionenv, $fregresoenv, $fsalidaenv, $envpersonal, $envparte){
+function crear_envio($conexion, $direccionenv, $fentradaenv, $fsalidaenv, $envpersonal, $envparte){
 	try {
-		$stmt=$conexion->prepare("CALL CREAR_ENVIO(:DIRECCIONENV, :FREGRESOENV, :FSALIDAENV, :PIDENV, :PEIDENV)");
+		$stmt=$conexion->prepare("CALL CREAR_ENVIO(:DIRECCIONENV,TO_DATE(:FENTRADAENV,'YYYY-MM-DD'),TO_DATE(:FSALIDAENV,'YYYY-MM-DD'),:PIDENV, :PEIDENV)");
 		$stmt->bindParam(':DIRECCIONENV',$direccionenv);
-		$stmt->bindParam(':FREGRESOENV',$fregresoenv);
+		$stmt->bindParam(':FENTRADAENV',$fentradaenv);
 		$stmt->bindParam(':FSALIDAENV',$fsalidaenv);
 		$stmt->bindParam(':PIDENV',$envpersonal);
 		$stmt->bindParam(':PEIDENV',$envparte);

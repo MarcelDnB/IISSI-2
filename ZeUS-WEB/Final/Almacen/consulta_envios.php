@@ -70,10 +70,10 @@ cerrarConexionBD($conexion);
 					<label>Dirección: </label>
 					<div><textarea required type="text" id="direccionenv" name="direccionenv" rows="1" cols="40" maxlength="30"></textarea></div>
 					<label>Fecha de Salida: </label> <input required type="date" id="fsalidaenv" name="fsalidaenv" class="form-modal">
-					<label>Fecha de Regreso: </label> <input required type="date" id="fregresoenv" name="fregresoenv" class="form-modal">
+					<label>Fecha de Regreso: </label> <input required type="date" id="fentradaenv" name="fentradaenv" class="form-modal">
 					<label>Encargado del envío: </label> 
-				    <input required list="opcionesPersonal" autocomplete="off" id="envpersonal" name="envpersonal" class="form-modal">
-				    <datalist id="opcionesPersonal">
+				    <input required list="opcionesPersonalEnvio" autocomplete="off" id="envpersonal" name="envpersonal" class="form-modal">
+				    <datalist id="opcionesPersonalEnvio">
 					<?php
 			  	    	$empleadosDisponibles = listarPersonalAlmacenDisponible($conexion);
 			  			foreach($empleadosDisponibles as $personal) {
@@ -82,8 +82,8 @@ cerrarConexionBD($conexion);
 					?>
 					</datalist>
 					<label>Parte a enviar: </label> 
-					<input required list="opcionesParte" autocomplete="off" id="envparte" name="envparte" class="form-modal">
-					<datalist id="opcionesParte">
+					<input required list="opcionesParteEnvio" autocomplete="off" id="envparte" name="envparte" class="form-modal">
+					<datalist id="opcionesParteEnvio">
 			  		<?php
 			  			$partes = listarPartesSinEnviar($conexion);
 			  			foreach($partes as $parte) {
