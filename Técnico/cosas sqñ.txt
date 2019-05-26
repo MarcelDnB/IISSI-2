@@ -1,0 +1,74 @@
+CREATE OR REPLACE TRIGGER ACT_EST_DLT 
+BEFORE DELETE ON PARTEEQUIPO 
+FOR EACH ROW
+BEGIN
+    UPDATE EVENTO SET estadoevento='porRealizar' WHERE eid=:OLD.EID;
+END;
+
+
+
+CREATE OR REPLACE TRIGGER ACT_EST_INS 
+AFTER INSERT ON PARTEEQUIPO 
+FOR EACH ROW
+BEGIN
+    UPDATE  EVENTO SET estadoevento='enPreparacion' WHERE eid=:NEW.eid;
+END;
+
+
+create or replace PROCEDURE CANCELARSOLICITUD (w_mid IN materialnecesario.mid%TYPE)
+IS 
+BEGIN
+  DELETE MATERIALNECESARIO WHERE mid=w_mid;
+  COMMIT WORK;
+END CANCELARSOLICITUD;
+
+create or replace PROCEDURE EDITARSOLICITUD(w_mid in MATERIALNECESARIO.MID%TYPE,w_nombre in MATERIALNECESARIO.nombre%TYPE,w_tipo in MATERIALNECESARIO.tipo%TYPE,w_cantidad in MATERIALNECESARIO.cantidad%TYPE,w_peid in materialnecesario.peid%TYPE)
+IS 
+BEGIN
+  UPDATE MATERIALNECESARIO  SET nombre=w_nombre ,tipo=w_tipo, cantidad=w_cantidad, peid=w_peid WHERE mid=w_mid ;
+  COMMIT WORK;
+END EDITARSOLICITUD;
+
+create or replace PROCEDURE SOLICITARMATERIAL (w_nombre IN MATERIALNECESARIO.NOMBRE%TYPE, w_tipo IN MATERIALNECESARIO.TIPO%TYPE,w_cantidad IN MATERIALNECESARIO.CANTIDAD%TYPE,w_peid IN MATERIALNECESARIO.PEID%TYPE) 
+IS 
+BEGIN
+  INSERT INTO MATERIALNECESARIO (mid,nombre,tipo,cantidad,peid) VALUES(SEC_IA.nextval, w_nombre, w_tipo,w_cantidad,w_peid);
+  COMMIT WORK;
+END SOLICITARMATERIAL;
+
+create or replace PROCEDURE MODIFICAR_PARTEEQUIPO (w_peid IN PARTEEQUIPO.PEID%TYPE)
+IS 
+BEGIN
+  UPDATE PARTEEQUIPO SET peid=w_peid WHERE peid=w_peid;
+END MODIFICAR_PARTEEQUIPO;
+
+create or replace PROCEDURE QUITAR_PARTEEQUIPO (w_peid in parteequipo.peid%TYPE)
+IS 
+BEGIN
+  DELETE PARTEEQUIPO WHERE peid=w_peid;
+  COMMIT WORK;
+END QUITAR_PARTEEQUIPO;
+
+create or replace PROCEDURE CREAR_PARTEEQUIPO(w_eid IN parteEquipo.eid%TYPE) IS
+BEGIN
+INSERT INTO parteEquipo(peid, eid)
+VALUES(sec_parteequipo.nextval, w_eid);
+COMMIT WORK;
+END CREAR_PARTEEQUIPO;
+
+CREATE SEQUENCE  "TRABAJOZEUS"."SEC_IA"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 101 CACHE 20 NOORDER  NOCYCLE ;
+
+CREATE TABLE PARTEEQUIPO(
+	peid number(7) unique,
+	eid number(7) unique,
+	foreign key (eid) references EVENTO
+);
+
+CREATE TABLE MATERIALNECESARIO(
+	mid number(7) unique,
+	nombre varchar2(40),
+	tipo varchar2(40),
+	cantidad number(4),
+	peid number(7),
+	foreign key (peid) references PARTEEQUIPO
+);
