@@ -1,0 +1,242 @@
+<?php
+require_once("gestionBD.php");
+require_once("gestionarInventario.php");
+require_once("paginacion_consulta.php");
+if (!isset($_SESSION['login'])) {
+	Header("Location: login.php");
+} else {
+	if (isset($_SESSION["envios"])) {
+		$envios = $_SESSION["envios"];
+		unset($_SESSION["envios"]);
+	}
+
+
+
+
+
+	//                                                      	 PAGINACION                                                           //
+	if (isset($_SESSION["paginacion"]))
+		$paginacion = $_SESSION["paginacion"];
+	$pagina_seleccionada = isset($_GET["PAG_NUM"]) ? (int)$_GET["PAG_NUM"] : (isset($paginacion) ? (int)$paginacion["PAG_NUM"] : 1);
+	$pag_tam = isset($_GET["PAG_TAM"]) ? (int)$_GET["PAG_TAM"] : (isset($paginacion) ? (int)$paginacion["PAG_TAM"] : 5);
+	if ($pagina_seleccionada < 1) 		$pagina_seleccionada = 1;
+	if ($pag_tam < 1) 		$pag_tam = 5;
+	unset($_SESSION["paginacion"]);
+	$conexion = crearConexionBD();
+	$query = 'SELECT * from ENVIOS ORDER BY PEID';
+	$total_registros = total_consulta($conexion, $query);
+	$total_paginas = (int)($total_registros / $pag_tam);
+	if ($total_registros % $pag_tam > 0)		$total_paginas++;
+	if ($pagina_seleccionada > $total_paginas)		$pagina_seleccionada = $total_paginas;
+	$paginacion["PAG_NUM"] = $pagina_seleccionada;
+	$paginacion["PAG_TAM"] = $pag_tam;
+	$_SESSION["paginacion"] = $paginacion;
+	$filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
+	cerrarConexionBD($conexion);
+}
+$conexion = crearConexionBD();
+$filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
+cerrarConexionBD($conexion);
+?>
+
+<body>
+	<nav>
+		<form method="get" action="pagina.php" class="formpaginacion">
+			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada ?>" />
+			<a class="mostrando">Mostrando</a>
+			<input id="PAG_TAM" name="PAG_TAM" class="PAG_TAM" type="number" min="1" max="<?php echo $total_registros; ?>" value="<?php echo $pag_tam ?>" autofocus="autofocus" />
+			entradas de <?php echo $total_registros ?>
+			<input id="pagin" name="pagin" type="submit" value="Cambiar" class="subpaginacion">
+		</form>
+	</nav>
+	<!--                                                      	 PAGINACION                                                           -->
+
+	<!--                                                      	MODAL_FORM                                                            -->
+	<!-- Trigger/Open The Modal -->
+	<button id="myBtn" class="mybtn">Añadir envío </button>
+
+	<!-- The Modal -->
+	
+	<div id="myModal" class="modal">
+
+		<!-- Modal content -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="close">&times;</span> <!-- he utilizado bootstrap solo para la X -->
+				<h2>Añadir envío</h2>
+			</div>
+			<div class="modal-body">
+				<form method="POST" action="almacen/controlador_envios.php">
+					<label>Dirección: </label>
+					<div><textarea required type="text" id="direccionenv" name="direccionenv" rows="1" cols="40" maxlength="30"></textarea></div>
+					<label>Encargado del envío: </label> 
+				    <input required list="opcionesPersonal" autocomplete="off" id="envpersonal" name="envpersonal" class="form-modal">
+				    <datalist id="opcionesPersonal">
+					<?php
+			  	    	$empleadosDisponibles = listarPersonalAlmacenDisponible($conexion);
+			  			foreach($empleadosDisponibles as $personal) {
+			  				echo "<option label=Empleado-".$personal["PID"]." value='".$personal["PID"]."'>";
+						}
+					?>
+					<label>Partes sin enviar: </label> 
+					<input required list="opcionesParte" autocomplete="off" id="envparte" name="envparte" class="form-modal">
+					<datalist id="opcionesParte">
+			  		<?php
+			  			$items = listarPartesSinEnviar($conexion);
+			  			foreach($items as $parte) {
+			  				echo "<option label=Ítem-".$parte["PEID"]." value='".$parte["PEID"]."'>";
+						}
+					?>
+					</datalist>
+					</datalist>
+					<button id="agregar" name="agregar" type="submit" value="Añadir" class="btn">Añadir</button>
+					<?php if (isset($_SESSION["errormodal"])) { ?>
+						<label>HA OCURRIDO UN ERROR</label>
+					<?php } ?>
+
+
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="js/modal.js"></script>
+	<!--                                                      	MODAL_FORM                                                            -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
+	<?php if (isset($_SESSION["borrado"])) {
+		echo "No se puede borrar";
+	}
+	if (isset($_SESSION["editando"])) {
+		echo "No se puede modificar, tenga cuidado con el formato que se requiere";
+	}
+	if(isset($_SESSION["errormodal"])) {
+		echo "No se ha podido agregar el altavoz, ha introducido algún dato inválido";
+}
+	if(isset($_SESSION['pagconsult'])) {
+		echo "Ha ocurrido un error con la paginación";
+	}
+	?>
+	<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!--                                                       CONSULTA_EVENTO                                                            -->
+	<div class="seccionEntradas">
+		<table id="tabla1" style="width:100%">
+			<thead>
+			<tr>
+				<th>Referencia</th>
+				<th>Nombre</th>
+				<th>Precio</th>
+				<th>Potencia</th>
+				<th>Pulgadas</th>
+				<th>Editar</th>
+				</tr>
+			</thead>
+			<?php
+			foreach ($filas as $fila) {
+				?>
+				<form method="POST" action="almacen/controlador_altavoz.php">
+					<!-- Controles de los campos que quedan ocultos:
+								OID_LIBRO, OID_AUTOR, OID_AUTORIA, NOMBRE, APELLIDOS -->
+					<input id="REFERENCIA" name="REFERENCIA" type="hidden" value="<?php echo $fila["REFERENCIA"]; ?>" />
+					<input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $fila["NOMBRE"]; ?>" />
+					<input id="PRECIO" name="PRECIO" type="hidden" value="<?php echo $fila["PRECIO"]; ?>" />
+					<input id="POTENCIA" name="POTENCIA" type="hidden" value="<?php echo $fila["POTENCIA"]; ?>" />
+					<input id="PULGADAS" name="PULGADAS" type="hidden" value="<?php echo $fila["PULGADAS"]; ?>" />
+			
+
+					<?php
+					if (isset($altavoz) and ($fila["REFERENCIA"] == $altavoz["REFERENCIA"])) { ?>
+						<!-- Editando título -->
+						<tr>
+							<td data-title="Referencia:"><?php echo $fila['REFERENCIA']; ?></td>
+							<td data-title="Nombre:"><?php echo $fila['NOMBRE']; ?></td>
+							<td data-title="Precio:"><input id="PRECIO" name="PRECIO" required type="number" min="1" max="1000000000" value="<?php echo $fila['PRECIO']; ?>" /></td>
+							<td data-title="Potencia:"><input id="POTENCIA" name="POTENCIA" required type="number" min="1" max="9999" value="<?php echo $fila['POTENCIA']; ?>" /></td>
+							<td data-title="Pulgadas:"><input id="PULGADA" name="PULGADAS" required type="number" min="1" max ="99" value="<?php echo $fila['PULGADAS']; ?>" /> </td>
+						<?php } else { ?>
+							<!-- mostrando título -->
+						<tr>
+							<td data-title="Referencia:"><?php echo $fila['REFERENCIA']; ?></td>
+							<td data-title="Nombre:"><?php echo $fila['NOMBRE']; ?></td>
+							<td data-title="Precio:"><?php echo $fila['PRECIO']; ?></td>
+							<td data-title="Potencia:"><?php echo $fila['POTENCIA']; ?></td>
+							<td data-title="Pulgadas:"><?php echo $fila['PULGADAS']; ?></td>
+						<?php } ?>
+
+						<?php if (isset($altavoz) and $fila["REFERENCIA"] == $altavoz["REFERENCIA"]) { ?>
+							<td data-title="Confirmar:">
+								<button id="grabar" name="grabar" type="submit" class="editar_fila">
+									<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar Cambios">
+								</button>
+							</td>
+						<?php } else { ?>
+							<td data-title="Editar:">
+								<button id="editar" name="editar" type="submit" class="editar_fila">
+									<img src="images/pencil_menuito.bmp" class="editar_fila" alt="Editar Libro">
+								</button>
+							</td>
+						<?php } ?>
+
+				</form>
+
+				</article>
+				<div>
+
+				<?php } ?>
+				<div id="enlaces" class="enlaces">
+
+					<?php
+
+					for ($pagina = 1; $pagina <= $total_paginas; $pagina++)
+
+						if ($pagina == $pagina_seleccionada) { 	?>
+
+						<span class="current"><?php echo $pagina; ?></span>
+
+					<?php } else { ?>
+
+						<a href="pagina.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+					<?php } ?>
+
+				</div>
+
+				<?php unset($_SESSION["excepcion"]);
+				unset($_SESSION["borrado"]);
+				unset($_SESSION["editando"]);
+				unset($_SESSION["errormodal"]);
+				unset($_SESSION["pagconsult"]);
+				
+				
+				?>
+				<!--para reestablecer el error que salia antes, para evitar que salga siempre -->
+				<!--                                                       CONSULTA_ALTAVOCES                                                         -->
+
+</body>
