@@ -56,7 +56,32 @@
 			else{
 				Header("Location: ../pagina.php");
 			}
+		}		else  if(isset($_REQUEST["consultar"])) { // lo mismo que antes
+			if(isset($_SESSION["PARTEEQUIPO"])) {
+				$parteequipo = $_SESSION["PARTEEQUIPO"];
+				unset($_SESSION["PARTEEQUIPO"]);
+				
+				require_once("../gestionBD.php");
+				require_once("gestionarParteEquipo.php");
+			
+				$conexion=crearConexionBD();
+				$excepcion=consultar_parteEquipo($conexion,$parteequipo["EID"],$parteequipo["PEID"]);
+				cerrarConexionBD($conexion);
+				if($excepcion<>"") {
+					$_SESSION["excepcion"] = $excepcion;
+					$_SESSION["destino"] = "../pagina.php";
+					$_SESSION["consultado"] = 1;
+					Header("Location: ../pagina.php");
+				}
+				else {
+					Header("Location: ../pagina.php");
+				}
+			}
+			else{
+				Header("Location: ../pagina.php");
+			}
 		}
+		
 		
 	}else { // he puesto el modal en este else pq el el if veo si tengo eid proveniente del post, por lo q no es el caso
 		 if(isset($_REQUEST["agregar"])) {

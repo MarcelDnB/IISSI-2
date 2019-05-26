@@ -66,11 +66,11 @@ cerrarConexionBD($conexion);
 	<!--                                                      	MODAL_FORM                                                            -->
 	<!-- Trigger/Open The Modal -->
 	<button id="myBtn" class="mybtn">Crear Parte de Equipo </button>
+	<button id="myBtn2" class="mybtn2">Consultar Parte de Equipo</button>
 
 	<!-- The Modal -->
-	
-	<div id="myModal" class="modal">
 
+	<div id="myModal" class="modal">
 		<!-- Modal content -->
 		<div class="modal-content">
 			<div class="modal-header">
@@ -79,7 +79,7 @@ cerrarConexionBD($conexion);
 			</div>
 			<div class="modal-body">
 				<form method="POST" action="Tecnico/controlador_parteEquipo.php">
-					<label>Evento: </label><input type="" id="eid" name="eid" class="form-modal" >
+					<label>Evento:</label><input type="" id="eid" name="eid" class="form-modal" >
 					<button id="agregar" name="agregar" type="submit" value="Añadir" class="btn">Crear</button>
 					<?php if (isset($_SESSION["errormodal"])) { ?>
 						<label>HA OCURRIDO UN ERROR</label>
@@ -100,10 +100,112 @@ cerrarConexionBD($conexion);
 </script>
 	<!--                                                      	MODAL_FORM                                                            -->
 
+<!-- 														MODAL_2																  -->
+	<div id="myModal2" class="modal">
+
+												<!-- Modal content -->
+	<?php 
+	$consulta=$_SESSION['Consulta'];
+
+	$eventoConsulta=$consulta["evento"];
+	$alojamientoConsulta=$consulta["alojamiento"];
+	$inventarioConsulta=$consulta["inventario"];
+	$iaConsulta=$consulta["ia"];
+	$transporteConsulta=$consulta["transporte"];
+	$personalConsulta=$consulta["personal"];
+
+	$peid=$_SESSION['peid'];
 
 
 
+	?>
+	<div class="modal-content">
+		<div class="modal-header2">
+		<span class="close2">&times;</span> <!-- he utilizado bootstrap solo para la X -->
+		<h2>Parte de Equipo</h2>
+		</div>
+		<div class="modal-body">
+			<div><label>Parte de Equipo: <?php echo $peid;?></label></div>
+				
+				<div><label>Evento: <?php echo $eventoConsulta['EID']; ?></label>
+					<div><label>Lugar:  <?php echo $eventoConsulta['LUGAR'];?></label>
+					<label>Precio:  <?php echo $eventoConsulta['PRECIOTOTAL'];?></label>
+					<label>Estado:  <?php echo $eventoConsulta['ESTADOEVENTO'];?><label>
+					</div>
+					<div><label>Fecha:  Del <?php $eventoConsulta['FECHAINICIO'];?> al <?php $eventoConsulta['FECHAFIN'];?></label></div>
+					<div><label>Alojamiento:</label></div>
+					<div><label>Hotel: <?php echo $alojamientoConsulta["HOTEL"]?></label>
+						 <label>Direccion: <?php echo $alojamientoConsulta["DIRECCION"];?></label></div>
+					<div><label>Ciudad: <?php echo $alojamientoConsulta["CIUDAD"]; ?></label>
+						 <label>Numero de Personas: <?php echo $alojamientoConsulta["NUMPERSONAS"];?></label></div>
+					<div><label>Transporte:</label></div>
+						 <label>Medio: <?php echo $transporteConsulta["MEDIOUTILIZADO"];?></label></div>
+					<div><label>Personal: </label></div>
+					<div>
+					<table >
+							<tr>
+								<th>Nombre</th>
+                				<th>DNI</th>
+                				<th>Departamento</th>
+								<th>Cargo</th>
+							</tr>
+					<?php foreach((array)$personalConsulta as $filaP){?>
+						<tr>
+							<td><?php echo $filaP["NOMBRE"]; ?></td>
+							<td><?php echo $filaP["DNI"]; ?></td>
+							<td><?php echo $filaP["DEPARTAMENTO"]; ?></td>
+							<td><?php echo $filaP["CARGO"]; ?></td>
+						</tr>
+					<?php }?>
+					</table>
+				</div>
+									
+				<div><label>Inventario: </label></div>
+					<div>
+					<table >
+							<tr>
+								<th>Nombre</th>
+                				<th>Referencia</th>
+                				<th>Cantidad</th>
+							</tr>
+					<?php foreach((array)$inventarioConsulta as $filaI){?>
+						<tr>
+							<td><?php echo $filaI["NOMBRE"]; ?></td>
+							<td><?php echo $filaI["REFERENCIA"]; ?></td>
+							<td><?php echo $filaI["CANTIDAD"]; ?></td>
+						</tr>
+					<?php }?>
+					</table></div>
+					
+					
+					<div><label>Material Alquilado: </label></div>
+					<div>
+					<table >
+							<tr>
+								<th>Nombre</th>
+                				<th>Tipo</th>
+                				<th>Cantidad</th>
+							</tr>
+					<?php foreach((array)$iaConsulta as $filaIA){?>
+						<tr>
+							<td><?php echo $filaIA["NOMBRE"]; ?></td>
+							<td><?php echo $filaIA["TIPO"]; ?></td>
+							<td><?php echo $filaIA["CANTIDAD"]; ?></td>
 
+						</tr>
+					<?php }?>
+					</table></div>
+
+
+
+			</div>
+		</div>
+	</div>
+
+	<script src="js/modal.js"></script>
+
+
+<!-- 														MODAL_2																  -->
 
 
 
@@ -122,6 +224,7 @@ cerrarConexionBD($conexion);
 	}
 	if(isset($_SESSION["errormodal"])) {
 		echo "No se ha podido crear el Parte de Equipo, ha introducido algún dato inválido";
+		$_SESSION["errormodal"]="FALSE";
 }
 	if(isset($_SESSION['pagconsult'])) {
 		//echo "Ha ocurrido un error con la paginación";
@@ -151,14 +254,16 @@ cerrarConexionBD($conexion);
 	<div class="seccionEntradas">
 		<table id="tabla1" style="width:100%">
 			<tr>
-				<th>Evento</th>
 				<th>PEID</th>
                 <th>Editar</th>
                 <th>Borrar</th>
+				<th>Consultar</th>
 			</tr>
 			<?php
 			foreach ($filas as $fila) {
 				?>
+
+
 				<form method="POST" action="Tecnico/controlador_parteEquipo.php">
 					<!-- Controles de los campos que quedan ocultos:
 								OID_LIBRO, OID_AUTOR, OID_AUTORIA, NOMBRE, APELLIDOS -->
@@ -169,14 +274,13 @@ cerrarConexionBD($conexion);
 					if (isset($parteequipo) and ($fila["PEID"] == $parteequipo["PEID"])) { ?>
 						<!-- Editando título -->
 						<tr>
-							<td><input id="EID" name="EID" type="number" value="<?php echo $fila['EID']; ?>" ></td>
-                            <td><input id="PEID" name="PEID" type="number" value="<?php echo $fila['PEID'];?>" >   
+
+                            <td><input id="PEID" name="PEID" type="text" value="<?php echo $fila['PEID'];?>" >   
 						<?php } else { ?>
 							<!-- mostrando título -->
-						<tr>
-							<td><?php echo $fila['EID']; ?></td>
-							<td><?php echo $fila['PEID']; ?></td>
 
+							<tr>
+							<td><?php echo $fila['PEID']; ?></td>
 
 						<?php } ?>
 
@@ -197,6 +301,14 @@ cerrarConexionBD($conexion);
 							<button id="borrar" name="borrar" type="submit" class="editar_fila">
 								<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar Libro">
 							</button>
+						</td>
+						<td>
+							<button id="consultar" name="consultar" type="submit" class="consultar_fila">
+								<img src="images/ojo.png" class="consultar_fila" alt="Consultar PEID">
+							</button>
+
+							</button>
+
 						</td>
 
 				</form>
