@@ -7,7 +7,7 @@
      */
 function quitar_parteEquipo($conexion,$PEID) { //hay q hacer procedimientos para esto
 	try {
-		$stmt=$conexion->prepare('CALL QUITAR_PARTEEQUIPO(:PEID)');
+		$stmt=$conexion->prepare('CALL QUITARPARTEEQUIPO(:PEID)');
 		$stmt->bindParam(':PEID',$PEID);
 		$stmt->execute();
 		return "";
