@@ -1,3 +1,4 @@
+/* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -6,7 +7,7 @@
     left: 0;
     top: 0;
     width: 100%; /* Full width */
-    height: 100%; /* Full height */
+    height: 93%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
@@ -19,20 +20,32 @@
     margin: auto;
     padding: 0;
     border: 1px solid #888;
-    width: 40%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s
+    width: 33%;
+
+  }
+  .modal-content-material {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 50%;
   }
   
   /* The Close Button */
   .close {
     color: white;
     float: right;
-    font-size: 28px;
+    font-size: 50px;
     font-weight: bold;
+    background-color: #ff0000;
+  }
+  .close2 {
+    color: white;
+    float: right;
+    font-size: 50px;
+    font-weight: bold;
+    background-color: green;
   }
   
   .close:hover,
@@ -44,29 +57,46 @@
   
   .modal-header {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: #ff0000;
     color: white;
   }
-  
-  .modal-body {padding: 2px 16px;}
-  
-  .modal-footer {
+  .modal-header2 {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: green;
     color: white;
   }
-.mybtn {
-  background-color: rgba(255, 0, 0, 0.123);
-  text-decoration: none;
-  border: none;
-  padding: 15px 32px;
-  width:8%;
-  text-align:left;
-  margin-left: 600px;
-  margin-top: -35px;
-  position: absolute;
-}
+  
+  .modal-body {padding: 25px 25px;}
+
 .form-modal {
-  margin-bottom: 10px;
+  margin-bottom: 4px;
   margin-top: 20px;
+  background-color: rgb(224, 224, 224);
+  display: flex;
+  width: 200px;
+  height: 50px;
+}
+
+.btn {
+  background-color: rgb(136, 136, 136); 
+	border: none;
+	color: rgb(0, 0, 0);
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+.btn:hover {
+  background-color: rgb(255, 34, 34);
+	color: rgb(0, 0, 0);
+}
+textarea {
+  resize: none;
+  background-color: rgb(224, 224, 224);
+}
+.modal-body label{
 }
