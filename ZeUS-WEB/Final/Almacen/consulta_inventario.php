@@ -129,14 +129,14 @@
 						<?php } ?>
 						
 						
-							<td data-title="A reparar:">
-								<button id="editar" name="editar" type="submit" class="editar_fila">
-									<img src="images/pencil_menuito.bmp" class="editar_fila" alt="Editar ítem">
-								</button>
-							</td>
+						<td data-title="A reparar:">
+							<button id="editar" name="editar" type="submit" class="editar_fila">
+								<img src="images/pencil_menuito.bmp" class="editar_fila" alt="Editar ítem">
+							</button>
+						</td>
 						<td data-title="Borrar:">
 							<button id="borrar" name="borrar" type="submit" class="editar_fila">
-								<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar tem">
+								<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar ítem">
 							</button>
 						</td>
 

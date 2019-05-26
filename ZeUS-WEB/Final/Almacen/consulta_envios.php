@@ -1,6 +1,6 @@
 <?php
 require_once("gestionBD.php");
-require_once("gestionarInventario.php");
+require_once("gestionarEnvios.php");
 require_once("paginacion_consulta.php");
 if (!isset($_SESSION['login'])) {
 	Header("Location: login.php");
@@ -23,7 +23,7 @@ if (!isset($_SESSION['login'])) {
 	if ($pag_tam < 1) 		$pag_tam = 5;
 	unset($_SESSION["paginacion"]);
 	$conexion = crearConexionBD();
-	$query = 'SELECT * from ENVIOS ORDER BY PEID';
+	$query = 'SELECT * from ENVIOS';
 	$total_registros = total_consulta($conexion, $query);
 	$total_paginas = (int)($total_registros / $pag_tam);
 	if ($total_registros % $pag_tam > 0)		$total_paginas++;
@@ -69,6 +69,8 @@ cerrarConexionBD($conexion);
 				<form method="POST" action="almacen/controlador_envios.php">
 					<label>Dirección: </label>
 					<div><textarea required type="text" id="direccionenv" name="direccionenv" rows="1" cols="40" maxlength="30"></textarea></div>
+					<label>Fecha de Salida: </label> <input required type="date" id="fsalidaenv" name="fsalidaenv" class="form-modal">
+					<label>Fecha de Regreso: </label> <input required type="date" id="fregresoenv" name="fregresoenv" class="form-modal">
 					<label>Encargado del envío: </label> 
 				    <input required list="opcionesPersonal" autocomplete="off" id="envpersonal" name="envpersonal" class="form-modal">
 				    <datalist id="opcionesPersonal">
@@ -78,16 +80,16 @@ cerrarConexionBD($conexion);
 			  				echo "<option label=Empleado-".$personal["PID"]." value='".$personal["PID"]."'>";
 						}
 					?>
-					<label>Partes sin enviar: </label> 
+					</datalist>
+					<label>Parte a enviar: </label> 
 					<input required list="opcionesParte" autocomplete="off" id="envparte" name="envparte" class="form-modal">
 					<datalist id="opcionesParte">
 			  		<?php
-			  			$items = listarPartesSinEnviar($conexion);
-			  			foreach($items as $parte) {
-			  				echo "<option label=Ítem-".$parte["PEID"]." value='".$parte["PEID"]."'>";
+			  			$partes = listarPartesSinEnviar($conexion);
+			  			foreach($partes as $parte) {
+			  				echo "<option label=Parte-".$parte["PEID"]." value='".$parte["PEID"]."'>";
 						}
 					?>
-					</datalist>
 					</datalist>
 					<button id="agregar" name="agregar" type="submit" value="Añadir" class="btn">Añadir</button>
 					<?php if (isset($_SESSION["errormodal"])) { ?>
@@ -120,10 +122,10 @@ cerrarConexionBD($conexion);
 		echo "No se puede borrar";
 	}
 	if (isset($_SESSION["editando"])) {
-		echo "No se puede modificar, tenga cuidado con el formato que se requiere";
+		echo "No se puede modificar. Tenga cuidado con el formato que se requiere";
 	}
 	if(isset($_SESSION["errormodal"])) {
-		echo "No se ha podido agregar el altavoz, ha introducido algún dato inválido";
+		echo "No se ha podido crear el envío. Ha introducido algún dato inválido";
 }
 	if(isset($_SESSION['pagconsult'])) {
 		echo "Ha ocurrido un error con la paginación";
@@ -150,47 +152,60 @@ cerrarConexionBD($conexion);
 		<table id="tabla1" style="width:100%">
 			<thead>
 			<tr>
-				<th>Referencia</th>
-				<th>Nombre</th>
-				<th>Precio</th>
-				<th>Potencia</th>
-				<th>Pulgadas</th>
+				<th>ID Envío</th>
+				<th>Dirección</th>
+				<th>Fecha de salida</th>
+				<th>Fecha de regreso</th>
+				<th>Estado del envío</th>
+				<th>Encargado</th>
+				<th>PEID</th>
 				<th>Editar</th>
+				<th>Finalizar</th>
 				</tr>
 			</thead>
 			<?php
 			foreach ($filas as $fila) {
 				?>
-				<form method="POST" action="almacen/controlador_altavoz.php">
+				<form method="POST" action="almacen/controlador_envios.php">
 					<!-- Controles de los campos que quedan ocultos:
 								OID_LIBRO, OID_AUTOR, OID_AUTORIA, NOMBRE, APELLIDOS -->
-					<input id="REFERENCIA" name="REFERENCIA" type="hidden" value="<?php echo $fila["REFERENCIA"]; ?>" />
-					<input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $fila["NOMBRE"]; ?>" />
-					<input id="PRECIO" name="PRECIO" type="hidden" value="<?php echo $fila["PRECIO"]; ?>" />
-					<input id="POTENCIA" name="POTENCIA" type="hidden" value="<?php echo $fila["POTENCIA"]; ?>" />
-					<input id="PULGADAS" name="PULGADAS" type="hidden" value="<?php echo $fila["PULGADAS"]; ?>" />
-			
-
+					<input id="ENID" name="ENID" type="hidden" value="<?php echo $fila["ENID"]; ?>" />
+					<input id="DIRECCION" name="DIRECCION" type="hidden" value="<?php echo $fila["DIRECCION"]; ?>" />
+					<input id="FECHASALIDA" name="FECHASALIDA" type="hidden" value="<?php echo $fila["FECHASALIDA"]; ?>" />
+					<input id="FECHAENTRADA" name="FECHAENTRADA" type="hidden" value="<?php echo $fila["FECHAENTRADA"]; ?>" />
+					<input id="ESTADOENVIO" name="ESTADOENVIO" type="hidden" value="<?php echo $fila["ESTADOENVIO"]; ?>" />
+					<input id="PID" name="PID" type="hidden" value="<?php echo $fila["PID"]; ?>" />
+					<input id="PEID" name="PEID" type="hidden" value="<?php echo $fila["PEID"]; ?>" />
 					<?php
-					if (isset($altavoz) and ($fila["REFERENCIA"] == $altavoz["REFERENCIA"])) { ?>
+					if (isset($envios) and ($fila["ENID"] == $envios["ENID"])) { ?>
 						<!-- Editando título -->
 						<tr>
-							<td data-title="Referencia:"><?php echo $fila['REFERENCIA']; ?></td>
-							<td data-title="Nombre:"><?php echo $fila['NOMBRE']; ?></td>
-							<td data-title="Precio:"><input id="PRECIO" name="PRECIO" required type="number" min="1" max="1000000000" value="<?php echo $fila['PRECIO']; ?>" /></td>
-							<td data-title="Potencia:"><input id="POTENCIA" name="POTENCIA" required type="number" min="1" max="9999" value="<?php echo $fila['POTENCIA']; ?>" /></td>
-							<td data-title="Pulgadas:"><input id="PULGADA" name="PULGADAS" required type="number" min="1" max ="99" value="<?php echo $fila['PULGADAS']; ?>" /> </td>
+						<td data-title="ID envío:"><?php echo $fila['ENID']; ?></td>
+						<td data-title="Dirección:"><input required type="text" id="DIRECCION" name="DIRECCION" maxlength=30 value="<?php echo $fila['DIRECCION'];?>"</input></td>
+						<td data-title="F.Salida:"><?php echo date_format(date_create_from_format('d/m/y', $fila['FECHASALIDA']), 'Y-m-d'); ?></td>
+						<td data-title="F.Regreso:"><?php echo date_format(date_create_from_format('d/m/y', $fila['FECHAENTRADA']), 'Y-m-d'); ?></td>
+						<td data-title="Estado:"><select id="ESTADOENVIO" required name="ESTADOENVIO">
+							<?php if ($fila['ESTADOENVIO'] != "porRealizar") echo "<option>porRealizar</option>" ?>
+							<?php if ($fila['ESTADOENVIO'] != "enEvento") echo "<option>enEvento</option>" ?>
+							<option selected="selected"><?php echo $fila['ESTADOENVIO']; ?></option>
+							</select></td>
+						<td data-title="PID:"><?php echo $fila['PID']; ?></td>
+						<td data-title="PEID:"><?php echo $fila['PEID']; ?></td>
+
 						<?php } else { ?>
 							<!-- mostrando título -->
 						<tr>
-							<td data-title="Referencia:"><?php echo $fila['REFERENCIA']; ?></td>
-							<td data-title="Nombre:"><?php echo $fila['NOMBRE']; ?></td>
-							<td data-title="Precio:"><?php echo $fila['PRECIO']; ?></td>
-							<td data-title="Potencia:"><?php echo $fila['POTENCIA']; ?></td>
-							<td data-title="Pulgadas:"><?php echo $fila['PULGADAS']; ?></td>
+							<td data-title="ID envío:"><?php echo $fila['ENID']; ?></td>
+							<td data-title="Dirección:"><?php echo $fila['DIRECCION']; ?></td>
+							<td data-title="F.Salida:"><?php echo $fila['FECHASALIDA']; ?></td>
+							<td data-title="F.Regreso:"><?php echo $fila['FECHAENTRADA']; ?></td>
+							<td data-title="Estado:"><?php echo $fila['ESTADOENVIO']; ?></td>
+							<td data-title="PID:"><?php echo $fila['PID']; ?></td>
+							<td data-title="PEID:"><?php echo $fila['PEID']; ?></td>
+
 						<?php } ?>
 
-						<?php if (isset($altavoz) and $fila["REFERENCIA"] == $altavoz["REFERENCIA"]) { ?>
+						<?php if (isset($envios) and $fila["ENID"] == $envios["ENID"]) { ?>
 							<td data-title="Confirmar:">
 								<button id="grabar" name="grabar" type="submit" class="editar_fila">
 									<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar Cambios">
@@ -199,10 +214,15 @@ cerrarConexionBD($conexion);
 						<?php } else { ?>
 							<td data-title="Editar:">
 								<button id="editar" name="editar" type="submit" class="editar_fila">
-									<img src="images/pencil_menuito.bmp" class="editar_fila" alt="Editar Libro">
+									<img src="images/pencil_menuito.bmp" class="editar_fila" alt="Editar envío">
 								</button>
 							</td>
 						<?php } ?>
+						<td data-title="Borrar:">
+							<button id="borrar" name="borrar" type="submit" class="editar_fila">
+								<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar envío">
+							</button>
+						</td>
 
 				</form>
 
@@ -237,6 +257,6 @@ cerrarConexionBD($conexion);
 				
 				?>
 				<!--para reestablecer el error que salia antes, para evitar que salga siempre -->
-				<!--                                                       CONSULTA_ALTAVOCES                                                         -->
+				<!--                                                       CONSULTA_ENVIOS                                                         -->
 
 </body>
