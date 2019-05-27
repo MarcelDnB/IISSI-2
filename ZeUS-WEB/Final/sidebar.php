@@ -39,7 +39,7 @@
 			<li><button class="otrositems" name="otrositems" type="submit">Otros ítems</button></li>
 		</div>
 		<li><button id="envios" name="envios" type="submit">Envíos</button></li>
-		<li><button id="itemsalquilados" name="itemsalquilados" type="submit">Ítems alquilados</button></li>		
+		<li><button id="devoluciones" name="devoluciones" type="submit">Devoluciones</button></li>		
 		<li><button id="mantenimiento" name="mantenimiento" type="submit">Mantenimiento</button></li>
 		<li><button id="parte" name="parte" type="submit">Partes de equipo</button></li>
 		<li><button id="personal" name="personal" type="submit">Personal de almacén</button></li>
@@ -60,8 +60,8 @@
 	if(isset($_GET["envios"])) {
 		$_SESSION["localidad"] = "envios";
 	}
-	if(isset($_GET["itemsalquilados"])) {
-		$_SESSION["localidad"] = "itemsalquilados";
+	if(isset($_GET["devoluciones"])) {
+		$_SESSION["localidad"] = "devoluciones";
 	}
 	if(isset($_GET["mantenimiento"])) {
 		$_SESSION["localidad"] = "mantenimiento";

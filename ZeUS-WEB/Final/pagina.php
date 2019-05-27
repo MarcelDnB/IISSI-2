@@ -87,8 +87,8 @@ if($_SESSION['consultaralmacen'] == 1) {    //Para almacén
     else if (($_SESSION["localidad"] == "envios")) {
         include_once("almacen/consulta_envios.php");
     }
-    else if (($_SESSION["localidad"] == "itemsalquilados")) {
-        include_once("almacen/consulta_itemsalquilados.php");
+    else if (($_SESSION["localidad"] == "devoluciones")) {
+        include_once("almacen/consulta_devoluciones.php");
     }
     else if (($_SESSION["localidad"] == "mantenimiento")) {
         include_once("almacen/consulta_mantenimiento.php");

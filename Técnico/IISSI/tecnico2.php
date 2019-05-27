@@ -11,9 +11,6 @@ if (!isset($_SESSION['login'])) {
 	}
 
 
-
-
-
 	//                                                      	 PAGINACION                                                           //
 	if (isset($_SESSION["paginacion"]))
 		$paginacion = $_SESSION["paginacion"];
@@ -66,7 +63,7 @@ cerrarConexionBD($conexion);
 	<!--                                                      	MODAL_FORM                                                            -->
 	<!-- Trigger/Open The Modal -->
 	<button id="myBtn" class="mybtn">Crear Parte de Equipo </button>
-	<button id="myBtn2" class="mybtn2">Consultar Parte de Equipo</button>
+	<button id="consultaBtn" class="mybtn">Consultar Parte de Equipo</button>
 
 	<!-- The Modal -->
 
@@ -107,16 +104,17 @@ cerrarConexionBD($conexion);
 	<?php 
 	$consulta=$_SESSION['Consulta'];
 
-	$eventoConsulta=$consulta["evento"];
-	$alojamientoConsulta=$consulta["alojamiento"];
-	$inventarioConsulta=$consulta["inventario"];
-	$iaConsulta=$consulta["ia"];
-	$transporteConsulta=$consulta["transporte"];
-	$personalConsulta=$consulta["personal"];
+	$eventoConsulta=$consulta['evento'];
+	$alojamientoConsulta=$consulta['alojamiento'];
+	$inventarioConsulta=$consulta['inventario'];
+	$iaConsulta=$consulta['ia'];
+	$transporteConsulta=$consulta['transporte'];
+	$personalConsulta=$consulta['personal'];
 
 	$peid=$_SESSION['peid'];
 
 
+	
 
 	?>
 	<div class="modal-content">
@@ -125,6 +123,7 @@ cerrarConexionBD($conexion);
 		<h2>Parte de Equipo</h2>
 		</div>
 		<div class="modal-body">
+			<div><label><?php echo var_dump($consulta['ia']);?></label></div>
 			<div><label>Parte de Equipo: <?php echo $peid;?></label></div>
 				
 				<div><label>Evento: <?php echo $eventoConsulta['EID']; ?></label>
@@ -132,14 +131,14 @@ cerrarConexionBD($conexion);
 					<label>Precio:  <?php echo $eventoConsulta['PRECIOTOTAL'];?></label>
 					<label>Estado:  <?php echo $eventoConsulta['ESTADOEVENTO'];?><label>
 					</div>
-					<div><label>Fecha:  Del <?php $eventoConsulta['FECHAINICIO'];?> al <?php $eventoConsulta['FECHAFIN'];?></label></div>
+					<div><label>Fecha:  Del <?php echo $eventoConsulta['FECHAINICIO'];?> al <?php echo $eventoConsulta['FECHAFIN'];?></label></div>
 					<div><label>Alojamiento:</label></div>
-					<div><label>Hotel: <?php echo $alojamientoConsulta["HOTEL"]?></label>
-						 <label>Direccion: <?php echo $alojamientoConsulta["DIRECCION"];?></label></div>
-					<div><label>Ciudad: <?php echo $alojamientoConsulta["CIUDAD"]; ?></label>
-						 <label>Numero de Personas: <?php echo $alojamientoConsulta["NUMPERSONAS"];?></label></div>
+					<div><label>Hotel: <?php echo $alojamientoConsulta['HOTEL']?></label>
+						 <label>Direccion: <?php echo $alojamientoConsulta['DIRECCION'];?></label></div>
+					<div><label>Ciudad: <?php echo $alojamientoConsulta['CIUDAD']; ?></label>
+						 <label>Numero de Personas: <?php echo $alojamientoConsulta['NUMPERSONAS'];?></label></div>
 					<div><label>Transporte:</label></div>
-						 <label>Medio: <?php echo $transporteConsulta["MEDIOUTILIZADO"];?></label></div>
+						 <label>Medio: <?php echo $transporteConsulta['MEDIOUTILIZADO'];?></label></div>
 					<div><label>Personal: </label></div>
 					<div>
 					<table >
@@ -151,10 +150,10 @@ cerrarConexionBD($conexion);
 							</tr>
 					<?php foreach((array)$personalConsulta as $filaP){?>
 						<tr>
-							<td><?php echo $filaP["NOMBRE"]; ?></td>
-							<td><?php echo $filaP["DNI"]; ?></td>
-							<td><?php echo $filaP["DEPARTAMENTO"]; ?></td>
-							<td><?php echo $filaP["CARGO"]; ?></td>
+							<td><?php echo $filaP['NOMBRE']; ?></td>
+							<td><?php echo $filaP['DNI']; ?></td>
+							<td><?php echo $filaP['DEPARTAMENTO']; ?></td>
+							<td><?php echo $filaP['CARGO']; ?></td>
 						</tr>
 					<?php }?>
 					</table>
@@ -170,9 +169,9 @@ cerrarConexionBD($conexion);
 							</tr>
 					<?php foreach((array)$inventarioConsulta as $filaI){?>
 						<tr>
-							<td><?php echo $filaI["NOMBRE"]; ?></td>
-							<td><?php echo $filaI["REFERENCIA"]; ?></td>
-							<td><?php echo $filaI["CANTIDAD"]; ?></td>
+							<td><?php echo $filaI['NOMBRE']; ?></td>
+							<td><?php echo $filaI['REFERENCIA']; ?></td>
+							<td><?php echo $filaI['CANTIDAD']; ?></td>
 						</tr>
 					<?php }?>
 					</table></div>
@@ -186,11 +185,11 @@ cerrarConexionBD($conexion);
                 				<th>Tipo</th>
                 				<th>Cantidad</th>
 							</tr>
-					<?php foreach((array)$iaConsulta as $filaIA){?>
+					<?php foreach($iaConsulta['n']['TOTAL'] as $filaIA){?>
 						<tr>
-							<td><?php echo $filaIA["NOMBRE"]; ?></td>
-							<td><?php echo $filaIA["TIPO"]; ?></td>
-							<td><?php echo $filaIA["CANTIDAD"]; ?></td>
+							<td><?php echo $filaIA['NOMBRE']; ?></td>
+							<td><?php echo $filaIA['TIPO']; ?></td>
+							<td><?php echo $filaIA['CANTIDAD']; ?></td>
 
 						</tr>
 					<?php }?>
