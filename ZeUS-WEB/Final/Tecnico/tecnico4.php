@@ -80,7 +80,7 @@
 				echo $_SESSION["excepcion"];
 		}
 			if(isset($_SESSION['pagconsult'])) {
-				echo "Ha ocurrido un error con la paginación";
+				//echo "Ha ocurrido un error con la paginación";   ****VER PORQUE SALTA ERROR EN LA PAGINACION****
 			}
 			?>
 <!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
@@ -137,7 +137,7 @@
 
 			</tr>	
 	<?php
-	$filas=personalTecnico($conexion);
+	
 		foreach($filas as $fila) {
 	?>
 		<form method="POST" action="tecnico/controlador_personal.php">
