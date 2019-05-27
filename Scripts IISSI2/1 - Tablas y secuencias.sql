@@ -107,6 +107,7 @@ create table itemAlquilado(
             pid number(7),
             peid number(7),
 		 mid number(4),
+		estado varchar2(11) check (estado in ('porUsar','porDevolver')),
 		 foreign key(mid) references materialnecesario,
             foreign key(peid) references parteEquipo
             );
