@@ -23,7 +23,7 @@ if (!isset($_SESSION['login'])) {
 	if ($pag_tam < 1) 		$pag_tam = 5;
 	unset($_SESSION["paginacion"]);
 	$conexion = crearConexionBD();
-	$query = 'SELECT * from ITEMALQUILADO ORDER BY IA';
+	$query = "SELECT * from ITEMALQUILADO WHERE ESTADO='porUsar' ORDER BY IA";
 	$total_registros = total_consulta($conexion, $query);
 	$total_paginas = (int)($total_registros / $pag_tam);
 	if ($total_registros % $pag_tam > 0)		$total_paginas++;
@@ -87,26 +87,27 @@ cerrarConexionBD($conexion);
 				<th>Cantidad</th>
 				<th>PID</th>
 				<th>PEID</th>
-				<th>Confirmar</th>
+				<th>vacio</th>
 			</tr>
 			</thead>
 			<?php foreach ($materiales as $material) { ?>
 			<tr>
 				<td data-title="Material:"><input type="text" id="iamid" name="iamid" readonly value="<?php echo $material['MID']; ?>"> </td>
-				<td data-title="Nombre:"><input type="text" id="ianombre" name="ianombre" readonly value="<?php echo $material['NOMBRE']; ?>"> </td>
-				<td data-title="Tipo:"><input type="text" id="iatipo" name="iatipo" readonly value="<?php echo $material['TIPO']; ?>"></td>
-				<td data-title="Cantidad:"><input type="text" id="iacantidad" name="iacantidad" readonly value="<?php echo $material['CANTIDAD']; ?>"></td>
-				<td data-title="PID:"><input type="text" id="iapid" name="iapid" readonly value="<?php echo $usuariomod; ?>"></td>
-				<td data-title="PEID:"><input type="text" id="iapeid" name="iapeid" readonly value="<?php echo $material['PEID']; ?>"></td>
-				<td data-title="Agregar:">
-					<button id="agregar" name="agregar" type="submit" class="editar_fila">Alquilar</button>
-				</td>
+				<td data-title="Nombre:"><input type="text" maxlength="10" id="ianombre" name="ianombre" readonly value="<?php echo $material['NOMBRE']; ?>"> </td>
+				<td data-title="Tipo:"><input type="text" id="iatipo" maxlength="10" name="iatipo" readonly value="<?php echo $material['TIPO']; ?>"></td>
+				<td data-title="Cantidad:"><input type="number" id="iacantidad" max=9999 name="iacantidad" readonly value="<?php echo $material['CANTIDAD']; ?>"></td>
+				<td data-title="PID:"><input type="number" id="iapid" name="iapid" readonly value="<?php echo $usuariomod; ?>"></td>
+				<td data-title="PEID:"><input type="number" id="iapeid" name="iapeid" readonly value="<?php echo $material['PEID']; ?>"></td>
+				
 			</tr>
 			<?php } ?>
+			<td data-title=""></td>
+			<td data-title="Material a agregar: ">
+				<input required type="number" id="iagregar" name="iagregar">
+				<input type="hidden" id="iapid" name="iapid" value="<?php echo $usuariomod; ?>">
+					<button id="agregar" name="agregar" type="submit" class="button button1">Alquilar</button>
+				</td>
 				</table>
-					<?php if (isset($_SESSION["errormodal"])) { ?>
-						<label>HA OCURRIDO UN ERROR</label>
-					<?php } ?>
 				</form>
 			</div>
 		</div>
@@ -134,7 +135,7 @@ cerrarConexionBD($conexion);
 		echo "No se puede modificar, tenga cuidado con el formato que se requiere";
 	}
 	if(isset($_SESSION["errormodal"])) {
-		echo "No se ha podido crear el transporte, ha introducido algún dato inválido";
+		echo "No se ha podido crear el material, ha introducido algún dato inválido";
 }
 	if(isset($_SESSION['pagconsult'])) {
 		echo "Ha ocurrido un error con la paginación";
@@ -172,7 +173,7 @@ cerrarConexionBD($conexion);
 				<th>PID</th>
 				<th>PEID</th>
 				<th>Editar</th>
-				<th>Borrar</th>
+				<th>Devolver</th>
 			</tr>
 </thead>
 			<?php
@@ -198,15 +199,15 @@ cerrarConexionBD($conexion);
 						<!-- Editando título -->
 						<tr>
 							<td data-title="ID:"><?php echo $fila['IA']; ?></td>
-							<td data-title="Tipo:"><input id="TIPO" name="TIPO" type="text" value="<?php echo $fila['TIPO']; ?>" /></td>
+							<td data-title="Tipo:"><input maxlength="10" id="TIPO" name="TIPO" type="text" value="<?php echo $fila['TIPO']; ?>" /></td>
 							<td data-title="Nombre:"><input id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $fila['NOMBRE']; ?>" /></td>
 							<td data-title="Empresa:"><input id="EMPRESA" name="EMPRESA" type="text" value="<?php echo $fila['EMPRESA']; ?>" /></td>
 							<td data-title="F.Llegada:"><input id="FECHALLEGADA" name="FECHALLEGADA" type="date" required value="<?php if ($fila["FECHALLEGADA"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHALLEGADA']), 'Y-m-d'); ?>" /></td>
 							<td data-title="F.Devolucion:"><input id="FECHADEVOLUCION" name="FECHADEVOLUCION" type="date" required value="<?php if ($fila["FECHADEVOLUCION"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHADEVOLUCION']), 'Y-m-d'); ?>" /></td>
-							<td data-title="Cantidad:"><input id="CANTIDAD" name="CANTIDAD" type="text" value="<?php echo $fila['CANTIDAD']; ?>" /></td>
+							<td data-title="Cantidad:"><input id="CANTIDAD" name="CANTIDAD" type="number" max=9999 value="<?php echo $fila['CANTIDAD']; ?>" /></td>
 							<td data-title="Precio:"><input id="PRECIO" name="PRECIO" type="text" value="<?php echo $fila['PRECIO']; ?>" /></td>
-							<td data-title="PID:"><input id="PID" name="PID" type="text" value="<?php echo $fila['PID']; ?>" /></td>
-							<td data-title="PEID:"><input id="PEID" name="PEID" type="text" value="<?php echo $fila['PEID']; ?>" /></td>
+							<td data-title="PID:"><input id="PID" name="PID" type="number" value="<?php echo $fila['PID']; ?>" /></td>
+							<td data-title="PEID:"><input id="PEID" name="PEID" type="number" value="<?php echo $fila['PEID']; ?>" /></td>
 						<?php } else { ?>
 							<!-- mostrando título -->
 						<tr>
@@ -237,7 +238,7 @@ cerrarConexionBD($conexion);
 						<?php } ?>
 						<td data-title="Borrar:">
 							<button id="borrar" name="borrar" type="submit" class="editar_fila">
-								<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar Libro">
+								<img src="images/flecha.png" class="editar_fila" alt="Borrar Libro">
 							</button>
 						</td>
 

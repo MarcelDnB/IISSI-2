@@ -247,11 +247,11 @@
 									<?php if ($fila['DEPARTAMENTO'] != "Almacen") echo "<option>Almacen</option>" ?>
 									<option selected="selected"><?php echo $fila['DEPARTAMENTO']; ?></option>
 								</select></td>
-						<td data-title="Personal:"><input id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $fila['NOMBRE'];?>"/></td>
-						<td data-title="Cargo:"><input id="CARGO" name="CARGO" type="text" value="<?php echo $fila['CARGO'];?>"/></td>
-						<td data-title="Sueldo:"><input id="SUELDO" name="SUELDO" type="text" value="<?php echo $fila['SUELDO'];?>"/></td>
-						<td data-title="DNI:"><input id="DNI" name="DNI" type="text" value="<?php echo $fila['DNI'];?>"/></td>
-						<td data-title="Telefono:"><input id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $fila['TELEFONO'];?>"/></td>
+						<td data-title="Personal:"><input maxlength="20" id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $fila['NOMBRE'];?>"/></td>
+						<td data-title="Cargo:"><input maxlength="20" id="CARGO" name="CARGO" type="text" value="<?php echo $fila['CARGO'];?>"/></td>
+						<td data-title="Sueldo:"><input max=100000 id="SUELDO" name="SUELDO" type="number" value="<?php echo $fila['SUELDO'];?>"/></td>
+						<td data-title="DNI:"><input maxlength="9" id="DNI" name="DNI" type="text" value="<?php echo $fila['DNI'];?>"/></td>
+						<td data-title="Telefono:"><input max=999999999 id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $fila['TELEFONO'];?>"/></td>
 						<td data-title="Estado:"><select id="ESTADO" required name="ESTADO">
 									<?php if ($fila['ESTADO'] != "Libre") echo "<option>Libre</option>" ?>
 									<?php if ($fila['ESTADO'] != "Ocupado") echo "<option>Ocupado</option>" ?>

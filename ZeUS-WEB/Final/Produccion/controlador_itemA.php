@@ -53,7 +53,7 @@
 			
 				$conexion=crearConexionBD();
 				$excepcion=quitar_itema($conexion,$itema["IA"]);
-				$excepcion=quitar_materialnecesario($conexion,$itema["MID"]);
+				$excepcion = quitar_materialnecesario($conexion,$itema['MID']);
 				
 				
 				cerrarConexionBD($conexion);
@@ -74,18 +74,34 @@
 		
 	}else { // he puesto el modal en este else pq el el if veo si tengo eid proveniente del post, por lo q no es el caso
 		 if(isset($_REQUEST["agregar"])) {
-			$itema2['iatipo']= $_REQUEST['iatipo'];
-			$itema2['ianombre'] = $_REQUEST['ianombre'];
-			$itema2['iacantidad'] = $_REQUEST['iacantidad'];
-			$itema2['iamid'] = $_REQUEST['iamid'];
-			$itema2['iapid'] = $_REQUEST['iapid'];
-			$itema2['iapeid'] = $_REQUEST['iapeid'];
 			require_once("../gestionBD.php");
 			require_once("gestionarItemA.php");
 			$conexion = crearConexionBD($conexion);
-			$excepcion = crear_itemalquilado($conexion,$itema2['iapeid'],$itema2['iatipo'],$itema2['ianombre'],$itema2['iacantidad'],$itema2['iamid'],$itema2['iapid']);
+			$materiales = listarMaterial($conexion);
 			cerrarConexionBD($conexion);
-	
+			$bol = false;
+			foreach ($materiales as $material) {
+				if($material['MID']==$_REQUEST['iagregar']) {
+					$bol=true;
+					$itema2['iapeid'] = $material['PEID'];
+					$itema2['iatipo'] = $material['TIPO'];
+					$itema2['ianombre'] = $material['NOMBRE'];
+					$itema2['iacantidad'] = $material['CANTIDAD'];
+					$itema2['iamid'] = $material['MID'];
+					$itema2['iapid'] = $_REQUEST['iapid'];
+					require_once("../gestionBD.php");
+					require_once("gestionarItemA.php");
+					$conexion = crearConexionBD($conexion);
+		
+					$excepcion = crear_itemalquilado($conexion,$itema2['iapeid'],$itema2['iatipo'],$itema2['ianombre'],$itema2['iacantidad'],$itema2['iamid'],$itema2['iapid']);
+					cerrarConexionBD($conexion);
+				}
+			}
+			
+			if($bol==false) {
+				$_SESSION["errormodal"] ="TRUE";
+			}
+
 			if ($excepcion<>"") {
 				$_SESSION["excepcion"] = $excepcion;
 				$_SESSION["destino"] = "../pagina.php";
