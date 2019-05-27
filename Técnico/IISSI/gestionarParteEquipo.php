@@ -44,38 +44,45 @@ function consultar_parteEquipo($conexion,$EID,$PEID){
 		$consultaE="SELECT * FROM EVENTO WHERE eid=($EID)";
 		$stmt=$conexion->query($consultaE);
 		$resultadoEE=$stmt->fetch();
-		$consulta["evento"]=$resultadoEE;
+		$consulta['evento']=$resultadoEE;
 		
 		$consultaI="SELECT * FROM INVENTARIO WHERE PEID=($PEID)";
 		$stmt=$conexion->query($consultaI);
 		$resultadoEI=$stmt->fetch();
-		$consulta["inventario"]=$resultadoEI;
+		$consulta['inventario']=$resultadoEI;
 		
 		$consultaIA="SELECT * FROM ITEMALQUILADO WHERE PEID=($PEID)";
 		$stmt=$conexion->query($consultaIA);
-		$resultadoIA=$stmt->fetch();
-		$consulta["ia"]=$resultadoIA;
+		$resultadoIA['filas']=$stmt->fetch();
+
+		$total_consulta = "SELECT COUNT(*) AS TOTAL FROM ($consultaIA)";
+		$stmt = $conexion->query($total_consulta);
+		$resultadoIA['n'] = $stmt->fetch();
+
+		$consulta['ia']=$resultadoIA;
 		
 		$consultaA="SELECT * FROM ALOJAMIENTO WHERE EID=($EID)";
 		$stmt=$conexion->query($consultaA);
 		$resultadoA=$stmt->fetch();
-		$consulta["alojamiento"]=$resultadoA;
+		$consulta['alojamiento']=$resultadoA;
 		
 		$consultaT="SELECT * FROM TRANSPORTE WHERE EID=($EID)";
 		$stmt=$conexion->query($consultaT);
 		$resultadoT=$stmt->fetch();
-		$consulta["transporte"]=$resultadoT;
+		$consulta['transporte']=$resultadoT;
 		
 		$consultaP="SELECT * FROM PERSONAL WHERE PEID=($PEID)";
 		$stmt=$conexion->query($consultaP);
 		$resultadoP=$stmt->fetch();
-		$consulta["personal"]=$resultadoP;
+		$consulta['personal']=$resultadoP;
+
+	
 
 
-		
-		$_SESSION['Consulta']=$consulta;
-		$_SESSION['peid']=$PEID;
-		return "";
+	 $_SESSION['Consulta']= $consulta;
+	 $_SESSION['peid']=$PEID;
+	
+		return $consulta;
 	}catch(PDOException $e){
 		return $e->getMessage();
 	}

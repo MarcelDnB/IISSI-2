@@ -1,6 +1,6 @@
 <?php	
 	session_start();
-	
+
 	if (isset($_REQUEST["EID"])) {
 		$parteequipo["PEID"] = $_REQUEST["PEID"];
 		$parteequipo["EID"] = $_REQUEST["EID"];
@@ -39,7 +39,7 @@
 				
 				require_once("../gestionBD.php");
 				require_once("gestionarParteEquipo.php");
-			
+
 				$conexion=crearConexionBD();
 				$excepcion=quitar_parteEquipo($conexion,$parteequipo["PEID"]);
 				cerrarConexionBD($conexion);
