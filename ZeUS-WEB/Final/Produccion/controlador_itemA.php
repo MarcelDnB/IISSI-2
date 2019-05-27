@@ -88,6 +88,7 @@
 					$itema2['ianombre'] = $material['NOMBRE'];
 					$itema2['iacantidad'] = $material['CANTIDAD'];
 					$itema2['iamid'] = $material['MID'];
+					$itema2['iapid'] = $_REQUEST['iapid'];
 					require_once("../gestionBD.php");
 					require_once("gestionarItemA.php");
 					$conexion = crearConexionBD($conexion);
@@ -96,7 +97,7 @@
 					cerrarConexionBD($conexion);
 				}
 			}
-			$itema2['iapid'] = $_REQUEST['iapid'];
+			
 			if($bol==false) {
 				$_SESSION["errormodal"] ="TRUE";
 			}

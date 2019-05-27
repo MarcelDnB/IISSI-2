@@ -82,13 +82,8 @@ cerrarConexionBD($conexion);
 					<label>Fecha de Fin: </label> <input type="date" id="ffin" name="ffin" class="form-modal">
 					<label>Precio Total: </label> <input autocomplete="off" type="number" min="1" max="1000000000" id="totalprice" name="totalprice" class="form-modal">
 					<label>Descripcion: </label>
-					<div><textarea id="description" maxlength="140" name="description" rows="10" cols="70"></textarea></div>
+					<div><textarea id="description" maxlength="139" name="description" rows="10" cols="70"></textarea></div>
 					<button id="agregar" name="agregar" type="submit" value="Añadir" class="btn">Añadir</button>
-					<?php if (isset($_SESSION["errormodal"])) { ?>
-						<label>HA OCURRIDO UN ERROR</label>
-					<?php } ?>
-
-
 				</form>
 			</div>
 		</div>
@@ -175,12 +170,12 @@ cerrarConexionBD($conexion);
 						<!-- Editando título -->
 						<tr>
 							<td data-title="Evento:" ><?php echo $fila['EID']; ?></td>
-							<td data-title="Precio:"><input id="PRECIOTOTAL" name="PRECIOTOTAL" type="text" value="<?php echo $fila['PRECIOTOTAL']; ?>" /></td>
+							<td data-title="Precio:"><input id="PRECIOTOTAL" name="PRECIOTOTAL" type="number" min="1" max="1000000000" value="<?php echo $fila['PRECIOTOTAL']; ?>" /></td>
 							<td data-title="F.Inicio:"><input id="FECHAINICIO" name="FECHAINICIO" type="date" required value="<?php echo date_format(date_create_from_format('d/m/y', $fila['FECHAINICIO']), 'Y-m-d'); ?>" /></td>
 							<td data-title="F.Fin:"><input id="FECHAFIN" name="FECHAFIN" type="date" required value="<?php if ($fila["FECHAFIN"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAFIN']), 'Y-m-d'); ?>" /></td>
 							<td data-title="Estado:"><label><?php echo $fila["ESTADOEVENTO"]; ?></label></td>
-							<td data-title="Descripcion:"><textarea class="txtareaprod1" id="DESCRIPCIONCLIENTE" name="DESCRIPCIONCLIENTE"><?php echo $fila['DESCRIPCIONCLIENTE']; ?></textarea></td>
-							<td data-title="Lugar:"><input id="LUGAR" name="LUGAR" required type="text" value="<?php echo $fila['LUGAR']; ?>" /> </td>
+							<td data-title="Descripcion:"><textarea maxlength="139" class="txtareaprod1" id="DESCRIPCIONCLIENTE" name="DESCRIPCIONCLIENTE"><?php echo $fila['DESCRIPCIONCLIENTE']; ?></textarea></td>
+							<td data-title="Lugar:"><input maxlength="40" id="LUGAR" name="LUGAR" required type="text" value="<?php echo $fila['LUGAR']; ?>" /> </td>
 						<?php } else { ?>
 							<!-- mostrando título -->
 						
@@ -191,7 +186,7 @@ cerrarConexionBD($conexion);
 							<td data-title="F.Fin:"><?php if ($fila["FECHAFIN"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAFIN']), 'Y-m-d'); ?></td>
 							<td data-title="Estado:"> <?php echo $fila['ESTADOEVENTO']; ?></td>
 							<td data-title="Descripcion:">
-							<textarea class="txtareaprod1" disabled rows="10" cols="70"><?php echo $fila['DESCRIPCIONCLIENTE']; ?></textarea>
+							<textarea class="txtareaprod1" readonly rows="10" cols="70"><?php echo $fila['DESCRIPCIONCLIENTE']; ?></textarea>
 							</td>
 							<td data-title="Lugar:"><?php echo $fila['LUGAR'] ?></td>
 

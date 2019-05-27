@@ -114,7 +114,7 @@
 
 
 				<div><label>Medio Utilizado: </label> <input autocomplete="off" type="text" maxlength="20" id="medioutil" name="medioutil" class="form-modal"></div>
-				<div><label>Numero de personas: </label> <input autocomplete="off" type="text" id="numpers" min=1 max=50 name="numpers" class="form-modal"></div>
+				<div><label>Numero de personas: </label> <input autocomplete="off" type="number" id="numpers" min=1 max=50 name="numpers" class="form-modal"></div>
 				<div><button id="agregar" name="agregar" type="submit" value="Añadir" class="btn">Agregar</button></div>
       </form>
     </div>
@@ -211,8 +211,8 @@
 						
 						
 						
-						<td data-title="Medio utilizado:"> <input id="MEDIOUTILIZADO" name="MEDIOUTILIZADO" type="text" value="<?php echo $fila['MEDIOUTILIZADO'];?>"/></td>
-						<td data-title="Num.Personas:"><input id="NUMPERSONAS" name="NUMPERSONAS" type="text" value="<?php echo $fila['NUMPERSONAS'];?>"/></td>
+						<td data-title="Medio utilizado:"> <input maxlength="20" id="MEDIOUTILIZADO" name="MEDIOUTILIZADO" type="text" value="<?php echo $fila['MEDIOUTILIZADO'];?>"/></td>
+						<td data-title="Num.Personas:"><input id="NUMPERSONAS" name="NUMPERSONAS" type="number" min=1 max=50 value="<?php echo $fila['NUMPERSONAS'];?>"/></td>
 						<?php }	else { ?>
 						<!-- mostrando título -->	
 						<tr>
