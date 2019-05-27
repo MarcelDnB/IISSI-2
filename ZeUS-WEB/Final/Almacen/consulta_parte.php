@@ -76,13 +76,11 @@ cerrarConexionBD($conexion);
 							<tr>
 								<th>Nombre</th>
                 				<th>Referencia</th>
-                				<th>Cantidad</th>
 							</tr>
 					<?php foreach((array)$inventarioConsulta as $filaI){?>
 						<tr>
 							<td><?php echo $filaI["NOMBRE"]; ?></td>
 							<td><?php echo $filaI["REFERENCIA"]; ?></td>
-							<td><?php echo $filaI["CANTIDAD"]; ?></td>
 						</tr>
 					<?php }?>
 					</table></div>
@@ -160,7 +158,7 @@ cerrarConexionBD($conexion);
 						<td data-title="PEID:"><?php echo $fila['PEID'];?></td>
 						<td data-title="EID:"><?php echo $fila['EID'];?></td>
 					<td data-title="Consultar:">
-					<button id="consultaBtn" name="consultaBtn" type="submit" class="consultar_fila">
+					<button id="myBtn" name="myBtn" type="submit" class="consultar_fila">
 						<img src="images/pencil_menuito.bmp" class="consultar_fila" alt="Consultar PEID">
 					</button>
 					</td>
