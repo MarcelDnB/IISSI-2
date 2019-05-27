@@ -72,7 +72,7 @@ cerrarConexionBD($conexion);
 					<label>Fecha de Salida: </label> <input required type="date" id="fsalidaenv" name="fsalidaenv" class="form-modal">
 					<label>Fecha de Regreso: </label> <input required type="date" id="fentradaenv" name="fentradaenv" class="form-modal">
 					<label>Encargado del envío: </label> 
-				    <input required list="opcionesPersonalEnvio" autocomplete="off" id="envpersonal" name="envpersonal" class="form-modal">
+				    <input required list="opcionesPersonalEnvio" autocomplete="off" type="number" id="envpersonal" name="envpersonal" class="form-modal">
 				    <datalist id="opcionesPersonalEnvio">
 					<?php
 			  	    	$empleadosDisponibles = listarPersonalAlmacenDisponible($conexion);
@@ -82,7 +82,7 @@ cerrarConexionBD($conexion);
 					?>
 					</datalist>
 					<label>Parte a enviar: </label> 
-					<input required list="opcionesParteEnvio" autocomplete="off" id="envparte" name="envparte" class="form-modal">
+					<input required list="opcionesParteEnvio" autocomplete="off" type="number" id="envparte" name="envparte" class="form-modal">
 					<datalist id="opcionesParteEnvio">
 			  		<?php
 			  			$partes = listarPartesSinEnviar($conexion);
@@ -119,7 +119,7 @@ cerrarConexionBD($conexion);
 
 	<!--                                                      	TRATAMIENTO DE EXCEPCIONES                                                            -->
 	<?php if (isset($_SESSION["borrado"])) {
-		echo "No se puede borrar";
+		echo "El envío ya se ha recibido";
 	}
 	if (isset($_SESSION["editando"])) {
 		echo "No se puede modificar. Tenga cuidado con el formato que se requiere";

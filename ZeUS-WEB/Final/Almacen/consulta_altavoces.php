@@ -69,9 +69,9 @@ cerrarConexionBD($conexion);
 				<form method="POST" action="almacen/controlador_altavoz.php">
 					<label>Nombre: </label>
 					<div><textarea required type="text" id="nombreal" name="nombreal" rows="1" cols="40" maxlength="30"></textarea></div>
-					<label>Precio Total: </label> <input required type="number" min="1" max="1000000000" id="totalprice" name="totalprice" class="form-modal">
-					<label>Potencia: </label> <input required type="number" min="1" max="9999" id="potenciaal" name="potenciaal" class="form-modal">
-					<label>Pulgadas: </label> <input required type="number" min="1" max="99" id="pulgadaal" name="pulgadaal" class="form-modal">
+					<label>Precio Total: </label> <input required type="number" autocomplete="off" min="1" max="1000000000" id="totalprice" name="totalprice" class="form-modal">
+					<label>Potencia: </label> <input required type="number" autocomplete="off" min="1" max="9999" id="potenciaal" name="potenciaal" class="form-modal">
+					<label>Pulgadas: </label> <input required type="number" autocomplete="off" min="1" max="99" id="pulgadaal" name="pulgadaal" class="form-modal">
 					<button id="agregar" name="agregar" type="submit" value="Añadir" class="btn">Añadir</button>
 					<?php if (isset($_SESSION["errormodal"])) { ?>
 						<label>HA OCURRIDO UN ERROR</label>

@@ -65,8 +65,8 @@
         </div>
     <div class="modal-body">
       <form method="POST" action="Almacen/controlador_mantenimiento.php">
-				<label>Ítems por reparar: </label> 
-				<input required list="opcionesItems" autocomplete="off" id="maitems" name="maitems" class="form-modal">
+				<label>Ítem por reparar: </label> 
+				<input required list="opcionesItems" type="number" autocomplete="off" id="maitems" name="maitems" class="form-modal">
 				<datalist id="opcionesItems">
 			  	<?php
 			  		$items = listarItemsPorReparar($conexion);
@@ -77,7 +77,7 @@
 			</datalist>
 				<!--<div><label>Fecha de Inicio: </label> <input type="date" id="startdate" name="startdate" class="form-modal"></div>-->
 				<label>Encargado de la reparación: </label> 
-				<input required list="opcionesPersonal" autocomplete="off" id="mapersonal" name="mapersonal" class="form-modal">
+				<input required list="opcionesPersonal" type="number" autocomplete="off" id="mapersonal" name="mapersonal" class="form-modal">
 				<datalist id="opcionesPersonal">
 					<?php
 			  	  $empleadosDisponibles = listarPersonalAlmacenDisponible($conexion);
