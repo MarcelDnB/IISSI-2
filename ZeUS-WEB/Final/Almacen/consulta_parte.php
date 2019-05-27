@@ -59,17 +59,13 @@ cerrarConexionBD($conexion);
 												<!-- Modal content -->
 	<?php 
 	$consulta=$_SESSION['Consulta'];
-
 	$inventarioConsulta=$consulta["inventario"];
 	$iaConsulta=$consulta["ia"];
 	$peid=$_SESSION['peid'];
-
-
-
 	?>
 	<div class="modal-content">
 		<div class="modal-header">
-		<span class="close2">&times;</span> 
+		<span class="close">&times;</span> 
 		<h2>Parte de Equipo</h2>
 		</div>
 		<div class="modal-body">
