@@ -347,6 +347,10 @@ input[type=number] { /* para firefox*/
 			transition: 0.5s;
 			outline: none;
 			}
+			.txtareaprod1{
+				width: 90%;
+			}
+	
 		
 		/* Force table to not be like tables anymore */
 		  table, 

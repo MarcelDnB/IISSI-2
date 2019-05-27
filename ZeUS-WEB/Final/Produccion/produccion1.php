@@ -1,4 +1,4 @@
-<?php
+	<?php
 require_once("gestionBD.php");
 require_once("gestionarEvento.php");
 require_once("paginacion_consulta.php");
@@ -184,7 +184,7 @@ cerrarConexionBD($conexion);
 									<?php if ($fila['ESTADOEVENTO'] != "Realizado") echo "<option>Realizado</option>" ?>
 									<option selected="selected"><?php echo $fila['ESTADOEVENTO']; ?></option>
 								</select></td>
-							<td data-title="Descripcion:"><textarea id="DESCRIPCIONCLIENTE" name="DESCRIPCIONCLIENTE"><?php echo $fila['DESCRIPCIONCLIENTE']; ?></textarea></td>
+							<td data-title="Descripcion:"><textarea class="txtareaprod1" id="DESCRIPCIONCLIENTE" name="DESCRIPCIONCLIENTE"><?php echo $fila['DESCRIPCIONCLIENTE']; ?></textarea></td>
 							<td data-title="Lugar:"><input id="LUGAR" name="LUGAR" required type="text" value="<?php echo $fila['LUGAR']; ?>" /> </td>
 						<?php } else { ?>
 							<!-- mostrando título -->
@@ -196,7 +196,7 @@ cerrarConexionBD($conexion);
 							<td data-title="F.Fin:"><?php if ($fila["FECHAFIN"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAFIN']), 'Y-m-d'); ?></td>
 							<td data-title="Estado:"> <?php echo $fila['ESTADOEVENTO']; ?></td>
 							<td data-title="Descripcion:">
-							<textarea disabled rows="10" cols="70"><?php echo $fila['DESCRIPCIONCLIENTE']; ?></textarea>
+							<textarea class="txtareaprod1" disabled rows="10" cols="70"><?php echo $fila['DESCRIPCIONCLIENTE']; ?></textarea>
 							</td>
 							<td data-title="Lugar:"><?php echo $fila['LUGAR'] ?></td>
 
