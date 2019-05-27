@@ -7,7 +7,7 @@
      */
 function quitar_itema($conexion,$IA) { //hay q hacer procedimientos para esto
 	try {
-		$stmt=$conexion->prepare('CALL QUITAR_ITEMA(:IA)');
+		$stmt=$conexion->prepare("UPDATE itemalquilado set estado='porDevolver' where IA=:IA");
 		$stmt->bindParam(':IA',$IA);
 		$stmt->execute();
 		return "";
