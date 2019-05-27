@@ -200,7 +200,8 @@ create table materialnecesario(
 mid number(4) primary key,
 nombre varchar2(40),
 tipo varchar2(40),
-cantidad NUMBER(4)
+cantidad NUMBER(4),
+peid NUMBER(7) REFERENCES parteequipo
 );
             
 ------------------------------------Secuencias----------------------------------
