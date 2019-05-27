@@ -7,7 +7,7 @@
 		$_SESSION["PARTEEQUIPO"] = $parteequipo;
 
 		
-		if(isset($_REQUEST["consultar"])) { // lo mismo que antes
+		if(isset($_REQUEST["consultar"])) { 
 			if(isset($_SESSION["PARTEEQUIPO"])) {
 				$parteequipo = $_SESSION["PARTEEQUIPO"];
 				unset($_SESSION["PARTEEQUIPO"]);
