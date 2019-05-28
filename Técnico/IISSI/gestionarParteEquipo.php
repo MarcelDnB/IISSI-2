@@ -45,22 +45,7 @@ function consultar_parteEquipo($conexion,$EID,$PEID){
 		$stmt=$conexion->query($consultaE);
 		$resultadoEE=$stmt->fetch();
 		$consulta['evento']=$resultadoEE;
-		
-		$consultaI="SELECT * FROM INVENTARIO WHERE PEID=($PEID)";
-		$stmt=$conexion->query($consultaI);
-		$resultadoEI=$stmt->fetch();
-		$consulta['inventario']=$resultadoEI;
-		
-		$consultaIA="SELECT * FROM ITEMALQUILADO WHERE PEID=($PEID)";
-		$stmt=$conexion->query($consultaIA);
-		$resultadoIA['filas']=$stmt->fetch();
 
-		$total_consulta = "SELECT COUNT(*) AS TOTAL FROM ($consultaIA)";
-		$stmt = $conexion->query($total_consulta);
-		$resultadoIA['n'] = $stmt->fetch();
-
-		$consulta['ia']=$resultadoIA;
-		
 		$consultaA="SELECT * FROM ALOJAMIENTO WHERE EID=($EID)";
 		$stmt=$conexion->query($consultaA);
 		$resultadoA=$stmt->fetch();
@@ -70,23 +55,50 @@ function consultar_parteEquipo($conexion,$EID,$PEID){
 		$stmt=$conexion->query($consultaT);
 		$resultadoT=$stmt->fetch();
 		$consulta['transporte']=$resultadoT;
-		
-		$consultaP="SELECT * FROM PERSONAL WHERE PEID=($PEID)";
-		$stmt=$conexion->query($consultaP);
-		$resultadoP=$stmt->fetch();
-		$consulta['personal']=$resultadoP;
-
-	
-
 
 	 $_SESSION['Consulta']= $consulta;
 	 $_SESSION['peid']=$PEID;
 	
-		return $consulta;
+		return "";
 	}catch(PDOException $e){
 		return $e->getMessage();
 	}
 }
-
-
+function listarIA($conexion,$PEID){
+	try{
+		$consulta = "SELECT * FROM ITEMALQUILADO WHERE IA IN (SELECT PEID FROM PARTEEQUIPO WHERE PEID=($PEID))"; 
+    	$stmt = $conexion->query($consulta);
+		return $stmt;
+	}catch(PDOException $e) {
+		return $e->getMessage();
+    }
+}
+function listarP($conexion,$PEID){
+	try{
+		$consulta = "SELECT * FROM PERSONAL WHERE PEID IN (SELECT PEID FROM PARTEEQUIPO WHERE PEID=($PEID))"; 
+    	$stmt = $conexion->query($consulta);
+		return $stmt;
+	}catch(PDOException $e) {
+		return $e->getMessage();
+    }
+}
+function listarI($conexion,$PEID){
+	try{
+		$consulta = "SELECT * FROM INVENTARIO WHERE PEID IN (SELECT PEID FROM PARTEEQUIPO WHERE PEID=($PEID))"; 
+    	$stmt = $conexion->query($consulta);
+		return $stmt;
+	}catch(PDOException $e) {
+		return $e->getMessage();
+    }
+}
+function listaEventos($conexion,$EID){
+	try{
+		$consultaE="SELECT * FROM EVENTO WHERE eid=($EID)";
+		$stmt=$conexion->query($consultaE);
+		$consulta=$stmt->fetch();
+		return $consulta;
+	}catch(PDOException $e) {
+		return $e->getMessage();
+    }
+}
 ?>

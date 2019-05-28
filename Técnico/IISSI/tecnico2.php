@@ -103,27 +103,26 @@ cerrarConexionBD($conexion);
 												<!-- Modal content -->
 	<?php 
 	$consulta=$_SESSION['Consulta'];
-
-	$eventoConsulta=$consulta['evento'];
-	$alojamientoConsulta=$consulta['alojamiento'];
-	$inventarioConsulta=$consulta['inventario'];
-	$iaConsulta=$consulta['ia'];
-	$transporteConsulta=$consulta['transporte'];
-	$personalConsulta=$consulta['personal'];
-
 	$peid=$_SESSION['peid'];
 
 
-	
+	$eventoConsulta=$consulta['evento'];
+	$alojamientoConsulta=$consulta['alojamiento'];
+	$inventarioConsulta=null; //$consulta['inventario'];
+	$transporteConsulta=$consulta['transporte'];
+	$personalConsulta= null;//$consulta['personal'];
+	$totalIA=listarIA($conexion,$peid);
+	$totalP=listarP($conexion,$peid);
+	$totalI=listarI($conexion,$peid);
+
 
 	?>
 	<div class="modal-content">
-		<div class="modal-header2">
-		<span class="close2">&times;</span> <!-- he utilizado bootstrap solo para la X -->
+		<div class="modal-header">
+		<span class="close">&times;</span> <!-- he utilizado bootstrap solo para la X -->
 		<h2>Parte de Equipo</h2>
 		</div>
 		<div class="modal-body">
-			<div><label><?php echo var_dump($consulta['ia']);?></label></div>
 			<div><label>Parte de Equipo: <?php echo $peid;?></label></div>
 				
 				<div><label>Evento: <?php echo $eventoConsulta['EID']; ?></label>
@@ -141,14 +140,14 @@ cerrarConexionBD($conexion);
 						 <label>Medio: <?php echo $transporteConsulta['MEDIOUTILIZADO'];?></label></div>
 					<div><label>Personal: </label></div>
 					<div>
-					<table >
+					<table id="table3" class="table3">
 							<tr>
 								<th>Nombre</th>
                 				<th>DNI</th>
                 				<th>Departamento</th>
 								<th>Cargo</th>
 							</tr>
-					<?php foreach((array)$personalConsulta as $filaP){?>
+					<?php foreach($totalP as $filaP){?>
 						<tr>
 							<td><?php echo $filaP['NOMBRE']; ?></td>
 							<td><?php echo $filaP['DNI']; ?></td>
@@ -165,13 +164,13 @@ cerrarConexionBD($conexion);
 							<tr>
 								<th>Nombre</th>
                 				<th>Referencia</th>
-                				<th>Cantidad</th>
+                				
 							</tr>
-					<?php foreach((array)$inventarioConsulta as $filaI){?>
+					<?php foreach($totalI as $filaI){?>
 						<tr>
 							<td><?php echo $filaI['NOMBRE']; ?></td>
 							<td><?php echo $filaI['REFERENCIA']; ?></td>
-							<td><?php echo $filaI['CANTIDAD']; ?></td>
+							
 						</tr>
 					<?php }?>
 					</table></div>
@@ -185,7 +184,7 @@ cerrarConexionBD($conexion);
                 				<th>Tipo</th>
                 				<th>Cantidad</th>
 							</tr>
-					<?php foreach($iaConsulta['n']['TOTAL'] as $filaIA){?>
+					<?php foreach($totalIA as $filaIA){?>
 						<tr>
 							<td><?php echo $filaIA['NOMBRE']; ?></td>
 							<td><?php echo $filaIA['TIPO']; ?></td>
@@ -253,9 +252,19 @@ cerrarConexionBD($conexion);
 	<div class="seccionEntradas">
 		<table id="tabla1" style="width:100%">
 			<tr>
-				<th>PEID</th>
-                <th>Editar</th>
-                <th>Borrar</th>
+				<th>Evento</th>
+                <th>Lugar</th>
+                <th>Precio</th>
+				<th>Estado</th>
+				<th>Fecha Comienzo</th>
+				<th>Fecha Fin</th>
+				<th>Hotel</th>
+				<th>Direccion</th>
+				<th>Ciudad</th>
+				<th>Nº de personal</th>
+				<th>Medio Transporte</th>
+				<th>Editar</th>
+				<th>Borrar</th>
 				<th>Consultar</th>
 			</tr>
 			<?php
@@ -278,8 +287,23 @@ cerrarConexionBD($conexion);
 						<?php } else { ?>
 							<!-- mostrando título -->
 
+							<!-- Meter aqui querys a las otras tablas segun el peid en fila-->
+							<?php 
+							$eventos=listaEventos($conexion,$fila["EID"]);
+							?>
+
 							<tr>
-							<td><?php echo $fila['PEID']; ?></td>
+							<td><?php echo $eventos['EID']; ?></td>
+							<td><?php echo $eventos['LUGAR']; ?></td>
+							<td><?php echo $eventos['PRECIOTOTAL']; ?></td>
+							<td><?php echo $eventos['ESTADOEVENTO']; ?></td>
+							<td><?php echo $eventos['FECHAINICIO']; ?></td>
+							<td><?php echo $eventos['FECHAFIN']; ?></td>
+							<td><?php ?></td>
+							<td><?php ?></td>
+							<td><?php ?></td>
+							<td><?php ?></td>
+							<td><?php ?></td>
 
 						<?php } ?>
 
@@ -337,10 +361,12 @@ cerrarConexionBD($conexion);
 				<?php unset($_SESSION["excepcion"]);
 				unset($_SESSION["borrado"]);
 				unset($_SESSION["editando"]);
+
+
 				
 				
 				?>
 				<!--para reestablecer el error que salia antes, para evitar que salga siempre -->
 				<!--                                                       CONSULTA_EVENTO                                                            -->
 
-</body>
+</body>	
