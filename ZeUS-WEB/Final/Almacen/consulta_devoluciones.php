@@ -1,6 +1,6 @@
 <?php
 require_once("gestionBD.php");
-require_once("gestionarEnvios.php");
+require_once("gestionarDevoluciones.php");
 require_once("paginacion_consulta.php");
 if (!isset($_SESSION['login'])) {
 	Header("Location: login.php");
@@ -155,9 +155,9 @@ cerrarConexionBD($conexion);
 				<th>ID Devolución</th>
 				<th>Dirección</th>
 				<th>Empresa</th>
-				<th>Estado de la devolución</th>
 				<th>ID Ítem</th>
 				<th>Encargado</th>
+				<th>Estado de la devolución</th>
 				<th>Editar</th>
 				<th>Finalizar</th>
 				</tr>
@@ -173,21 +173,17 @@ cerrarConexionBD($conexion);
 					<input id="PID" name="PID" type="hidden" value="<?php echo $fila["PID"]; ?>" />
 					<input id="ESTADODEVOLUCION" name="ESTADODEVOLUCION" type="hidden" value="<?php echo $fila["ESTADODEVOLUCION"]; ?>" />
 					<?php
-					if (isset($envios) and ($fila["DID"] == $devoluciones["DID"])) { ?>
-						<!-- Editando título -->
+					if (isset($devoluciones) and ($fila["DID"] == $devoluciones["DID"])) { ?>
+						<!--Editando-->
 						<tr>
 						<td data-title="ID devolución:"><?php echo $fila['DID']; ?></td>
 						<td data-title="Dirección:"><input required type="text" id="DIRECCION" name="DIRECCION" maxlength=30 value="<?php echo $fila['DIRECCION'];?>"</input></td>
 						<td data-title="Empresa:"><input required type="text" id="EMPRESA" name="EMPRESA" maxlength=30 value="<?php echo $fila['EMPRESA'];?>"</input></td>
 						<td data-title="ID ítem:"><?php echo $fila['IA']; ?></td>
 						<td data-title="PID:"><?php echo $fila['PID']; ?></td>
-						<td data-title="Estado:"><select id="ESTADODEVOLUCION" required name="ESTADODEVOLUCION">
-							<?php if ($fila['ESTADODEVOLUCION'] != "porDevolver") echo "<option>porDevolver</option>" ?>
-							<?php if ($fila['ESTADODEVOLUCION'] != "Devuelto") echo "<option>Devuelto</option>" ?>
-							<option selected="selected"><?php echo $fila['ESTADODEVOLUCION']; ?></option>
-							</select></td>
+						<td data-title="Estado:"><?php echo $fila['ESTADODEVOLUCION']; ?></td>
 						<?php } else { ?>
-							<!-- mostrando título -->
+							<!--Mostrando-->
 						<tr>
 							<td data-title="ID devolución:"><?php echo $fila['DID']; ?></td>
 							<td data-title="Dirección:"><?php echo $fila['DIRECCION']; ?></td>
@@ -227,15 +223,10 @@ cerrarConexionBD($conexion);
 					<?php
 
 					for ($pagina = 1; $pagina <= $total_paginas; $pagina++)
-
 						if ($pagina == $pagina_seleccionada) { 	?>
-
 						<span class="current"><?php echo $pagina; ?></span>
-
 					<?php } else { ?>
-
 						<a href="pagina.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
-
 					<?php } ?>
 
 				</div>

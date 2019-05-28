@@ -18,6 +18,7 @@
 
 		if ($num_usuarios_almacen > 0){
 			$_SESSION['login'] = $email;
+			$_SESSION['localidad']="inventario";
 			Header("Location: pagina.php");
 		}else if($num_usuarios_prod > 0){
 			$_SESSION['login'] = $email;
