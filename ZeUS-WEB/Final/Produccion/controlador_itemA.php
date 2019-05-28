@@ -41,7 +41,16 @@
 					Header("Location: ../pagina.php");
 				}
 			}
-		} 
+		}
+		else if(isset($_REQUEST["cancelar"])) {
+			if(isset($_SESSION["ITEMA"])) { // comprobamos que en la _session haya un "evento" (habia sesion activa)
+				$itema = $_SESSION["ITEMA"]; // si habia lo guardamos en $itema
+				unset($_SESSION["ITEMA"]); // y borramos de _session la variable
+
+				Header("Location: ../pagina.php");
+
+			}
+		}
 		else  if(isset($_REQUEST["borrar"])) { // lo mismo que antes
 			if(isset($_SESSION["ITEMA"])) {
 				$itema = $_SESSION["ITEMA"];
@@ -53,7 +62,7 @@
 			
 				$conexion=crearConexionBD();
 				$excepcion=quitar_itema($conexion,$itema["IA"]);
-				$excepcion = quitar_materialnecesario($conexion,$itema['MID']);
+				// $excepcion = quitar_materialnecesario($conexion,$itema['MID']);
 				
 				
 				cerrarConexionBD($conexion);

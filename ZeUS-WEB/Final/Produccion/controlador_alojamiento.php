@@ -36,6 +36,15 @@
 					Header("Location: ../pagina.php");
 			}
 		}
+		else if(isset($_REQUEST["cancelar"])) {
+			if (isset($_SESSION["ALOJAMIENTO"])) {
+				$alojamiento = $_SESSION["ALOJAMIENTO"];
+				unset($_SESSION["ALOJAMIENTO"]);
+
+				Header("Location: ../pagina.php");
+
+			}
+		}
 		else  if (isset($_REQUEST["borrar"])) { 
 			if(isset($_SESSION["ALOJAMIENTO"])) {
 				$ALOJAMIENTO = $_SESSION["ALOJAMIENTO"];

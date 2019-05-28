@@ -5,7 +5,7 @@
      * #	de libros de la capa de acceso a datos 		
      * #==========================================================#
      */
-function quitar_itema($conexion,$IA) { //hay q hacer procedimientos para esto
+function cambiar_itema($conexion,$IA) { //hay q hacer procedimientos para esto
 	try {
 		$stmt=$conexion->prepare("UPDATE itemalquilado set estado='porDevolver' where IA=:IA");
 		$stmt->bindParam(':IA',$IA);

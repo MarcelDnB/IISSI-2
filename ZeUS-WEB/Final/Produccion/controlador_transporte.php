@@ -34,6 +34,15 @@
 					Header("Location: ../pagina.php");
 			}
 		}
+		else if(isset($_REQUEST["cancelar"])) {
+			if (isset($_SESSION["TRANSPORTE"])) {
+				$transporte = $_SESSION["TRANSPORTE"];
+				unset($_SESSION["TRANSPORTE"]);
+
+				Header("Location: ../pagina.php");
+
+			}
+		}
 		else if (isset($_REQUEST["borrar"])){ 
 			if (isset($_SESSION["TRANSPORTE"])) {
 				$transporte = $_SESSION["TRANSPORTE"];

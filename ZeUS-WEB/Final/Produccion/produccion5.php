@@ -302,6 +302,9 @@
 					<button id="grabar" name="grabar" type="submit" class="editar_fila">
 						<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar Cambios">
 					</button>
+					<button id="cancelar" name="cancelar" type="submit" formnovalidate class="editar_fila">
+									<img src="images/cancel.png" class="editar_fila" alt="Guardar Cambios">
+								</button>
 				</td>
 				<?php } else {?>
 					<td data-title="Editar:">

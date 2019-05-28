@@ -41,6 +41,15 @@
 				}
 			}
 		}
+		else if(isset($_REQUEST["cancelar"])) {
+			if(isset($_SESSION["PERSONAL"])) { // comprobamos que en la _session haya un "evento" (habia sesion activa)
+				$personal = $_SESSION["PERSONAL"]; // si habia lo guardamos en $evento
+				unset($_SESSION["PERSONAL"]); // y borramos de _session la variable
+
+				Header("Location: ../pagina.php");
+
+			}
+		}
 		else if (isset($_REQUEST["borrar"])) { 
 			if(isset($_SESSION["PERSONAL"])) {
 				$personal = $_SESSION["PERSONAL"];

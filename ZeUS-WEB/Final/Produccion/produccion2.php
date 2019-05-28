@@ -218,7 +218,7 @@
 						<td data-title="F.Inicio:"><input id="FECHAINICIO" name="FECHAINICIO" type="date" required required value="<?php echo date_format(date_create_from_format('d/m/y', $fila['FECHAINICIO']), 'Y-m-d'); ?>" /></td>
 						<td data-title="F.Fin:"><input id="FECHAFIN" name="FECHAFIN" type="date" required required value="<?php if ($fila["FECHAFIN"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAFIN']), 'Y-m-d'); ?>" /></td>
 						<td data-title="Hotel:"><input maxlength="40" id="HOTEL" name="HOTEL" type="text"  value="<?php echo $fila['HOTEL'];?>"/></td>
-						<td data-title="Num.Personas:"><input type="number" min=1 max=50 id="NUMPERSONAS" name="NUMPERSONAS" type="text" value="<?php echo $fila['NUMPERSONAS'];?>"/></td>
+						<td data-title="Num.Personas:"><input type="number" min=1 max=50  id="NUMPERSONAS" name="NUMPERSONAS" type="text" value="<?php echo $fila['NUMPERSONAS'];?>"/></td>
 						<?php }	else { ?>
 						<!-- mostrando título -->	
 						<tr>
@@ -238,6 +238,9 @@
 					<button id="grabar" name="grabar" type="submit" class="editar_fila">
 						<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar Cambios">
 					</button>
+					<button id="cancelar" name="cancelar" type="submit" formnovalidate class="editar_fila">
+									<img src="images/cancel.png" class="editar_fila" alt="Guardar Cambios">
+								</button>
 				</td>
 				<?php } else {?>
 					<td data-title="Editar:">
