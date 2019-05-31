@@ -58,7 +58,6 @@ cerrarConexionBD($conexion);
 		cerrarConexionBD($conexion);
 		?>
 
-		<?php foreach($usuarios as $usuario){$usuariomod= $usuario['PID'];}?>
 
 
 
@@ -96,7 +95,7 @@ cerrarConexionBD($conexion);
 				<td data-title="Nombre:"><input type="text" maxlength="10" id="ianombre" name="ianombre" readonly value="<?php echo $material['NOMBRE']; ?>"> </td>
 				<td data-title="Tipo:"><input type="text" id="iatipo" maxlength="10" name="iatipo" readonly value="<?php echo $material['TIPO']; ?>"></td>
 				<td data-title="Cantidad:"><input type="number" id="iacantidad" max=9999 name="iacantidad" readonly value="<?php echo $material['CANTIDAD']; ?>"></td>
-				<td data-title="PID:"><input type="number" id="iapid" name="iapid" readonly value="<?php echo $usuariomod; ?>"></td>
+				<td data-title="PID:"><input type="number" id="iapid" name="iapid" readonly value="<?php echo $usuarios["PID"]; ?>"></td>
 				<td data-title="PEID:"><input type="number" id="iapeid" name="iapeid" readonly value="<?php echo $material['PEID']; ?>"></td>
 				
 			</tr>
@@ -172,8 +171,8 @@ cerrarConexionBD($conexion);
 				<th>Precio</th>
 				<th>PID</th>
 				<th>PEID</th>
-				<th>Editar</th>
-				<th>Devolver</th>
+				<th>Editar/Confirmar</th>
+				<th>Devolver/Cancelar</th>
 			</tr>
 </thead>
 			<?php
@@ -197,6 +196,7 @@ cerrarConexionBD($conexion);
 					<?php
 					if (isset($itema) and ($fila["IA"] == $itema["IA"])) { ?>
 						<!-- Editando título -->
+						<tbody>
 						<tr>
 							<td data-title="ID:"><?php echo $fila['IA']; ?></td>
 							<td data-title="Tipo:"><input maxlength="10" id="TIPO" name="TIPO" type="text" value="<?php echo $fila['TIPO']; ?>" /></td>
@@ -224,26 +224,29 @@ cerrarConexionBD($conexion);
 						<?php } ?>
 
 						<?php if (isset($itema) and $fila["IA"] == $itema["IA"]) { ?>
-							<td data-title="Confirmar:">
+							<td data-title="Confirmar">
 								<button id="grabar" name="grabar" type="submit" class="editar_fila">
 									<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar Cambios">
 								</button>
+								</td>
+								<td data-title="Cancelar">
 								<button id="cancelar" name="cancelar" type="submit" formnovalidate class="editar_fila">
 									<img src="images/cancel.png" class="editar_fila" alt="Guardar Cambios">
 								</button>
 							</td>
 						<?php } else { ?>
-							<td data-title="Editar:">
+							<td data-title="Editar">
 								<button id="editar" name="editar" type="submit" class="editar_fila">
 									<img src="images/pencil_menuito.bmp" class="editar_fila" alt="Editar Libro">
 								</button>
 							</td>
-						<?php } ?>
-						<td data-title="Borrar:">
+							<td data-title="Borrar">
 							<button id="borrar" name="borrar" type="submit" class="editar_fila">
-								<img src="images/flecha.png" class="editar_fila" alt="Borrar Libro">
+								<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar Libro">
 							</button>
-						</td>
+							</td>
+						</tbody>
+						<?php } ?>
 
 				</form>
 

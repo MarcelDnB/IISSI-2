@@ -61,7 +61,7 @@
 				
 			
 				$conexion=crearConexionBD();
-				$excepcion=quitar_itema($conexion,$itema["IA"]);
+				$excepcion=cambiar_itema($conexion,$itema["IA"]);
 				// $excepcion = quitar_materialnecesario($conexion,$itema['MID']);
 				
 				

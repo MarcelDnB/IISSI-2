@@ -16,7 +16,7 @@ if (!isset($_SESSION['login'])) {
 
 	//                                                      	 PAGINACION                                                           //
 	if (isset($_SESSION["paginacion"]))
-		$paginacion = $_SESSION["paginacion"];
+	$paginacion = $_SESSION["paginacion"];
 	$pagina_seleccionada = isset($_GET["PAG_NUM"]) ? (int)$_GET["PAG_NUM"] : (isset($paginacion) ? (int)$paginacion["PAG_NUM"] : 1);
 	$pag_tam = isset($_GET["PAG_TAM"]) ? (int)$_GET["PAG_TAM"] : (isset($paginacion) ? (int)$paginacion["PAG_TAM"] : 5);
 	if ($pagina_seleccionada < 1) 		$pagina_seleccionada = 1;
@@ -146,28 +146,21 @@ cerrarConexionBD($conexion);
 				<th>Estado</th>
 				<th>Descripcion del cliente</th>
 				<th>Lugar</th>
-				<th>Editar</th>
-				<th>Borrar</th>
+				<th>Editar/Confirmar</th>
+				<th>Borrar/Cancelar</th>
 			</tr>
 		</thead>
 			<?php
 			foreach ($filas as $fila) {
 				?>
 				<form method="POST" action="produccion/controlador_evento.php">
-				
-				<!-- Controles de los campos que quedan ocultos:
-								OID_LIBRO, OID_AUTOR, OID_AUTORIA, NOMBRE, APELLIDOS -->
 					<input id="EID" name="EID" type="hidden" value="<?php echo $fila["EID"]; ?>" />
 					<input id="PRECIOTOTAL" name="PRECIOTOTAL" type="hidden" value="<?php echo $fila["PRECIOTOTAL"]; ?>" />
-					<input id="LUGAR" name="LUGAR" type="hidden" value="<?php echo $fila["LUGAR"]; ?>" />
-					<input id="FECHAINICIO" name="FECHAINICIO" type="hidden" value="<?php echo $fila["FECHAINICIO"]; ?>" />
-					<input id="FECHAFIN" name="FECHAFIN" type="hidden" value="<?php echo $fila["FECHAFIN"]; ?>" />
-					<input id="DESCRIPCIONCLIENTE" name="DESCRIPCIONCLIENTE" type="hidden" value="<?php echo $fila["DESCRIPCIONCLIENTE"]; ?>" />
-					<input id="ESTADOEVENTO" name="ESTADOEVENTO" type="hidden" value="<?php echo $fila["ESTADOEVENTO"]; ?>" />
-
+			
 					<?php
 					if (isset($evento) and ($fila["EID"] == $evento["EID"])) { ?>
 						<!-- Editando título -->
+						<tbody>
 						<tr>
 							<td data-title="Evento:" ><?php echo $fila['EID']; ?></td>
 							<td data-title="Precio:"><input id="PRECIOTOTAL" name="PRECIOTOTAL" type="number" min="1" max="1000000000" value="<?php echo $fila['PRECIOTOTAL']; ?>" /></td>
@@ -178,8 +171,6 @@ cerrarConexionBD($conexion);
 							<td data-title="Lugar:"><input maxlength="40" id="LUGAR" name="LUGAR" required type="text" value="<?php echo $fila['LUGAR']; ?>" /> </td>
 						<?php } else { ?>
 							<!-- mostrando título -->
-						
-						<tr>
 							<td data-title="Evento:" ><?php echo $fila['EID']; ?></td>
 							<td data-title="Precio:"><?php echo $fila['PRECIOTOTAL']; ?></td>
 							<td data-title="F.Inicio:"><?php if ($fila["FECHAINICIO"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAINICIO']), 'Y-m-d'); ?></td>
@@ -197,10 +188,11 @@ cerrarConexionBD($conexion);
 								<button id="grabar" name="grabar" type="submit" class="editar_fila">
 									<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar Cambios">
 								</button>
+								</td>
+								<td data-title="Cancelar">
 								<button id="cancelar" name="cancelar" type="submit" formnovalidate class="editar_fila">
 									<img src="images/cancel.png" class="editar_fila" alt="Guardar Cambios">
 								</button>
-								
 							</td>
 						<?php } else { ?>
 							<td data-title="Editar">
@@ -208,17 +200,21 @@ cerrarConexionBD($conexion);
 									<img src="images/pencil_menuito.bmp" class="editar_fila" alt="Editar Libro">
 								</button>
 							</td>
-						<?php } ?>
-						<td data-title="Borrar">
+							<td data-title="Borrar">
 							<button id="borrar" name="borrar" type="submit" class="editar_fila">
 								<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar Libro">
 							</button>
-						</td>
+							</td>
+							
+						<?php } ?>
+						
 						</tr>
-						</tr>
+						</tbody>
+						
 				</form>
 
 				</article>
+				
 				<div>
 
 				<?php } ?>

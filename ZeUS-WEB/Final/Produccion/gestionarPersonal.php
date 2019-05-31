@@ -60,7 +60,7 @@ function crear_usuario($conexion,$DEPARTAMENTO,$NOMBRE,$CARGO,$SUELDO,$DNI,$TELE
 function listarEventos($conexion){
 	try{
 		$consulta = "SELECT * FROM evento ORDER BY eid"; // SOLO LOS EVENTOS Q NO TIENEN ALOJAMIENTO
-    	$stmt = $conexion->query($consulta);
+    $stmt = $conexion->query($consulta);
 		return $stmt;
 	}catch(PDOException $e) {
 		return $e->getMessage();
@@ -69,7 +69,7 @@ function listarEventos($conexion){
 function listarParteequipo($conexion){
 	try{
 		$consulta = "SELECT * FROM parteequipo ORDER BY peid"; // SOLO LOS EVENTOS Q NO TIENEN ALOJAMIENTO
-    	$stmt = $conexion->query($consulta);
+    $stmt = $conexion->query($consulta);
 		return $stmt;
 	}catch(PDOException $e) {
 		return $e->getMessage();

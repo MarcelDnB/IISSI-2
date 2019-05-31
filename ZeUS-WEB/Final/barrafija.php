@@ -6,7 +6,6 @@
 		include_once("Produccion/gestionarItemA.php");
 		$usuarios = comprobarUsuario($conexion,$_SESSION['login']);
 		cerrarConexionBD($conexion);
-		foreach($usuarios as $usuario){$usuariomod= $usuario['NOMBRE'];}
 
 		?>
 		<span class="site-name">ZeUS</span>
@@ -30,7 +29,7 @@
 			<li><a href="logout.php">Cerrar sesión</a></li>
 		</ul>
 	</nav><!--/nav-->
-	<div class="bienvenida">Bienvenido: <?php echo $usuariomod ?></div>
+	<div class="bienvenida">Bienvenido: <?php echo $usuarios["NOMBRE"] ?></div>
 		
 	 <!--/#logo-header-->
 	

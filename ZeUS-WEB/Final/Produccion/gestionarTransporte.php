@@ -45,7 +45,7 @@ function crear_transporte($conexion,$MEDIOUTILIZADO,$NUMPERSONAS,$EID) {
 function listarEventos($conexion){
 	try{
 		$consulta = "SELECT eid FROM evento WHERE eid NOT IN (SELECT eid FROM transporte) ORDER BY eid"; // SOLO LOS EVENTOS Q NO TIENEN ALOJAMIENTO
-    	$stmt = $conexion->query($consulta);
+    $stmt = $conexion->query($consulta);
 		return $stmt;
 	}catch(PDOException $e) {
 		return $e->getMessage();

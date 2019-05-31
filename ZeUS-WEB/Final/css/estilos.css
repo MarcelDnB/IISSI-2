@@ -193,27 +193,37 @@ table {
 	font-family: 'raleway', sans-serif;
 	border-collapse: collapse;
 	width: 100%;
-	background-color: rgb(255, 255, 255);
+	background: linear-gradient(45deg, #49a09d, #5f2c82);
   }
   
   td, th {
 	border: 1px solid #ff0000;
 	text-align: left;
 	padding: 8px;
+	background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
   }
   td textarea { /* para limitar el numero de caracteres*/
 	width: 380px;
 	height: 100px;
 	overflow: scroll;
-  }
+	}
+	thead th {
+		background-color: #55608f;
+	}
+
   
   tr:nth-child(even) {
 	background-color: #2b2b2b;
 	color: rgb(255, 255, 255);
   }
   tr:hover {
-	  background-color: rgb(204, 181, 51);
-  }
+		background-color: rgba(255, 255, 255, 0.3);
+	}
+	tbody td:hover:before {
+		background-color: rgba(255, 255, 255, 0.2);
+
+	}
 
   #enlaces span,#enlaces a{
 	width: 2em;

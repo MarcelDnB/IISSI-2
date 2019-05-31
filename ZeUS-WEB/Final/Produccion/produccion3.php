@@ -175,8 +175,8 @@
 			<th>Evento</th>
 			<th>Medio Utilizado</th>
 			<th>Numero de personas</th>
-			<th>Editar</th>
-			<th>Borrar</th>
+			<th>Editar/Confirmar</th>
+				<th>Borrar/Cancelar</th>
 			</tr>	
 		</thead>	
 	<?php
@@ -197,6 +197,7 @@
 				<?php
 					if (isset($transporte) and ($fila["TID"] == $transporte["TID"])) { ?>
 						<!-- Editando título -->
+						<tbody>
 						<tr>
 						<td data-title="Transporte:"><input id="TID" name="TID" type="text" value="<?php echo $fila['TID'];?>"/></td>
 
@@ -223,26 +224,29 @@
 				<?php } ?>
 				
 				<?php if (isset($transporte) and $fila["TID"] == $transporte["TID"]) { ?>
-				<td data-title="Confirmar:">
-					<button id="grabar" name="grabar" type="submit" class="editar_fila">
-						<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar Cambios">
-					</button>
-					<button id="cancelar" name="cancelar" type="submit" formnovalidate class="editar_fila">
+					<td data-title="Confirmar">
+								<button id="grabar" name="grabar" type="submit" class="editar_fila">
+									<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar Cambios">
+								</button>
+								</td>
+								<td data-title="Cancelar">
+								<button id="cancelar" name="cancelar" type="submit" formnovalidate class="editar_fila">
 									<img src="images/cancel.png" class="editar_fila" alt="Guardar Cambios">
 								</button>
-				</td>
-				<?php } else {?>
-					<td data-title="Editar:">
-					<button id="editar" name="editar" type="submit" class="editar_fila">
-						<img src="images/pencil_menuito.bmp" class="editar_fila" alt="Editar Libro">
-					</button>	
-				</td>
-				<?php } ?>
-				<td data-title="Borrar:">
-				<button id="borrar" name="borrar" type="submit" class="editar_fila">
-						<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar Libro">
-					</button>
-				</td>
+							</td>
+						<?php } else { ?>
+							<td data-title="Editar">
+								<button id="editar" name="editar" type="submit" class="editar_fila">
+									<img src="images/pencil_menuito.bmp" class="editar_fila" alt="Editar Libro">
+								</button>
+							</td>
+							<td data-title="Borrar">
+							<button id="borrar" name="borrar" type="submit" class="editar_fila">
+								<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar Libro">
+							</button>
+							</td>
+						</tbody>
+						<?php } ?>
 
 		</form>
 		

@@ -10,7 +10,7 @@ function consultarUsuarioAlmacen($conexion,$email,$pass) {
 }
 
 function consultarUsuarioProduccion($conexion,$email,$pass) {
-   $consulta = "SELECT COUNT(*) AS TOTAL FROM PERSONAL WHERE EMAIL=:email AND PASS=:pass";
+   $consulta = "SELECT COUNT(*) AS TOTAL FROM PERSONAL WHERE EMAIL=:email AND PASS=:pass AND DEPARTAMENTO='Produccion'";
    $stmt = $conexion->prepare($consulta);
    $stmt->bindParam(':email',$email);
    $stmt->bindParam(':pass',$pass);

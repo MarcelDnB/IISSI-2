@@ -72,9 +72,12 @@ function listarMaterial($conexion){
 }
 function comprobarUsuario($conexion,$email){
 	try{
-		$consulta = "SELECT * FROM PERSONAL WHERE EMAIL='$email'"; 
-		$stmt = $conexion->query($consulta);
-		return $stmt;
+		$stmt=$conexion->prepare("SELECT * FROM PERSONAL WHERE EMAIL=:email");
+		$stmt->bindParam(':email',$email);
+		$stmt->execute();
+		$fila = $stmt->fetch();
+		$todo = $fila;
+		return $todo;
 	}catch(PDOException $e) {
 		return $e->getMessage();
     }
