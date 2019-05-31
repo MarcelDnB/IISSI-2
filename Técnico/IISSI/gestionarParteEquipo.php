@@ -101,4 +101,24 @@ function listaEventos($conexion,$EID){
 		return $e->getMessage();
     }
 }
+function listaAlojamiento($conexion,$EID){
+	try{
+		$consultaE="SELECT * FROM ALOJAMIENTO WHERE eid=($EID)";
+		$stmt=$conexion->query($consultaE);
+		$consulta=$stmt->fetch();
+		return $consulta;
+	}catch(PDOException $e) {
+		return $e->getMessage();
+    }
+}
+function listaTransporte($conexion,$EID){
+	try{
+		$consultaE="SELECT * FROM TRANSPORTE WHERE eid=($EID)";
+		$stmt=$conexion->query($consultaE);
+		$consulta=$stmt->fetch();
+		return $consulta;
+	}catch(PDOException $e) {
+		return $e->getMessage();
+    }
+}
 ?>

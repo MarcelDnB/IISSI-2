@@ -63,7 +63,6 @@ cerrarConexionBD($conexion);
 	<!--                                                      	MODAL_FORM                                                            -->
 	<!-- Trigger/Open The Modal -->
 	<button id="myBtn" class="mybtn">Crear Parte de Equipo </button>
-	<button id="consultaBtn" class="mybtn">Consultar Parte de Equipo</button>
 
 	<!-- The Modal -->
 
@@ -105,12 +104,7 @@ cerrarConexionBD($conexion);
 	$consulta=$_SESSION['Consulta'];
 	$peid=$_SESSION['peid'];
 
-
-	$eventoConsulta=$consulta['evento'];
-	$alojamientoConsulta=$consulta['alojamiento'];
-	$inventarioConsulta=null; //$consulta['inventario'];
-	$transporteConsulta=$consulta['transporte'];
-	$personalConsulta= null;//$consulta['personal'];
+	
 	$totalIA=listarIA($conexion,$peid);
 	$totalP=listarP($conexion,$peid);
 	$totalI=listarI($conexion,$peid);
@@ -125,19 +119,7 @@ cerrarConexionBD($conexion);
 		<div class="modal-body">
 			<div><label>Parte de Equipo: <?php echo $peid;?></label></div>
 				
-				<div><label>Evento: <?php echo $eventoConsulta['EID']; ?></label>
-					<div><label>Lugar:  <?php echo $eventoConsulta['LUGAR'];?></label>
-					<label>Precio:  <?php echo $eventoConsulta['PRECIOTOTAL'];?></label>
-					<label>Estado:  <?php echo $eventoConsulta['ESTADOEVENTO'];?><label>
-					</div>
-					<div><label>Fecha:  Del <?php echo $eventoConsulta['FECHAINICIO'];?> al <?php echo $eventoConsulta['FECHAFIN'];?></label></div>
-					<div><label>Alojamiento:</label></div>
-					<div><label>Hotel: <?php echo $alojamientoConsulta['HOTEL']?></label>
-						 <label>Direccion: <?php echo $alojamientoConsulta['DIRECCION'];?></label></div>
-					<div><label>Ciudad: <?php echo $alojamientoConsulta['CIUDAD']; ?></label>
-						 <label>Numero de Personas: <?php echo $alojamientoConsulta['NUMPERSONAS'];?></label></div>
-					<div><label>Transporte:</label></div>
-						 <label>Medio: <?php echo $transporteConsulta['MEDIOUTILIZADO'];?></label></div>
+
 					<div><label>Personal: </label></div>
 					<div>
 					<table id="table3" class="table3">
@@ -149,6 +131,8 @@ cerrarConexionBD($conexion);
 							</tr>
 					<?php foreach($totalP as $filaP){?>
 						<tr>
+							<?php $fila=listarP($conexion,$peid) ?>
+
 							<td><?php echo $filaP['NOMBRE']; ?></td>
 							<td><?php echo $filaP['DNI']; ?></td>
 							<td><?php echo $filaP['DEPARTAMENTO']; ?></td>
@@ -200,7 +184,7 @@ cerrarConexionBD($conexion);
 		</div>
 	</div>
 
-	<script src="js/modal.js"></script>
+	<script src="js/modal2.js"></script>
 
 
 <!-- 														MODAL_2																  -->
@@ -263,9 +247,9 @@ cerrarConexionBD($conexion);
 				<th>Ciudad</th>
 				<th>Nº de personal</th>
 				<th>Medio Transporte</th>
+				<th>Consultar</th>
 				<th>Editar</th>
 				<th>Borrar</th>
-				<th>Consultar</th>
 			</tr>
 			<?php
 			foreach ($filas as $fila) {
@@ -283,13 +267,15 @@ cerrarConexionBD($conexion);
 						<!-- Editando título -->
 						<tr>
 
-                            <td><input id="PEID" name="PEID" type="text" value="<?php echo $fila['PEID'];?>" >   
+                              
 						<?php } else { ?>
 							<!-- mostrando título -->
 
 							<!-- Meter aqui querys a las otras tablas segun el peid en fila-->
 							<?php 
 							$eventos=listaEventos($conexion,$fila["EID"]);
+							$alojamiento=listaAlojamiento($conexion,$fila['EID']);
+							$transporte=listaTransporte($conexion,$fila['EID']);
 							?>
 
 							<tr>
@@ -299,13 +285,22 @@ cerrarConexionBD($conexion);
 							<td><?php echo $eventos['ESTADOEVENTO']; ?></td>
 							<td><?php echo $eventos['FECHAINICIO']; ?></td>
 							<td><?php echo $eventos['FECHAFIN']; ?></td>
-							<td><?php ?></td>
-							<td><?php ?></td>
-							<td><?php ?></td>
-							<td><?php ?></td>
-							<td><?php ?></td>
+							<td><?php echo $alojamiento['HOTEL'];?></td>
+							<td><?php echo $alojamiento['DIRECCION']?></td>
+							<td><?php echo $alojamiento['CIUDAD']?></td>
+							<td><?php echo $alojamiento['NUMPERSONAL']?></td>
+							<td><?php echo $transporte['MEDIOUTILIZADO']?></td>
 
 						<?php } ?>
+
+						<td>
+							<button id="consultaBtn" type="button" class="mybtn2">
+								<img src="images/ojo.png">
+								<script src="js/modal2.js"></script>
+							</button>
+
+
+						</td>
 
 						<?php if (isset($parteequipo) and $fila["PEID"] == $parteequipo["PEID"]) { ?>
 							<td>
@@ -325,14 +320,7 @@ cerrarConexionBD($conexion);
 								<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar Libro">
 							</button>
 						</td>
-						<td>
-							<button id="consultar" name="consultar" type="submit" class="consultar_fila">
-								<img src="images/ojo.png" class="consultar_fila" alt="Consultar PEID">
-							</button>
 
-							</button>
-
-						</td>
 
 				</form>
 
