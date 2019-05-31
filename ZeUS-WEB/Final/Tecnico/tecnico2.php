@@ -63,7 +63,7 @@ cerrarConexionBD($conexion);
 	<!--                                                      	MODAL_FORM                                                            -->
 	<!-- Trigger/Open The Modal -->
 	<button id="myBtn" class="mybtn">Crear Parte de Equipo </button>
-	<button id="myBtn2" class="mybtn">Consultar Parte de Equipo</button>
+	<button id="consultaBtn" class="mybtn">Consultar Parte de Equipo</button>
 
 	<!-- The Modal -->
 
@@ -252,9 +252,19 @@ cerrarConexionBD($conexion);
 	<div class="seccionEntradas">
 		<table id="tabla1" style="width:100%">
 			<tr>
-				<th>PEID</th>
-                <th>Editar</th>
-                <th>Borrar</th>
+				<th>Evento</th>
+                <th>Lugar</th>
+                <th>Precio</th>
+				<th>Estado</th>
+				<th>Fecha Comienzo</th>
+				<th>Fecha Fin</th>
+				<th>Hotel</th>
+				<th>Direccion</th>
+				<th>Ciudad</th>
+				<th>Nº de personal</th>
+				<th>Medio Transporte</th>
+				<th>Editar</th>
+				<th>Borrar</th>
 				<th>Consultar</th>
 			</tr>
 			<?php
@@ -277,8 +287,25 @@ cerrarConexionBD($conexion);
 						<?php } else { ?>
 							<!-- mostrando título -->
 
+							<!-- Meter aqui querys a las otras tablas segun el peid en fila-->
+							<?php 
+							$eventos=listaEventos($conexion,$fila["EID"]);
+							$alojamiento=listaAlojamiento($conexion,$fila['EID']);
+							$transporte=listaTransporte($conexion,$fila['EID']);
+							?>
+
 							<tr>
-							<td><?php echo $fila['PEID']; ?></td>
+							<td><?php echo $eventos['EID']; ?></td>
+							<td><?php echo $eventos['LUGAR']; ?></td>
+							<td><?php echo $eventos['PRECIOTOTAL']; ?></td>
+							<td><?php echo $eventos['ESTADOEVENTO']; ?></td>
+							<td><?php echo $eventos['FECHAINICIO']; ?></td>
+							<td><?php echo $eventos['FECHAFIN']; ?></td>
+							<td><?php echo $alojamiento['HOTEL'];?></td>
+							<td><?php echo $alojamiento['DIRECCION']?></td>
+							<td><?php echo $alojamiento['CIUDAD']?></td>
+							<td><?php echo $alojamiento['NUMPERSONAL']?></td>
+							<td><?php echo $transporte['MEDIOUTILIZADO']?></td>
 
 						<?php } ?>
 
@@ -344,4 +371,4 @@ cerrarConexionBD($conexion);
 				<!--para reestablecer el error que salia antes, para evitar que salga siempre -->
 				<!--                                                       CONSULTA_EVENTO                                                            -->
 
-</body>
+</body>	
