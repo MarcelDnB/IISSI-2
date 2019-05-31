@@ -87,7 +87,7 @@ body{
 
 
 /*Código para ocultar el sidebar si el ancho de la pantalla <600px*/
-@media (max-width: 445px) {
+@media (max-width: 416px) {
 	#nav-cerrar{
 		display: block;
 		text-decoration: none;
