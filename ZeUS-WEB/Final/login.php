@@ -41,6 +41,7 @@
   <title>ZeUSware</title>
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:600'>
   <link rel="stylesheet" type="text/css" href="css/estiloLogin.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -50,7 +51,7 @@
 	<div class="login">
 		<input type="text" placeholder="Email" name="email" id="email" class="text"/>
 		<input placeholder="Contraseña" type="password" id="pass" name="pass" class="pass"/>
-		<input type="submit" name="submit" class="button" value="Login"/>
+		<input type="submit" name="submit" id="enviar" class="button" value="Login"/>
 		
 		<?php if (((isset($_POST['submit'])) && $_SESSION['login'] == "error")) {
 		echo "<div class=\"error\">";
@@ -66,6 +67,13 @@
 	</form>
 	</div>
 </div>
+<script src="js/jquerry.js"></script>
+<button type="button" id="creditos"> Acerca de</button>
+
+<br><p id="texto" hidden>Somos un grupo de sicarios del cuartel del golfo, nuestro objetivo es hacer una página web
+	para reclutar jovenes emprendedores con capacidades de decapitar cabezas, piernas, manos, etc. Entre otras muchas
+	extremidades del cuerpo.
+</p>
 </body>
 <?php unset($_SESSION['errorBD']); ?>
 </html>
