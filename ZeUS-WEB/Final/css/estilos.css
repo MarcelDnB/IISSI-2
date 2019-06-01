@@ -16,7 +16,7 @@ body{
 	background: linear-gradient(90deg, #32a6ff 0%, #3f6fff 49%, #8d54ff 82%);
 	background-size: 200%;
 	box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	animation: aurora 10s infinite;
+	animation: aurora 100s infinite;
 	color: #fff;
 	outline: 1px solid #2a2a2a;
 }
@@ -81,7 +81,7 @@ body{
 
 .contenido{
 	position: absolute;
-	background: rgb(255, 255, 255);
+	background: rgb(44, 44, 44);
 	box-shadow: 0 8px 0 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	transition: all 0.3s;
 	padding:0px;
@@ -90,6 +90,7 @@ body{
 	top: 80px;
 	bottom: 0px;
 	width: 100%;
+	color: white;
 
 }
 .abrir{
@@ -101,8 +102,9 @@ body{
 	top: 80px;
 	bottom: 0px;
 	width: calc(100% - 250px);
-	background: rgb(255, 255, 255);
+	background: rgb(44, 44, 44);
 	margin-left: 250px;
+	color: white;
 }
 .menu-bar{
 	width: 80px;
@@ -129,7 +131,6 @@ body{
 	.contenido{
 	position: absolute;
 	box-shadow: 0 8px 0 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	background: #fff;
 	transition: all 0.3s;
 	padding:0px;
 	/*Al contenido sí se le puede hacer scroll vertical -> Quitar si la paginación no lo requiere*/
@@ -146,7 +147,7 @@ body{
 		overflow-y: scroll;
 		bottom: 0px;
 		width: 100%;
-		background: #fff;
+		
 		/*margin-left: */
 	}
 }
@@ -180,7 +181,7 @@ body{
 #main-header {
 	background: linear-gradient(45deg, #32a6ff 0%, #3f6fff 49%, #8d54ff 82%);
 	background-size: 200%;
-	animation: aurora 10s infinite;
+	animation: aurora 100s infinite;
 	height: 80px;
 	width: 100%; /* Largo de la cabecera */
 	left: 0; /* Posicionamos la cabecera al lado izquierdo */
@@ -250,15 +251,20 @@ table {
 	font-family: 'raleway', sans-serif;
 	border-collapse: collapse;
 	width: 100%;
-	background: linear-gradient(45deg, #49a09d, #5f2c82);
+	background: linear-gradient(45deg, #32a6ff 0%, #3f6fff 49%, #8d54ff 82%);
+	background-size: 200%;
+	animation: aurora 100s infinite;
   }
   
   td, th {
-	border: 1px solid #ff0000;
 	text-align: left;
 	padding: 8px;
-	background-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
+	color: #fff;
+	background: none repeat scroll 0 0 rgba(255,255,255,0.04);
+  background-clip: padding-box;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 0px;
+	box-shadow: 0 0 3px rgba(255,255,255,0.25) inset, 0 0 1px rgba(255,255,255,0.2), 0 10px 10px rgba(255,255,255,0.08) inset;
   }
   td textarea { /* para limitar el numero de caracteres*/
 	width: 380px;
@@ -266,16 +272,16 @@ table {
 	overflow: scroll;
 	}
 	thead th {
-		background-color: #55608f;
+		
 	}
+	thead td{
+		
 
-  
-  tr:nth-child(even) {
-	background-color: #2b2b2b;
-	color: rgb(255, 255, 255);
-  }
+	}
+	
   tr:hover {
-		background-color: rgba(255, 255, 255, 0.3);
+		background-color: rgba(255, 255, 255, 0.2);
+    transition: 0.3s;
 	}
 	tbody td:hover:before {
 		background-color: rgba(255, 255, 255, 0.2);
@@ -344,7 +350,8 @@ input[type=number] { /* para firefox*/
 	padding:10px;
 	box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	font-size: 18px;
-	background-color:grey;
+	background-color:rgb(75, 75, 75);
+	color: white;
 }
 .formpaginacion [type=submit] {
 	background-color: rgb(255, 255, 255); /* Green */
@@ -400,9 +407,10 @@ input[type=number] { /* para firefox*/
 }
 
 .mybtn {
-	background-color: rgb(255, 255, 255); /* Green */
-	border: none;
-	color: rgb(0, 0, 0);
+	background-color: #8400ff; 
+	border: 6px;
+	border-radius: 6px;
+	color: white;
 	padding: 16px 32px;
 	font-family: 'raleway', sans-serif;
 	text-align: center;

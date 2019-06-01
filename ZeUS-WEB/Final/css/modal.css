@@ -40,7 +40,7 @@
     float: right;
     font-size: 50px;
     font-weight: bold;
-    background-color: #ff0000;
+    background-color: #8400ff;
   }
   
   .close:hover,
@@ -52,12 +52,13 @@
   
   .modal-header {
     padding: 2px 16px;
-    background-color: #ff0000;
+    background-color: #8400ff;
     color: white;
   }
   
   .modal-body {
     padding: 25px 25px;
+    color: black;
   }
 
 .form-modal {
@@ -70,10 +71,9 @@
 }
 
 .btn {
-  background-color: rgb(136, 136, 136); 
-  border: none;
+  background-color: #8400ff; 
   min-width: 100px;
-	color: rgb(0, 0, 0);
+	color: white;
 	padding: 16px 0px;
 	text-align: center;
   text-decoration: none;
@@ -82,11 +82,13 @@
 	font-size: 16px;
 	margin: 6px 0px;
 	transition-duration: 0.4s;
-	cursor: pointer;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 10px #3f6fff;
 }
 
 .btn:hover {
-  background-color: rgb(255, 34, 34);
+  background-color: #32a6ff;
 	color: rgb(0, 0, 0);
 }
 
