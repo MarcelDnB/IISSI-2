@@ -66,7 +66,7 @@ cerrarConexionBD($conexion);
 				<h2>Añadir micrófono</h2>
 			</div>
 			<div class="modal-body">
-				<form method="POST" action="almacen/controlador_altavoz.php">
+				<form method="POST" action="almacen/controlador_microfono.php">
 					<label>Nombre: </label><div><textarea required type="text" id="nombremic" name="nombremic" rows="1" cols="40" maxlength="30"></textarea></div>
 					<label>Precio Total: </label> <input required type="number" min="1" max="1000000000" id="totalprice" name="totalprice" class="form-modal">
 					<label>Alimentación: </label><div><textarea required type="text" id="alimic" name="alimic" rows="1" cols="40" maxlength="10"></textarea></div>
@@ -105,7 +105,7 @@ cerrarConexionBD($conexion);
 		echo "No se puede modificar, tenga cuidado con el formato que se requiere";
 	}
 	if(isset($_SESSION["errormodal"])) {
-		echo "No se ha podido agregar el altavoz, ha introducido algún dato inválido";
+		echo "No se ha podido agregar el micrófono. Ha introducido algún dato inválido";
 }
 	if(isset($_SESSION['pagconsult'])) {
 		echo "Ha ocurrido un error con la paginación";
@@ -135,15 +135,15 @@ cerrarConexionBD($conexion);
 				<th>Referencia</th>
 				<th>Nombre</th>
 				<th>Precio</th>
-				<th>Potencia</th>
-				<th>Pulgadas</th>
+				<th>Alimentación</th>
+				<th>Tipo</th>
 				<th>Editar</th>
 				</tr>
 			</thead>
 			<?php
 			foreach ($filas as $fila) {
 				?>
-				<form method="POST" action="almacen/controlador_altavoz.php">
+				<form method="POST" action="almacen/controlador_microfono.php">
 					<!-- Controles de los campos que quedan ocultos:
 								OID_LIBRO, OID_AUTOR, OID_AUTORIA, NOMBRE, APELLIDOS -->
 					<input id="REFERENCIA" name="REFERENCIA" type="hidden" value="<?php echo $fila["REFERENCIA"]; ?>" />
@@ -160,8 +160,8 @@ cerrarConexionBD($conexion);
 							<td data-title="Referencia:"><?php echo $fila['REFERENCIA']; ?></td>
 							<td data-title="Nombre:"><?php echo $fila['NOMBRE']; ?></td>
 							<td data-title="Precio:"><input id="PRECIO" name="PRECIO" required type="number" min="1" max="1000000000" value="<?php echo $fila['PRECIO']; ?>" /></td>
-							<td data-title="Alimentación:"><input id="ALIMENTACION" name="ALIMENTACION" required type="text" value="<?php echo $fila['POTENCIAAL']; ?>" /></td>
-							<td data-title="Tipo de sujección:"><input id="TIPOSUJECCION" name="TIPOSUJECCION" required type="text" value="<?php echo $fila['PULGADAAL']; ?>" /> </td>
+							<td data-title="Alimentación:"><input id="ALIMENTACION" name="ALIMENTACION" required type="text" value="<?php echo $fila['ALIMENTACION']; ?>" /></td>
+							<td data-title="Tipo de sujección:"><input id="TIPOSUJECCION" name="TIPOSUJECCION" required type="text" value="<?php echo $fila['TIPOSUJECCION']; ?>" /> </td>
 						<?php } else { ?>
 							<!-- mostrando título -->
 						<tr>

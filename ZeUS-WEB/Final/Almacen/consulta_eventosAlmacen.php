@@ -1,13 +1,12 @@
 <?php
 	require_once("gestionBD.php");
-	require_once("almacen/gestionarInventario.php");
 	require_once("paginacion_consulta.php");
 	if (!isset($_SESSION['login'])) {
 		Header("Location: login.php");
 	}else {
-	if (isset($_SESSION["inventario"])){
-		$inventario = $_SESSION["inventario"];
-		unset($_SESSION["inventario"]);
+	if (isset($_SESSION["EVENTOALMACEN"])){
+		$eventoalmacen = $_SESSION["EVENTOALMACEN"];
+		unset($_SESSION["EVENTOALMACEN"]);
 	}
 
 	
@@ -29,8 +28,7 @@
 	$conexion = crearConexionBD();
 
 	// La consulta que ha de paginarse
-	$query = 'SELECT * from INVENTARIO ORDER BY PEID';
-
+	$query = "SELECT * from EVENTO where ESTADOEVENTO<>'Realizado'";
 	// Se comprueba que el tamaño de página, página seleccionada y total de registros son conformes.
 	// En caso de que no, se asume el tamaño de página propuesto, pero desde la página 1
 	$total_registros = total_consulta($conexion, $query);
@@ -68,77 +66,37 @@
 	</nav>
 <!--                                                      	 PAGINACION                                                           -->
 
-<!--                                                      	EXCEPCIONES                                                            -->
-<?php if (isset($_SESSION["borrado"])) {
-		echo "No se puede borrar";
-	}
-	if (isset($_SESSION["editando"])) {
-		echo "Ítem ya agregado";
-	}
-	if(isset($_SESSION['pagconsult'])) {
-		echo "Ha ocurrido un error con la paginación";
-	}
-	?>
+<!--                                                      	MODAL_FORM                                                            -->
 <!--                                                      	PAGINACION                                                            -->
 <!--                                                       CONSULTA_EVENTO                                                            -->
 
 <div class="seccionEntradas">
 <table id="tabla1" style="width:100%">
-		<thead>
+	<thead>
 			<tr>
-			<th>Referencia</th>
-			<th>Nombre</th>
-			<th>Estado</th>
-			<th>Precio</th>
-			<th>ID Parte de equipo</th>
-			<th>Necesita reparación</th>
-			<th>Borrar</th>
+			<th>Evento</th>
+			<th>Lugar</th>
+			<th>Fecha inicio</th>
+			<th>Fecha fin</th>
 			</tr>	
-		</thead>
+	</thead>
 	<?php
 		foreach($filas as $fila) {
 	?>
-		<form method="POST" action="almacen/controlador_inventario.php">
-						<input id="REFERENCIA" name="REFERENCIA" type="hidden" value="<?php echo $fila["REFERENCIA"];?>"/>
-						<input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $fila["NOMBRE"];?>"/>
-						<input id="ESTADOITEM" name="ESTADOITEM" type="hidden" value="<?php echo $fila["ESTADOITEM"];?>"/>
-						<input id="PRECIO" name="PRECIO" type="hidden" value="<?php echo $fila["PRECIO"];?>"/>
-						<input id="PEID" name="PEID" type="hidden" value="<?php echo $fila["PEID"];?>"/>
-
-						<?php if (isset($inventario) and ($fila["REFERENCIA"] == $inventario["REFERENCIA"])) { ?>
-							<!--Edición-->
-							<tr>
-							<td data-title="Referencia:"><?php echo $fila['REFERENCIA'];?></td>
-							<td data-title="Nombre:"><?php echo $fila['NOMBRE'];?></td>
-							<td data-title="Estado:"><select id="ESTADOITEM" required name="ESTADOITEM">
-								<?php if ($fila['ESTADOITEM'] != "Disponible") echo "<option>Disponible</option>" ?>
-								<?php if ($fila['ESTADOITEM'] != "porReparar") echo "<option>enMantenimiento</option>" ?>
-								<option selected="selected"><?php echo $fila['ESTADOITEM']; ?></option>
-							</select></td>
-							<td data-title="Precio:"><?php echo $fila['PRECIO'] ?></td>
-							<td data-title="PEID:"> <?php echo $fila['PEID'];?></td>	
-						
-						<?php }else{ ?>
-						<!--Mostrando-->
+		<form method="POST" action="almacen/controlador_eventosAlmacen.php">
+						<input id="EID" name="EID" type="hidden"
+						value="<?php echo $fila["EID"];?>"/>
+						<input id="LUGAR" name="LUGAR" type="hidden"
+						value="<?php echo $fila["LUGAR"];?>"/>
+						<input id="FECHAINICIO" name="FECHAINICIO" type="hidden"
+						value="<?php echo $fila["FECHAINICIO"];?>"/>
+						<input id="FECHAFIN" name="FECHAFIN" type="hidden"
+						value="<?php echo $fila["FECHAFIN"];?>"/>
 						<tr>
-						<td data-title="Referencia:"><?php echo $fila['REFERENCIA'];?></td>
-						<td data-title="Nombre:"><?php echo $fila['NOMBRE'];?></td>
-						<td data-title="Estado:"><?php echo $fila['ESTADOITEM'];?></td>
-						<td data-title="Precio:"><?php echo $fila['PRECIO'] ?></td>
-						<td data-title="PEID:"> <?php echo $fila['PEID'];?></td>	
-						<?php } ?>
-						
-						
-						<td data-title="A reparar:">
-							<button id="editar" name="editar" type="submit" class="editar_fila">
-								<img src="images/pencil_menuito.bmp" class="editar_fila" alt="Editar ítem">
-							</button>
-						</td>
-						<td data-title="Borrar:">
-							<button id="borrar" name="borrar" type="submit" class="editar_fila">
-								<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar ítem">
-							</button>
-						</td>
+						<td data-title="Evento:"><?php echo $fila['EID'];?></td>
+						<td data-title="Lugar:"><?php echo $fila['LUGAR'];?></td>
+						<td data-title="Fecha de inicio:"><?php echo $fila['FECHAINICIO'];?></td>
+						<td data-title="Fecha de fin:"><?php echo $fila['FECHAFIN'];?></td>
 
 		</form>
 		
@@ -147,19 +105,15 @@
 		
 	<?php } ?>
 	<div id="enlaces" class="enlaces">
-
-<?php
+	<?php
 
 	for( $pagina = 1; $pagina <= $total_paginas; $pagina++ )
 		if ( $pagina == $pagina_seleccionada) { 	?>
 			<span class="current"><?php echo $pagina; ?></span>
-<?php }	else { ?>
+	<?php }	else { ?>
 			<a href="pagina.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
-<?php } ?>
+	<?php } ?>
 
 </div>
-	
-	<?php unset($_SESSION["excepcion"]);
-		  unset($_SESSION["borrado"]); ?>
 
 </body>

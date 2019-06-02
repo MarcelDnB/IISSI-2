@@ -53,6 +53,36 @@ function modificar_altavoz($conexion,$referencia, $precioal, $potenciaal, $pulga
     }
 }
 
+//Micrófono
+function agregar_microfono($conexion, $nombremic, $preciomic, $alimentacionmic, $tiposujeccionmic){
+	try {
+		$stmt=$conexion->prepare("CALL AGREGAR_MICROFONO(:NOMBREMIC, :PRECIOMIC, :ALIMIC, :SUJEMIC)");
+		$stmt->bindParam(':NOMBREMIC',$nombremic);
+		$stmt->bindParam(':PRECIOMIC',$preciomic);
+		$stmt->bindParam(':ALIMIC',$alimentacionmic);
+		$stmt->bindParam(':SUJEMIC',$tiposujeccionmic);
+		$stmt->execute();
+		return "";
+	} catch(PDOException $e) {
+		return $e->getMessage();
+    }
+}
+
+function modificar_microfono($conexion,$referencia, $preciomic, $alimic, $sujemic){
+	try {
+		$stmt=$conexion->prepare("CALL MODIFICAR_MICROFONO(:REFERENCIA, :PRECIOMIC, :ALIMIC, :SUJEMIC)");
+		$stmt->bindParam(':REFERENCIA', $referencia);
+		$stmt->bindParam(':PRECIOMIC',$preciomic);
+		$stmt->bindParam(':ALIMIC',$alimic);
+		$stmt->bindParam(':SUJEMIC',$sujemic);
+		$stmt->execute();
+		return "";
+	} catch(PDOException $e) {
+		return $e->getMessage();
+    }
+}
+
+//Ítems no clasificados
 function agregar_otrositems($conexion, $nombreoi, $preciooi){
 	try {
 		$stmt=$conexion->prepare("CALL AGREGAR_OTROSITEMS(:NOMBREOI, :PRECIOOI)");

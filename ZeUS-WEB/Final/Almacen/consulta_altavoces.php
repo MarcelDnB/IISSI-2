@@ -128,7 +128,7 @@ cerrarConexionBD($conexion);
 
 
 
-	<!--                                                       CONSULTA_EVENTO                                                            -->
+	<!--                                                       CONSULTA_ALTAVOCES                                                          -->
 	<div class="seccionEntradas">
 		<table id="tabla1" style="width:100%">
 			<thead>

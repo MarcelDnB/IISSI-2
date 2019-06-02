@@ -70,9 +70,7 @@
 <script src="js/jquerry.js"></script>
 <button type="button" id="creditos"> Acerca de</button>
 
-<br><p id="texto" hidden>Somos un grupo de sicarios del cuartel del golfo, nuestro objetivo es hacer una página web
-	para reclutar jovenes emprendedores con capacidades de decapitar cabezas, piernas, manos, etc. Entre otras muchas
-	extremidades del cuerpo.
+<br><p id="texto" hidden>Aplicación para la gestión de una empresa de audiovisuales.
 </p>
 </body>
 <?php unset($_SESSION['errorBD']); ?>

@@ -36,10 +36,12 @@
 		<li><button class="inventario" name="inventario" type="submit">Inventario</button></li>
 		<div class="dropdown-container">
 			<li><button class="altavoces" name="altavoces" type="submit">Altavoces</button></li>
+			<li><button class="microfonos" name="microfonos" type="submit">Micrófonos</button></li>
 			<li><button class="otrositems" name="otrositems" type="submit">Otros ítems</button></li>
 		</div>
-		<li><button id="envios" name="envios" type="submit">Envíos</button></li>
 		<li><button id="devoluciones" name="devoluciones" type="submit">Devoluciones</button></li>		
+		<li><button id="eventosalmacen" name="eventosalmacen" type="submit">Eventos por realizar</button></li>
+		<li><button id="envios" name="envios" type="submit">Envíos</button></li>
 		<li><button id="mantenimiento" name="mantenimiento" type="submit">Mantenimiento</button></li>
 		<li><button id="parte" name="parte" type="submit">Partes de equipo</button></li>
 		<li><button id="personal" name="personal" type="submit">Personal de almacén</button></li>
@@ -54,14 +56,20 @@
 	if(isset($_GET["altavoces"])){
 		$_SESSION["localidad"] = "altavoces";
 	}
+	if(isset($_GET["microfonos"])){
+		$_SESSION["localidad"] = "microfonos";
+	}
 	if(isset($_GET["otrositems"])){
 		$_SESSION["localidad"] = "otrositems";
+	}
+	if(isset($_GET["devoluciones"])) {
+		$_SESSION["localidad"] = "devoluciones";
 	}
 	if(isset($_GET["envios"])) {
 		$_SESSION["localidad"] = "envios";
 	}
-	if(isset($_GET["devoluciones"])) {
-		$_SESSION["localidad"] = "devoluciones";
+	if(isset($_GET["eventosalmacen"])) {
+		$_SESSION["localidad"] = "eventosalmacen";
 	}
 	if(isset($_GET["mantenimiento"])) {
 		$_SESSION["localidad"] = "mantenimiento";

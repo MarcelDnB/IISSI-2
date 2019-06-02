@@ -81,14 +81,20 @@ if($_SESSION['consultaralmacen'] == 1) {    //Para almacén
     else if (($_SESSION["localidad"] == "altavoces")) {
         include_once("almacen/consulta_altavoces.php");
     }
+    else if (($_SESSION["localidad"] == "microfonos")) {
+        include_once("almacen/consulta_microfono.php");
+    }
     else if (($_SESSION["localidad"] == "otrositems")) {
         include_once("almacen/consulta_otrositems.php");
+    }
+    else if (($_SESSION["localidad"] == "devoluciones")) {
+        include_once("almacen/consulta_devoluciones.php");
     }
     else if (($_SESSION["localidad"] == "envios")) {
         include_once("almacen/consulta_envios.php");
     }
-    else if (($_SESSION["localidad"] == "devoluciones")) {
-        include_once("almacen/consulta_devoluciones.php");
+    else if (($_SESSION["localidad"] == "eventosalmacen")) {
+        include_once("almacen/consulta_eventosAlmacen.php");
     }
     else if (($_SESSION["localidad"] == "mantenimiento")) {
         include_once("almacen/consulta_mantenimiento.php");
