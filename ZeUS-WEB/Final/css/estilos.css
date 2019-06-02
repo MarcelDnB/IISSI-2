@@ -13,10 +13,9 @@ body{
 	overflow-y: auto;
 	overflow-x: hidden;
 	/*background: #333;*/
-	background: linear-gradient(90deg, #32a6ff 0%, #3f6fff 49%, #8d54ff 82%);
+	background: linear-gradient(10deg, #32a6ff 0%, #3f6fff 49%, #8d54ff 82%);
 	background-size: 200%;
 	box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	animation: aurora 100s infinite;
 	color: #fff;
 	outline: 1px solid #2a2a2a;
 }
@@ -179,9 +178,8 @@ body{
 }
 
 #main-header {
-	background: linear-gradient(45deg, #32a6ff 0%, #3f6fff 49%, #8d54ff 82%);
+	background: linear-gradient(10deg, #32a6ff 0%, #8d54ff 49%, #3f6fff 72%);
 	background-size: 200%;
-	animation: aurora 100s infinite;
 	height: 80px;
 	width: 100%; /* Largo de la cabecera */
 	left: 0; /* Posicionamos la cabecera al lado izquierdo */
@@ -251,9 +249,8 @@ table {
 	font-family: 'raleway', sans-serif;
 	border-collapse: collapse;
 	width: 100%;
-	background: linear-gradient(45deg, #32a6ff 0%, #3f6fff 49%, #8d54ff 82%);
+	background: #3f6fff;
 	background-size: 200%;
-	animation: aurora 100s infinite;
   }
   
   td, th {
@@ -269,8 +266,19 @@ table {
   td textarea { /* para limitar el numero de caracteres*/
 	width: 380px;
 	height: 100px;
-	overflow: scroll;
+	overflow-y: auto;
+	border: 2px solid #990000;
+	background: rgba(89, 0, 253, 0.26);
+	color: white;
+
 	}
+	td	textarea:focus {
+    background: rgba(89, 0, 253, 0);
+    outline-width: 0;
+}
+
+
+
 	thead th {
 		
 	}
