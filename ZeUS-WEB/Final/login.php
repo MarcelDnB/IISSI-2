@@ -63,12 +63,14 @@
 		echo "</div>";
 	}
 	?>
+	<button type="button" id="creditos"> Acerca de</button>
+	<br><p id="texto" hidden>Aplicación para la gestión de una empresa de audiovisuales.
+
 	</div>
 	</form>
 	</div>
 </div>
 <script src="js/jquerry.js"></script>
-<button type="button" id="creditos"> Acerca de</button>
 
 <br><p id="texto" hidden>Aplicación para la gestión de una empresa de audiovisuales.
 </p>

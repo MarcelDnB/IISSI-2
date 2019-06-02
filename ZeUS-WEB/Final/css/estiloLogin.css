@@ -86,6 +86,7 @@ body{
 	padding: 6px;
 	margin-top: 10px;
 }
+
 .button:hover {
 	background-color: orange;
 	background: orange;
@@ -107,4 +108,32 @@ body{
 	width: 60%;
 	padding-left: 21%;
 	margin-top: -6%;
+}
+
+#creditos{
+	width: 100px;	
+	height: 35px;
+	background-color: transparent;
+	color: white;
+	border: 1px solid #fff;
+	cursor: pointer;
+	border-radius: 2px;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 6px;
+	margin-top: 200px;
+	margin-left: 80px;
+}
+
+#texto{
+	text-align:center;
+	font-family: 'Exo', sans-serif;
+	padding-top: 50px;
+	font-size: 16px;
+	color: white;
+}
+
+@media only screen and (max-width: 800px) {
+	
 }
