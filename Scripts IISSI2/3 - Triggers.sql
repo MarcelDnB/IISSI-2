@@ -210,6 +210,20 @@ SELECT COUNT(*) INTO AUX FROM PERSONAL WHERE DEPARTAMENTO='Almacen' AND :NEW.PID
 end if;
 end;
 
+--Trigger almacén IISSI2 16 -> Comprueba que la fecha de salida de un envío es anterior a la del evento
+CREATE OR REPLACE TRIGGER ARN21
+BEFORE INSERT ON ENVIOS
+FOR EACH ROW
+declare 
+aux date;
+aux1 integer;
+BEGIN
+    select eid into aux1 from parteequipo where peid=:new.peid;
+    select fechainicio into aux from evento where eid=aux1;
+  IF(:NEW.FECHASALIDA>aux) then raise_application_error(-20637,'El envío no puede salir después del evento');
+  end if;
+END;
+
 --Regla de negocio PRN01.1
 create or replace TRIGGER PRN011
 BEFORE INSERT OR UPDATE OF PID ON ItemAlquilado FOR EACH ROW
