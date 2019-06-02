@@ -1,6 +1,6 @@
 --Proyecto ZeUS
 ------------------------------------Procedures----------------------------------
---Procedures para contratar personal seg˙n su departamento
+--Procedures para contratar personal seg√∫n su departamento
 create or replace PROCEDURE contratar_personal_almacen(w_nombre IN personal.nombre%TYPE,w_cargo IN personal.cargo%TYPE,w_sueldo IN personal.sueldo%TYPE,w_dni IN personal.dni%TYPE,w_telefono IN personal.telefono%TYPE,w_email IN personal.email%TYPE, w_pass IN personal.pass%TYPE) 
 IS
 BEGIN
@@ -29,7 +29,7 @@ INSERT INTO personal(pid,departamento,nombre,cargo,sueldo,dni,telefono,estado,ei
 COMMIT WORK;
 end contratar_personal_comercial;
 
---PRN01.2 Solo el departamento de producciÛn puede contratar personal externo
+--PRN01.2 Solo el departamento de producci√≥n puede contratar personal externo
 /*create or replace PROCEDURE contratar_personal_externo(w_nombre IN personal.nombre%TYPE,w_cargo IN personal.cargo%TYPE,w_sueldo IN personal.sueldo%TYPE,w_dni IN personal.dni%TYPE,w_telefono IN personal.telefono%TYPE, w_eid IN personal.eid%TYPE, w_peid IN personal.peid%TYPE, w_contrata IN personal.pid%TYPE) 
 IS
 BEGIN 
@@ -48,87 +48,77 @@ VALUES (sec_personal.nextval, w_departamento, w_nombre, w_cargo,w_sueldo,w_dni,w
 COMMIT WORK;
 end crear_usuario;
 
---Procedures para agregar Ìtems al inventario. ARF03
-create or replace procedure agregar_altavoz(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type, w_potencia IN altavoces.potencia%type, w_pulgadas IN altavoces.pulgadas%type)
+--Procedures para agregar √≠tems al inventario. ARF03
+create or replace procedure agregar_altavoz(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type, w_potencia IN altavoz.potencia%type, w_pulgadas IN altavoz.pulgadas%type)
 IS
 n_referencia number;
 BEGIN
 INSERT INTO inventario(referencia, nombre, estadoItem, precio, peid) values(sec_item.nextval, w_nombre, 'Disponible', w_precio,null) returning referencia into n_referencia;
-INSERT INTO altavoces(referencia, potencia, pulgadas) values(n_referencia, w_potencia, w_pulgadas);
+INSERT INTO altavoz(referencia, nombre, precio, potencia, pulgadas) values(n_referencia, w_nombre, w_precio, w_potencia, w_pulgadas);
 COMMIT WORK;
 end agregar_altavoz;
 
-create or replace procedure agregar_microfono(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type, w_pid IN inventario.pid%type, w_alimentacion IN microfono.alimentacion%type, w_tiposujeccion IN microfono.tipoSujeccion%type)
+create or replace procedure agregar_microfono(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type, w_alimentacion IN microfono.alimentacion%type, w_tiposujeccion IN microfono.tipoSujeccion%type)
 IS
 n_referencia number;
 BEGIN
-INSERT INTO inventario(referencia, nombre, estadoItem, precio, peid, pid) values(sec_item.nextval, w_nombre, 'Disponible', w_precio,null, w_pid) returning referencia into n_referencia;
-INSERT INTO microfono(referencia, alimentacion, tiposujeccion) values(n_referencia, w_alimentacion, w_tiposujeccion);
+INSERT INTO inventario(referencia, nombre, estadoItem, precio, peid) values(sec_item.nextval, w_nombre, 'Disponible', w_precio,null) returning referencia into n_referencia;
+INSERT INTO microfono(referencia, nombre, precio, alimentacion, tiposujeccion) values(n_referencia, w_nombre, w_precio, w_alimentacion, w_tiposujeccion);
 COMMIT WORK;
 end agregar_microfono;
 
-create or replace procedure agregar_pantalla(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type, w_pid IN inventario.pid%type, w_tamaÒo IN pantalla.tamaÒo%type, w_resolucion IN pantalla.resolucion%type)
+
+--IISSI2
+create or replace procedure agregar_otrositems(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type)
 IS
 n_referencia number;
 BEGIN
-INSERT INTO inventario(referencia, nombre, estadoItem, precio, peid, pid) values(sec_item.nextval, w_nombre, 'Disponible', w_precio,null, w_pid) returning referencia into n_referencia;
-INSERT INTO pantalla(referencia, tamaÒo, resolucion) values(n_referencia, w_tamaÒo, w_resolucion);
+INSERT INTO inventario(referencia, nombre, estadoItem, precio, peid) values(sec_item.nextval, w_nombre, 'Disponible', w_precio,null) returning referencia into n_referencia;
+INSERT INTO otrosItems(referencia, nombre, precio) values(n_referencia, w_nombre, w_precio);
 COMMIT WORK;
-end agregar_pantalla;
+end agregar_otrositems;
 
-create or replace procedure agregar_mesamezcla(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type, w_pid IN inventario.pid%type, w_canales IN mesamezcla.canales%type, w_tipo IN mesamezcla.tipo%type)
+--Procedures para modificar √≠tems
+CREATE OR REPLACE PROCEDURE modificar_altavoz(w_REFERENCIA IN altavoz.referencia%TYPE, w_precio IN altavoz.precio%TYPE, w_potencia IN altavoz.potencia%TYPE,w_pulgadas IN altavoz.pulgadas%TYPE)
 IS
-n_referencia number;
 BEGIN
-INSERT INTO inventario(referencia, nombre, estadoItem, precio, peid, pid) values(sec_item.nextval, w_nombre, 'Disponible', w_precio,null, w_pid) returning referencia into n_referencia;
-INSERT INTO mesamezcla(referencia, canales, tipo) values(n_referencia, w_canales, w_tipo);
-COMMIT WORK;
-end agregar_mesamezcla;
+UPDATE ALTAVOZ SET precio = w_precio, potencia=w_potencia ,pulgadas=w_pulgadas where REFERENCIA=w_REFERENCIA;
+UPDATE INVENTARIO SET precio = w_precio where REFERENCIA=w_REFERENCIA;
+commit work;
+end MODIFICAR_ALTAVOZ;
 
-create or replace procedure agregar_foco(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type, w_pid IN inventario.pid%type, w_tipoluz IN foco.tipoluz%type, w_tipomovimiento IN foco.tipomovimiento%type, w_potencia IN foco.potencia%type)
+CREATE OR REPLACE PROCEDURE modificar_microfono(w_REFERENCIA IN microfono.referencia%TYPE, w_precio IN microfono.precio%TYPE, w_alimentacion IN microfono.alimentacion%TYPE,w_sujeccion IN microfono.tiposujeccion%TYPE)
 IS
-n_referencia number;
 BEGIN
-INSERT INTO inventario(referencia, nombre, estadoItem, precio, peid, pid) values(sec_item.nextval, w_nombre, 'Disponible', w_precio,null, w_pid) returning referencia into n_referencia;
-INSERT INTO foco(referencia, tipoluz, tipomovimiento, potencia) values(n_referencia, w_tipoluz, w_tipomovimiento, w_potencia);
-COMMIT WORK;
-end agregar_foco;
+UPDATE MICROFONO SET precio = w_precio, alimentacion=w_alimentacion ,tiposujeccion=w_sujeccion where REFERENCIA=w_REFERENCIA;
+UPDATE INVENTARIO SET precio = w_precio where REFERENCIA=w_REFERENCIA;
+commit work;
+end MODIFICAR_MICROFONO;
 
-create or replace procedure agregar_proyector(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type, w_pid IN inventario.pid%type, w_resolucion IN proyector.resolucion%type, w_lumenes IN proyector.lumenes%type)
+CREATE OR REPLACE PROCEDURE modificar_otrositems(w_REFERENCIA IN microfono.referencia%TYPE, w_nombre IN otrositems.nombre%TYPE, w_precio IN microfono.precio%TYPE)
 IS
-n_referencia number;
 BEGIN
-INSERT INTO inventario(referencia, nombre, estadoItem, precio, peid, pid) values(sec_item.nextval, w_nombre, 'Disponible', w_precio,null, w_pid) returning referencia into n_referencia;
-INSERT INTO proyector(referencia, resolucion, lumenes) values(n_referencia, w_resolucion, w_lumenes);
-COMMIT WORK;
-end agregar_proyector;
+UPDATE OTROSITEMS SET precio = w_precio, nombre=w_nombre where REFERENCIA=w_REFERENCIA;
+UPDATE INVENTARIO SET precio = w_precio, nombre=w_nombre where REFERENCIA=w_REFERENCIA;
+commit work;
+end MODIFICAR_otrositems;
 
-create or replace procedure agregar_cable(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type, w_pid IN inventario.pid%type, w_conexion IN cable.conexion%type, w_metros IN cable.metros%type)
-IS
-n_referencia number;
-BEGIN
-INSERT INTO inventario(referencia, nombre, estadoItem, precio, peid, pid) values(sec_item.nextval, w_nombre, 'Disponible', w_precio,null, w_pid) returning referencia into n_referencia;
-INSERT INTO cable(referencia, conexion, metros) values(n_referencia, w_conexion, w_metros);
-COMMIT WORK;
-end agregar_cable;
-
-create or replace procedure agregar_ordenador(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type, w_pid IN inventario.pid%type, w_procesador IN ordenador.procesador%type, w_gbram IN ordenador.gbram%type)
-IS
-n_referencia number;
-BEGIN
-INSERT INTO inventario(referencia, nombre, estadoItem, precio, peid, pid) values(sec_item.nextval, w_nombre, 'Disponible', w_precio,null, w_pid) returning referencia into n_referencia;
-INSERT INTO ordenador(referencia, procesador, gbram) values(n_referencia, w_procesador, w_gbram);
-COMMIT WORK;
-end agregar_ordenador;
-
---Procedure para borrar Ìtems. Contiene una restricciÛn para asegurar que el que borra el Ìtem pertenece al departamento de almacÈn. ARF03
+--Procedure para borrar √≠tems. Contiene una restricci√≥n para asegurar que el que borra el √≠tem pertenece al departamento de almac√©n. ARF03
 CREATE OR REPLACE PROCEDURE borrar_item(w_referencia IN inventario.referencia%type) IS 
 BEGIN
 DELETE from inventario where referencia=w_referencia;
 COMMIT WORK;
 end borrar_item;
 
---Procedure para alquilar un Ìtem
+
+--Procedure para borrar √≠tems. Contiene una restricci√≥n para asegurar que el que borra el √≠tem pertenece al departamento de almac√©n. ARF03
+CREATE OR REPLACE PROCEDURE borrar_item(w_referencia IN inventario.referencia%type) IS 
+BEGIN
+DELETE from inventario where referencia=w_referencia;
+COMMIT WORK;
+end borrar_item;
+
+--Procedure para alquilar un √≠tem
 create or replace PROCEDURE alquilar_item(w_tipo IN itemalquilado.tipo%TYPE, w_nombre IN itemalquilado.nombre%TYPE, w_empresa IN itemalquilado.empresa%TYPE, w_fechallegada IN itemalquilado.fechaLlegada%TYPE, w_fechadevolucion IN itemalquilado.fechadevolucion%TYPE, w_cantidad IN itemalquilado.cantidad%TYPE, w_precio IN itemalquilado.precio%TYPE, w_pid IN itemalquilado.pid%TYPE, w_peid IN itemalquilado.peid%TYPE,
 w_mid IN itemalquilado.mid%TYPE)
 IS
@@ -136,13 +126,13 @@ BEGIN
 INSERT INTO itemAlquilado(ia,tipo, nombre, empresa, fechaLlegada, fechaDevolucion, cantidad, precio, pid, peid,mid) values(SEC_ITEM.nextval,w_tipo, w_nombre, w_empresa, w_fechaLlegada, w_fechaDevolucion, w_cantidad, w_precio, w_pid, w_peid,w_mid);
 COMMIT WORK;
 end alquilar_item;
---Procedure para ver el personal de cada evento. COMPILAR ANTES LA FUNCI”N
+--Procedure para ver el personal de cada evento. COMPILAR ANTES LA FUNCI√ìN
 /*CREATE OR REPLACE PROCEDURE DIRECCION_PERSONAL_EVENTO(weid in evento.eid%type) AS 
 BEGIN
   DBMS_OUTPUT.PUT_LINE(personal_evento(weid));
 END DIRECCION_PERSONAL_EVENTO;
 */
---Procedure para dar el aviso de que un Ìtem necesita ser reparado.
+--Procedure para dar el aviso de que un √≠tem necesita ser reparado.
 CREATE OR REPLACE PROCEDURE necesita_reparacion(w_referencia IN inventario.referencia%TYPE)
 IS
 BEGIN 
@@ -151,18 +141,17 @@ insert into mantenimiento(fechaInicio, pid, referencia) values (null, null, w_re
 COMMIT WORK;
 end necesita_reparacion;
 
---Procedure para que un trabajador se asigne la reparaciÛn. ARF04
+--Procedure para que un trabajador se asigne la reparaci√≥n. ARF04
 CREATE OR REPLACE PROCEDURE asignar_reparacion(w_pid IN mantenimiento.pid%TYPE, w_referencia IN inventario.referencia%TYPE)
 IS
 BEGIN 
 UPDATE mantenimiento set pid=w_pid where referencia=w_referencia;
 UPDATE mantenimiento set fechaInicio=sysdate where referencia=w_referencia;
 UPDATE inventario set estadoItem='enMantenimiento' where referencia=w_referencia;
-UPDATE personal set estado='Ocupado' where pid=w_pid;
 COMMIT WORK;
 end asignar_reparacion;
 
---Procedure para dar por finalizada una reparaciÛn
+--Procedure para dar por finalizada una reparaci√≥n
 CREATE OR REPLACE PROCEDURE fin_reparacion(w_pid IN mantenimiento.pid%TYPE, w_referencia IN mantenimiento.referencia%TYPE) 
 IS
 BEGIN
@@ -172,7 +161,61 @@ update personal set estado='Libre' where pid=w_pid;
 commit work;
 end fin_reparacion;
 
---Procedure para crear un envÌo
+--Procedure para crear un env√≠o
+CREATE OR REPLACE PROCEDURE crear_envio(w_direccion IN envios.direccion%TYPE, w_fechaEntrada IN envios.fechaEntrada%TYPE, w_fechaSalida IN envios.fechaSalida%TYPE, w_pid IN envios.pid%TYPE, w_peid IN envios.peid%TYPE)
+IS
+BEGIN
+insert into ENVIOS(enid, direccion, fechaentrada, fechasalida, pid, peid, estadoEnvio) values (sec_envio.nextval, w_direccion, w_fechaentrada, w_fechasalida, w_pid, w_peid, 'porRealizar');
+update personal set estado='Ocupado' where pid=w_pid;
+COMMIT WORK;
+END CREAR_ENVIO;
+
+--Procedure para modificar un env√≠o
+CREATE OR REPLACE PROCEDURE modificar_envio(w_enid IN envios.enid%TYPE, w_direccion IN envios.direccion%type, w_estadoEnvio IN envios.estadoEnvio%TYPE)
+IS
+BEGIN
+update envios set estadoEnvio = w_estadoEnvio where enid=w_enid;
+update envios set direccion = w_direccion where enid=w_enid;
+COMMIT WORK;
+END modificar_envio;
+
+--Procedure para finalizar un env√≠o
+CREATE OR REPLACE PROCEDURE fin_envio(w_pid IN envios.pid%type, w_enid IN envios.enid%TYPE)
+IS
+BEGIN
+update envios set estadoEnvio = 'recibido' where enid=w_enid;
+update personal set estado='Libre' where pid=w_pid;
+COMMIT WORK; 
+END FIN_ENVIO;
+
+--Procedure para crear una devoluci√≥n
+CREATE OR REPLACE PROCEDURE crear_devolucion(w_direccion IN devoluciones.direccion%TYPE, w_empresa IN devoluciones.empresa%TYPE, w_PID IN devoluciones.PID%TYPE, w_ia IN devoluciones.ia%TYPE)
+IS
+BEGIN
+insert into DEVOLUCIONES(did, direccion, empresa, pid, ia, estadodevolucion) values (sec_devoluciones.nextval, w_direccion, w_empresa, w_pid, w_ia, 'porDevolver');
+update personal set estado='Ocupado' where pid=w_pid;
+COMMIT WORK;
+END CREAR_DEVOLUCION;
+
+--Procedure para modificar una devoluci√≥n
+CREATE OR REPLACE PROCEDURE modificar_devolucion(w_did IN devoluciones.did%TYPE, w_direccion IN devoluciones.direccion%type, w_empresa IN devoluciones.empresa%TYPE)
+IS
+BEGIN
+update devoluciones set empresa = w_empresa where did=w_did;
+update devoluciones set direccion = w_direccion where did=w_did;
+COMMIT WORK;
+END modificar_devolucion;
+
+--Procedure para finalizar una devoluci√≥n
+CREATE OR REPLACE PROCEDURE fin_devolucion(w_did IN devoluciones.did%type, w_pid IN devoluciones.pid%TYPE)
+IS
+BEGIN
+update devoluciones set estadoDevolucion = 'Devuelto' where did=w_did;
+update personal set estado='Libre' where pid=w_pid;
+COMMIT WORK; 
+END FIN_DEVOLUCION;
+
+--Procedure para crear un env√≠o
 CREATE OR REPLACE PROCEDURE crear_envio(w_direccion IN envios.direccion%TYPE, w_fechaEntrada IN envios.fechaEntrada%TYPE, w_fechaSalida IN envios.fechaSalida%TYPE, w_pid IN envios.pid%TYPE, w_peid IN envios.peid%TYPE)
 IS
 BEGIN
@@ -180,7 +223,7 @@ insert into ENVIOS(enid, direccion, fechaentrada, fechasalida, pid, peid, estado
 COMMIT WORK;
 END CREAR_ENVIO;
 
---Procedure para cambiar el estado de un envÌo
+--Procedure para cambiar el estado de un env√≠o
 CREATE OR REPLACE PROCEDURE actualiza_estado_envio(w_enid IN envios.enid%TYPE, w_estadoEnvio IN envios.estadoEnvio%TYPE)
 IS
 BEGIN
@@ -188,7 +231,7 @@ update envios set estadoEnvio = w_estadoEnvio where enid=w_enid;
 COMMIT WORK;
 END actualiza_estado_envio;
 
---Procedures para crear un evento y para avisar de que se empieza a preparar. El evento finalizar· cuando llegue el envÌo de material de vuelta al almacÈn
+--Procedures para crear un evento y para avisar de que se empieza a preparar. El evento finalizar√° cuando llegue el env√≠o de material de vuelta al almac√©n
 
 create or replace PROCEDURE crear_evento(w_precioTotal IN evento.precioTotal%TYPE,w_lugar IN evento.lugar%TYPE,w_fechaInicio IN evento.fechaInicio%TYPE,w_fechaFin IN evento.fechaFin%TYPE,w_descripcionCliente IN evento.descripcionCliente%TYPE) IS
 BEGIN
@@ -240,7 +283,7 @@ VALUES(sec_parteequipo.nextval, w_eid);
 COMMIT WORK;
 END CREAR_PARTEEQUIPO;
 
---Procedure para agregar un Ìtem al parte de equipo
+--Procedure para agregar un √≠tem al parte de equipo
 create or replace procedure agregar_item_parte(w_referencia inventario.referencia%TYPE, w_peid inventario.peid%TYPE) IS
 BEGIN
 UPDATE inventario set peid=w_peid where referencia=w_referencia;
@@ -248,7 +291,7 @@ UPDATE inventario set estadoitem = 'enEvento' where referencia=w_referencia;
 COMMIT WORK;
 end agregar_item_parte;
 
---Procedura para agregar un Ìtem alquilado al parte de equipo
+--Procedura para agregar un √≠tem alquilado al parte de equipo
 create or replace procedure agregar_itemalquilado_parte(w_nombre itemalquilado.nombre%TYPE, w_peid itemalquilado.peid%TYPE) IS
 BEGIN
 UPDATE itemalquilado set peid=w_peid where nombre=w_nombre;
@@ -281,7 +324,7 @@ END LOOP;
 COMMIT WORK;
 end ver_ParteEquipo;
 
---Procedure para ver informaciÛn de los envÌos. ARF04 y ARF05
+--Procedure para ver informaci√≥n de los env√≠os. ARF04 y ARF05
 create or replace PROCEDURE ver_envios IS
 CURSOR c2 IS
 SELECT enid, direccion, fechaEntrada, fechaSalida, pid, peid, estadoEnvio FROM envios;
@@ -294,7 +337,7 @@ END LOOP;
 COMMIT WORK;
 end ver_envios;
 
---Procedure para ver los Ìtems que necesitan reparaciÛn. ARF06
+--Procedure para ver los √≠tems que necesitan reparaci√≥n. ARF06
 create or replace PROCEDURE ver_item_por_reparar IS
 CURSOR c3 IS
 SELECT referencia, nombre FROM inventario where estadoItem = 'porReparar';
@@ -307,26 +350,26 @@ END LOOP;
 COMMIT WORK;
 end ver_item_por_reparar;
 
---Procedure para ver quiÈn repara un Ìtem. ARF07
+--Procedure para ver qui√©n repara un √≠tem. ARF07
 create or replace PROCEDURE ver_reparador(w_referencia IN mantenimiento.referencia%TYPE) IS
 CURSOR c4 IS
 SELECT referencia, pid FROM mantenimiento where referencia=w_referencia;
 BEGIN
 FOR fila IN c4 LOOP
 EXIT WHEN C4%FOUND;
-DBMS_OUTPUT.PUT_LINE('Õtem: '|| fila.referencia || '  Empleado:   ' ||fila.pid);
+DBMS_OUTPUT.PUT_LINE('√çtem: '|| fila.referencia || '  Empleado:   ' ||fila.pid);
 END LOOP;
 COMMIT WORK;
 end ver_reparador;
 
---Procedure para ver la empresa a la que pertenece un Ìtem alquilado. ARF08
+--Procedure para ver la empresa a la que pertenece un √≠tem alquilado. ARF08
 create or replace PROCEDURE ver_empresa(w_nombre IN itemalquilado.nombre%TYPE) IS
 CURSOR c5 IS
 SELECT empresa, nombre FROM itemalquilado where nombre=w_nombre;
 BEGIN
 FOR fila IN c5 LOOP
 EXIT WHEN C5%NOTFOUND;
-DBMS_OUTPUT.PUT_LINE('Õtem: '|| fila.nombre || '  Empresa:   ' ||fila.empresa);
+DBMS_OUTPUT.PUT_LINE('√çtem: '|| fila.nombre || '  Empresa:   ' ||fila.empresa);
 END LOOP;
 COMMIT WORK;
 end ver_empresa;
@@ -338,25 +381,25 @@ SELECT cargo,nombre,dni,telefono FROM personal;
 BEGIN
 FOR fila IN c6 LOOP
 EXIT WHEN C6%NOTFOUND;
-DBMS_OUTPUT.PUT_LINE('Nombre: ' ||fila.nombre ||  '  Cargo:   ' ||fila.cargo || ' DNI:   '  ||fila.dni ||'  TelÈfono:   ' || fila.telefono );
+DBMS_OUTPUT.PUT_LINE('Nombre: ' ||fila.nombre ||  '  Cargo:   ' ||fila.cargo || ' DNI:   '  ||fila.dni ||'  Tel√©fono:   ' || fila.telefono );
 END LOOP;
 COMMIT WORK;
 end ver_personal;
 */
 
---Procedure para ver el personal tÈcnico. TRN04
+--Procedure para ver el personal t√©cnico. TRN04
 create or replace PROCEDURE ver_tecnicos(w_eid IN personal.eid%TYPE) IS
 CURSOR c7 IS
 SELECT Nombre, dni, telefono FROM personal where (eid=w_eid and departamento='Tecnico');
 BEGIN
 FOR fila IN c7 LOOP
 EXIT WHEN C7%NOTFOUND;
-DBMS_OUTPUT.PUT_LINE('Nombre: ' ||fila.nombre  || '  DNI:   '  ||fila.dni|| '  TelÈfono:   ' || fila.telefono );
+DBMS_OUTPUT.PUT_LINE('Nombre: ' ||fila.nombre  || '  DNI:   '  ||fila.dni|| '  Tel√©fono:   ' || fila.telefono );
 END LOOP;
 COMMIT WORK;
 end ver_tecnicos;
 
---Procedure para ver Ìtems alquilados
+--Procedure para ver √≠tems alquilados
 /*
 create or replace PROCEDURE ver_itemsalquilados IS
 CURSOR c8 IS
@@ -511,7 +554,7 @@ select direccion into wdireccion from alojamiento where eid=weid;
   RETURN wdireccion;
 END PERSONAL_EVENTO;
 
---Devuelve el n˙mero de Ìtems asociados a un evento dado. Parte de equipo de ese evento.
+--Devuelve el n√∫mero de √≠tems asociados a un evento dado. Parte de equipo de ese evento.
 create or replace FUNCTION FUNCION_VER_INVENTARIO(weid in evento.eid%type) RETURN number AS wpeid parteequipo.peid%type;
 BEGIN
 select peid into wpeid from parteequipo where eid=weid;

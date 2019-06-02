@@ -1,27 +1,24 @@
 --Proyecto ZeUS
 
---Este script contiene las tablas, restricciones, secuencias y triggers asociados a la gestión de secuencias
+--Este script contiene las tablas, restricciones, secuencias y triggers asociados a la gestiÃ³n de secuencias
 ------------------------------------DROP_TABLES------------------------------------   
-            DROP TABLE Altavoces;
-            DROP TABLE Ordenador;
-            DROP TABLE Cable;
-            DROP TABLE Proyector;
-            DROP TABLE Foco;
-            DROP TABLE mesaMezcla;
-            DROP TABLE Pantalla;
+      	    DROP TABLE Altavoz;
             DROP TABLE Microfono;
+            DROP TABLE otrosItems;
             
             DROP TABLE Transporte;
             DROP TABLE Alojamiento;
-            DROP TABLE itemAlquilado;
             DROP TABLE Envios;
-    
+            DROP TABLE Devoluciones;
+            DROP TABLE itemAlquilado;
+            DROP TABLE materialNecesario;
+            
             DROP TABLE Mantenimiento;
             DROP TABLE Inventario;
             DROP TABLE personal;
             DROP TABLE ParteEquipo;
             DROP TABLE Evento;
-		 DROP TABLE hoteles;
+            DROP TABLE hoteles;
             
 
 ------------------------------------TABLAS------------------------------------
@@ -93,9 +90,16 @@
             foreign key (peid) references parteEquipo
             );
             
-
-create table itemAlquilado(
-		 IA number(4),
+	    create table materialnecesario(
+            mid number(4) primary key,
+            nombre varchar2(40),
+            tipo varchar2(40),
+            cantidad NUMBER(4),
+            peid NUMBER(7) REFERENCES parteequipo
+            );
+					    
+            create table itemAlquilado(
+            IA number(4),
             tipo varchar2(10),
             nombre varchar2(10),
             Empresa varchar2(10),
@@ -106,10 +110,21 @@ create table itemAlquilado(
             precio number(5) check (precio >=0),
             pid number(7),
             peid number(7),
-		 mid number(4),
-		estado varchar2(11) check (estado in ('porUsar','porDevolver')),
-		 foreign key(mid) references materialnecesario,
+	    mid number(4),
+            estado varchar2(11) check (estado in ('porUsar','porDevolver')),
+	    foreign key(mid) references materialnecesario,
             foreign key(peid) references parteEquipo
+            );
+					   
+	    create table Devoluciones(
+            did number(7) primary key,
+            direccion varchar2(30),
+            empresa varchar2(30),
+            ia number(4) unique,
+            pid number(7),
+            estadoDevolucion varchar2(11) check (estadoDevolucion in ('porDevolver', 'Devuelto')),
+            foreign key(pid) references personal,
+            foreign key (ia) references itemAlquilado
             );
             
             create table Inventario(
@@ -121,8 +136,10 @@ create table itemAlquilado(
             foreign key(peid) references parteEquipo
             );
             
-            create table Altavoces(
+           create table Altavoz(
             referencia number(10) primary key,
+            nombre varchar2(30),
+            precio number(20) check (precio>=0),
             potencia number(4),
             pulgadas number(2),
             foreign key(referencia) references inventario on delete cascade
@@ -130,86 +147,51 @@ create table itemAlquilado(
             
             create table Microfono(
             referencia number(10) primary key,
+            nombre varchar2(30),
+            precio number(20) check (precio>=0),
             alimentacion varchar2(10),
             tipoSujeccion varchar2(10),
             foreign key(referencia) references inventario on delete cascade
             );
             
-            create table Pantalla(
+            create table otrosItems(
             referencia number(10) primary key,
-            tamaño number(6),
-            resolucion number(4),
+            nombre varchar2(30),
+            precio number(20) check (precio>=0),
             foreign key(referencia) references inventario on delete cascade
             );
-            
-            create table mesaMezcla(
-            referencia number(10) primary key,
-            canales number(2),
-            tipo varchar2(10),
-            foreign key(referencia) references inventario on delete cascade
-            );
-            
-            create table Foco(
-            referencia number(10) primary key,
-            tipoLuz varchar2(20),
-            tipoMovimiento varchar2(7),
-            potencia number(5),
-            foreign key(referencia) references inventario on delete cascade
-            );
-            
-            create table Proyector(
-            referencia number(10) primary key,
-            resolucion number(4),
-            lumenes number(5),
-            foreign key(referencia) references inventario on delete cascade
-            );
-            
-            create table Cable(
-            referencia number(10) primary key,
-            conexion varchar2(6),
-            metros number(4),
-            foreign key(referencia) references inventario on delete cascade
-            );
-            
-            create table Ordenador(
-            referencia number(10) primary key,
-            procesador varchar2(15),
-            gbram number(3),
-            foreign key(referencia) references inventario on delete cascade
-            );
-            
             
             create table Mantenimiento(
             fechaInicio date,
             pid number(7),
-            referencia number(10),
+            referencia number(10) unique,
             foreign key(pid) references personal,
             foreign key(referencia) references inventario
             );
             
+             create table HOTELES (
+             hotel varchar2(40),
+             indexHotel number(6),
+             primary key (hotel)
+             );
+            
 
-create table HOTELES (
-hotel varchar2(40),
-indexHotel number(6),
- primary key (hotel)
-);
+	     create table HOTELES (
+             hotel varchar2(40),
+             indexHotel number(6),
+             primary key (hotel)
+             );
 
 
 
 
-create table materialnecesario(
-mid number(4) primary key,
-nombre varchar2(40),
-tipo varchar2(40),
-cantidad NUMBER(4),
-peid NUMBER(7) REFERENCES parteequipo
-);
+
             
 ------------------------------------Secuencias----------------------------------
---Secuencias para generar los ID de cada empleado según su departamento
---Secuencia para generar la referencia de los ítems
+--Secuencias para generar los ID de cada empleado segÃºn su departamento
+--Secuencia para generar la referencia de los Ã­tems
 create SEQUENCE sec_item minvalue 1 maxvalue 4999999999 increment by 1 start with 1;
---Secuencia para generar los ID de los envíos
+--Secuencia para generar los ID de los envÃ­os
 create SEQUENCE sec_envio minvalue 1 maxvalue 9999999 increment by 1 start with 1;
 --Secuencia para generar un ID de evento
 create SEQUENCE sec_evento minvalue 1 maxvalue 9999999 increment by 1 start with 1;
