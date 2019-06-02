@@ -67,59 +67,6 @@ INSERT INTO microfono(referencia, nombre, precio, alimentacion, tiposujeccion) v
 COMMIT WORK;
 end agregar_microfono;
 
-create or replace procedure agregar_pantalla(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type, w_tamaño IN pantalla.tamaño%type, w_resolucion IN pantalla.resolucion%type)
-IS
-n_referencia number;
-BEGIN
-INSERT INTO inventario(referencia, nombre, estadoItem, precio, peid) values(sec_item.nextval, w_nombre, 'Disponible', w_precio, null) returning referencia into n_referencia;
-INSERT INTO pantalla(referencia, nombre, precio, tamaño, resolucion) values(n_referencia, w_nombre, w_precio, w_tamaño, w_resolucion);
-COMMIT WORK;
-end agregar_pantalla;
-
-create or replace procedure agregar_mesamezcla(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type, w_canales IN mesamezcla.canales%type, w_tipo IN mesamezcla.tipo%type)
-IS
-n_referencia number;
-BEGIN
-INSERT INTO inventario(referencia, nombre, estadoItem, precio, peid) values(sec_item.nextval, w_nombre, 'Disponible', w_precio,null) returning referencia into n_referencia;
-INSERT INTO mesamezcla(referencia, nombre, precio, canales, tipo) values(n_referencia, w_nombre, w_precio, w_canales, w_tipo);
-COMMIT WORK;
-end agregar_mesamezcla;
-
-create or replace procedure agregar_foco(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type, w_tipoluz IN foco.tipoluz%type, w_tipomovimiento IN foco.tipomovimiento%type, w_potencia IN foco.potencia%type)
-IS
-n_referencia number;
-BEGIN
-INSERT INTO inventario(referencia, nombre, estadoItem, precio, peid) values(sec_item.nextval, w_nombre, 'Disponible', w_precio,null) returning referencia into n_referencia;
-INSERT INTO foco(referencia, nombre, precio, tipoluz, tipomovimiento, potencia) values(n_referencia, w_nombre, w_precio, w_tipoluz, w_tipomovimiento, w_potencia);
-COMMIT WORK;
-end agregar_foco;
-
-create or replace procedure agregar_proyector(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type, w_resolucion IN proyector.resolucion%type, w_lumenes IN proyector.lumenes%type)
-IS
-n_referencia number;
-BEGIN
-INSERT INTO inventario(referencia, nombre, estadoItem, precio, peid) values(sec_item.nextval, w_nombre, 'Disponible', w_precio,null) returning referencia into n_referencia;
-INSERT INTO proyector(referencia, nombre, precio, resolucion, lumenes) values(n_referencia, w_nombre,w_precio, w_resolucion, w_lumenes);
-COMMIT WORK;
-end agregar_proyector;
-
-create or replace procedure agregar_cable(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type, w_conexion IN cable.conexion%type, w_metros IN cable.metros%type)
-IS
-n_referencia number;
-BEGIN
-INSERT INTO inventario(referencia, nombre, estadoItem, precio, peid) values(sec_item.nextval, w_nombre, 'Disponible', w_precio,null) returning referencia into n_referencia;
-INSERT INTO cable(referencia, nombre, precio, conexion, metros) values(n_referencia, w_nombre, w_precio, w_conexion, w_metros);
-COMMIT WORK;
-end agregar_cable;
-
-create or replace procedure agregar_ordenador(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type, w_procesador IN ordenador.procesador%type, w_gbram IN ordenador.gbram%type)
-IS
-n_referencia number;
-BEGIN
-INSERT INTO inventario(referencia, nombre, estadoItem, precio, peid) values(sec_item.nextval, w_nombre, 'Disponible', w_precio,null) returning referencia into n_referencia;
-INSERT INTO ordenador(referencia, nombre, precio, procesador, gbram) values(n_referencia, w_nombre, w_precio, w_procesador, w_gbram);
-COMMIT WORK;
-end agregar_ordenador;
 
 --IISSI2
 create or replace procedure agregar_otrositems(w_nombre IN inventario.nombre%type, w_precio IN inventario.precio%type)
