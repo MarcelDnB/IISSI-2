@@ -54,7 +54,7 @@ function listarPersonalAlmacenDisponible($conexion){
 
 function listarPartesSinEnviar($conexion){
 	try{
-		$consulta = "SELECT PARTE.PEID FROM PARTEEQUIPO PARTE, EVENTO E WHERE E.ESTADOEVENTO='enPreparacion'"; 
+		$consulta = "SELECT PARTE.PEID FROM PARTEEQUIPO PARTE, EVENTO E WHERE E.ESTADOEVENTO<>'Realizado'"; 
   	$stmt = $conexion->query($consulta);
 		return $stmt;
 	}catch(PDOException $e) {
