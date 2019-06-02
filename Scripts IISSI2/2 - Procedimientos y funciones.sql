@@ -1,40 +1,12 @@
 --Proyecto ZeUS
 ------------------------------------Procedures----------------------------------
---Procedures para contratar personal según su departamento
-create or replace PROCEDURE contratar_personal_almacen(w_nombre IN personal.nombre%TYPE,w_cargo IN personal.cargo%TYPE,w_sueldo IN personal.sueldo%TYPE,w_dni IN personal.dni%TYPE,w_telefono IN personal.telefono%TYPE,w_email IN personal.email%TYPE, w_pass IN personal.pass%TYPE) 
-IS
-BEGIN
-INSERT INTO personal(pid,departamento,nombre,cargo,sueldo,dni,telefono,estado,eid,peid,email,pass)VALUES (sec_personal_almacen.nextval, 'Almacen', w_nombre, w_cargo,w_sueldo, w_dni, w_telefono,'Libre',null,null,w_email,w_pass);
-COMMIT WORK;
-end contratar_personal_almacen;
-
-create or replace PROCEDURE contratar_personal_produccion(w_nombre IN personal.nombre%TYPE,w_cargo IN personal.cargo%TYPE,w_sueldo IN personal.sueldo%TYPE,w_dni IN personal.dni%TYPE,w_telefono IN personal.telefono%TYPE) 
-IS
-BEGIN
-INSERT INTO personal(pid,departamento,nombre,cargo,sueldo,dni,telefono,estado,eid,peid)VALUES (sec_personal_produccion.nextval, 'Produccion', w_nombre, w_cargo,w_sueldo, w_dni, w_telefono,'Libre',null,null);
-COMMIT WORK;
-end contratar_personal_produccion;
-
-create or replace PROCEDURE contratar_personal_tecnico(w_nombre IN personal.nombre%TYPE,w_cargo IN personal.cargo%TYPE,w_sueldo IN personal.sueldo%TYPE,w_dni IN personal.dni%TYPE,w_telefono IN personal.telefono%TYPE) 
-IS
-BEGIN
-INSERT INTO personal(pid,departamento,nombre,cargo,sueldo,dni,telefono,estado,eid,peid)VALUES (sec_personal_tecnico.nextval, 'Tecnico', w_nombre, w_cargo,w_sueldo, w_dni, w_telefono,'Libre',null,null);
-COMMIT WORK;
-end contratar_personal_tecnico;
-
-create or replace PROCEDURE contratar_personal_comercial(w_nombre IN personal.nombre%TYPE,w_cargo IN personal.cargo%TYPE,w_sueldo IN personal.sueldo%TYPE,w_dni IN personal.dni%TYPE,w_telefono IN personal.telefono%TYPE) 
-IS
-BEGIN
-INSERT INTO personal(pid,departamento,nombre,cargo,sueldo,dni,telefono,estado,eid,peid)VALUES (sec_personal_comercial.nextval, 'Comercial', w_nombre, w_cargo,w_sueldo, w_dni, w_telefono,'Libre',null,null);
-COMMIT WORK;
-end contratar_personal_comercial;
 
 --PRN01.2 Solo el departamento de producción puede contratar personal externo
 /*create or replace PROCEDURE contratar_personal_externo(w_nombre IN personal.nombre%TYPE,w_cargo IN personal.cargo%TYPE,w_sueldo IN personal.sueldo%TYPE,w_dni IN personal.dni%TYPE,w_telefono IN personal.telefono%TYPE, w_eid IN personal.eid%TYPE, w_peid IN personal.peid%TYPE, w_contrata IN personal.pid%TYPE) 
 IS
 BEGIN 
 IF (w_contrata > 999999 and w_contrata < 2000000) then
-INSERT INTO personal(pid,departamento,nombre,cargo,sueldo,dni,telefono,estado,eid,peid)VALUES (sec_personal_externo.nextval, 'Externo', w_nombre, w_cargo,w_sueldo, w_dni, w_telefono,'Ocupado',w_eid, w_peid);
+INSERT INTO personal(pid,departamento,nombre,cargBo,sueldo,dni,telefono,estado,eid,peid)VALUES (sec_personal_externo.nextval, 'Externo', w_nombre, w_cargo,w_sueldo, w_dni, w_telefono,'Ocupado',w_eid, w_peid);
 end if;
 COMMIT WORK;
 end contratar_personal_externo;

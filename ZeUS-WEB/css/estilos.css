@@ -279,15 +279,6 @@ table {
 		outline-width: 0;
 }
 
-
-
-	thead th {
-		
-	}
-	thead td{
-		
-
-	}
 	
   tr:hover {
 		background-color: rgba(255, 255, 255, 0.2);
@@ -549,8 +540,13 @@ input[type=number] { /* para firefox*/
 	top: -9999px;
 	left: -9999px;
 }
+.modal-material input {
+	border: #32a6ff;
+	border-radius: 5px;
+}
 
-.modal-material tr { border: 1px solid #ccc; }
+.modal-material tr { border: 1px solid #ccc;
+padding-bottom: 30px; }
 
 .modal-material td { 
 	/* Behave  like a "row" */
@@ -575,6 +571,18 @@ input[type=number] { /* para firefox*/
 	text-align:left;
 	font-weight: bold;
 }
+.modal-material td .enblanco {
+width: 100px;
+}
+	
+.modal-material tr:hover {
+	background-color: none;
+
+}
+.modal-material tbody td:hover:before {
+	background-color: transparent;
+
+}
 
 /*
 Label the data
@@ -587,7 +595,7 @@ Label the data
 		overflow:hidden;
 		}
 		table input[type=text] {
-			width: 120px;
+			width: 140px;
 		}
 .bienvenida{
 	text-align: center;

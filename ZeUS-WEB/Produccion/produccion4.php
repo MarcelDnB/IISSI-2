@@ -100,10 +100,10 @@ cerrarConexionBD($conexion);
 				
 			</tr>
 			<?php } ?>
-			<td data-title=""></td>
+			<td class="enblanco" data-title=""></td>
 			<td data-title="Material a agregar: ">
 				<input required type="number" id="iagregar" name="iagregar">
-				<input type="hidden" id="iapid" name="iapid" value="<?php echo $usuariomod; ?>">
+
 					<button id="agregar" name="agregar" type="submit" class="button button1">Alquilar</button>
 				</td>
 				</table>
@@ -135,6 +135,7 @@ cerrarConexionBD($conexion);
 	}
 	if(isset($_SESSION["errormodal"])) {
 		echo "No se ha podido crear el material, ha introducido algún dato inválido";
+		echo $_SESSION["excepcion"];
 }
 	if(isset($_SESSION['pagconsult'])) {
 		echo "Ha ocurrido un error con la paginación";
