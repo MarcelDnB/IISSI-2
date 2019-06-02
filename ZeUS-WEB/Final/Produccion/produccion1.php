@@ -166,7 +166,7 @@ cerrarConexionBD($conexion);
 							<td data-title="Precio:"><input id="PRECIOTOTAL" name="PRECIOTOTAL" type="number" min="1" max="1000000000" value="<?php echo $fila['PRECIOTOTAL']; ?>" /></td>
 							<td data-title="F.Inicio:"><input id="FECHAINICIO" name="FECHAINICIO" type="date" required value="<?php echo date_format(date_create_from_format('d/m/y', $fila['FECHAINICIO']), 'Y-m-d'); ?>" /></td>
 							<td data-title="F.Fin:"><input id="FECHAFIN" name="FECHAFIN" type="date" required value="<?php if ($fila["FECHAFIN"] != 0) echo date_format(date_create_from_format('d/m/y', $fila['FECHAFIN']), 'Y-m-d'); ?>" /></td>
-							<td data-title="Estado:"><label><?php echo $fila["ESTADOEVENTO"]; ?></label></td>
+							<td data-title="Estado:"><input id="ESTADOEVENTO" name="ESTADOEVENTO" type="text" value="<?php echo $fila["ESTADOEVENTO"]; ?>" /></td>
 							<td data-title="Descripcion:"><textarea maxlength="139" class="txtareaprod1" id="DESCRIPCIONCLIENTE" name="DESCRIPCIONCLIENTE"><?php echo $fila['DESCRIPCIONCLIENTE']; ?></textarea></td>
 							<td data-title="Lugar:"><input maxlength="40" id="LUGAR" name="LUGAR" required type="text" value="<?php echo $fila['LUGAR']; ?>" /> </td>
 						<?php } else { ?>

@@ -600,3 +600,26 @@ Label the data
 	font-weight: bolder;
 	box-sizing: border-box;
 	}
+
+.fecha{
+		text-align: center;
+		font-size: 1.3em;
+		float: right;
+		padding-right:47%; 
+		line-height: 80px;
+		color:white;
+		text-decoration: none;
+		font-weight: bolder;
+		box-sizing: border-box;
+		}
+.eventoscurso{
+			text-align: center;
+			font-size: 1.3em;
+			float: right;
+			padding-right:70%; 
+			line-height: 80px;
+			color:white;
+			text-decoration: none;
+			font-weight: bolder;
+			box-sizing: border-box;
+			}

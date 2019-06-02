@@ -62,6 +62,10 @@ function listarEventos($conexion){
 		return $e->getMessage();
     }
 }
+
+
+
+
 function listarHoteles($conexion){
 	try{
 		$consulta = "SELECT hotel FROM hoteles WHERE hotel NOT IN (SELECT hotel FROM alojamiento)"; 
