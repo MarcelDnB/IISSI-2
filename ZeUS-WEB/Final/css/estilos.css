@@ -13,7 +13,7 @@ body{
 	overflow-y: auto;
 	overflow-x: hidden;
 	/*background: #333;*/
-	background: linear-gradient(10deg, #32a6ff 0%, #3f6fff 49%, #8d54ff 82%);
+	background:  #3f6fff;
 	background-size: 200%;
 	box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	color: #fff;
@@ -267,14 +267,16 @@ table {
 	width: 380px;
 	height: 100px;
 	overflow-y: auto;
-	border: 2px solid #990000;
-	background: rgba(89, 0, 253, 0.26);
+	border: 2px solid #ffffff;
+	border-radius: 10px;
+	background: rgba(0, 152, 253, 0.233);
+	
 	color: white;
 
 	}
 	td	textarea:focus {
-    background: rgba(89, 0, 253, 0);
-    outline-width: 0;
+		background: rgba(89, 0, 253, 0.562);
+		outline-width: 0;
 }
 
 
@@ -321,6 +323,7 @@ table {
 	justify-content: center;
 	flex-wrap: wrap; 
 	padding-left: 100px;
+	
 }
 
 
