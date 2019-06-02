@@ -99,7 +99,7 @@
 				<div><label>Nombre: </label> <input autocomplete="off" required type="text" maxlength="20" id="nmbre" name="nmbre" class="form-modal"></div>
 				<div><label>Cargo: </label> <input autocomplete="off" required type="text" id="carg" maxlength="20" name="carg" class="form-modal"></div>
 				<div><label>Sueldo: </label> <input autocomplete="off"  type="number" max=100000 id="sueld" name="sueld" class="form-modal"></div>
-				<div><label>DNI: </label> <input autocomplete="off" required maxlength="9" type="text" id="denei" name="denei" class="form-modal"></div>
+				<div><label>DNI: </label> <input autocomplete="off" pattern="(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))" required maxlength="9" type="text" id="denei" name="denei" class="form-modal"></div>
 				<div><label>Email: </label> <input autocomplete="off" type="text" maxlength="20" id="emeil" name="emeil" class="form-modal"></div>
 				<div><label>Contraseña: </label> <input autocomplete="off" type="password" maxlength="20" id="contra" name="contra" class="form-modal"></div>
 				<div><label>Telefono: </label> <input autocomplete="off" type="number" max=999999999 id="telf" name="telf" class="form-modal"></div>
@@ -251,7 +251,7 @@
 						<td data-title="Personal:"><input maxlength="20" id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $fila['NOMBRE'];?>"/></td>
 						<td data-title="Cargo:"><input maxlength="20" id="CARGO" name="CARGO" type="text" value="<?php echo $fila['CARGO'];?>"/></td>
 						<td data-title="Sueldo:"><input max=100000 id="SUELDO" name="SUELDO" type="number" value="<?php echo $fila['SUELDO'];?>"/></td>
-						<td data-title="DNI:"><input maxlength="9" id="DNI" name="DNI" type="text" value="<?php echo $fila['DNI'];?>"/></td>
+						<td data-title="DNI:"><input maxlength="9" pattern="(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))" id="DNI" name="DNI" type="text" value="<?php echo $fila['DNI'];?>"/></td>
 						<td data-title="Telefono:"><input max=999999999 id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $fila['TELEFONO'];?>"/></td>
 						<td data-title="Estado:"><select id="ESTADO" required name="ESTADO">
 									<?php if ($fila['ESTADO'] != "Libre") echo "<option>Libre</option>" ?>

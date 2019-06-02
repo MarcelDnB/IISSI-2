@@ -78,34 +78,20 @@ cerrarConexionBD($conexion);
 			<div class="modal-body">
 				<form method="POST" action="produccion/controlador_itemA.php">
 				<table id="tabla3" class="tabla3">
-			<thead>
-			<tr>
-				<th>ID</th>
-				<th>Nombre</th>
-				<th>Tipo</th>
-				<th>Cantidad</th>
-				<th>PID</th>
-				<th>PEID</th>
-				<th>vacio</th>
-			</tr>
-			</thead>
 			<?php foreach ($materiales as $material) { ?>
-			<tr>
+		
 				<td data-title="Material:"><input type="text" id="iamid" name="iamid" readonly value="<?php echo $material['MID']; ?>"> </td>
 				<td data-title="Nombre:"><input type="text" maxlength="10" id="ianombre" name="ianombre" readonly value="<?php echo $material['NOMBRE']; ?>"> </td>
 				<td data-title="Tipo:"><input type="text" id="iatipo" maxlength="10" name="iatipo" readonly value="<?php echo $material['TIPO']; ?>"></td>
 				<td data-title="Cantidad:"><input type="number" id="iacantidad" max=9999 name="iacantidad" readonly value="<?php echo $material['CANTIDAD']; ?>"></td>
 				<td data-title="PID:"><input type="number" id="iapid" name="iapid" readonly value="<?php echo $usuarios["PID"]; ?>"></td>
 				<td data-title="PEID:"><input type="number" id="iapeid" name="iapeid" readonly value="<?php echo $material['PEID']; ?>"></td>
-				
-			</tr>
+				<td class="enblanco"></td>
 			<?php } ?>
-			<td class="enblanco" data-title=""></td>
 			<td data-title="Material a agregar: ">
-				<input required type="number" id="iagregar" name="iagregar">
-
-					<button id="agregar" name="agregar" type="submit" class="button button1">Alquilar</button>
-				</td>
+				<input required type="number" id="iagregar" name="iagregar"/>
+				<button id="agregar" name="agregar" type="submit" class="button button1">Alquilar</button>
+			</td>
 				</table>
 				</form>
 			</div>
