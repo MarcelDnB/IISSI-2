@@ -31,4 +31,19 @@ execute agregar_otrositems('Cable HDMI 1m',3);
 
 --Carga de eventos
 execute crear_evento(6000, 'Hospital Macarena', TO_DATE('2019/07/08 19:00:00','yyyy/mm/dd hh24:mi:ss'),TO_DATE('2019/07/10 00:00:00','yyyy/mm/dd hh24:mi:ss'), 'RetransmisiÃ³n de cirugÃ­a');
+execute crear_evento(6000, 'Calle España, 7, Sevilla', TO_DATE('2019/07/08 19:00:00','yyyy/mm/dd hh24:mi:ss'),TO_DATE('2019/07/10 00:00:00','yyyy/mm/dd hh24:mi:ss'), 'Una charla a la que acudirá aproximadamente 40 personas, no es necesario un escenario muy grande.');
+execute crear_evento(6000, 'Calle Castillo Baños de la Encima Nº4', TO_DATE('2019/07/08 19:00:00','yyyy/mm/dd hh24:mi:ss'),TO_DATE('2019/07/10 00:00:00','yyyy/mm/dd hh24:mi:ss'), 'Charla sobre curiosidades de la salud y como evitar la obesidad.');
+execute crear_evento(6000, 'Calle Don San Juan 13 Cordoba', TO_DATE('2019/07/08 19:00:00','yyyy/mm/dd hh24:mi:ss'),TO_DATE('2019/07/10 00:00:00','yyyy/mm/dd hh24:mi:ss'), 'Streaming de una operación compleja, se avisa de la larga duración del evento.');
+
+execute crear_alojamiento(1,'Italia','Calle Los Soprano, 4',TO_DATE('2019/07/08 19:00:00','yyyy/mm/dd hh24:mi:ss'),TO_DATE('2019/07/10 00:00:00','yyyy/mm/dd hh24:mi:ss'),'1estrella',13);
+execute crear_alojamiento(84,'Venezuela','Calle La Manguera, 1',TO_DATE('2019/07/08 19:00:00','yyyy/mm/dd hh24:mi:ss'),TO_DATE('2019/07/10 00:00:00','yyyy/mm/dd hh24:mi:ss'),'1estrella',13);
+execute crear_alojamiento(91,'Estados Unidos','Down Town Street, 6',TO_DATE('2019/07/08 19:00:00','yyyy/mm/dd hh24:mi:ss'),TO_DATE('2019/07/10 00:00:00','yyyy/mm/dd hh24:mi:ss'),'1estrella',13);
+execute crear_alojamiento(92,'España','Calle Francisco Suarez, 4',TO_DATE('2019/07/08 19:00:00','yyyy/mm/dd hh24:mi:ss'),TO_DATE('2019/07/10 00:00:00','yyyy/mm/dd hh24:mi:ss'),'1estrella',13);
+
+execute crear_transporte('Furgoneta',20,1);
+execute crear_transporte('Coche',20,63);
+execute crear_transporte('Avión',20,70);
+execute crear_transporte('Barco',20,84);
+execute crear_transporte('Helicóptera',20,91);
+
 
