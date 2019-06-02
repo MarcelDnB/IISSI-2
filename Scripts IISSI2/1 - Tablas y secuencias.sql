@@ -3,12 +3,6 @@
 --Este script contiene las tablas, restricciones, secuencias y triggers asociados a la gestión de secuencias
 ------------------------------------DROP_TABLES------------------------------------   
       	    DROP TABLE Altavoz;
-            DROP TABLE Ordenador;
-            DROP TABLE Cable;
-            DROP TABLE Proyector;
-            DROP TABLE Foco;
-            DROP TABLE mesaMezcla;
-            DROP TABLE Pantalla;
             DROP TABLE Microfono;
             DROP TABLE otrosItems;
             
@@ -116,9 +110,9 @@
             precio number(5) check (precio >=0),
             pid number(7),
             peid number(7),
-		 mid number(4),
-		estado varchar2(11) check (estado in ('porUsar','porDevolver')),
-		 foreign key(mid) references materialnecesario,
+	    mid number(4),
+            estado varchar2(11) check (estado in ('porUsar','porDevolver')),
+	    foreign key(mid) references materialnecesario,
             foreign key(peid) references parteEquipo
             );
 					   
@@ -157,61 +151,6 @@
             precio number(20) check (precio>=0),
             alimentacion varchar2(10),
             tipoSujeccion varchar2(10),
-            foreign key(referencia) references inventario on delete cascade
-            );
-            
-            create table Pantalla(
-            referencia number(10) primary key,
-            nombre varchar2(30),
-            precio number(20) check (precio>=0),
-            tamaño number(6),
-            resolucion number(4),
-            foreign key(referencia) references inventario on delete cascade
-            );
-            
-            create table mesaMezcla(
-            referencia number(10) primary key,
-            nombre varchar2(30),
-            precio number(20) check (precio>=0),
-            canales number(2),
-            tipo varchar2(10),
-            foreign key(referencia) references inventario on delete cascade
-            );
-            
-            create table Foco(
-            referencia number(10) primary key,
-            nombre varchar2(30),
-            precio number(20) check (precio>=0),
-            tipoLuz varchar2(20),
-            tipoMovimiento varchar2(7),
-            potencia number(5),
-            foreign key(referencia) references inventario on delete cascade
-            );
-            
-            create table Proyector(
-            referencia number(10) primary key,
-            nombre varchar2(30),
-            precio number(20) check (precio>=0),
-            resolucion number(4),
-            lumenes number(5),
-            foreign key(referencia) references inventario on delete cascade
-            );
-            
-            create table Cable(
-            referencia number(10) primary key,
-            nombre varchar2(30),
-            precio number(20) check (precio>=0),
-            conexion varchar2(6),
-            metros number(4),
-            foreign key(referencia) references inventario on delete cascade
-            );
-            
-            create table Ordenador(
-            referencia number(10) primary key,
-            nombre varchar2(30),
-            precio number(20) check (precio>=0),
-            procesador varchar2(15),
-            gbram number(3),
             foreign key(referencia) references inventario on delete cascade
             );
             
