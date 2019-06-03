@@ -1,5 +1,5 @@
 # IISSI-2
-Proyecto ZeUS de IISSI2
+Proyecto ZeUS de IISSI2. CAMPEONES.
 
 ## TODO
 
